@@ -6,10 +6,11 @@ description: 'Learn about the different fields available for collections in Blut
 The following fields are available when defining a Blutui collection:
 
 ### Text
+
 A single-line text input for short strings such as names or titles.
 
 | Argument                   | Description                                                                      |
-| :--------------------------| :--------------------------------------------------------------------------------|
+| :------------------------- | :------------------------------------------------------------------------------- |
 | `Display Name`             | The label displayed on the dashboard when entering data                          |
 | `Attribute Name`           | Used in the code to reference this field                                         |
 | `Default value` (optional) | The default text that appears in the input field if no other value is provided   |
@@ -17,10 +18,11 @@ A single-line text input for short strings such as names or titles.
 | `Required` (optional)      | Indicates whether this field must be filled out before submitting the collection |
 
 ### Text Area
+
 A multi-line text input for longer strings such as descriptions or biographies.
 
 | Argument                   | Description                                                                      |
-| :--------------------------| :--------------------------------------------------------------------------------|
+| :------------------------- | :------------------------------------------------------------------------------- |
 | `Display Name`             | The label displayed on the dashboard when entering data                          |
 | `Attribute Name`           | Used in the code to reference this field                                         |
 | `Default value` (optional) | The default text that appears in the input field if no other value is provided   |
@@ -28,22 +30,87 @@ A multi-line text input for longer strings such as descriptions or biographies.
 | `Required` (optional)      | Indicates whether this field must be filled out before submitting the collection |
 
 ### Rich Text
+
 A rich text content editor that allows for formatted text, links, styling etc.
 
+| Argument               | Description                                                                      |
+| :--------------------- | :------------------------------------------------------------------------------- |
+| `Display Name`         | The label displayed on the dashboard when entering data                          |
+| `Attribute Name`       | Used in the code to reference this field                                         |
+| `Help text` (optional) | Additional information or instructions displayed below the input field           |
+| `Required` (optional)  | Indicates whether this field must be filled out before submitting the collection |
+
+### File
+
+A file upload input for documents, images, or other media.
+
+| Argument                                 | Description                                                                      |
+| :--------------------------------------- | :------------------------------------------------------------------------------- |
+| `Display Name`                           | The label displayed on the dashboard when entering data                          |
+| `Attribute Name`                         | Used in the code to reference this field                                         |
+| `Help text` (optional)                   | Additional information or instructions displayed below the input field           |
+| `Allow multiple file uploads` (optional) | Allows the ability to upload more than one file at a time                        |
+| `Required` (optional)                    | Indicates whether this field must be filled out before submitting the collection |
+
+### URL
+
+A single-line input specifically for web addresses.
+
 | Argument                   | Description                                                                      |
-| :--------------------------| :--------------------------------------------------------------------------------|
+| :------------------------- | :------------------------------------------------------------------------------- |
 | `Display Name`             | The label displayed on the dashboard when entering data                          |
 | `Attribute Name`           | Used in the code to reference this field                                         |
+| `Default value` (optional) | The default text that appears in the input field if no other value is provided   |
 | `Help text` (optional)     | Additional information or instructions displayed below the input field           |
 | `Required` (optional)      | Indicates whether this field must be filled out before submitting the collection |
 
-### file
-A file upload input for documents, images, or other media.
+### Email
+
+A single-line input specifically for email addresses.
 
 | Argument                   | Description                                                                      |
-| :--------------------------| :--------------------------------------------------------------------------------|
+| :------------------------- | :------------------------------------------------------------------------------- |
 | `Display Name`             | The label displayed on the dashboard when entering data                          |
 | `Attribute Name`           | Used in the code to reference this field                                         |
+| `Default value` (optional) | The default text that appears in the input field if no other value is provided   |
 | `Help text` (optional)     | Additional information or instructions displayed below the input field           |
-| `Allow multiple file uploads` (optional)     | Allows the ability to upload more than one file at a time      |
+| `Required` (optional)      | Indicates whether this field must be filled out before submitting the collection |
+
+### Date & Time
+
+An input for selecting dates and times.
+
+| Argument                   | Description                                                                      |
+| :------------------------- | :------------------------------------------------------------------------------- |
+| `Display Name`             | The label displayed on the dashboard when entering data                          |
+| `Attribute Name`           | Used in the code to reference this field                                         |
+| `Default value` (optional) | The default text that appears in the input field if no other value is provided   |
+| `Help text` (optional)     | Additional information or instructions displayed below the input field           |
+| `Required` (optional)      | Indicates whether this field must be filled out before submitting the collection |
+
+### Date
+
+An input for selecting dates.
+
+| Argument                   | Description                                                                      |
+| :------------------------- | :------------------------------------------------------------------------------- |
+| `Display Name`             | The label displayed on the dashboard when entering data                          |
+| `Attribute Name`           | Used in the code to reference this field                                         |
+| `Default value` (optional) | The default text that appears in the input field if no other value is provided   |
+| `Help text` (optional)     | Additional information or instructions displayed below the input field           |
+| `Required` (optional)      | Indicates whether this field must be filled out before submitting the collection |
+
+### Number
+
+A input for numeric values.
+
+| Argument                   | Description                                                                      |
+| :------------------------- | :------------------------------------------------------------------------------- |
+| `Display Name`             | The label displayed on the dashboard when entering data                          |
+| `Attribute Name`           | Used in the code to reference this field                                         |
+| `Default value` (optional) | The default text that appears in the input field if no other value is provided   |
+| `Help text` (optional)     | Additional information or instructions displayed below the input field           |
+| `Maximum` (optional)       | The maximum value that can be entered in the input field                         |
+| `Minimum` (optional)       | The minimum value that can be entered in the input field                         |
+| `Step` (optional)          | The increment between valid values in the input field                            |
 | `Required` (optional)      | Indicates whether this field must be filled out before submitting the collection |

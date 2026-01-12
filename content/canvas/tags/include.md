@@ -10,9 +10,9 @@ The **include** statement includes a template and returns the rendered content o
 {% include 'footer.html' %}
 ```
 
-It is recommended to use the [include](/docs/canvas/functions/include) function instead as it provides the same features with a bit more flexibility:
+It is recommended to use the [include](/canvas/functions/include) function instead as it provides the same features with a bit more flexibility:
 
-- The [include](/docs/canvas/functions/include) function is semantically more "correct" (including a template outputs its rendered contents in the current scope; a tag should not display anything);
+- The [include](/canvas/functions/include) function is semantically more "correct" (including a template outputs its rendered contents in the current scope; a tag should not display anything);
 - The include function is more "composable":
 
 ```canvas
@@ -31,7 +31,7 @@ It is recommended to use the [include](/docs/canvas/functions/include) function 
 {{ include('template.html') | upper }}
 ```
 
-- The [include](/docs/canvas/functions/include) function does not impose any specific order for arguments thanks to named arguments.
+- The [include](/canvas/functions/include) function does not impose any specific order for arguments thanks to named arguments.
 
 Included templates have access to the variables of the active context. You can add additional variables by passing them after the `with` keyword:
 

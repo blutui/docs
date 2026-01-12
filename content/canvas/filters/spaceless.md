@@ -15,7 +15,7 @@ The `spaceless` does not remove whitespace within HTML tags or whitespace in pla
 {# output will be <div><strong>foo</strong></div> #}
 ```
 
-You can combine **spaceless** with the [apply](/docs/canvas/tags/apply) tag to apply the transformation on large amounts of HTML:
+You can combine **spaceless** with the [apply](/canvas/tags/apply) tag to apply the transformation on large amounts of HTML:
 
 ```canvas
 {% apply spaceless %}

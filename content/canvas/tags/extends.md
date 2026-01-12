@@ -2,7 +2,7 @@
 title: 'extends'
 ---
 
-The **extends** tag can be used to extend a template from another one. Canvas does not support multiple inheritance. So you can only have one extends tag called per rendering. However, Canvas supports horizontal [reuse](/docs/canvas/tags/use). Let's define a base template, `base.html`, which defines a simple HTML skeleton document:
+The **extends** tag can be used to extend a template from another one. Canvas does not support multiple inheritance. So you can only have one extends tag called per rendering. However, Canvas supports horizontal [reuse](/canvas/tags/use). Let's define a base template, `base.html`, which defines a simple HTML skeleton document:
 
 ```canvas
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ The **extends** tag can be used to extend a template from another one. Canvas do
 </html>
 ```
 
-In this example, the [block](/docs/canvas/tags/block) tags define four blocks that child templates can fill in. All the **block** tag does is to tell the template engine that a child template may override those portions of the template.
+In this example, the [block](/canvas/tags/block) tags define four blocks that child templates can fill in. All the **block** tag does is to tell the template engine that a child template may override those portions of the template.
 
 ## Child templates
 
@@ -56,7 +56,7 @@ Note that since the child template doesn't define the `footer` block, the value 
 
 You can't define multiple block tags with the same name in the same template. This limitation exists because a block tag works in "both" directions. That is, a block tag doesn't just provide a hole to fill - it also defines the content that fills the hole in the parent. If there were two similarly-named block tags in a template, that template's parent wouldn't know which one of the blocks' content to use.
 
-If you want to print a block multiple times you can however use the [block](/docs/canvas/functions/block) function:
+If you want to print a block multiple times you can however use the [block](/canvas/functions/block) function:
 
 ```canvas
 <title>{% block title %}{% endblock %}</title>
@@ -66,7 +66,7 @@ If you want to print a block multiple times you can however use the [block](/doc
 
 ## Parent blocks
 
-It's possible to render the contents of the parent block by using the [parent](/docs/canvas/functions/parent) function. This gives back the results of the parent block:
+It's possible to render the contents of the parent block by using the [parent](/canvas/functions/parent) function. This gives back the results of the parent block:
 
 ```canvas
 {% block sidebar %}

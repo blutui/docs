@@ -100,7 +100,7 @@ You can also access both keys and values:
 
 ## Iterating over a subset
 
-You might want to iterate over a subset of values. This can be achieved using the [slice](/docs/canvas/filters/slice) filter:
+You might want to iterate over a subset of values. This can be achieved using the [slice](/canvas/filters/slice) filter:
 
 ```canvas
 <h1>Top Ten Members</h1>

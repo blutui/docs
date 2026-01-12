@@ -4,9 +4,9 @@ title: Templating
 
 ## Control structure
 
-A control structure refers to all those things that control the flow of a program - conditionals (i.e. [if/elseif/else](/docs/canvas/tags/if)), [for](/docs/canvas/tags/for) loops, as well as things like blocks. Control structures appear inside `{% ...>` blocks.
+A control structure refers to all those things that control the flow of a program - conditionals (i.e. [if/elseif/else](/canvas/tags/if)), [for](/canvas/tags/for) loops, as well as things like blocks. Control structures appear inside `{% ...>` blocks.
 
-For example, to display a list of users provided in a variable called `users`, use the [for](/docs/canvas/tags/for) tag:
+For example, to display a list of users provided in a variable called `users`, use the [for](/canvas/tags/for) tag:
 
 ```canvas
 <h1>Members</h1>
@@ -17,7 +17,7 @@ For example, to display a list of users provided in a variable called `users`, u
 </ul>
 ```
 
-The [if](/docs/canvas/tags/if) tag can be used to test an expression:
+The [if](/canvas/tags/if) tag can be used to test an expression:
 
 ```canvas
 {% if users | length > 0 %}
@@ -43,7 +43,7 @@ To comment-out part of a line in a template, use the comment syntax `{# ... #}`.
 
 ## Including other templates
 
-The [include](/docs/canvas/functions/include) function is useful to include a template and return the rendered content of that template into the current one:
+The [include](/canvas/functions/include) function is useful to include a template and return the rendered content of that template into the current one:
 
 ```canvas
 {{ include('sidebar.html') }}
@@ -96,7 +96,7 @@ Let's define a base template, **base.html**, which defines an HTML skeleton docu
 </html>
 ```
 
-In this example, the [block](/docs/canvas/tags/block) tags define four blocks that child templates can fill in. All the `block` tag does is to tell the template engine that a child template may override those portions of the template.
+In this example, the [block](/canvas/tags/block) tags define four blocks that child templates can fill in. All the `block` tag does is to tell the template engine that a child template may override those portions of the template.
 
 A child template might look like this:
 
@@ -120,11 +120,11 @@ A child template might look like this:
 {% endblock %}
 ```
 
-The [extends](/docs/canvas/tags/extends) tag is the key here. It tells the template engine that this template "extends" another template. When the template system evaluates this template, first it locates the parent. The extends tag should be the first tag in the template.
+The [extends](/canvas/tags/extends) tag is the key here. It tells the template engine that this template "extends" another template. When the template system evaluates this template, first it locates the parent. The extends tag should be the first tag in the template.
 
 Note that since the child template doesn't define the **footer** block, the value from the parent template is used instead.
 
-It's possible to render the contents of the parent block by using the [parent](/docs/canvas/functions/parent) function. This gives back the results of the parent block:
+It's possible to render the contents of the parent block by using the [parent](/canvas/functions/parent) function. This gives back the results of the parent block:
 
 ```canvas
 {% block sidebar %}
@@ -134,9 +134,9 @@ It's possible to render the contents of the parent block by using the [parent](/
 {% endblock %}
 ```
 
-The documentation page for the [extends](/docs/canvas/tags/extends) tag describes more advanced features like block nesting, scope, dynamic inheritance, and conditional inheritance.
+The documentation page for the [extends](/canvas/tags/extends) tag describes more advanced features like block nesting, scope, dynamic inheritance, and conditional inheritance.
 
-Canvas also supports multiple inheritance via "horizontal reuse" with the help of the [use](/docs/canvas/tags/use) tag.
+Canvas also supports multiple inheritance via "horizontal reuse" with the help of the [use](/canvas/tags/use) tag.
 
 ## HTML escaping
 
@@ -144,13 +144,13 @@ When generating HTML from templates, there's always a risk that a variable will 
 
 Canvas supports both, automatic escaping is enabled by default.
 
-The automatic escaping strategy can be configured via the [autoescape](/docs/canvas/tags/autoescape) tag and defaults to **html**.
+The automatic escaping strategy can be configured via the [autoescape](/canvas/tags/autoescape) tag and defaults to **html**.
 
-For bigger sections it makes sense to mark a block [verbatim](/docs/canvas/tags/verbatim).
+For bigger sections it makes sense to mark a block [verbatim](/canvas/tags/verbatim).
 
 ## Macros
 
-Macros are comparable with functions in regular programming languages. They are useful to reuse HTML fragments to not repeat yourself. They are described in the [macro](/docs/canvas/tags/macro) tag documentation.
+Macros are comparable with functions in regular programming languages. They are useful to reuse HTML fragments to not repeat yourself. They are described in the [macro](/canvas/tags/macro) tag documentation.
 
 ## Whitespace control
 
@@ -186,7 +186,7 @@ The modifiers can be used on either side of the tags like in `{%-` or `-%}` and 
 {# outputs '<li>\\nno spaces    </li>' #}
 ```
 
-In addition to the whitespace modifiers, Canvas also has a [spaceless](/docs/canvas/filters/spaceless) filter that removes whitespace **between HTML tags**:
+In addition to the whitespace modifiers, Canvas also has a [spaceless](/canvas/filters/spaceless) filter that removes whitespace **between HTML tags**:
 
 ```canvas
 {% apply spaceless %}

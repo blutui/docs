@@ -7,7 +7,7 @@ It is recommended that you use the alternative filters listed below.
 
 ## sort_by
 
-Alternatives: [sort](/docs/canvas/filters/sort)
+Alternatives: [sort](/canvas/filters/sort)
 
 The `sort_by` filter sorts an array:
 
@@ -19,7 +19,7 @@ The `sort_by` filter sorts an array:
 
 ### Arguments
 
-Argument   | Description                                          | Type
----------- | ---------------------------------------------------- | ------
-`key`      | The `key` to sort by.                                | String
-`reverse`  | Reverse the sorting of the array (default: `false`). | Boolean
+| Argument  | Description                                          | Type    |
+| --------- | ---------------------------------------------------- | ------- |
+| `key`     | The `key` to sort by.                                | String  |
+| `reverse` | Reverse the sorting of the array (default: `false`). | Boolean |

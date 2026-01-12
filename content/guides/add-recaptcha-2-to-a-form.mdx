@@ -14,30 +14,35 @@ Protecting your forms from spam and abuse is crucial. Google's reCAPTCHA v2 prov
 ### Registration
 
 Start by visiting [Google reCAPTCHA's registration page](https://www.google.com/recaptcha/admin/create). Sign in using your Google account.
+
 </Step>
 
 <Step>
 ### Create a new site
 
 Next, click on **Register a new site**. Provide a suitable name for your reCAPTCHA integration, ensure you select the reCAPTCHA type as **v2 Checkbox**.
+
 </Step>
 
 <Step>
 ### Domain configuration
 
 Input all domains where your site will be live. It's advisable to also include your staging URL, ensuring you can test the form in the staging environment.
+
 </Step>
 
 <Step>
 ### Alert settings
 
 Associate it with your primary Google account. If you're using older versions of reCAPTCHA, specify emails to receive alerts regarding any issues.
+
 </Step>
 
 <Step>
 ### Complete registration
 
 Lastly, read and accept the terms of service and click **Submit**. Once registered, you'll receive two keys, a **public key** and a **secret key**. If you need further details or encounter any challenges while obtaining your reCAPTCHA keys, Google's [developer documentation](https://developers.google.com/recaptcha/intro) is a valuable resource.
+
 </Step>
 </Steps>
 
@@ -48,18 +53,21 @@ Lastly, read and accept the terms of service and click **Submit**. Once register
 ### Navigate to Settings
 
 Head to your Blutui Project Dashboard. Click on **Settings** and navigate to **Forms** page.
+
 </Step>
 
 <Step>
 ### Key configuration
 
 Paste the **Public Key** and **Secret Key** from the reCAPTCHA dashboard into their respective fields in the Blutui Project Dashboard.
+
 </Step>
 
 <Step>
 ### Update your form template
 
-Navigate to your form template code for the Blutui project. Insert the [`{{ recaptcha() }}`](/docs/canvas/functions/recaptcha) function where you'd like the reCAPTCHA checkbox to appear. Typically, it's best to place this right above the form's submit button.
+Navigate to your form template code for the Blutui project. Insert the [`{{ recaptcha() }}`](/canvas/functions/recaptcha) function where you'd like the reCAPTCHA checkbox to appear. Typically, it's best to place this right above the form's submit button.
+
 </Step>
 </Steps>
 

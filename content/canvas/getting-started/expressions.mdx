@@ -62,7 +62,7 @@ Canvas allows you to do math in templates; the following operators are supported
 - `-`: Subtracts the second number from the first one. `{{ 3 - 2 }}` is `1`.
 - `/`: Divides two numbers. The returned value will be a floating point number. `{{ 1 / 2 }}` is `{{ 0.5 }}`.
 - `%`: Calculates the remainder of an integer division. `{{ 11 % 7 }}` is `4`.
-- `//`: Divides two numbers and returns the floored integer result. `{{ 20 // 7 }}` is `2`, `{{ -20  // 7 }}` is `-3` (this is just syntactic sugar for the [round](/docs/canvas/filters/round) filter).
+- `//`: Divides two numbers and returns the floored integer result. `{{ 20 // 7 }}` is `2`, `{{ -20  // 7 }}` is `-3` (this is just syntactic sugar for the [round](/canvas/filters/round) filter).
 - `*`: Multiplies the left operand with the right one. `{{ 2 * 2 }}` would return `4`.
 - `**`: Raises the left operand to the power of the right operand. `{{ 2 ** 3 }}` would return `8`.
 
@@ -153,7 +153,7 @@ Tests can be negated by using the `is not` operator:
 The following operators don't fit into any of the other categories:
 
 - `|`: Applies a filter.
-- `..`: Creates a sequence based on the operand before and after the operator (this is syntactic sugar for the [range](/docs/canvas/functions/range) function):
+- `..`: Creates a sequence based on the operand before and after the operator (this is syntactic sugar for the [range](/canvas/functions/range) function):
 
 ```canvas
 {{ 1..5 }}
@@ -162,7 +162,7 @@ The following operators don't fit into any of the other categories:
 {{ range(1, 5) }}
 ```
 
-Note that you must use parentheses when combining it with the filter operator due to the [operator precedence rules](/docs/canvas/getting-started/expressions):
+Note that you must use parentheses when combining it with the filter operator due to the [operator precedence rules](/canvas/getting-started/expressions):
 
 ```canvas
 (1..5) | join(', ')
@@ -194,7 +194,7 @@ Note that you must use parentheses when combining it with the filter operator du
 
 ## String interpolation
 
-String interpolation (`#{expression}`) allows any valid expression to appear within a *double-quoted string*. The result of evaluating that expression is inserted into the string:
+String interpolation (`#{expression}`) allows any valid expression to appear within a _double-quoted string_. The result of evaluating that expression is inserted into the string:
 
 ```canvas
 {{ "foo #{bar} baz" }}
@@ -202,5 +202,5 @@ String interpolation (`#{expression}`) allows any valid expression to appear wit
 ```
 
 <Callout>
-Ensure that you run `courier push` after each update, to view your changes in the staging environment.
+  Ensure that you run `courier push` after each update, to view your changes in the staging environment.
 </Callout>

@@ -56,7 +56,7 @@ The main template can also override any imported block. If the template already 
 {% block content %}{% endblock %}
 ```
 
-The [parent()](/docs/canvas/functions/parent) function automatically determines the correct inheritance tree, so it can be used when overriding a block defined in an imported template:
+The [parent()](/canvas/functions/parent) function automatically determines the correct inheritance tree, so it can be used when overriding a block defined in an imported template:
 
 ```canvas
 {% extends 'base.html' %}

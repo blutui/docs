@@ -29,9 +29,9 @@ Macros don't have access to the current template variables.
 
 ## Importing macros
 
-There are two ways to import macros. You can import the complete template containing the macros into a local variable (via the [import](/docs/canvas/tags/import) tag) or only import specific macros from the template (via the [from](/docs/canvas/tags/from) tag).
+There are two ways to import macros. You can import the complete template containing the macros into a local variable (via the [import](/canvas/tags/import) tag) or only import specific macros from the template (via the [from](/canvas/tags/from) tag).
 
-To import all macros from a template into a local variable, use the [import](/docs/canvas/tags/import) tag:
+To import all macros from a template into a local variable, use the [import](/canvas/tags/import) tag:
 
 ```canvas
 {% import 'forms.html' as forms %}
@@ -46,7 +46,7 @@ The macros can then be called at will in the _current_ template:
 <p>{{ forms.input('password', null, 'password') }}</p>
 ```
 
-Alternatively you can import names from the template into the current namespace via the [from](/docs/canvas/tags/from) tag:
+Alternatively you can import names from the template into the current namespace via the [from](/canvas/tags/from) tag:
 
 ```canvas
 {% from 'forms.html' import input as input, textarea %}
@@ -67,11 +67,11 @@ When **macro** usages and definitions are in the same template, you don't need t
 
 ## Macro scoping
 
-The scoping rules are the same whether you imported macros via [import](/docs/canvas/tags/import) or [from](/docs/canvas/tags/from).
+The scoping rules are the same whether you imported macros via [import](/canvas/tags/import) or [from](/canvas/tags/from).
 
 Imported macros are always **local** to the current template. It means that macros are available in all blocks and other macros defined in the current template, but they are not available in included templates or child templates; you need to explicitly re-import macros in each template.
 
-When calling **import** or **from** from a [block](/docs/canvas/tags/block) tag, the imported macros are only defined in the current block and they override macros defined at the template level with the same names.
+When calling **import** or **from** from a [block](/canvas/tags/block) tag, the imported macros are only defined in the current block and they override macros defined at the template level with the same names.
 
 When calling **import** or **from** from a **macro** tag, the imported macros are only defined in the current macro and they override macros defined at the template level with the same names.
 

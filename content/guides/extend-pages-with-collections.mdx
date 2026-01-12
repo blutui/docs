@@ -16,28 +16,27 @@ This approach allows you to connect different types of content and make your pag
 
 Start by creating a new **collection** in your project dashboard.
 
-1. Navigate to the **Collections** section in your Blutui dashboard.  
-2. Click **Create collection** and name it `Authors`.  
+1. Navigate to the **Collections** section in your Blutui dashboard.
+2. Click **Create collection** and name it `Authors`.
 3. Add the following fields:
 
 ![](https://cdn.blutui.com/uploads/assets/Dev/guides/extend-blog-collection.png)
 
-| Field Type | Name | Description |
-|-------------|------|-------------|
-| Text | handle | A unique identifier for each author (e.g. `frodo-baggins`) |
-| Text | Author Name | The display name of the author |
-| File | avatar | The author’s profile image |
-| Richtext | bio | A short author biography |
-
+| Field Type | Name        | Description                                                |
+| ---------- | ----------- | ---------------------------------------------------------- |
+| Text       | handle      | A unique identifier for each author (e.g. `frodo-baggins`) |
+| Text       | Author Name | The display name of the author                             |
+| File       | avatar      | The author’s profile image                                 |
+| Richtext   | bio         | A short author biography                                   |
 
 After saving the collection, create your first entry:
 
-| Field | Example Value |
-|--------|----------------|
-| handle | `frodo-baggins` |
-| Author Name | Frodo Baggins |
-| avatar | *(upload an image)* |
-| bio | “Ring-bearer and adventurer from the Shire.” |
+| Field       | Example Value                                |
+| ----------- | -------------------------------------------- |
+| handle      | `frodo-baggins`                              |
+| Author Name | Frodo Baggins                                |
+| avatar      | _(upload an image)_                          |
+| bio         | “Ring-bearer and adventurer from the Shire.” |
 
 ---
 
@@ -49,7 +48,7 @@ Next, open one of your blog posts (or create a new one) and fill in the **author
 
 frodo-baggins
 
-````
+```
 
 This will link the blog post to the matching entry in your `Authors` collection.
 
@@ -64,7 +63,7 @@ At the top of your blog post template, set and filter the collection to find the
 ```canvas
 {% set authors = cms.collection('authors') %}
 {% set author = authors | filter(v => v.handle == post.author) | first %}
-````
+```
 
 This retrieves the `authors` collection and filters it by the `handle` value matching the blog post’s `author` field.
 
@@ -100,9 +99,9 @@ This will render the author’s avatar, name, and biography directly from the co
 
 You can use this same pattern to expand your pages with other types of related content, such as:
 
-* Linking **locations** to events
-* Displaying **categories** or **tags** for posts
-* Showing **related products** or **team members** based on handles or URLs
+- Linking **locations** to events
+- Displaying **categories** or **tags** for posts
+- Showing **related products** or **team members** based on handles or URLs
 
 By using collections, you can connect data across your site and make your content more flexible and scalable.
 
@@ -117,12 +116,11 @@ Now that you’ve connected a collection to your page content, explore ways to m
     Learn how to create and render collections dynamically in your templates.
   </Card>
 
-  <Card title="cms.collection function" href="/docs/canvas/functions/cms#collection">
-    Read more about using the cms.collection function to fetch data.
-  </Card>
+<Card title="cms.collection function" href="/canvas/functions/cms#collection">
+  Read more about using the cms.collection function to fetch data.
+</Card>
 
   <Card title="How do I create a page?" href="/guides/create-page">
     Learn how to create and manage pages for your project.
   </Card>
 </Cards>
-

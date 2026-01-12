@@ -2,7 +2,7 @@
 title: 'embed'
 ---
 
-The **embed** tag combines the behaviour of [include](/docs/canvas/tags/include) and [extends](/docs/canvas/tags/extends). It allows you to include another template's contents, just like `include` does. But it also allows you to override any block defined inside the included template, like when extending a template.
+The **embed** tag combines the behaviour of [include](/canvas/tags/include) and [extends](/canvas/tags/extends). It allows you to include another template's contents, just like `include` does. But it also allows you to override any block defined inside the included template, like when extending a template.
 
 Think of an embedded template as a "micro layout skeleton".
 
@@ -117,7 +117,7 @@ And here is the code for `vertical_boxes_skeleton.html`:
 
 The goal of the `vertical_boxes_skeleton.html` template being to factor out the HTML markup for the boxes.
 
-The **embed** tag takes the exact same arguments as the [include](/docs/canvas/tags/include) tag:
+The **embed** tag takes the exact same arguments as the [include](/canvas/tags/include) tag:
 
 ```canvas
 {% embed "base" with {'foo': 'bar'} %}
@@ -133,4 +133,4 @@ The **embed** tag takes the exact same arguments as the [include](/docs/canvas/t
 {% endembed %}
 ```
 
-As embedded templates do not have "names", auto-escaping strategies based on the template name won't work as expected if you change the context (for instance, if you embed a CSS/JavaScript template into an HTML one). In that case, explicitly set the default auto-escaping strategy with the [autoescape](/docs/canvas/tags/autoescape) tag.
+As embedded templates do not have "names", auto-escaping strategies based on the template name won't work as expected if you change the context (for instance, if you embed a CSS/JavaScript template into an HTML one). In that case, explicitly set the default auto-escaping strategy with the [autoescape](/canvas/tags/autoescape) tag.

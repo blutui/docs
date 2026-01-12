@@ -13,7 +13,7 @@ You can control the number of decimal places, decimal point, and thousands separ
 {{ 9800.333 | number_format(2, '.', ',') }}
 ```
 
-To format negative numbers or math calculation, wrap the previous statement with parentheses (needed because of Canvas [precedence of operators](/docs/canvas/getting-started/expressions)):
+To format negative numbers or math calculation, wrap the previous statement with parentheses (needed because of Canvas [precedence of operators](/canvas/getting-started/expressions)):
 
 ```canvas
 {{ -9800.333 | number_format(2, '.', ',') }} {# outputs : -9 #}
@@ -30,8 +30,8 @@ If no formatting options are provided then Canvas will use the default formattin
 
 ## Arguments
 
-Argument        | Description                                          | Type
---------------- | ---------------------------------------------------- | ------
-`decimal`       | The number of decimal points to display              | Number
-`decimal_point` | The character(s) to use for the decimal point        | String
-`thousand_sep`  |  The character(s) to use for the thousands separator | String
+| Argument        | Description                                         | Type   |
+| --------------- | --------------------------------------------------- | ------ |
+| `decimal`       | The number of decimal points to display             | Number |
+| `decimal_point` | The character(s) to use for the decimal point       | String |
+| `thousand_sep`  | The character(s) to use for the thousands separator | String |

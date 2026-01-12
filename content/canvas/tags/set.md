@@ -33,7 +33,7 @@ Serveral variables can also be assigned in one block:
 {% set bar = 'bar' %}
 ```
 
-Note that loops are scoped, therefore a variable declared inside a [for](/docs/canvas/tags/for) loop is not accessible outside the loop itself:
+Note that loops are scoped, therefore a variable declared inside a [for](/canvas/tags/for) loop is not accessible outside the loop itself:
 
 ```canvas
 {% for item in list %}

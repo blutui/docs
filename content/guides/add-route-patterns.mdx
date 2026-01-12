@@ -30,8 +30,8 @@ This layout will be used to render each team member’s details when their uniqu
 
 ### 2. Create a route pattern in your dashboard
 
-1. Open your project in the **Blutui dashboard**.  
-2. Navigate to **Settings → Route Patterns**.  
+1. Open your project in the **Blutui dashboard**.
+2. Navigate to **Settings → Route Patterns**.
 3. Click **Create route pattern**.
 
 In this example, we’ll set the route pattern to:
@@ -39,13 +39,13 @@ In this example, we’ll set the route pattern to:
 ```
 /team/{name}
 
-````
+```
 
 Now configure the pattern parts:
 
-- Click the **String** button and name it `team`.  
-- Click the **Slug** button and name it `name`.  
-- Select your **team-member layout** as the layout to render.  
+- Click the **String** button and name it `team`.
+- Click the **Slug** button and name it `name`.
+- Select your **team-member layout** as the layout to render.
 - Click **Create route pattern**.
 
 This pattern tells Blutui to render the `team-member.html` layout whenever a URL matches `/team/{name}` — for example, `/team/darth-vader`.
@@ -59,13 +59,13 @@ Next, open your `team-member.html` layout and add the following code:
 ```canvas
 {% set members = cms.collection('team') %}
 {% set member = members | filter(entry => (entry.name | slug) == route.data.name) | first %}
-````
+```
 
 Here’s what this code does:
 
-* Fetches the **team** collection.
-* Filters the collection by comparing the **slugified name** of each team member with the `{name}` value from the route pattern.
-* Sets the matching entry as `member`.
+- Fetches the **team** collection.
+- Filters the collection by comparing the **slugified name** of each team member with the `{name}` value from the route pattern.
+- Sets the matching entry as `member`.
 
 This means that when you visit a URL like `/team/darth-vader`, Blutui will:
 
@@ -96,9 +96,9 @@ This will dynamically populate the page with each team member’s unique informa
 Route patterns are incredibly powerful for creating **data-driven pages** without manually adding routes or pages.
 They’re ideal for:
 
-* Products (`/products/{id}`)
-* Locations (`/locations/{city}`)
-* Team members (`/team/{name}`)
+- Products (`/products/{id}`)
+- Locations (`/locations/{city}`)
+- Team members (`/team/{name}`)
 
 With route patterns, your content scales automatically as you add new entries to your collections.
 
@@ -109,17 +109,15 @@ With route patterns, your content scales automatically as you add new entries to
 Now that you’ve set up a route pattern, try expanding it with related collections, or use nested route patterns for more advanced structures (e.g., `/{region}/{slug}`).
 
 <Cards>
-  <Card title="cms.collection function" href="/docs/canvas/functions/cms#collection">
+  <Card title="cms.collection function" href="/canvas/functions/cms#collection">
     Learn more about fetching and filtering collection data in your templates.
   </Card>
 
-  <Card title="How do I add data-driven content?" href="/guides/add-data-driven-content">
-    Learn how to create and render collections dynamically.
-  </Card>
+<Card title="How do I add data-driven content?" href="/guides/add-data-driven-content">
+  Learn how to create and render collections dynamically.
+</Card>
 
   <Card title="How do I expand page content with collection data?" href="/guides/expand-page-content-with-collections">
     Learn how to extend your pages using related collections.
   </Card>
 </Cards>
-
-

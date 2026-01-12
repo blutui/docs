@@ -10,7 +10,7 @@ description: 'Filter elements of a sequence or a mapping using an arrow function
 {# output 40, 42 #}
 ```
 
-Combined with the [for](/docs/canvas/tags/for) tag, it allows to filter the items to iterate over:
+Combined with the [for](/canvas/tags/for) tag, it allows to filter the items to iterate over:
 
 ```canvas
 {% for v in sizes | filter(v => v > 38) -%}

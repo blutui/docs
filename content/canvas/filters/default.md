@@ -27,7 +27,7 @@ Using the **default** filter on a boolean variable might trigger unexpected beha
 {{ foo ?? true }} {# false #}
 ```
 
-Read the documentation for the [defined](/docs/canvas/tests/defined) and [empty](/docs/canvas/tests/empty) tests to learn more about their semantics.
+Read the documentation for the [defined](/canvas/tests/defined) and [empty](/canvas/tests/empty) tests to learn more about their semantics.
 
 ## Arguments
 

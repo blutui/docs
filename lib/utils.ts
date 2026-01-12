@@ -23,6 +23,10 @@ const navigationData = [
     url: '/guides/introduction',
   },
   {
+    title: 'Changelog',
+    url: '/changelog',
+  },
+  {
     title: 'References',
     url: '/api-reference',
     items: [
@@ -33,10 +37,6 @@ const navigationData = [
       {
         title: 'Canvas',
         url: '/canvas/getting-started/expressions',
-      },
-      {
-        title: 'Changelog',
-        url: '/changelog',
       },
     ],
   },
@@ -64,4 +64,3 @@ export function getNavigationLinks(type: 'home' | 'docs') {
     return mappedItem
   })
 }
-

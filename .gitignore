@@ -36,3 +36,5 @@ next-env.d.ts
 .content-collections
 .source
 certificates
+
+.env

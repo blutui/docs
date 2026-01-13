@@ -8,7 +8,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@takumi-rs/core": "^0.60.8",
+    "@takumi-rs/core": "^0.62.7",
     "@takumi-rs/helpers": "^0.62.6",
     "@takumi-rs/image-response": "^0.62.6",
     "class-variance-authority": "^0.7.1",

@@ -23,12 +23,5 @@ If you are an Agency Owner, Content Manager or Client, you do not need to worry 
 
 ### **Get up and running as a Blutui Developer**
 
-Learn how to start building sites on Blutui with our development documents that can be found at dev.blutui.com. Here, you will find everything you need to become a Blutui developer from our templating language to our site API.
+Learn how to start building sites on Blutui with our development documents that can be found at [dev.blutui.com.](/docs 'Dev Documentation') Here, you will find everything you need to become a Blutui developer from our templating language to our site API.
 
-### **Login to Blutui**
-
-The login button can be found on the [Blutui Home Page](https://blutui.com/ 'Blutui Home Page') in the top right corner next to the 'sign up' button. Here you will be prompted for your email and password for your Blutui account. We also offer Github Single Sign On and Google Single Sign On. Once logged in, you will be taken to the Agency Console where you can manage your site(s).
-
-Alternatively, if you have not yet received an account, you can do so by clicking the 'sign up' button. All you need is an email address and password.
-
-Insert 'Intro > Login' image

@@ -7,9 +7,9 @@ description: 'How to edit Canopy lists'
 
 Canopy's user-friendly interface makes editing lists a straightforward process.
 
-### Here's how to get started
+## Here's how to get started
 
-{% step title="Locate the List" position="1" %}
+### 1. Locate the List
 Identify the list you want to edit on your page. Canopy uses visual indicators like highlighted areas or bounding boxes to show editable elements.
 
 Alternatively, you can also employ one of the following methods to locate your editable items.
@@ -17,14 +17,11 @@ Alternatively, you can also employ one of the following methods to locate your e
 - Click the **Toggle Guides** button to visually highlight all editable regions on the page.
 - Utilize the **Component Tree** to navigate and identify the specific text element within the page structure.
 
-{% /step %}
-
-{% step title="Select the List" position="2" %}
+### 2. Select the List
 Simply click on the code block you want to edit.
 ![Selected Code block](https://cdn.blutui.com/uploads/assets/Help/Site-Dashboard/canopy/canopy15-list.png)
-{%/step%}
 
-{% step title="Edit in the Sidebar" position="3" %}
+### 3. Edit in the Sidebar
 Once selected, a sidebar will appear on the right side of the interface. This sidebar will display the editing options for the chosen list element.
 
 **Type:** Choose between Bulleted List and Numbered List.
@@ -38,8 +35,6 @@ Once selected, a sidebar will appear on the right side of the interface. This si
 - To edit an existing list item, simply select the text within that item and make your changes.
 
 **Reordering List Items:** Use the Up Arrow and Down Arrow icons to move the selected item up or down within the list.
-{%/step%}
 
-{% step title="Make Your Changes" position="4" %}
+### 4. Make Your Changes
 Simply modify the content directly within the sidebar. The changes will be reflected in real-time on the actual page, allowing you to preview your edits as you go. When you're happy with the changes click on **Update** to save the changes.
-{%/step%}

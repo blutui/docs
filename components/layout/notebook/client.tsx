@@ -1,5 +1,5 @@
-'use client';
-import { cn } from '../../../lib/cn';
+'use client'
+import { cn } from '../../../lib/cn'
 import {
   type ComponentProps,
   createContext,
@@ -11,37 +11,26 @@ import {
   useMemo,
   useRef,
   useState,
-} from 'react';
-import { useSidebar } from '../sidebar/base';
-import { ChevronDown } from 'lucide-react';
-import Link from 'fumadocs-core/link';
-import { usePathname } from 'next/navigation';
-import { useIsScrollTop } from 'fumadocs-ui/utils/use-is-scroll-top';
-import {
-  LinkItem,
-  type LinkItemType,
-  type MenuItemType,
-} from '../link-item';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '../../ui/popover';
-import {
-  isTabActive,
-  type SidebarTabWithProps,
-} from '../sidebar/tabs/dropdown';
+} from 'react'
+import { useSidebar } from '../sidebar/base'
+import { ChevronDown } from 'lucide-react'
+import Link from 'fumadocs-core/link'
+import { usePathname } from 'next/navigation'
+import { useIsScrollTop } from 'fumadocs-ui/utils/use-is-scroll-top'
+import { LinkItem, type LinkItemType, type MenuItemType } from '../link-item'
+import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover'
+import { isTabActive, type SidebarTabWithProps } from '../sidebar/tabs/dropdown'
 
 export const LayoutContext = createContext<
   | (LayoutInfo & {
-      isNavTransparent: boolean;
+      isNavTransparent: boolean
     })
   | null
->(null);
+>(null)
 
 export interface LayoutInfo {
-  tabMode: 'sidebar' | 'navbar';
-  navMode: 'top' | 'auto';
+  tabMode: 'sidebar' | 'navbar'
+  navMode: 'top' | 'auto'
 }
 
 export function LayoutContextProvider({
@@ -50,13 +39,11 @@ export function LayoutContextProvider({
   tabMode,
   children,
 }: LayoutInfo & {
-  navTransparentMode?: 'always' | 'top' | 'none';
-  children: ReactNode;
+  navTransparentMode?: 'always' | 'top' | 'none'
+  children: ReactNode
 }) {
-  const isTop =
-    useIsScrollTop({ enabled: navTransparentMode === 'top' }) ?? true;
-  const isNavTransparent =
-    navTransparentMode === 'top' ? isTop : navTransparentMode === 'always';
+  const isTop = useIsScrollTop({ enabled: navTransparentMode === 'top' }) ?? true
+  const isNavTransparent = navTransparentMode === 'top' ? isTop : navTransparentMode === 'always'
 
   return (
     <LayoutContext
@@ -66,42 +53,36 @@ export function LayoutContextProvider({
           navMode,
           tabMode,
         }),
-        [isNavTransparent, navMode, tabMode],
+        [isNavTransparent, navMode, tabMode]
       )}
     >
       {children}
     </LayoutContext>
-  );
+  )
 }
 
 export function LayoutHeader(props: ComponentProps<'header'>) {
-  const { open } = useSidebar();
-  const { isNavTransparent } = use(LayoutContext)!;
+  const { open } = useSidebar()
+  const { isNavTransparent } = use(LayoutContext)!
 
   return (
     <header data-transparent={isNavTransparent && !open} {...props}>
       {props.children}
     </header>
-  );
+  )
 }
 
-export function LayoutBody({
-  className,
-  style,
-  children,
-  ...props
-}: ComponentProps<'div'>) {
-  const { navMode } = use(LayoutContext)!;
-  const { collapsed } = useSidebar();
-  const pageCol =
-    'calc(var(--fd-layout-width,97rem) - var(--fd-sidebar-col) - var(--fd-toc-width))';
+export function LayoutBody({ className, style, children, ...props }: ComponentProps<'div'>) {
+  const { navMode } = use(LayoutContext)!
+  const { collapsed } = useSidebar()
+  const pageCol = 'calc(var(--fd-layout-width,97rem) - var(--fd-sidebar-col) - var(--fd-toc-width))'
 
   return (
     <div
       id="nd-notebook-layout"
       className={cn(
-        'grid overflow-x-clip min-h-(--fd-docs-height) transition-[grid-template-columns] auto-cols-auto auto-rows-auto [--fd-docs-height:100dvh] [--fd-header-height:0px] [--fd-toc-popover-height:0px] [--fd-sidebar-width:0px] [--fd-toc-width:0px]',
-        className,
+        'grid min-h-(--fd-docs-height) auto-cols-auto auto-rows-auto overflow-x-clip transition-[grid-template-columns] [--fd-docs-height:100dvh] [--fd-header-height:0px] [--fd-sidebar-width:0px] [--fd-toc-popover-height:0px] [--fd-toc-width:0px]',
+        className
       )}
       style={
         {
@@ -114,10 +95,8 @@ export function LayoutBody({
         "sidebar sidebar toc-popover toc-popover ."
         "sidebar sidebar main toc ." 1fr / minmax(min-content, 1fr) var(--fd-sidebar-col) minmax(0, ${pageCol}) var(--fd-toc-width) minmax(min-content, 1fr)`,
           '--fd-docs-row-1': 'var(--fd-banner-height, 0px)',
-          '--fd-docs-row-2':
-            'calc(var(--fd-docs-row-1) + var(--fd-header-height))',
-          '--fd-docs-row-3':
-            'calc(var(--fd-docs-row-2) + var(--fd-toc-popover-height))',
+          '--fd-docs-row-2': 'calc(var(--fd-docs-row-1) + var(--fd-header-height))',
+          '--fd-docs-row-3': 'calc(var(--fd-docs-row-2) + var(--fd-toc-popover-height))',
           '--fd-sidebar-col': collapsed ? '0px' : 'var(--fd-sidebar-width)',
           ...style,
         } as object
@@ -126,7 +105,7 @@ export function LayoutBody({
     >
       {children}
     </div>
-  );
+  )
 }
 
 export function LayoutHeaderTabs({
@@ -134,33 +113,21 @@ export function LayoutHeaderTabs({
   className,
   ...props
 }: ComponentProps<'div'> & {
-  options: SidebarTabWithProps[];
+  options: SidebarTabWithProps[]
 }) {
-  const pathname = usePathname();
+  const pathname = usePathname()
   const selectedIdx = useMemo(() => {
-    return options.findLastIndex((option) => isTabActive(option, pathname));
-  }, [options, pathname]);
+    return options.findLastIndex((option) => isTabActive(option, pathname))
+  }, [options, pathname])
 
   return (
     <div className={cn('flex flex-row items-end gap-6', className)} {...props}>
       {options.map((option, i) => {
-        const {
-          title,
-          url,
-          unlisted,
-          items,
-          props: { className, ...rest } = {},
-        } = option;
-        const isSelected = selectedIdx === i;
+        const { title, url, unlisted, items, props: { className, ...rest } = {} } = option
+        const isSelected = selectedIdx === i
 
         if (items) {
-          return (
-            <LayoutHeaderTabDropdown
-              key={i}
-              item={option}
-              isSelected={isSelected}
-            />
-          );
+          return <LayoutHeaderTabDropdown key={i} item={option} isSelected={isSelected} />
         }
 
         return (
@@ -168,70 +135,63 @@ export function LayoutHeaderTabs({
             key={i}
             href={url}
             className={cn(
-              'inline-flex border-b-2 border-transparent transition-colors items-center pb-1.5 font-medium gap-2 text-fd-muted-foreground text-sm text-nowrap hover:text-fd-accent-foreground',
+              'text-fd-muted-foreground hover:text-fd-accent-foreground inline-flex items-center gap-2 border-b-2 border-transparent pb-1.5 text-sm font-medium text-nowrap transition-colors',
               unlisted && !isSelected && 'hidden',
               isSelected && 'border-fd-primary text-fd-primary',
-              className,
+              className
             )}
             {...rest}
           >
-            {title} 
+            {title}
           </Link>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
-function LayoutHeaderTabDropdown({
-  item,
-  isSelected,
-}: {
-  item: SidebarTabWithProps;
-  isSelected: boolean;
-}) {
-  const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-  const timeoutRef = useRef<number>(null);
-  const freezeUntil = useRef<number>(null);
-  const hoverDelay = 50;
+function LayoutHeaderTabDropdown({ item, isSelected }: { item: SidebarTabWithProps; isSelected: boolean }) {
+  const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+  const timeoutRef = useRef<number>(null)
+  const freezeUntil = useRef<number>(null)
+  const hoverDelay = 50
 
   const delaySetOpen = (value: boolean) => {
     if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
     }
 
     timeoutRef.current = window.setTimeout(() => {
-      setOpen(value);
-      freezeUntil.current = Date.now() + 300;
-    }, hoverDelay);
-  };
+      setOpen(value)
+      freezeUntil.current = Date.now() + 300
+    }, hoverDelay)
+  }
   const onPointerEnter = (e: PointerEvent) => {
-    if (e.pointerType === 'touch') return;
-    delaySetOpen(true);
-  };
+    if (e.pointerType === 'touch') return
+    delaySetOpen(true)
+  }
   const onPointerLeave = (e: PointerEvent) => {
-    if (e.pointerType === 'touch') return;
-    delaySetOpen(false);
-  };
+    if (e.pointerType === 'touch') return
+    delaySetOpen(false)
+  }
   function isTouchDevice() {
-    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0
   }
 
   return (
     <Popover
       open={open}
       onOpenChange={(value) => {
-        if (freezeUntil.current === null || Date.now() >= freezeUntil.current)
-          setOpen(value);
+        if (freezeUntil.current === null || Date.now() >= freezeUntil.current) setOpen(value)
       }}
     >
       <PopoverTrigger
         className={cn(
-          'inline-flex border-b-2 border-transparent transition-colors items-center pb-1.5 font-medium gap-2 text-fd-muted-foreground text-sm text-nowrap hover:text-fd-accent-foreground focus-visible:outline-none',
+          'text-fd-muted-foreground hover:text-fd-accent-foreground inline-flex items-center gap-2 border-b-2 border-transparent pb-1.5 text-sm font-medium text-nowrap transition-colors focus-visible:outline-none',
           isSelected && 'border-fd-primary text-fd-primary',
-          item.props?.className,
+          item.props?.className
         )}
         // @ts-ignore
         onPointerEnter={onPointerEnter}
@@ -243,58 +203,54 @@ function LayoutHeaderTabDropdown({
         <ChevronDown className="size-3" />
       </PopoverTrigger>
       <PopoverContent
-        className="flex flex-col p-1 text-fd-muted-foreground text-start"
+        className="text-fd-muted-foreground flex flex-col p-1 text-start"
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}
       >
         {item.items?.map((child, i) => {
-          const isActive = isTabActive(child, pathname);
+          const isActive = isTabActive(child, pathname)
           return (
             <Link
               key={i}
               href={child.url}
               className={cn(
-                'inline-flex items-center gap-2 rounded-md p-2 transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground data-[active=true]:text-fd-primary [&_svg]:size-4',
-                isActive && 'text-fd-primary',
+                'hover:bg-fd-accent hover:text-fd-accent-foreground data-[active=true]:text-fd-primary inline-flex items-center gap-2 rounded-md p-2 transition-colors [&_svg]:size-4',
+                isActive && 'text-fd-primary'
               )}
               data-active={isActive}
               onClick={() => {
-                if (isTouchDevice()) setOpen(false);
+                if (isTouchDevice()) setOpen(false)
               }}
             >
               {child.icon}
               {child.title}
             </Link>
-          );
+          )
         })}
       </PopoverContent>
     </Popover>
-  );
+  )
 }
 
-export function NavbarLinkItem({
-  item,
-  className,
-  ...props
-}: { item: LinkItemType } & HTMLAttributes<HTMLElement>) {
-  if (item.type === 'custom') return item.children;
+export function NavbarLinkItem({ item, className, ...props }: { item: LinkItemType } & HTMLAttributes<HTMLElement>) {
+  if (item.type === 'custom') return item.children
 
   if (item.type === 'menu') {
-    return <NavbarLinkItemMenu item={item} className={className} {...props} />;
+    return <NavbarLinkItemMenu item={item} className={className} {...props} />
   }
 
   return (
     <LinkItem
       item={item}
       className={cn(
-        'text-sm text-fd-muted-foreground transition-colors hover:text-fd-accent-foreground data-[active=true]:text-fd-primary',
-        className,
+        'text-fd-muted-foreground hover:text-fd-accent-foreground data-[active=true]:text-fd-primary text-sm transition-colors',
+        className
       )}
       {...props}
     >
       {item.text}
     </LinkItem>
-  );
+  )
 }
 
 function NavbarLinkItemMenu({
@@ -303,81 +259,75 @@ function NavbarLinkItemMenu({
   className,
   ...props
 }: { item: MenuItemType; hoverDelay?: number } & HTMLAttributes<HTMLElement>) {
-  const [open, setOpen] = useState(false);
-  const timeoutRef = useRef<number>(null);
-  const freezeUntil = useRef<number>(null);
+  const [open, setOpen] = useState(false)
+  const timeoutRef = useRef<number>(null)
+  const freezeUntil = useRef<number>(null)
 
   const delaySetOpen = (value: boolean) => {
     if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
     }
 
     timeoutRef.current = window.setTimeout(() => {
-      setOpen(value);
-      freezeUntil.current = Date.now() + 300;
-    }, hoverDelay);
-  };
+      setOpen(value)
+      freezeUntil.current = Date.now() + 300
+    }, hoverDelay)
+  }
   const onPointerEnter = (e: PointerEvent) => {
-    if (e.pointerType === 'touch') return;
-    delaySetOpen(true);
-  };
+    if (e.pointerType === 'touch') return
+    delaySetOpen(true)
+  }
   const onPointerLeave = (e: PointerEvent) => {
-    if (e.pointerType === 'touch') return;
-    delaySetOpen(false);
-  };
+    if (e.pointerType === 'touch') return
+    delaySetOpen(false)
+  }
   function isTouchDevice() {
-    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0
   }
 
   return (
     <Popover
       open={open}
       onOpenChange={(value) => {
-        if (freezeUntil.current === null || Date.now() >= freezeUntil.current)
-          setOpen(value);
+        if (freezeUntil.current === null || Date.now() >= freezeUntil.current) setOpen(value)
       }}
     >
       <PopoverTrigger
         className={cn(
-          'inline-flex items-center gap-1.5 p-1 text-sm text-fd-muted-foreground transition-colors has-data-[active=true]:text-fd-primary data-[state=open]:text-fd-accent-foreground focus-visible:outline-none',
-          className,
+          'text-fd-muted-foreground has-data-[active=true]:text-fd-primary data-[state=open]:text-fd-accent-foreground inline-flex items-center gap-1.5 p-1 text-sm transition-colors focus-visible:outline-none',
+          className
         )}
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}
         {...props}
       >
-        {item.url ? (
-          <LinkItem item={item as { url: string }}>{item.text}</LinkItem>
-        ) : (
-          item.text
-        )}
+        {item.url ? <LinkItem item={item as { url: string }}>{item.text}</LinkItem> : item.text}
         <ChevronDown className="size-3" />
       </PopoverTrigger>
       <PopoverContent
-        className="flex flex-col p-1 text-fd-muted-foreground text-start"
+        className="text-fd-muted-foreground flex flex-col p-1 text-start"
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}
       >
         {item.items.map((child, i) => {
-          if (child.type === 'custom')
-            return <Fragment key={i}>{child.children}</Fragment>;
+          if (child.type === 'custom') return <Fragment key={i}>{child.children}</Fragment>
 
           return (
             <LinkItem
               key={i}
               item={child}
-              className="inline-flex items-center gap-2 rounded-md p-2 transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground data-[active=true]:text-fd-primary [&_svg]:size-4"
+              className="hover:bg-fd-accent hover:text-fd-accent-foreground data-[active=true]:text-fd-primary inline-flex items-center gap-2 rounded-md p-2 transition-colors [&_svg]:size-4"
               onClick={() => {
-                if (isTouchDevice()) setOpen(false);
+                if (isTouchDevice()) setOpen(false)
               }}
             >
               {child.icon}
               {child.text}
             </LinkItem>
-          );
+          )
         })}
       </PopoverContent>
     </Popover>
-  );
+  )
 }

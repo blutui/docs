@@ -25,54 +25,54 @@ You can find Burgertorium in the [Blutui starter project GitHub repository](http
 
 We will be using a Figma design to add a new "Get on the Burger List" page, featuring an optimized image, editable [Canopy text](/docs/canvas/functions/canopy/cms-text) fields, and a functional [Blutui form](/guides/create-form).
 
-1. **Open your Figma design file**
+### 1. Open your Figma design file
 
-   Open the Figma file containing the design for the "Get on the Burger List" page and select the page.
-   ![Figma Design](https://cdn.blutui.com/uploads/assets/Dev/guides/figma-selected-page.png)
+Open the Figma file containing the design for the "Get on the Burger List" page and select the page.
+![Figma Design](https://cdn.blutui.com/uploads/assets/Dev/guides/figma-selected-page.png)
 
-2. **Start the Figma & Blutui MCP server**
+### 2. Start the Figma & Blutui MCP server
 
-   Ensure your Figma & Blutui MCP servers are running and connected to your AI assistant. This will allow the assistant to access the design data and the Blutui project.
+Ensure your Figma & Blutui MCP servers are running and connected to your AI assistant. This will allow the assistant to access the design data and the Blutui project.
 
-   Below is an example of how that would look like on VS Code
+Below is an example of how that would look like on VS Code
 
-   ![VS Code running MCP](https://cdn.blutui.com/uploads/assets/Dev/guides/running-mcp.png)
+![VS Code running MCP](https://cdn.blutui.com/uploads/assets/Dev/guides/running-mcp.png)
 
-   <Callout>
-     Depending on your preferred editor, your interface may vary from the screenshot above, which illustrates the
-     workflow in VS Code.
-   </Callout>
+<Callout>
+  Depending on your preferred editor, your interface may vary from the screenshot above, which illustrates the workflow
+  in VS Code.
+</Callout>
 
-3. **Initiate the design-to-code process**
+### 3. Initiate the design-to-code process
 
-   Run a prompt in your AI assistant to start the conversion process. Here’s an example prompt you can use:
+Run a prompt in your AI assistant to start the conversion process. Here’s an example prompt you can use:
 
-   ```
-   Create this page called "Get on the Burger List" from the selected Figma design using Blutui Canopy elements. Generate the page within the Blutui CMS, including placeholder SEO metadata. Finally, build the form using the Blutui form system.
-   ```
+```
+Create this page called "Get on the Burger List" from the selected Figma design using Blutui Canopy elements. Generate the page within the Blutui CMS, including placeholder SEO metadata. Finally, build the form using the Blutui form system.
+```
 
-4. **Review and refine the generated code**
+### 4. Review and refine the generated code
 
-   The MCP servers will ask you for approval to run the necessary tools to create Collections, Forms, Pages, and other components in your Blutui project. Review the proposed changes carefully. Approve the actions to let the AI assistant proceed with generating the code.
+The MCP servers will ask you for approval to run the necessary tools to create Collections, Forms, Pages, and other components in your Blutui project. Review the proposed changes carefully. Approve the actions to let the AI assistant proceed with generating the code.
 
-   Listed below are some of the tools that will be used during this process:
+Listed below are some of the tools that will be used during this process:
 
-   **Documentation tool call**
-   ![Doc search tool](https://cdn.blutui.com/uploads/assets/Dev/guides/mcp-1.png)
+**Documentation tool call**
+![Doc search tool](https://cdn.blutui.com/uploads/assets/Dev/guides/mcp-1.png)
 
-   **Figma screenshot tool call**
-   ![Figma screenshot tool](https://cdn.blutui.com/uploads/assets/Dev/guides/mcp-2.png)
+**Figma screenshot tool call**
+![Figma screenshot tool](https://cdn.blutui.com/uploads/assets/Dev/guides/mcp-2.png)
 
-   **Blutui code generation**
-   ![Code added](https://cdn.blutui.com/uploads/assets/Dev/guides/mcp-3.png)
+**Blutui code generation**
+![Code added](https://cdn.blutui.com/uploads/assets/Dev/guides/mcp-3.png)
 
-5. **Test the new page in your Blutui project**
+### 5. Test the new page in your Blutui project
 
-   Once the code generation is complete, run your Blutui project locally to test the new "Get on the Burger List" page. Ensure that all elements are functioning as expected, including the form submission and Canopy editable fields.
+Once the code generation is complete, run your Blutui project locally to test the new "Get on the Burger List" page. Ensure that all elements are functioning as expected, including the form submission and Canopy editable fields.
 
-   ![Output page](https://cdn.blutui.com/uploads/assets/Dev/guides/mcp-output.png)
+![Output page](https://cdn.blutui.com/uploads/assets/Dev/guides/mcp-output.png)
 
-   If everything looks good, you can proceed to push you changes via `courier push`.
+If everything looks good, you can proceed to push you changes via `courier push`.
 
 ## Conclusion
 

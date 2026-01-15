@@ -1,0 +1,17 @@
+{
+  "$schema": "../../../.source/json-schema/docs.meta.json",
+  "title": "Project",
+  "icon": "BookOpen",
+  "root": true,
+  "pages": [
+    "---[Album]Getting Started---",
+    "index",
+    "assets",
+    "blogs",
+    "pages",
+    "collections",
+    "forms",
+    "menus",
+    "canopy"
+  ]
+}

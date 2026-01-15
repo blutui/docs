@@ -1,0 +1,6 @@
+{
+  "$schema": "../../.source/json-schema/docs.meta.json",
+  "title": "Canvas",
+  "root": true,
+  "pages": ["---[LayoutTemplate]Canvas---", "getting-started", "tags", "filters", "functions", "tests", "variables"]
+}

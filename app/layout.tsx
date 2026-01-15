@@ -14,7 +14,7 @@ export const metadata = createMetadata({
     template: '%s | Blutui Developers',
     default: 'Blutui Developers',
   },
-  description: 'Welcome to the Blutui Developer documentation',
+  description: 'Welcome to the Blutui documentation',
   metadataBase: baseUrl,
   icons: {
     icon: [

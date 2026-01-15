@@ -18,6 +18,10 @@ const config: NextConfig = {
         source: '/:path*.mdx',
         destination: '/llms.mdx/:path*',
       },
+      {
+        source:'/api/ai',
+        destination: 'https://99dca862-ai-search-api.blutui.workers.dev/ai',
+      }
     ]
   },
   async redirects() {

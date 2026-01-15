@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../../.source/json-schema/docs.meta.json",
+  "pages": [
+    "collection-overview",
+    "adding-collections",
+    "editing-collection",
+    "creating-collections"
+  ]
+}

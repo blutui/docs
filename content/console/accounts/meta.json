@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../../.source/json-schema/docs.meta.json",
+  "pages": [
+    "organisations",
+    "billing",
+    "email-verification",
+    "agency-plans"
+  ]
+}

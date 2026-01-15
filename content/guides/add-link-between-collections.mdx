@@ -18,7 +18,7 @@ This will allow each staff entry to reference a location dynamically based on en
 For this example, you should have:
 
 - A **Locations** collection (e.g., Auckland, Wellington, Christchurch)
-- A **Staff** collection 
+- A **Staff** collection
 
 If you haven't created these yet, do that first.
 
@@ -28,10 +28,10 @@ If you haven't created these yet, do that first.
 
 Blutui allows you to link collections directly from the dashboard — no code required.
 
-1. Open the **Locations** collection in your project dashboard.  
-2. Click **Manage links**.  
-3. Click **New link**.  
-4. Select the field you want to link (e.g., a `location` reference).  
+1. Open the **Locations** collection in your project dashboard.
+2. Click **Manage links**.
+3. Click **New link**.
+4. Select the field you want to link (e.g., a `location` reference).
 5. Give your link a **Name** — just like naming a field type.
 
 This creates a relationship between collections so you can easily reference entries from one collection inside another.
@@ -46,11 +46,11 @@ Once a link has been created, you can access it from your Canvas templates in tw
 
 ```canvas
 {{ entry.foreign_keys.location }}
-````
+```
 
 This is the canonical way to retrieve linked collection values.
 
-#### Option B — Access directly from the entry object *(shortcut)*
+#### Option B — Access directly from the entry object _(shortcut)_
 
 ```canvas
 {{ entry.location }}
@@ -87,10 +87,10 @@ This allows you to update and manage locations in **one** place — the Location
 
 Linking collections helps you:
 
-* Avoid duplicated data
-* Maintain consistency across related content
-* Scale content without rewriting it
-* Manage shared data (like locations, categories, authors, services, products, etc.) in one place
+- Avoid duplicated data
+- Maintain consistency across related content
+- Scale content without rewriting it
+- Manage shared data (like locations, categories, authors, services, products, etc.) in one place
 
 It’s one of the most powerful features for building flexible, data-driven sites in Blutui.
 
@@ -105,11 +105,11 @@ You can now try linking more collections — such as categories, tags, teams, or
     Learn how to create and render collections dynamically.
   </Card>
 
-  <Card title="Expand page content with collections" href="/guides/expand-page-content-with-collections">
-    Learn how to extend pages with linked content such as authors.
-  </Card>
+<Card title="Expand page content with collections" href="/guides/expand-page-content-with-collections">
+  Learn how to extend pages with linked content such as authors.
+</Card>
 
-  <Card title="cms.collection function" href="/docs/canvas/functions/cms#collection">
+  <Card title="cms.collection function" href="/canvas/functions/cms#collection">
     Learn how to fetch and filter collection entries in your templates.
   </Card>
 </Cards>

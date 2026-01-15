@@ -9,7 +9,7 @@ The rise of AI coding assistants such as Claude Code, OpenCode, Cursor, and GitH
 
 ## Why Blutui for AI Development
 
-Blutui MCP bridges the gap between AI coding agents and your Blutui application. As a dedicated Model Context Protocol (MCP) server, it provides AI agents with deep, real-time insight into your project’s architecture.
+Blutui MCP bridges the gap between AI coding agents and your Blutui application. As a dedicated Model Context Protocol (MCP) server, it provides AI agents with deep, real-time insight into your project's architecture.
 
 Equipped with 36 specialized tools, Blutui MCP enables your assistant to build pages, create collections, generate forms and much more with precision.
 
@@ -19,27 +19,33 @@ Equipped with 36 specialized tools, Blutui MCP enables your assistant to build p
 
 To begin using Blutui MCP, you must first ensure your local environment is running the latest version of [Courier](/docs/courier/getting-started).
 
-1. **Upgrade Courier**
+### 1. Upgrade Courier
 
    Blutui MCP requires the newest features bundled with the latest Courier release. Depending on your operating system, use the following commands to upgrade:
-
-   ```bash tab="macOS"
+```bash tab="macOS"
    brew upgrade --cask courier
-   ```
-
-   ```bash tab="Windows"
+```
+```bash tab="Windows"
    scoop update courier
-   ```
+```
 
    For more detailed instructions on platform-specific requirements, visit the Courier [Getting Started Guide](docs/courier/getting-started).
 
-2. **Configure the MCP Server**
+### 2. Configure the MCP Server
 
-   Once Courier is updated, you need to register the Blutui MCP server with your AI editor (such as Cursor or VS Code).
+   Once Courier is updated, you need to register the Blutui MCP server with your AI editor. Choose the setup method that matches your development environment:
 
-   Create or open your `mcp.json` file and include the following configuration:
+  **Claude Code**
 
-   ```json tab="mcp.json"
+   If you're using Claude Code, you can add the Blutui MCP server directly from your terminal:
+```bash
+   claude mcp add --transport stdio blutui courier mcp server
+```
+
+   **Cursor, VS Code, etc.**
+
+   For editors like Cursor or VS Code, create or open your `mcp.json` file and include the following configuration:
+```json tab="mcp.json"
    {
      "servers": {
        "Blutui": {
@@ -49,7 +55,7 @@ To begin using Blutui MCP, you must first ensure your local environment is runni
        }
      }
    }
-   ```
+```
 
    After saving the configuration, start your MCP server.
 
@@ -58,7 +64,18 @@ To begin using Blutui MCP, you must first ensure your local environment is runni
      directory in your project root, such as `.vscode/`, `.cursor/`, or similar, depending on the tool you are using.
    </Callout>
 
-3. **Verify Connection**
+### 3. Verify Connection
+
+    Once configured, verify that the Blutui MCP server is connected and running correctly.
+
+   **Claude Code**
+
+   Run the following command to check your MCP server status:
+```bash
+   claude /mcp
+```
+
+   **Cursor, VS Code, etc.**
 
    ![Registered Tools](https://cdn.blutui.com/uploads/assets/Dev/getting-started/mcp-tools.png)
    Your assistant will now have access to the tools designed to help you build and manage your Blutui application directly from your chat interface.

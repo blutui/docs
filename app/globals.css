@@ -1,22 +1,24 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
 /* @custom-variant dark (&:where(.dark, .dark *)); */
 
 @theme {
-  --color-han-50: #EBEBFF;
-  --color-han-100: #D1D3FF;
-  --color-han-200: #A8ABFF;
-  --color-han-300: #7A7FFF;
-  --color-han-400: #5257FF;
-  --color-han-500: #242BFF;
-  --color-han-600: #0008EB;
-  --color-han-700: #0006AD;
+  --color-han-50: #ebebff;
+  --color-han-100: #d1d3ff;
+  --color-han-200: #a8abff;
+  --color-han-300: #7a7fff;
+  --color-han-400: #5257ff;
+  --color-han-500: #242bff;
+  --color-han-600: #0008eb;
+  --color-han-700: #0006ad;
   --color-han-800: #000475;
   --color-han-900: #000238;
 
   --color-fd-primary: hsl(238, 100%, 57%);
+
+  --color-primary: #247bff;
 
   --container-8xl: 100rem;
 }

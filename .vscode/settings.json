@@ -8,7 +8,7 @@
     "*.md": "markdoc"
   },
   "search.exclude": {
-    "**/node_modules": true,
+    "**/node_modules": true
   },
   "typescript.tsdk": "./node_modules/typescript/lib",
   "[markdoc]": {
@@ -36,5 +36,7 @@
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "tailwindCSS.experimental.configFile": "app/globals.css"
+  "tailwindCSS.experimental.configFile": "app/globals.css",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

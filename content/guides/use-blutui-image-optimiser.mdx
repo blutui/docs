@@ -10,8 +10,8 @@ You can transform images into multiple formats — **PNG, JPEG, WebP, AVIF, GIF*
 
 There are two ways to optimise images:
 
-1. Using the `image_url` filter  
-2. Adding transformation parameters directly to the CDN URL  
+1. Using the `image_url` filter
+2. Adding transformation parameters directly to the CDN URL
 
 Both options produce fast, optimized images served through the Blutui CDN.
 
@@ -25,7 +25,7 @@ The easiest and most common way to optimise an image in your Canvas templates is
 
 ```canvas
 {{ entry.image | image_url({ width: 280, format: 'webp' }) }}
-````
+```
 
 This outputs a CDN-optimized image URL such as:
 
@@ -35,13 +35,13 @@ https://cdn.blutui.com/uploads/project/image.png?format=webp&width=280
 
 You can adjust many properties, including:
 
-* `format` — `webp`, `avif`, `jpeg`, `png`, `gif`
-* `width` — resize width
-* `height` — resize height
-* `fit` — crop behaviour (cover, contain, etc.)
+- `format` — `webp`, `avif`, `jpeg`, `png`, `gif`
+- `width` — resize width
+- `height` — resize height
+- `fit` — crop behaviour (cover, contain, etc.)
 
 For full configuration options, see the official filter documentation:
-[https://dev.blutui.com/docs/canvas/filters/image_url](https://dev.blutui.com/docs/canvas/filters/image_url)
+[https://dev.blutui.com/canvas/filters/image_url](https://dev.blutui.com/canvas/filters/image_url)
 
 ---
 
@@ -71,10 +71,10 @@ This method works even outside of Canvas templates — inside CSS, JS, or anywhe
 
 Optimising images is one of the simplest ways to:
 
-* Improve page load speed
-* Reduce total data usage
-* Improve image delivery across all devices
-* Increase performance scores (Lighthouse, PageSpeed, Web Vitals)
+- Improve page load speed
+- Reduce total data usage
+- Improve image delivery across all devices
+- Increase performance scores (Lighthouse, PageSpeed, Web Vitals)
 
 Format conversion (like WebP or AVIF) can dramatically reduce file size while keeping image quality high.
 
@@ -85,17 +85,15 @@ Format conversion (like WebP or AVIF) can dramatically reduce file size while ke
 Now that you know how to optimise your images, you can apply these transformations throughout your project to significantly improve performance.
 
 <Cards>
-  <Card title="image_url filter documentation" href="https://dev.blutui.com/docs/canvas/filters/image_url">
+  <Card title="image_url filter documentation" href="https://dev.blutui.com/canvas/filters/image_url">
     Learn more about available options for resizing and converting images.
   </Card>
 
-  <Card title="How do I add data-driven content?" href="/guides/add-collection-to-project">
-    Render dynamic content and collections with optimized images.
-  </Card>
+<Card title="How do I add data-driven content?" href="/guides/add-collection-to-project">
+  Render dynamic content and collections with optimized images.
+</Card>
 
   <Card title="How do I create a layout?" href="/guides/create-layout">
     Add optimized images to headers, banners, and reusable layout components.
   </Card>
 </Cards>
-
-

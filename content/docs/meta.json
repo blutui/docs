@@ -1,5 +1,5 @@
 {
-  "title": "Documentation",
+  "title": "Developers",
   "icon": "BookOpen",
   "root": true,
   "pages": [
@@ -14,8 +14,6 @@
     "---[Database]Collections---",
     "...collections",
     "---[CassetteTape]Cassettes---",
-    "...cassettes",
-    "---[LayoutTemplate]Canvas---",
-    "...canvas"
+    "...cassettes"
   ]
 }

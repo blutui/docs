@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../../.source/json-schema/docs.meta.json",
+  "pages": [
+    "canopy-overview",
+    "canopy-edit-text",
+    "canopy-edit-heading",
+    "canopy-edit-image",
+    "canopy-edit-button",
+    "canopy-edit-video",
+    "canopy-edit-list",
+    "canopy-edit-audio"
+  ]
+}

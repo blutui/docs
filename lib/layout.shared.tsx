@@ -12,11 +12,6 @@ export function baseOptions(): BaseLayoutProps {
     githubUrl: 'https://github.com/blutui',
     links: [
       {
-        text: 'Help center',
-        url: 'https://help.blutui.com',
-        secondary: true,
-      },
-      {
         text: 'Console',
         url: 'https://console.blutui.com',
         secondary: true,

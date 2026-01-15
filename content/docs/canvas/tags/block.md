@@ -13,8 +13,8 @@ Let's take the following example to illustrate how a block works and more import
 ```canvas
 {# base.html #}
 
-{% for post in posts>
-  {% block post>
+{% for post in posts %}
+  {% block post %}
     <h1>{{ post.title }}</h1>
     <p>{{ post.body }}</p>
   {% endblock %}
@@ -28,7 +28,7 @@ If you render this template, the result would be exactly the same with or withou
 
 {% extends 'base.html' %}
 
-{% block post>
+{% block post %}
   <article>
     <header>{{ post.title }}</header>
     <section>{{ post.text }}</section>
@@ -39,7 +39,7 @@ If you render this template, the result would be exactly the same with or withou
 Now, when rendering the child template, the loop is going to use the block defined in the child template instead of the one defined in the base one; the executed template is then equivalent to the following one:
 
 ```canvas
-{% for post in posts>
+{% for post in posts %}
   <article>
     <header>{{ post.title }}</header>
     <section>{{ post.text }}</section>
@@ -50,23 +50,23 @@ Now, when rendering the child template, the loop is going to use the block defin
 Let's take another example: a block included within an **if** statement:
 
 ```canvas
-{% if posts is empty>
-  {% block head>
+{% if posts is empty %}
+  {% block head %}
     {{ parent() }}
 
     <meta name="robots" content="noindex, follow">
-  {% endblock head>
+  {% endblock head %}
 {% endif %}
 ```
 
 Contrary to what you might think, this template does not define a block conditionally; it just makes overridable by a child template the output of what will be rendered when the condition is `true`. If you want the output to be displayed conditionally, use the following instead:
 
 ```canvas
-{% block head>
+{% block head %}
   {{ parent() }}
 
-  {% if posts is empty>
+  {% if posts is empty %}
     <meta name="robots" content="noindex, follow">
   {% endif %}
-{% endblock head>
+{% endblock head %}
 ```

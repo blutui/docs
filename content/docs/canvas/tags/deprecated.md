@@ -6,19 +6,19 @@ This page is generally useful to Canvas template developers. Canvas generates a 
 
 ```canvas
 {# base.html #}
-{% deprecated 'The "base.html" template is deprecated, use "layout.html" instead.>
+{% deprecated 'The "base.html" template is deprecated, use "layout.html" instead.' %}
 {% extends 'layout.html' %}
 ```
 
 Also you can deprecate a block in the following way:
 
 ```canvas
-{% block hey>
+{% block hey %}
   {% deprecated 'The "hey" block is deprecated, use "greet" instead.' %}
   {{ block('greet') }}
 {% endblock %}
 
-{% block greet>
+{% block greet %}
   Hey you!
 {% endblock %}
 ```

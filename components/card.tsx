@@ -1,5 +1,5 @@
+import { cn } from 'lib/utils'
 import Link from 'next/link'
-import cn from 'clsx'
 
 export interface CardProps {
   title?: string

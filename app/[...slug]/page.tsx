@@ -8,6 +8,7 @@ import { createMetadata } from 'lib/metadata'
 import { source } from 'lib/source'
 import { LLMButton } from 'components/ai/page-actions'
 import { DocsApi } from 'components/docs-api'
+import Link from 'next/link'
 
 export default async function Page(props: PageProps<'/[...slug]'>) {
   const params = await props.params
@@ -44,7 +45,9 @@ export default async function Page(props: PageProps<'/[...slug]'>) {
       <DocsBody>
         <Mdx
           components={getMDXComponents({
-            a: createRelativeLink(source, page),
+            a: ({ href, ...props }) => {
+              return <Link href={href} {...props} />
+            },
           })}
         />
       </DocsBody>

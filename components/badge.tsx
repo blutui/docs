@@ -1,4 +1,4 @@
-import { cn } from 'fumadocs-ui/utils/cn'
+import { cn } from 'lib/utils'
 
 type BadgeTone = 'default' | 'info' | 'success' | 'attention' | 'warning' | 'critical'
 

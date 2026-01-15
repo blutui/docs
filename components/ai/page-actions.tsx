@@ -1,12 +1,12 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { cn } from 'fumadocs-ui/utils/cn'
 import { cva } from 'class-variance-authority'
 import { buttonVariants } from 'fumadocs-ui/components/ui/button'
 import { useCopyButton } from 'fumadocs-ui/utils/use-copy-button'
 import { ArrowUpRight, Check, ChevronDown, Copy } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from 'fumadocs-ui/components/ui/popover'
+import { cn } from 'lib/utils'
 
 const cache = new Map<string, string>()
 

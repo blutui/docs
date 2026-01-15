@@ -18,6 +18,42 @@ The unique handle for this form.
 The template used to display this form.
 </Parameter>
 
+<Parameter name="fields" type="array">
+The fields for this form.
+</Parameter>
+
+<Parameter name="fields.*.name" type="string" required="true">
+The name of the form field.
+</Parameter>
+
+<Parameter name="fields.*.label" type="string" required="true">
+The label for the form field.
+</Parameter>
+
+<Parameter name="fields.*.type" type="string" required="true">
+The type of form field.
+</Parameter>
+
+<Parameter name="fields.*.default_value" type="string | null">
+The default value for the form field.
+</Parameter>
+
+<Parameter name="fields.*.help_text" type="string | null">
+The a short description about this form field.
+</Parameter>
+
+<Parameter name="fields.*.order" type="number">
+The order of the form field.
+</Parameter>
+
+<Parameter name="fields.*.placeholder" type="string | null">
+The placeholder value for the form field.
+</Parameter>
+
+<Parameter name="fields.*.required" type="string">
+Whether the form field is required or not.
+</Parameter>
+
 <Parameter name="email_from" type="string">
 The sender email address.
 </Parameter>
@@ -48,6 +84,18 @@ const blutui = new Blutui('ey....')
 blutui.project('one').admin.forms.create({
   name: 'Contact',
   handle: 'contact',
+  fields: [
+    {
+      name: 'name',
+      label: 'Full Name',
+      type: 'text'
+    },
+    {
+      name: 'email',
+      label: 'Email Address',
+      type: 'email'
+    }
+  ],
   template: 'forms/contact.canvas'
 })
 ```
@@ -59,6 +107,18 @@ curl -X POST 'https://{handle}.blutui.com/admin/api/forms' \
      -d $'{
   "name": "Contact",
   "uri": "contact",
+  "fields": [
+    {
+      "name": "name",
+      "label": "Full Name",
+      "type": "text"
+    },
+    {
+      "name": "email",
+      "label": "Email Address",
+      "type": "email"
+    }
+  ],
   "template": "forms/contact.canvas"
 }'
 ```

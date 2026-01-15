@@ -13,7 +13,6 @@ Before using **Courier**, you need to generate a Blutui access token. Follow the
 
 ### Using your Courier token
 
-<section id="windows">
 1. Create a new `token.txt` file with your access token.
 
 2. Log in to Courier using your token file:
@@ -29,30 +28,3 @@ Once configured, you're ready to start pushing and pulling projects.
 <Callout>
 Complete the [getting started guide](/docs/courier/getting-started#linking-your-project) and learn how to start building your first project.
 </Callout>
-</section>
-
-<section id="unix">
-1. To securely add your access token to a `token.txt` file, use the following command:
-
-```bash
-printf "Enter your Courier access token: " && read -s TOKEN && echo $TOKEN > token.txt
-```
-
-<Callout>
-This command prompts for the token input without displaying it on-screen, then saves it to `token.txt` file without recording it in shell history.
-</Callout>
-
-2. Log in to Courier using your token file:
-
-```bash
-courier login --token < token.txt
-```
-
-3. Remember to delete the `token.txt` file once you have successfully logged into Courier.
-
-Once configured, you're ready to start pushing and pulling projects.
-
-<Callout>
-Complete the [getting started guide](/docs/courier/getting-started#linking-your-project) and learn how to start building your first project.
-</Callout>
-</section>

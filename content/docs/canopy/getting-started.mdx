@@ -1,0 +1,101 @@
+---
+title: 'Getting Started'
+description: 'Learn how to use Canopy elements in Blutui'
+---
+
+Canopy elements are the primary method for managing page-specific editable content within Blutui. They allow you to define editable regions inside your layouts or pages so content editors can manage text, images, buttons, and more directly from the dashboard without touching code.
+
+## Creating your first Canopy element
+
+1. Open your project from the Blutui Agency Console.
+
+2. Navigate to your project's **views** directory.
+
+3. Open or create a layout or page template file.
+
+### Understand handles and attributes
+
+Each Canopy element requires a **unique handle** (identifier) and optional **attributes** to configure its behavior.
+
+Each element requires a **Handle** (unique identifier) and **Attributes** (configuration options).
+
+For this example, we will create a simple hero section with the following elements:
+
+| Element     | Handle           | Key Attributes                  |
+| ----------- | ---------------- | ------------------------------- |
+| cms_heading | heading-hero     | element, value, class           |
+| cms_text    | text-description | value, class                    |
+| cms_button  | button-cta       | text, url, opens_new_tab, class |
+| cms_image   | image-hero       | url, alt_text, class            |
+
+![Blutui canopy editor](https://cdn.blutui.com/uploads/assets/Dev/guides/canopy-editor.png)
+
+<Callout>
+The **Handle** must be unique within each page and is used to identify the element in the Canopy editor.
+</Callout>
+
+### Create a Canvas template with Canopy elements
+
+Once you understand the structure, you can add Canopy elements to your templates.
+
+1. Inside your project's **views** directory, open your **layouts** folder (if it doesn't already exist, create it).
+2. Inside it, create or open a file named **default.canvas**.
+
+Your file structure should look like this:
+
+```
+views/
+└── layouts/
+    └── default.canvas
+```
+
+add the following Canvas code
+
+```twig tab="default.canvas"
+{% block body %}
+<section class="bg-white text-slate-900">
+  <div class="mx-auto max-w-7xl px-6 py-20">
+    {{ cms_heading('heading-hero', {
+      element: 'h1',
+      value: 'Welcome to Our Site',
+      class: 'text-3xl md:text-5xl font-semibold'
+    }) }}
+
+    {{ cms_text('text-description', {
+      value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      class: 'text-lg text-slate-600'
+    }) }}
+
+    {{ cms_button('button-cta', {
+      text: 'Get Started',
+      url: '#contact',
+      opens_new_tab: false,
+      class: 'inline-flex items-center bg-slate-900 text-white px-5 py-3'
+    }) }}
+
+    {{ cms_image('image-hero', {
+      url: 'https://placehold.co/1200x900',
+      alt_text: 'Hero Image',
+      class: 'w-full h-auto object-cover'
+    }) }}
+  </div>
+</section>
+{% endblock %}
+```
+
+This code:
+
+- Defines a heading element with an `h1` tag and default text.
+- Adds a text element for the description.
+- Creates a button with a URL and styling.
+- Includes an image with a placeholder and alt text.
+
+### Edit your Canopy content in the dashboard
+
+To edit the content for your Canopy elements, open the page in the dashboard using
+
+```twig
+{% include 'layouts/default.canvas' %}
+```
+
+This will render all the Canopy elements defined in your template.

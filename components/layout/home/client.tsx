@@ -441,7 +441,7 @@ function MobileNavigationMenuLinkItem({
 
     return (
       <div className={cn('mb-4 flex flex-col', props.className)}>
-        <p className="mb-1 text-sm text-fd-muted-foreground">
+        <p className="mt-2 mb-1 text-lg text-fd-muted-foreground">
           {item.url ? (
             <NavigationMenuLink asChild>
               <Link href={item.url} external={item.external}>

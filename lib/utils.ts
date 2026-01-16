@@ -36,7 +36,7 @@ const navigationData = [
       },
       {
         title: 'Canvas',
-        url: '/canvas/getting-started/expressions',
+        url: '/canvas',
       },
     ],
   },

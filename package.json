@@ -15,7 +15,7 @@
     "@radix-ui/react-presence": "^1.1.5",
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@takumi-rs/core": "^0.62.8",
-    "@takumi-rs/helpers": "^0.62.6",
+    "@takumi-rs/helpers": "^0.63.2",
     "@takumi-rs/image-response": "^0.62.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

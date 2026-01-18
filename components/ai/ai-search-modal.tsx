@@ -1,14 +1,14 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Sparkles, Search, Loader2, ChevronRight } from 'lucide-react'
+import { Sparkles, Search, Loader2 } from 'lucide-react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { cn } from '../../lib/cn'
 import { buttonVariants } from '../ui/button'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
 import { useTheme } from 'next-themes'
 
 export interface VectorStoreSearchResultsPage {
@@ -124,8 +124,8 @@ export function AiSearchModal() {
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      <DialogTrigger asChild>
+    <Sheet open={isOpen} onOpenChange={handleOpenChange} modal={false}>
+      <SheetTrigger asChild>
         <button
           className="border-fd-primary text-fd-primary hover:bg-fd-primary/5 hover:text-fd-primary/80 inline-flex items-center gap-2 rounded-full border p-1.5 px-3"
           aria-label="AI Search"
@@ -133,46 +133,20 @@ export function AiSearchModal() {
           <Sparkles className="size-4" />
           <div className="hidden text-sm md:flex">Ask Blutui AI</div>
         </button>
-      </DialogTrigger>
-      <DialogContent className="flex max-h-[80vh] max-w-2xl flex-col gap-0 overflow-hidden p-0">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <div className="h-14 w-full gap-4">
-              <div className="w-full">
-                <form onSubmit={handleSubmit} className="">
-                  <div className="relative">
-                    <div className="flex items-center">
-                      <Sparkles className="text-fd-primary/80 ml-4 size-6" />
-                      <input
-                        type="text"
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        placeholder="Ask a Question"
-                        className="h-14 w-full py-3 pr-12 pl-4 text-lg font-medium focus:ring-0 focus:outline-none"
-                        autoFocus
-                      />
-                    </div>
+      </SheetTrigger>
+      <SheetContent
+        side="right"
+        className="flex h-full w-full flex-col p-0 sm:w-[540px]"
+        aria-describedby={undefined}
+        overlayClassName="bg-transparent backdrop-blur-none"
+      >
+        <SheetHeader className="sr-only">
+          <SheetTitle>Ask Blutui AI</SheetTitle>
+        </SheetHeader>
 
-                    <button
-                      type="submit"
-                      disabled={isLoading || !query.trim()}
-                      className={cn(
-                        buttonVariants({ color: 'secondary', size: 'icon-sm' }),
-                        'absolute top-1/2 right-2 -translate-y-1/2'
-                      )}
-                    >
-                      <Search className="size-4" />
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </DialogTitle>
-        </DialogHeader>
-
-        <div className="flex max-h-96 flex-1 flex-col overflow-y-auto">
-          {response && (
-            <div className="prose prose-sm dark:prose-invert max-w-none p-4">
+        <div className="flex-1 overflow-y-auto p-6">
+          {response ? (
+            <div className="prose prose-sm dark:prose-invert max-w-none">
               <Markdown
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -198,16 +172,44 @@ export function AiSearchModal() {
                 {response}
               </Markdown>
             </div>
-          )}
-          {isLoading && !response ? (
-            <div className="text-fd-muted-foreground flex animate-pulse items-center gap-2 p-4 text-sm">
-              <Loader2 className="size-4 animate-spin" />
-              Thinking
+          ) : !isLoading ? (
+            <div className="text-muted-foreground flex h-[99%] flex-col items-center justify-center space-y-4 text-center opacity-50">
+              <p className="text-md font-medium">How can I help you with Blutui today?</p>
             </div>
           ) : null}
+
+          {isLoading && !response && (
+            <div className="text-fd-muted-foreground flex animate-pulse items-center gap-2 pt-4 text-sm">
+              <Loader2 className="size-4 animate-spin" />
+              Thinking...
+            </div>
+          )}
           <div ref={bottomRef} className="h-px w-full" />
         </div>
-      </DialogContent>
-    </Dialog>
+
+        <div className="bg-fd-background border-t p-4">
+          <form onSubmit={handleSubmit} className="relative">
+            <div className="bg-fd-secondary/20 ring-offset-background focus-within:ring-ring flex items-center rounded-lg border px-3 focus-within:ring-1">
+              <Sparkles className="text-fd-primary/80 size-5 shrink-0" />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Ask a question..."
+                className="placeholder:text-muted-foreground flex h-12 w-full bg-transparent px-3 py-2 text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                autoFocus
+              />
+              <button
+                type="submit"
+                disabled={isLoading || !query.trim()}
+                className={cn(buttonVariants({ color: 'secondary', size: 'icon-sm' }), 'shrink-0')}
+              >
+                <Search className="size-4" />
+              </button>
+            </div>
+          </form>
+        </div>
+      </SheetContent>
+    </Sheet>
   )
 }

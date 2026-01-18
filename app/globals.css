@@ -21,6 +21,44 @@
   --color-primary: #247bff;
 
   --container-8xl: 100rem;
+
+  --animate-sidebar-slide-in-right: sidebar-slide-in-right 0.3s ease-out;
+  --animate-sidebar-slide-out-right: sidebar-slide-out-right 0.3s cubic-bezier(0.82, 0.085, 0.395, 0.895);
+  --animate-sidebar-fade-in: sidebar-fade-in 0.3s ease-out;
+  --animate-sidebar-fade-out: sidebar-fade-out 0.3s cubic-bezier(0.82, 0.085, 0.395, 0.895);
+
+  @keyframes sidebar-slide-in-right {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes sidebar-slide-out-right {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes sidebar-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes sidebar-fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 }
 
 .dark {

@@ -1,4 +1,5 @@
 {
   "$schema": "../../../.source/json-schema/docs.meta.json",
-  "defaultOpen": true
+  "defaultOpen": true,
+  "pages": ["overview", "templating", "variables", "filters-functions", "expressions"]
 }

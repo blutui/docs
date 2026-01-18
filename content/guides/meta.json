@@ -6,7 +6,6 @@
     "---[Album]Getting Started---",
     "introduction",
     "create-page",
-    "add-collection-to-project",
     "create-blog",
     "add-menu-to-project",
     "extend-pages-with-collections",
@@ -28,7 +27,8 @@
     "send-form-submissions-to-zapier",
     "add-redirect-to-form",
 
-    "---[Sparkles]AI Components---",
+    "---[Sparkles]AI---",
+    "figma-to-blutui",
     "use-blutui-ai-in-a-project",
 
     "---[LayoutTemplate]Blutui Canvas---",

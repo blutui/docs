@@ -11,6 +11,8 @@
     "...components",
     "---[SquareTerminal]Courier---",
     "...courier",
+    "---[Database]Collections---",
+    "...collections",
     "---[CassetteTape]Cassettes---",
     "...cassettes"
   ]

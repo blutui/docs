@@ -26,9 +26,18 @@ export function SidebarTabsDropdown({
   const { closeOnRedirect } = useSidebar()
   const pathname = usePathname()
 
+  const flattenedOptions = useMemo(() => {
+    return options.flatMap((item) => {
+      if (item.items && item.items.length > 0) {
+        return item.items
+      }
+      return item
+    })
+  }, [options])
+
   const selected = useMemo(() => {
-    return options.findLast((item) => isTabActive(item, pathname))
-  }, [options, pathname])
+    return flattenedOptions.findLast((item) => isTabActive(item, pathname))
+  }, [flattenedOptions, pathname])
 
   const onClick = () => {
     closeOnRedirect.current = false
@@ -62,7 +71,7 @@ export function SidebarTabsDropdown({
         </PopoverTrigger>
       )}
       <PopoverContent className="fd-scroll-container flex w-(--radix-popover-trigger-width) flex-col gap-1 p-1">
-        {options.map((item) => {
+        {flattenedOptions.map((item) => {
           const isActive = selected && item.url === selected.url
           if (!isActive && item.unlisted) return
 

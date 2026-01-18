@@ -1,5 +1,5 @@
 {
-  "name": "dev.blutui.com",
+  "name": "docs.blutui.com",
   "private": "true",
   "scripts": {
     "dev": "next dev",

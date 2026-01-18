@@ -6,8 +6,8 @@ export function createMetadata(override: Metadata): Metadata {
     openGraph: {
       title: override.title ?? undefined,
       description: override.description ?? undefined,
-      url: 'https://dev.blutui.com',
-      siteName: 'Blutui Developers',
+      url: 'https://docs.blutui.com',
+      siteName: 'Blutui Documentation',
       ...override.openGraph,
     },
     twitter: {

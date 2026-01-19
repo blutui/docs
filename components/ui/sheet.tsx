@@ -30,7 +30,7 @@ const SheetOverlay = React.forwardRef<
 ))
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
 
-const sheetVariants = cva('fixed z-50 gap-4 bg-fd-background p-6 shadow-lg ease-in-out', {
+const sheetVariants = cva('fixed z-50 bg-fd-background p-6 shadow-lg ease-in-out', {
   variants: {
     side: {
       top: 'inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',

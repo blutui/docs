@@ -5,19 +5,13 @@ description: 'Learn how to use Canopy elements in Blutui'
 
 Canopy elements are the primary method for managing page-specific editable content within Blutui. They allow you to define editable regions inside your layouts or pages so content editors can manage text, images, buttons, and more directly from the dashboard without touching code.
 
-## Creating your first Canopy element
-
-1. Open your project from the Blutui Agency Console.
-
-2. Navigate to your project's **views** directory.
-
-3. Open or create a layout or page template file.
+<Callout>
+Canopy elements are **page-specific** — meaning each element's content is tied to the page it appears on. If you need reusable, global content (like a footer or announcement banner), consider using a **Collection** instead.
+</Callout>
 
 ### Understand handles and attributes
 
 Each Canopy element requires a **unique handle** (identifier) and optional **attributes** to configure its behavior.
-
-Each element requires a **Handle** (unique identifier) and **Attributes** (configuration options).
 
 For this example, we will create a simple hero section with the following elements:
 
@@ -28,10 +22,8 @@ For this example, we will create a simple hero section with the following elemen
 | cms_button  | button-cta       | text, url, opens_new_tab, class |
 | cms_image   | image-hero       | url, alt_text, class            |
 
-![Blutui canopy editor](https://cdn.blutui.com/uploads/assets/Dev/guides/canopy-editor.png)
-
 <Callout>
-The **Handle** must be unique within each page and is used to identify the element in the Canopy editor.
+The **handle** must be unique within each page and is used to identify the element in the Canopy editor. When you edit a page in the dashboard, these handles map to fields in the Canopy editor for that page.
 </Callout>
 
 ### Create a Canvas template with Canopy elements
@@ -49,7 +41,7 @@ views/
     └── default.canvas
 ```
 
-add the following Canvas code
+Add the following Canvas code:
 
 ```twig tab="default.canvas"
 {% block body %}
@@ -92,10 +84,22 @@ This code:
 
 ### Edit your Canopy content in the dashboard
 
-To edit the content for your Canopy elements, open the page in the dashboard using
+To edit the content for your Canopy elements, open the page in the dashboard using the Canopy editor button in the bottom left corner.
 
-```twig
-{% include 'layouts/default.canvas' %}
-```
+![Blutui canopy editor](https://cdn.blutui.com/uploads/assets/Dev/guides/canopy-editor.png)
 
-This will render all the Canopy elements defined in your template.
+## Available Canopy elements
+
+Blutui supports a variety of Canopy elements for different content types:
+
+- `cms_audio` — Editable audio elements
+- `cms_button` — Styled link buttons
+- `cms_code` — Code blocks
+- `cms_heading` — Headings (h1-h6)
+- `cms_image` — Images with alt text
+- `cms_list` — Ordered or unordered lists
+- `cms_quote` — Blockquotes
+- `cms_text` — Text content
+- `cms_video` — Video elements
+
+For detailed information about each element type and their attributes, see the [Canopy Input Types](/docs/canopy/canopy-input-types) documentation.

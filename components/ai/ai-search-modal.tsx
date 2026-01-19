@@ -41,27 +41,19 @@ export interface VectorStoreSearchContent {
   text: string
 }
 
-export function AiSearchModal() {
-  const [isOpen, setIsOpen] = useState(false)
-  const { open, setOpen } = useAiSearch()
-  const [query, setQuery] = useState('')
-  const [response, setResponse] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+export function AiSearchOverlay() {
+  const { open, setOpen, query, setQuery, response, setResponse, isLoading, setIsLoading } = useAiSearch()
   const bottomRef = useRef<HTMLDivElement>(null)
 
   const { theme } = useTheme()
 
-  const handleOpenChange = () => {
-    setIsOpen(!isOpen)
-    if (!isOpen) {
+  const handleOpenChange = (open: boolean) => {
+    setOpen(open)
+    if (open) {
       setQuery('')
       setResponse('')
     }
   }
-
-  useEffect(() => {
-    setOpen(isOpen)
-  }, [isOpen])
 
   useEffect(() => {
     if (response || isLoading) {
@@ -130,21 +122,13 @@ export function AiSearchModal() {
   }
 
   return (
-    <Sheet open={isOpen} onOpenChange={handleOpenChange} modal={false}>
-      <SheetTrigger asChild>
-        <button
-          className="border-fd-primary text-fd-primary hover:bg-fd-primary/5 hover:text-fd-primary/80 inline-flex items-center gap-2 rounded-full border p-1.5 px-3"
-          aria-label="AI Search"
-        >
-          <Sparkles className="size-4" />
-          <div className="hidden text-sm md:flex">Ask Blutui AI</div>
-        </button>
-      </SheetTrigger>
+    <Sheet open={open} onOpenChange={handleOpenChange} modal={false}>
       <SheetContent
         side="right"
         className="flex h-full min-w-[364.5px] flex-col p-0 md:min-w-125"
         aria-describedby={undefined}
         overlayClassName="bg-transparent backdrop-blur-none"
+        onInteractOutside={(e) => e.preventDefault()}
       >
         <SheetHeader className="sr-only">
           <SheetTitle>Ask Blutui AI</SheetTitle>
@@ -217,5 +201,20 @@ export function AiSearchModal() {
         </div>
       </SheetContent>
     </Sheet>
+  )
+}
+
+export function AiSearchModal() {
+  const { setOpen } = useAiSearch()
+
+  return (
+    <button
+      className="border-fd-primary text-fd-primary hover:bg-fd-primary/5 hover:text-fd-primary/80 inline-flex items-center gap-2 rounded-full border p-1.5 px-3"
+      aria-label="AI Search"
+      onClick={() => setOpen(true)}
+    >
+      <Sparkles className="size-4" />
+      <div className="hidden text-sm md:flex">Ask Blutui AI</div>
+    </button>
   )
 }

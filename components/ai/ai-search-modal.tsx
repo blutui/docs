@@ -9,7 +9,6 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { cn } from '../../lib/cn'
 import { buttonVariants } from '../ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
-import { useTheme } from 'next-themes'
 import { useAiSearch } from './ai-search-context'
 
 export interface VectorStoreSearchResultsPage {
@@ -44,8 +43,8 @@ export interface VectorStoreSearchContent {
 export function AiSearchOverlay() {
   const { open, setOpen, query, setQuery, response, setResponse, isLoading, setIsLoading } = useAiSearch()
   const bottomRef = useRef<HTMLDivElement>(null)
-
-  const { theme } = useTheme()
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [shouldAutoScroll, setShouldAutoScroll] = useState(true)
 
   const handleOpenChange = (open: boolean) => {
     setOpen(open)
@@ -55,11 +54,18 @@ export function AiSearchOverlay() {
     }
   }
 
+  const handleScroll = () => {
+    if (!scrollContainerRef.current) return
+    const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current
+    const isAtBottom = scrollHeight - scrollTop - clientHeight <= 100
+    setShouldAutoScroll(isAtBottom)
+  }
+
   useEffect(() => {
-    if (response || isLoading) {
+    if ((response || isLoading) && shouldAutoScroll) {
       bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [response, isLoading])
+  }, [response, isLoading, shouldAutoScroll])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -67,6 +73,7 @@ export function AiSearchOverlay() {
 
     setIsLoading(true)
     setResponse('') // Clear previous response
+    setShouldAutoScroll(true)
 
     try {
       const res = await fetch('/api/ai', {
@@ -134,7 +141,7 @@ export function AiSearchOverlay() {
           <SheetTitle>Ask Blutui AI</SheetTitle>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto px-6 pt-6">
+        <div ref={scrollContainerRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-6 pt-6">
           {response ? (
             <div className="prose prose-sm dark:prose-invert max-w-none">
               <Markdown
@@ -144,9 +151,9 @@ export function AiSearchOverlay() {
                     const match = /language-(\w+)/.exec(className || '')
                     return !inline && match ? (
                       <SyntaxHighlighter
-                        className="not-prose"
+                        className="not-prose rounded-md"
                         {...props}
-                        style={theme === 'dark' ? vscDarkPlus : undefined}
+                        style={vscDarkPlus}
                         language={match[1] === 'canvas' ? 'twig' : match[1]}
                       >
                         {String(children).replace(/\n$/, '')}

@@ -49,7 +49,7 @@ export function AiSearchOverlay() {
 
   const handleOpenChange = (open: boolean) => {
     setOpen(open)
-    if (open) {
+    if (!open) {
       setQuery('')
       setResponse('')
     }
@@ -125,7 +125,7 @@ export function AiSearchOverlay() {
     <Sheet open={open} onOpenChange={handleOpenChange} modal={false}>
       <SheetContent
         side="right"
-        className="flex h-full min-w-[364.5px] flex-col p-0 md:min-w-125"
+        className="flex h-full max-w-[364.5px] flex-col p-0 md:max-w-125"
         aria-describedby={undefined}
         overlayClassName="bg-transparent backdrop-blur-none"
         onInteractOutside={(e) => e.preventDefault()}
@@ -134,7 +134,7 @@ export function AiSearchOverlay() {
           <SheetTitle>Ask Blutui AI</SheetTitle>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto px-6 pt-6">
           {response ? (
             <div className="prose prose-sm dark:prose-invert max-w-none">
               <Markdown
@@ -214,7 +214,7 @@ export function AiSearchModal() {
       onClick={() => setOpen(true)}
     >
       <Sparkles className="size-4" />
-      <div className="hidden text-sm md:flex">Ask Blutui AI</div>
+      <div className="hidden text-sm 2xl:flex">Ask Blutui AI</div>
     </button>
   )
 }

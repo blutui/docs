@@ -83,7 +83,7 @@ export function LayoutBody({ className, style, children, ...props }: ComponentPr
     <div
       id="nd-notebook-layout"
       className={cn(
-        `grid min-h-(--fd-docs-height) auto-cols-auto auto-rows-auto overflow-x-clip transition-all duration-300 [--fd-docs-height:100dvh] [--fd-header-height:0px] [--fd-sidebar-width:0px] [--fd-toc-popover-height:0px] [--fd-toc-width:0px]`,
+        `grid min-h-(--fd-docs-height) auto-cols-auto auto-rows-auto overflow-x-clip transition-all duration-200 [--fd-docs-height:100dvh] [--fd-header-height:0px] [--fd-sidebar-width:0px] [--fd-toc-popover-height:0px] [--fd-toc-width:0px]`,
         open && 'pr-0 md:pr-125',
         className
       )}

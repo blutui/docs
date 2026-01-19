@@ -21,6 +21,7 @@ import { buttonVariants } from '../../ui/button'
 import type { HomeLayoutProps } from './index'
 import { LargeSearchToggle, SearchToggle } from '../search-toggle'
 import { AiSearch } from '../../ai/ai-search'
+import { useAiSearch } from '../../ai/ai-search-context'
 import { ThemeToggle } from '../theme-toggle'
 import { LanguageToggle, LanguageToggleText } from '../language-toggle'
 import { ChevronDown, Languages } from 'lucide-react'
@@ -155,6 +156,24 @@ export function Header({
         </NavigationMenuItem>
       </ul>
     </HeaderNavigationMenu>
+  )
+}
+
+export function HomeMain({ children, className, ...props }: ComponentProps<'main'>) {
+  const { open } = useAiSearch()
+
+  return (
+    <main
+      id="nd-home-layout"
+      className={cn(
+        'flex flex-1 flex-col transition-all duration-200 [--fd-layout-width:1400px]',
+        open && 'pr-0 md:pr-125',
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </main>
   )
 }
 

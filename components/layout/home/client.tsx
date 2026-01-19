@@ -20,7 +20,7 @@ import { usePathname } from 'next/navigation'
 import { buttonVariants } from '../../ui/button'
 import type { HomeLayoutProps } from './index'
 import { LargeSearchToggle, SearchToggle } from '../search-toggle'
-import { AiSearchModal } from '../../ai/ai-search-modal'
+import { AiSearch } from '../../ai/ai-search'
 import { ThemeToggle } from '../theme-toggle'
 import { LanguageToggle, LanguageToggleText } from '../language-toggle'
 import { ChevronDown, Languages } from 'lucide-react'
@@ -92,7 +92,7 @@ export function Header({
           (searchToggle.components?.lg ?? (
             <LargeSearchToggle className="w-full max-w-[240px] rounded-full ps-2.5" hideIfDisabled />
           ))}
-        <AiSearchModal />
+        <AiSearch />
         {themeSwitch.enabled !== false && (themeSwitch.component ?? <ThemeToggle mode={themeSwitch?.mode} />)}
         {i18n && (
           <LanguageToggle>
@@ -112,7 +112,7 @@ export function Header({
       <ul className="ms-auto -me-1.5 flex flex-row items-center lg:hidden">
         {searchToggle.enabled !== false &&
           (searchToggle.components?.sm ?? <SearchToggle className="p-2" hideIfDisabled />)}
-        <AiSearchModal />
+        <AiSearch />
         <NavigationMenuItem>
           <NavigationMenuTrigger
             aria-label="Toggle Menu"

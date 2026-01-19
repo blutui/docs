@@ -216,7 +216,7 @@ export function AiSearchOverlay() {
   )
 }
 
-export function AiSearchModal() {
+export function AiSearch() {
   const { setOpen } = useAiSearch()
 
   return (

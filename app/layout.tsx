@@ -1,7 +1,7 @@
 import { Instrument_Sans } from 'next/font/google'
 import { RootProvider } from 'fumadocs-ui/provider/next'
 import { AiSearchProvider } from 'components/ai/ai-search-context'
-import { AiSearchOverlay } from 'components/ai/ai-search-modal'
+import { AiSearchOverlay } from 'components/ai/ai-search'
 
 import { baseUrl, createMetadata } from 'lib/metadata'
 

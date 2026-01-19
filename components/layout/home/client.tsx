@@ -125,7 +125,7 @@ export function Header({
             )}
             onPointerMove={nav.enableHoverToOpen ? undefined : (e) => e.preventDefault()}
           >
-            <ChevronDown className="transition-transform duration-300 group-data-[state=open]:rotate-180" />
+            <ChevronDown className="transition-transform duration-200 group-data-[state=open]:rotate-180" />
           </NavigationMenuTrigger>
           <NavigationMenuContent className="flex flex-col p-4 sm:flex-row sm:items-center sm:justify-end">
             {menuItems

@@ -22,10 +22,10 @@
 
   --container-8xl: 100rem;
 
-  --animate-sidebar-slide-in-right: sidebar-slide-in-right 0.3s ease-out;
-  --animate-sidebar-slide-out-right: sidebar-slide-out-right 0.3s cubic-bezier(0.82, 0.085, 0.395, 0.895);
-  --animate-sidebar-fade-in: sidebar-fade-in 0.3s ease-out;
-  --animate-sidebar-fade-out: sidebar-fade-out 0.3s cubic-bezier(0.82, 0.085, 0.395, 0.895);
+  --animate-sidebar-slide-in-right: sidebar-slide-in-right 0.2s ease-out;
+  --animate-sidebar-slide-out-right: sidebar-slide-out-right 0.2s ease-in;
+  --animate-sidebar-fade-in: sidebar-fade-in 0.2s ease-out;
+  --animate-sidebar-fade-out: sidebar-fade-out 0.2s ease-in;
 
   @keyframes sidebar-slide-in-right {
     from {

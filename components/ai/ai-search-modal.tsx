@@ -10,6 +10,7 @@ import { cn } from '../../lib/cn'
 import { buttonVariants } from '../ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
 import { useTheme } from 'next-themes'
+import { useAiSearch } from './ai-search-context'
 
 export interface VectorStoreSearchResultsPage {
   object: 'vector_store.search_results.page'
@@ -42,6 +43,7 @@ export interface VectorStoreSearchContent {
 
 export function AiSearchModal() {
   const [isOpen, setIsOpen] = useState(false)
+  const { open, setOpen } = useAiSearch()
   const [query, setQuery] = useState('')
   const [response, setResponse] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -49,13 +51,17 @@ export function AiSearchModal() {
 
   const { theme } = useTheme()
 
-  const handleOpenChange = (open: boolean) => {
-    setIsOpen(open)
-    if (!open) {
+  const handleOpenChange = () => {
+    setIsOpen(!isOpen)
+    if (!isOpen) {
       setQuery('')
       setResponse('')
     }
   }
+
+  useEffect(() => {
+    setOpen(isOpen)
+  }, [isOpen])
 
   useEffect(() => {
     if (response || isLoading) {
@@ -136,7 +142,7 @@ export function AiSearchModal() {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="flex h-full w-full flex-col p-0 sm:w-[540px]"
+        className="flex h-full min-w-[364.5px] flex-col p-0 md:min-w-125"
         aria-describedby={undefined}
         overlayClassName="bg-transparent backdrop-blur-none"
       >

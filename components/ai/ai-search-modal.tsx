@@ -188,12 +188,17 @@ export function AiSearchOverlay() {
           <form onSubmit={handleSubmit} className="relative">
             <div className="bg-fd-secondary/20 ring-offset-background focus-within:ring-ring flex items-center rounded-lg border px-3 focus-within:ring-1">
               <Sparkles className="text-fd-primary/80 size-5 shrink-0" />
-              <input
-                type="text"
+              <textarea
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault()
+                    e.currentTarget.form?.requestSubmit()
+                  }
+                }}
                 placeholder="Ask a question..."
-                className="placeholder:text-muted-foreground flex h-12 w-full bg-transparent px-3 py-2 text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                className="placeholder:text-muted-foreground flex h-12 w-full resize-none bg-transparent px-3 py-3 text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 autoFocus
               />
               <button

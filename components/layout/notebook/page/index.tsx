@@ -16,6 +16,7 @@ import type { AnchorProviderProps, TOCItemType } from 'fumadocs-core/toc'
 import * as TocDefault from '../../../toc/default'
 import * as TocClerk from '../../../toc/clerk'
 import { TOCProvider, TOCScrollArea } from '../../../toc'
+import { TOCWrapper } from './toc-wrapper'
 
 interface BreadcrumbOptions extends BreadcrumbProps {
   enabled: boolean
@@ -128,7 +129,7 @@ export function DocsPage({
       </article>
       {tocEnabled &&
         (tocReplace ?? (
-          <div
+          <TOCWrapper
             id="nd-toc"
             className="xl:layout:[--fd-toc-width:268px] sticky top-(--fd-docs-row-3) flex h-[calc(var(--fd-docs-height)-var(--fd-docs-row-3))] w-(--fd-toc-width) flex-col pe-4 pt-12 pb-2 [grid-area:toc] max-xl:hidden"
           >
@@ -141,7 +142,7 @@ export function DocsPage({
               {tocOptions.style === 'clerk' ? <TocClerk.TOCItems /> : <TocDefault.TOCItems />}
             </TOCScrollArea>
             {tocOptions.footer}
-          </div>
+          </TOCWrapper>
         ))}
     </>
   )

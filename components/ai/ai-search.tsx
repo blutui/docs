@@ -217,13 +217,20 @@ export function AiSearchOverlay() {
 }
 
 export function AiSearch() {
-  const { setOpen } = useAiSearch()
+  const { open, setOpen, setResponse, setQuery } = useAiSearch()
 
+  const handleOpenChange = (open: boolean) => {
+    setOpen(open)
+    if (!open) {
+      setQuery('')
+      setResponse('')
+    }
+  }
   return (
     <button
       className="border-fd-primary text-fd-primary hover:bg-fd-primary/5 hover:text-fd-primary/80 inline-flex items-center gap-2 rounded-full border p-1.5 px-3"
       aria-label="AI Search"
-      onClick={() => setOpen(true)}
+      onClick={() => handleOpenChange(!open)}
     >
       <Sparkles className="size-4" />
       <div className="hidden text-sm 2xl:flex">Ask Blutui AI</div>

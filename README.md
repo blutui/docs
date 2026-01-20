@@ -4,7 +4,7 @@
     </a>
 </p>
 
-`dev.blutui.com` is a project for the Blutui Developer documentation, containing the website code and Markdown source files.
+`docs.blutui.com` is a project for the Blutui Developer documentation, containing the website code and Markdown source files.
 
 ---
 

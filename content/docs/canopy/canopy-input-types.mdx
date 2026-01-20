@@ -1,0 +1,110 @@
+---
+title: 'Canopy Input Types'
+description: 'Learn about the different Canopy elements available for the Canopy editor in Blutui'
+---
+
+The following Canopy elements are available for creating editable components in the [Canopy editor](/project/canopy/canopy-overview):
+
+### Text
+
+**function: `cms_text`**
+
+A text component for displaying editable text content in the Canopy editor.
+
+| Argument           | Description                                                | Data Type |
+| :----------------- | :--------------------------------------------------------- | --------: |
+| `name`             | The element identifier                                     |    String |
+| `value` (optional) | The text content to be displayed within the text component |    String |
+| `class` (optional) | A space-separated list of CSS classes to style the element |    String |
+
+[View full documentation](/canvas/functions/canopy/cms-text)
+
+### Heading
+
+**function: `cms_heading`**
+
+A heading component for displaying editable headings (h1-h6) in the Canopy editor.
+
+| Argument             | Description                                                          | Data Type |
+| :------------------- | :------------------------------------------------------------------- | --------: |
+| `name`               | The element identifier                                               |    String |
+| `element` (optional) | The HTML element type of the heading **(h1, h2, h3, h4, h5, or h6)** |    String |
+| `value` (optional)   | The text content to be displayed within the heading                  |    String |
+| `class` (optional)   | A space-separated list of CSS classes to style the element           |    String |
+
+[View full documentation](/canvas/functions/canopy/cms-heading)
+
+### Image
+
+**function: `cms_image`**
+
+An image component for displaying editable images in the Canopy editor.
+
+| Argument              | Description                                                | Data Type |
+| :-------------------- | :--------------------------------------------------------- | --------: |
+| `name`                | The element identifier                                     |    String |
+| `url` (optional)      | Link to an image to display                                |    String |
+| `alt_text` (optional) | Descriptive text for accessibility and SEO                 |    String |
+| `class` (optional)    | A space-separated list of CSS classes to style the element |    String |
+
+[View full documentation](/canvas/functions/canopy/cms-image)
+
+### Button
+
+**function: `cms_button`**
+
+A button component for creating editable links styled as buttons in the Canopy editor.
+
+| Argument                   | Description                                                | Data Type |
+| :------------------------- | :--------------------------------------------------------- | --------: |
+| `name`                     | The element identifier                                     |    String |
+| `text` (optional)          | The text content to be displayed within the button         |    String |
+| `url` (optional)           | The button URL                                             |    String |
+| `class` (optional)         | A space-separated list of CSS classes to style the element |    String |
+| `opens_new_tab` (optional) | Set to true to open the linked URL in a new tab            |   Boolean |
+
+[View full documentation](/canvas/functions/canopy/cms-button)
+
+### List
+
+**function: `cms_list`**
+
+A list component for creating editable ordered or unordered lists in the Canopy editor.
+
+| Argument             | Description                                                |     Data Type |
+| :------------------- | :--------------------------------------------------------- | ------------: |
+| `name`               | The element identifier                                     |        String |
+| `ordered` (optional) | Set ordered list or unordered list                         |       Boolean |
+| `items` (optional)   | Array containing the content of each list item             | Array[String] |
+| `class` (optional)   | A space-separated list of CSS classes to style the element |        String |
+
+[View full documentation](/canvas/functions/canopy/cms-list)
+
+### Quote
+
+**function: `cms_quote`**
+
+A quote component for displaying editable blockquotes in the Canopy editor.
+
+| Argument           | Description                                                | Data Type |
+| :----------------- | :--------------------------------------------------------- | --------: |
+| `name`             | The element identifier                                     |    String |
+| `value` (optional) | The text content of the quotation                          |    String |
+| `cite` (optional)  | Reference information for the quote (author, source, etc.) |    String |
+| `class` (optional) | A space-separated list of CSS classes to style the element |    String |
+
+[View full documentation](/canvas/functions/canopy/cms-quote)
+
+### Code
+
+**function: `cms_code`**
+
+A code component for displaying editable code blocks in the Canopy editor.
+
+| Argument           | Description                                                | Data Type |
+| :----------------- | :--------------------------------------------------------- | --------: |
+| `name`             | The element identifier                                     |    String |
+| `value` (optional) | The code to be displayed                                   |    String |
+| `class` (optional) | A space-separated list of CSS classes to style the element |    String |
+
+[View full documentation](/canvas/functions/canopy/cms-code)

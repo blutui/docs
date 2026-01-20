@@ -167,7 +167,7 @@ export function HomeMain({ children, className, ...props }: ComponentProps<'main
       id="nd-home-layout"
       className={cn(
         'flex flex-1 flex-col transition-all duration-200 [--fd-layout-width:1400px]',
-        open && 'pr-0 md:pr-125',
+        open && 'pr-0 md:pr-80',
         className
       )}
       {...props}

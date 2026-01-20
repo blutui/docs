@@ -132,7 +132,7 @@ export function AiSearchOverlay() {
     <Sheet open={open} onOpenChange={handleOpenChange} modal={false}>
       <SheetContent
         side="right"
-        className="flex h-full max-w-[364.5px] flex-col p-0 md:max-w-125"
+        className="flex h-full max-w-[364.5px] flex-col p-0 md:max-w-80"
         aria-describedby={undefined}
         overlayClassName="bg-transparent backdrop-blur-none"
         onInteractOutside={(e) => e.preventDefault()}

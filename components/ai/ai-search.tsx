@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { Sparkles, Search, Loader2, Square } from 'lucide-react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -181,6 +182,21 @@ export function AiSearchOverlay() {
               <Markdown
                 remarkPlugins={[remarkGfm]}
                 components={{
+                  a({ node, href, children, ...props }: any) {
+                    if (!href) return children
+                    if (href.startsWith('http')) {
+                      return (
+                        <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+                          {children}
+                        </a>
+                      )
+                    }
+                    return (
+                      <Link href={href.startsWith('/') || href.startsWith('#') ? href : `/${href}`} {...props}>
+                        {children}
+                      </Link>
+                    )
+                  },
                   code({ node, inline, className, children, ...props }: any) {
                     const match = /language-(\w+)/.exec(className || '')
                     return !inline && match ? (

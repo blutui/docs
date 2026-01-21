@@ -236,7 +236,7 @@ export function AiSearchOverlay() {
               <button
                 type="button"
                 onClick={handleStop}
-                className="text-foreground flex h-8 items-center gap-2 rounded-md border bg-neutral-900 px-3 text-xs shadow-sm hover:bg-neutral-900/50"
+                className="text-foreground flex h-8 items-center gap-2 rounded-md border bg-neutral-50 px-3 text-xs shadow-sm hover:bg-neutral-50/50 dark:bg-neutral-900 dark:hover:bg-neutral-900/50"
               >
                 <Loader2 className="text-fd-primary size-4 animate-spin" />
                 Stop generating

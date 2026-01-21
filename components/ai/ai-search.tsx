@@ -67,9 +67,8 @@ export function AiSearchOverlay() {
     }
   }, [response, isLoading, shouldAutoScroll])
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!query.trim()) return
+  const runSearch = async (searchQuery: string) => {
+    if (!searchQuery.trim()) return
 
     setIsLoading(true)
     setResponse('') // Clear previous response
@@ -81,7 +80,7 @@ export function AiSearchOverlay() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ query: searchQuery }),
       })
 
       if (!res.ok) {
@@ -128,6 +127,16 @@ export function AiSearchOverlay() {
     }
   }
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    runSearch(query)
+  }
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setQuery(suggestion)
+    runSearch(suggestion)
+  }
+
   return (
     <Sheet open={open} onOpenChange={handleOpenChange} modal={false}>
       <SheetContent
@@ -141,7 +150,7 @@ export function AiSearchOverlay() {
           <SheetTitle>Ask Blutui AI</SheetTitle>
         </SheetHeader>
 
-        <div ref={scrollContainerRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-6 pt-6">
+        <div ref={scrollContainerRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-2 pt-6">
           {response ? (
             <div className="prose prose-sm dark:prose-invert max-w-none">
               <Markdown
@@ -170,8 +179,20 @@ export function AiSearchOverlay() {
               </Markdown>
             </div>
           ) : !isLoading ? (
-            <div className="text-muted-foreground flex h-[99%] flex-col items-center justify-center space-y-4 text-center opacity-50">
-              <p className="text-md font-medium">How can I help you with Blutui today?</p>
+            <div className="flex h-[99%] flex-col items-center justify-end space-y-8">
+              <div className="flex w-full max-w-xs flex-col gap-2">
+                <p className="text-md pl-1 font-medium">Suggestions</p>
+
+                {['What is a Canopy element?', 'What is a Collection?', 'How do I create a form?'].map((suggestion) => (
+                  <button
+                    key={suggestion}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    className="text-muted-foreground hover:text-fd-primary hover:bg-fd-primary/5 rounded-lg border p-2 px-3 text-left text-sm transition-colors"
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
             </div>
           ) : null}
 

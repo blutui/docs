@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Sparkles, Search, Loader2 } from 'lucide-react'
+import { Sparkles, Search, Loader2, Square } from 'lucide-react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
@@ -45,12 +45,22 @@ export function AiSearchOverlay() {
   const bottomRef = useRef<HTMLDivElement>(null)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [shouldAutoScroll, setShouldAutoScroll] = useState(true)
+  const abortControllerRef = useRef<AbortController | null>(null)
 
   const handleOpenChange = (open: boolean) => {
     setOpen(open)
     if (!open) {
       setQuery('')
       setResponse('')
+      handleStop()
+    }
+  }
+
+  const handleStop = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+      abortControllerRef.current = null
+      setIsLoading(false)
     }
   }
 
@@ -70,6 +80,13 @@ export function AiSearchOverlay() {
   const runSearch = async (searchQuery: string) => {
     if (!searchQuery.trim()) return
 
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+    }
+
+    const controller = new AbortController()
+    abortControllerRef.current = controller
+
     setIsLoading(true)
     setResponse('') // Clear previous response
     setShouldAutoScroll(true)
@@ -81,6 +98,7 @@ export function AiSearchOverlay() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ query: searchQuery }),
+        signal: controller.signal,
       })
 
       if (!res.ok) {
@@ -119,11 +137,18 @@ export function AiSearchOverlay() {
           }
         }
       }
-    } catch (error) {
-      console.error('Failed to fetch AI response', error)
-      setResponse('Sorry, something went wrong.')
+    } catch (error: any) {
+      if (error.name === 'AbortError') {
+        console.log('AI search aborted by user')
+      } else {
+        console.error('Failed to fetch AI response', error)
+        setResponse('Sorry, something went wrong.')
+      }
     } finally {
-      setIsLoading(false)
+      if (abortControllerRef.current === controller) {
+        setIsLoading(false)
+        abortControllerRef.current = null
+      }
     }
   }
 
@@ -205,7 +230,19 @@ export function AiSearchOverlay() {
           <div ref={bottomRef} className="h-px w-full" />
         </div>
 
-        <div className="p-2">
+        <div className="relative p-2">
+          {isLoading && (
+            <div className="absolute -top-7 left-1/2 -translate-x-1/2">
+              <button
+                type="button"
+                onClick={handleStop}
+                className="text-foreground flex h-8 items-center gap-2 rounded-md border bg-neutral-900 px-3 text-xs shadow-sm hover:bg-neutral-900/50"
+              >
+                <Loader2 className="text-fd-primary size-4 animate-spin" />
+                Stop generating
+              </button>
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="relative">
             <div className="bg-fd-secondary/20 ring-offset-background focus-within:ring-ring flex items-center rounded-lg border px-3 focus-within:ring-1">
               <Sparkles className="text-fd-primary/80 size-5 shrink-0" />

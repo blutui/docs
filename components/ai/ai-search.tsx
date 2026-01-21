@@ -184,7 +184,7 @@ export function AiSearchOverlay() {
           <div ref={bottomRef} className="h-px w-full" />
         </div>
 
-        <div className="bg-fd-background border-t p-4">
+        <div className="p-2">
           <form onSubmit={handleSubmit} className="relative">
             <div className="bg-fd-secondary/20 ring-offset-background focus-within:ring-ring flex items-center rounded-lg border px-3 focus-within:ring-1">
               <Sparkles className="text-fd-primary/80 size-5 shrink-0" />

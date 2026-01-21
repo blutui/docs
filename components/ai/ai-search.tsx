@@ -166,7 +166,7 @@ export function AiSearchOverlay() {
     <Sheet open={open} onOpenChange={handleOpenChange} modal={false}>
       <SheetContent
         side="right"
-        className="flex h-full max-w-[364.5px] flex-col p-0 md:max-w-80"
+        className="flex h-full w-[85%] flex-col p-0 md:max-w-100"
         aria-describedby={undefined}
         overlayClassName="bg-transparent backdrop-blur-none"
         onInteractOutside={(e) => e.preventDefault()}
@@ -175,7 +175,7 @@ export function AiSearchOverlay() {
           <SheetTitle>Ask Blutui AI</SheetTitle>
         </SheetHeader>
 
-        <div ref={scrollContainerRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-2 pt-6">
+        <div ref={scrollContainerRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-4 pt-6">
           {response ? (
             <div className="prose prose-sm dark:prose-invert max-w-none">
               <Markdown
@@ -205,7 +205,7 @@ export function AiSearchOverlay() {
             </div>
           ) : !isLoading ? (
             <div className="flex h-[99%] flex-col items-center justify-end space-y-8">
-              <div className="flex w-full max-w-xs flex-col gap-2">
+              <div className="flex w-full flex-col gap-2">
                 <p className="text-md pl-1 font-medium">Suggestions</p>
 
                 {['What is a Canopy element?', 'What is a Collection?', 'How do I create a form?'].map((suggestion) => (
@@ -230,7 +230,7 @@ export function AiSearchOverlay() {
           <div ref={bottomRef} className="h-px w-full" />
         </div>
 
-        <div className="relative p-2">
+        <div className="relative px-4 py-2">
           {isLoading && (
             <div className="absolute -top-7 left-1/2 -translate-x-1/2">
               <button

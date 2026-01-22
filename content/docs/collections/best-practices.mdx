@@ -3,7 +3,7 @@ title: 'Best Practices for Collections'
 description: 'Essential techniques and patterns for working with Blutui collections using Canvas'
 ---
 
-### 1. Always Load Collections
+### Always Load Collections
 
 ```canvas
 {# ✅ CORRECT #}
@@ -14,7 +14,7 @@ description: 'Essential techniques and patterns for working with Blutui collecti
 {% for item in cms.collection('items') %}  {# Don't load in loop #}
 ```
 
-### 2. Options Are Simple String Arrays
+### Options Are Simple String Arrays
 
 ```json
 // ✅ CORRECT
@@ -30,7 +30,7 @@ Use exact strings in templates:
 {% if item.status == 'Active' %}  {# Not 'active' - case matters! #}
 ```
 
-### 3. File Field Access
+### File Field Access
 
 ```canvas
 {# Single file (allow_multiple: false) - direct access as string #}
@@ -41,7 +41,7 @@ Use exact strings in templates:
 {{ item.gallery[0] }}
 ```
 
-### 4. Use |raw for Rich Text
+### Use |raw for Rich Text
 
 ```canvas
 {# ✅ CORRECT #}
@@ -51,7 +51,7 @@ Use exact strings in templates:
 {{ item.content }}
 ```
 
-### 5. Check Before Using Optional Fields
+### Check Before Using Optional Fields
 
 ```canvas
 {# ✅ CORRECT #}
@@ -63,7 +63,7 @@ Use exact strings in templates:
 {{ item.optional_field }}
 ```
 
-### 6. Use Arrow Functions for Filtering
+### Use Arrow Functions for Filtering
 
 ```canvas
 {# ✅ CORRECT - Arrow function syntax #}
@@ -73,7 +73,7 @@ items|filter(i => i.status == 'Active')
 items|where('status', 'Active')
 ```
 
-### 7. Use group_by for Efficiency
+### Use group_by for Efficiency
 
 ```canvas
 {# ✅ BETTER - One filter operation #}
@@ -85,7 +85,7 @@ items|where('status', 'Active')
   {% for item in products|filter(p => p.category == category) %}
 ```
 
-### 8. Always Format Numbers
+### Always Format Numbers
 
 ```canvas
 {# ✅ CORRECT #}
@@ -95,7 +95,7 @@ ${{ price|number_format(2) }}
 ${{ price }}
 ```
 
-### 9. Escape Date Format Characters
+### Escape Date Format Characters
 
 ```canvas
 {# ✅ CORRECT #}
@@ -105,7 +105,7 @@ ${{ price }}
 {{ date|date('F jS at g:ia') }}          {# Wrong output #}
 ```
 
-### 10. Provide Empty State Feedback
+### Provide Empty State Feedback
 
 ```canvas
 {# ✅ CORRECT #}

@@ -16,7 +16,7 @@
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@takumi-rs/core": "^0.62.8",
     "@takumi-rs/helpers": "^0.63.2",
-    "@takumi-rs/image-response": "^0.62.8",
+    "@takumi-rs/image-response": "^0.64.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "fumadocs-core": "^16.4.7",

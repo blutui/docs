@@ -1,0 +1,595 @@
+---
+title: 'Common Patterns for Collections'
+description: 'Essential techniques and patterns for working with Blutui collections using Canvas'
+---
+
+## Accessing Collections
+
+Always load collections at the start of your canvas:
+
+```canvas
+{# Load a collection #}
+{% set team_members = cms.collection('team_members') %}
+{% set events = cms.collection('events') %}
+{% set products = cms.collection('products') %}
+```
+
+### Getting a Single Item
+
+```canvas
+{# Filter for one item by field value #}
+{% set product = products|filter(p => p.sku == 'ABC123')|first %}
+
+{# Get first item #}
+{% set first_product = products|first %}
+
+{# Get last item #}
+{% set last_product = products|last %}
+
+{# Get item by index #}
+{% set third_product = products[2] %}  {# Zero-indexed #}
+```
+
+---
+
+## Filtering and Sorting
+
+### Basic Filtering
+
+Canvas uses arrow function syntax for filtering:
+
+```canvas
+{# Filter by specific value #}
+{% set active = products|filter(p => p.status == 'Active') %}
+
+{# Filter with multiple conditions using 'and' #}
+{% set filtered = products|filter(p => p.status == 'Active' and p.price > 100) %}
+
+{# Filter with 'or' conditions #}
+{% set filtered = products|filter(p => p.category == 'Services' or p.category == 'Equipment') %}
+
+{# Filter with 'not' #}
+{% set not_archived = products|filter(p => p.status != 'Archived') %}
+```
+
+### Advanced Filtering
+
+```canvas
+{# Filter with access to key (second argument) #}
+{% set filtered = products|filter((item, key) => item.price > 100 and key != 0) %}
+
+{# Filter dates - IMPORTANT: Use date() to convert strings to date objects #}
+{% set upcoming = events|filter(e => date(e.start_datetime) >= date('now')) %}
+{% set past = events|filter(e => date(e.start_datetime) < date('now')) %}
+
+{# Filter date ranges #}
+{% set this_month = events|filter(e => date(e.start_datetime) >= date('first day of this month') and date(e.start_datetime) <= date('last day of this month')) %}
+
+{# Filter checkbox arrays #}
+{% set with_warranty = products|filter(p => 'Warranty Included' in p.features) %}
+
+{# Filter by array length #}
+{% set with_images = products|filter(p => p.images|length > 0) %}
+```
+
+### Sorting
+
+Use the spaceship operator `<=>` for sorting:
+
+```canvas
+{# Sort ascending #}
+{% set sorted = products|sort((a, b) => a.price <=> b.price) %}
+
+{# Sort descending #}
+{% set sorted = products|sort((a, b) => b.price <=> a.price) %}
+
+{# Sort by date #}
+{% set sorted = events|sort((a, b) => a.start_datetime <=> b.start_datetime) %}
+
+{# Sort by text (alphabetically) #}
+{% set sorted = products|sort((a, b) => a.name <=> b.name) %}
+```
+
+### Grouping
+
+Use `group_by` to organize items by a field:
+
+```canvas
+{# Group by field value #}
+{% set grouped = products|group_by('category') %}
+{# Returns: { 'Services': [...], 'Equipment': [...] } #}
+
+{# Loop through grouped items #}
+{% for category, items in products|group_by('category') %}
+  <h2>{{ category }}</h2>
+  {% for item in items %}
+    {{ item.name }}
+  {% endfor %}
+{% endfor %}
+
+{# Group with arrow function (transform value) #}
+{% set by_month = events|group_by(e => e.start_datetime|date('Y-m')) %}
+```
+
+### Other Useful Filters
+
+```canvas
+{# Get unique values from a field #}
+{% set categories = products|column('category')|unique %}
+
+{# Limit results #}
+{% set recent = posts|slice(0, 5) %}
+
+{# Reverse order #}
+{% set reversed = items|reverse %}
+
+{# Combine multiple filters #}
+{% set result = products
+  |filter(p => p.status == 'Active')
+  |sort((a, b) => b.price <=> a.price)
+  |slice(0, 10) %}
+```
+
+---
+
+## Working with Files
+
+### Single File Fields
+
+When `allow_multiple_file_uploads: false`, the field returns a **string URL**:
+
+```canvas
+{# Direct access - it's a string #}
+<img src="{{ item.photo }}" alt="{{ item.name }}">
+
+{# Check if file exists #}
+{% if item.photo %}
+  <img src="{{ item.photo }}">
+{% endif %}
+
+{# Use in CSS #}
+<div style="background-image: url('{{ item.banner }}')"></div>
+```
+
+### Multiple File Fields
+
+When `allow_multiple_file_uploads: true`, the field returns an **array of URL strings**:
+
+```canvas
+{# Loop through all files #}
+{% for img in item.gallery %}
+  <img src="{{ img }}" alt="Gallery image">
+{% endfor %}
+
+{# Access by index #}
+<img src="{{ item.gallery[0] }}" alt="First image">
+<img src="{{ item.gallery[1] }}" alt="Second image">
+
+{# Check if files exist #}
+{% if item.gallery is not empty %}
+  <p>{{ item.gallery|length }} images available</p>
+{% endif %}
+
+{# Get first and last #}
+<img src="{{ item.gallery|first }}" alt="First">
+<img src="{{ item.gallery|last }}" alt="Last">
+```
+
+### File Patterns
+
+```canvas
+{# Image gallery with thumbnails (multiple files) #}
+<div class="main-image">
+  <img src="{{ product.images[0] }}" id="mainImage">
+</div>
+<div class="thumbnails">
+  {% for img in product.images %}
+    <img src="{{ img }}" onclick="document.getElementById('mainImage').src='{{ img }}'">
+  {% endfor %}
+</div>
+
+{# Single banner image #}
+{% if item.banner %}
+  <img src="{{ item.banner }}" alt="Banner">
+{% endif %}
+
+{# Download links for multiple documents #}
+{% for file in item.documents %}
+  <a href="{{ file }}" download>Download</a>
+{% endfor %}
+```
+
+### Key Differences
+
+| Setting                              | Return Type   | Access Method | Example                                                    |
+| ------------------------------------ | ------------- | ------------- | ---------------------------------------------------------- |
+| `allow_multiple_file_uploads: false` | String URL    | Direct        | `{{ item.photo }}`                                         |
+| `allow_multiple_file_uploads: true`  | Array of URLs | Loop or index | `{{ item.gallery[0] }}` or `{% for img in item.gallery %}` |
+
+---
+
+## Date Formatting
+
+Canvas uses canvas date format characters:
+
+### Common Date Formats
+
+```canvas
+{{ date|date('F j, Y') }}           {# January 21, 2026 #}
+{{ date|date('m/d/Y') }}            {# 01/21/2026 #}
+{{ date|date('d/m/Y') }}            {# 21/01/2026 (European) #}
+{{ date|date('Y-m-d') }}            {# 2026-01-21 (ISO) #}
+{{ date|date('M j, Y') }}           {# Jan 21, 2026 #}
+{{ date|date('F jS, Y') }}          {# January 21st, 2026 #}
+{{ date|date('l, F j, Y') }}        {# Wednesday, January 21, 2026 #}
+```
+
+### Time Formats
+
+```canvas
+{{ time|date('g:ia') }}             {# 2:30pm #}
+{{ time|date('g:i A') }}            {# 2:30 PM #}
+{{ time|date('H:i') }}              {# 14:30 (24-hour) #}
+{{ time|date('h:i:s A') }}          {# 02:30:45 PM #}
+```
+
+### Combined Date and Time
+
+```canvas
+{{ datetime|date('F j, Y \\a\\t g:ia') }}           {# January 21, 2026 at 2:30pm #}
+{{ datetime|date('l, F j, Y - g:i A') }}            {# Wednesday, January 21, 2026 - 2:30 PM #}
+{{ datetime|date('M j, Y @ g:ia') }}                {# Jan 21, 2026 @ 2:30pm #}
+```
+
+### Escaping Characters
+
+Use backslashes to escape literal text in date formats:
+
+```canvas
+{{ date|date('F jS \\a\\t g:ia') }}                 {# January 21st at 2:30pm #}
+{{ date|date('\\T\\o\\d\\a\\y \\i\\s F j') }}       {# Today is January 21 #}
+```
+
+### Date Format Reference
+
+| Character | Description                   | Example          |
+| --------- | ----------------------------- | ---------------- |
+| `d`       | Day with leading zeros        | 01-31            |
+| `j`       | Day without leading zeros     | 1-31             |
+| `D`       | Short day name                | Mon-Sun          |
+| `l`       | Full day name                 | Monday-Sunday    |
+| `m`       | Month with leading zeros      | 01-12            |
+| `n`       | Month without leading zeros   | 1-12             |
+| `M`       | Short month name              | Jan-Dec          |
+| `F`       | Full month name               | January-December |
+| `Y`       | 4-digit year                  | 2026             |
+| `y`       | 2-digit year                  | 26               |
+| `g`       | 12-hour without leading zeros | 1-12             |
+| `h`       | 12-hour with leading zeros    | 01-12            |
+| `G`       | 24-hour without leading zeros | 0-23             |
+| `H`       | 24-hour with leading zeros    | 00-23            |
+| `i`       | Minutes with leading zeros    | 00-59            |
+| `s`       | Seconds with leading zeros    | 00-59            |
+| `a`       | Lowercase am/pm               | am or pm         |
+| `A`       | Uppercase AM/PM               | AM or PM         |
+
+### Using 'now'
+
+```canvas
+{# Current date #}
+{{ 'now'|date('Y-m-d') }}
+
+{# Current time #}
+{{ 'now'|date('g:ia') }}
+
+{# CRITICAL: Date comparisons require date() function #}
+{# Date/datetime fields are strings - convert them first! #}
+{% if date(event.date) >= date('now') %}
+  Upcoming event
+{% endif %}
+```
+
+### Date Comparisons and Filtering
+
+**IMPORTANT:** Date and datetime fields are stored as strings. You must use the `date()` function to convert them to date objects before comparison:
+
+```canvas
+{# ✅ CORRECT - Convert strings to date objects #}
+{% if date(event.start_datetime) >= date('now') %}
+  Future event
+{% endif %}
+
+{# ❌ INCORRECT - String comparison doesn't work #}
+{% if event.start_datetime >= 'now' %}
+  Won't work correctly
+{% endif %}
+
+{# Compare specific dates #}
+{% if date(event.date) == date('2026-01-21') %}
+  Event is today
+{% endif %}
+
+{# Check if date is within a range #}
+{% if date(event.date) >= date('2026-01-01') and date(event.date) <= date('2026-12-31') %}
+  Event is in 2026
+{% endif %}
+
+{# Relative date comparisons #}
+{% if date(event.date) >= date('now') and date(event.date) <= date('+7 days') %}
+  Event is within the next week
+{% endif %}
+
+{# Compare to beginning/end of month #}
+{% if date(event.date) >= date('first day of this month') %}
+  Event is this month or later
+{% endif %}
+```
+
+**Why this is needed:** Canvas stores dates as ISO 8601 strings (e.g., "2026-01-21T14:30:00+00:00"). The `date()` function converts these strings into date objects that can be properly compared.
+
+---
+
+## Conditional Rendering
+
+### Basic Conditions
+
+```canvas
+{# Check if field has value #}
+{% if product.sale_price %}
+  <span>On Sale!</span>
+{% endif %}
+
+{# Check if empty #}
+{% if product.description is not empty %}
+  {{ product.description }}
+{% endif %}
+
+{# Check if null #}
+{% if product.featured is not null %}
+  Featured product
+{% endif %}
+```
+
+### Comparison Operators
+
+```canvas
+{# Equality #}
+{% if product.status == 'Active' %}
+
+{# Inequality #}
+{% if product.status != 'Archived' %}
+
+{# Greater than / less than #}
+{% if product.price > 100 %}
+{% if product.stock < 10 %}
+
+{# Greater/less than or equal #}
+{% if product.rating >= 4 %}
+{% if product.price <= 50 %}
+```
+
+### Logical Operators
+
+```canvas
+{# AND #}
+{% if product.status == 'Active' and product.stock > 0 %}
+  Available
+{% endif %}
+
+{# OR #}
+{% if product.featured or product.on_sale %}
+  Special!
+{% endif %}
+
+{# NOT #}
+{% if not product.archived %}
+  Active product
+{% endif %}
+```
+
+### If/Elseif/Else
+
+```canvas
+{% if stock > 50 %}
+  In Stock
+{% elseif stock > 0 %}
+  Low Stock - Only {{ stock }} left
+{% else %}
+  Out of Stock
+{% endif %}
+```
+
+### Ternary Operator
+
+```canvas
+{# condition ? true_value : false_value #}
+{{ product.stock > 0 ? 'Available' : 'Unavailable' }}
+
+{# With variables #}
+{% set status = product.stock > 0 ? 'in-stock' : 'out-of-stock' %}
+```
+
+### Checking Arrays
+
+```canvas
+{# Check if value in array (checkbox fields) #}
+{% if 'Warranty Included' in product.features %}
+  Has warranty
+{% endif %}
+
+{# Check if array is empty #}
+{% if product.features is empty %}
+  No features
+{% endif %}
+
+{# Check array length #}
+{% if product.images|length > 3 %}
+  {{ product.images|length }} images
+{% endif %}
+```
+
+---
+
+## Number Formatting
+
+### Basic Formatting
+
+```canvas
+{# Format with 2 decimal places #}
+${{ product.price|number_format(2) }}                    {# $19.99 #}
+
+{# Format with thousands separator #}
+${{ product.price|number_format(2, '.', ',') }}          {# $1,234.56 #}
+
+{# Round to integer #}
+{{ value|round }}                                         {# 20 #}
+
+{# Round to decimal places #}
+{{ value|round(2) }}                                      {# 19.99 #}
+```
+
+### Mathematical Operations
+
+```canvas
+{# Addition #}
+{{ price + tax }}
+
+{# Subtraction #}
+{{ original_price - discount }}
+
+{# Multiplication #}
+{{ price * quantity }}
+
+{# Division #}
+{{ total / count }}
+
+{# Modulo (remainder) #}
+{{ number % 2 }}
+```
+
+### Calculating Percentages
+
+```canvas
+{# Calculate discount percentage #}
+{% set discount = ((original - sale) / original * 100)|round %}
+Save {{ discount }}%
+
+{# Calculate completion percentage #}
+{% set percent = (completed / total * 100)|round %}
+{{ percent }}% complete
+```
+
+---
+
+## Loops and Iteration
+
+### Basic Loop
+
+```canvas
+{% for item in collection %}
+  {{ item.name }}
+{% endfor %}
+```
+
+### Loop Variables
+
+```canvas
+{% for item in collection %}
+  {{ loop.index }}      {# Current iteration (1-indexed) #}
+  {{ loop.index0 }}     {# Current iteration (0-indexed) #}
+  {{ loop.first }}      {# True if first iteration #}
+  {{ loop.last }}       {# True if last iteration #}
+  {{ loop.length }}     {# Total number of items #}
+  {{ loop.revindex }}   {# Iterations remaining (1-indexed) #}
+  {{ loop.revindex0 }}  {# Iterations remaining (0-indexed) #}
+{% endfor %}
+```
+
+### Loop with Conditions
+
+```canvas
+{# Add classes based on position #}
+{% for item in collection %}
+  <div class="item{% if loop.first %} first{% endif %}{% if loop.last %} last{% endif %}">
+    {{ item.name }}
+  </div>
+{% endfor %}
+
+{# Alternate row colors #}
+{% for item in collection %}
+  <tr class="{{ loop.index0 % 2 == 0 ? 'even' : 'odd' }}">
+    <td>{{ item.name }}</td>
+  </tr>
+{% endfor %}
+```
+
+### Loop with Else
+
+```canvas
+{% for item in collection %}
+  {{ item.name }}
+{% else %}
+  <p>No items found</p>
+{% endfor %}
+```
+
+### Nested Loops
+
+```canvas
+{% for category, items in products|group_by('category') %}
+  <h2>{{ category }}</h2>
+  {% for item in items %}
+    {{ loop.parent.loop.index }}.{{ loop.index }} - {{ item.name }}
+  {% endfor %}
+{% endfor %}
+```
+
+---
+
+## String Manipulation
+
+### Case Conversion
+
+```canvas
+{# Capitalize first letter #}
+{{ text|capitalize }}                    {# "Hello world" #}
+
+{# Uppercase #}
+{{ text|upper }}                         {# "HELLO WORLD" #}
+
+{# Lowercase #}
+{{ text|lower }}                         {# "hello world" #}
+
+{# Title case (capitalize each word) #}
+{{ text|title }}                         {# "Hello World" #}
+```
+
+### Text Operations
+
+```canvas
+{# Replace text #}
+{{ text|replace({'_': ' '}) }}           {# Replace underscores with spaces #}
+{{ text|replace({'old': 'new'}) }}       {# Replace 'old' with 'new' #}
+
+{# Trim whitespace #}
+{{ text|trim }}
+
+{# Truncate (slice) #}
+{{ text|slice(0, 100) }}                 {# First 100 characters #}
+
+{# Get length #}
+{{ text|length }}
+```
+
+### Joining and Splitting
+
+```canvas
+{# Join array into string #}
+{{ categories|join(', ') }}              {# "Tech, Design, Business" #}
+
+{# Split string into array #}
+{% set words = text|split(' ') %}
+
+{# Combine split and join #}
+{{ text|split(' ')|slice(0, 10)|join(' ') }}    {# First 10 words #}
+```

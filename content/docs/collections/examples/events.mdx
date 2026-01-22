@@ -1,0 +1,358 @@
+---
+title: 'Events Collection Example'
+description: 'A complete example showing how to create and display an event calendar with dates, times, locations, and event features.'
+---
+
+## Field Types Demonstrated
+
+- `text` - Event names and locations
+- `textarea` - Descriptions
+- `date-time` - Start and end times
+- `url` - Registration links
+- `radio` - Event type (single choice)
+- `checkbox` - Event features (multiple choices)
+- `number` - Max attendees
+- `file` (single) - Event banner
+
+---
+
+## Collection Definition
+
+```json
+{
+  "name": "Events",
+  "fields": [
+    {
+      "type": "text",
+      "display_name": "Event Name",
+      "attribute_name": "name",
+      "required": true
+    },
+    {
+      "type": "textarea",
+      "display_name": "Description",
+      "attribute_name": "description",
+      "required": true
+    },
+    {
+      "type": "date-time",
+      "display_name": "Start Date & Time",
+      "attribute_name": "start_datetime",
+      "required": true
+    },
+    {
+      "type": "date-time",
+      "display_name": "End Date & Time",
+      "attribute_name": "end_datetime",
+      "required": true
+    },
+    {
+      "type": "text",
+      "display_name": "Location",
+      "attribute_name": "location",
+      "required": true
+    },
+    {
+      "type": "url",
+      "display_name": "Registration URL",
+      "attribute_name": "registration_url",
+      "required": false,
+      "help_text": "Link to external registration page"
+    },
+    {
+      "type": "radio",
+      "display_name": "Event Type",
+      "attribute_name": "event_type",
+      "required": true,
+      "options": ["In-Person", "Virtual", "Hybrid"]
+    },
+    {
+      "type": "checkbox",
+      "display_name": "Event Features",
+      "attribute_name": "features",
+      "required": false,
+      "options": ["Recording Available", "Q&A Session", "Networking Time", "Certificate Provided"]
+    },
+    {
+      "type": "number",
+      "display_name": "Max Attendees",
+      "attribute_name": "max_attendees",
+      "required": false,
+      "minimum": 1,
+      "help_text": "Leave blank for unlimited"
+    },
+    {
+      "type": "file",
+      "display_name": "Event Banner",
+      "attribute_name": "banner",
+      "required": false,
+      "allow_multiple_file_uploads": false // Returns string URL
+    }
+  ]
+}
+```
+
+---
+
+## Upcoming Events Calendar
+
+Display all upcoming events sorted by date.
+
+```canvas
+{# Load the events collection #}
+{% set events = cms.collection('events') %}
+
+<div class="events-calendar">
+  <h1>Upcoming Events</h1>
+
+  {# IMPORTANT: Convert datetime strings to date objects for comparison #}
+  {# Filter using date() to convert both the field and 'now' to comparable dates #}
+  {% set upcoming = events|filter(e => date(e.start_datetime) >= date('now'))|sort((a, b) => a.start_datetime <=> b.start_datetime) %}
+
+  {% for event in upcoming %}
+    <article class="event-card">
+      {% if event.banner %}
+        {# Single file: direct access as string #}
+        <img src="{{ event.banner }}" alt="{{ event.name }}">
+      {% endif %}
+
+      <h2>{{ event.name }}</h2>
+
+      <p class="date">
+        📅 {{ event.start_datetime|date('F j, Y') }}
+        ⏰ {{ event.start_datetime|date('g:ia') }} -
+           {{ event.end_datetime|date('g:ia') }}
+      </p>
+
+      <p class="location">
+        📍 {{ event.location }}
+
+        {# Check radio field value - use exact string #}
+        {% if event.event_type == 'Virtual' %}
+          <span class="badge">Virtual Event</span>
+        {% elseif event.event_type == 'Hybrid' %}
+          <span class="badge">Hybrid Event</span>
+        {% endif %}
+      </p>
+
+      {% if event.max_attendees %}
+        <p>👥 Limited to {{ event.max_attendees }} attendees</p>
+      {% endif %}
+
+      <p>{{ event.description }}</p>
+
+      {# Checkbox field returns array - check if items are in array #}
+      {% if event.features is not empty %}
+        <div class="features">
+          <h3>What's Included:</h3>
+          <ul>
+            {% if 'Recording Available' in event.features %}
+              <li>✓ Recording available after event</li>
+            {% endif %}
+            {% if 'Q&A Session' in event.features %}
+              <li>✓ Live Q&A session</li>
+            {% endif %}
+            {% if 'Networking Time' in event.features %}
+              <li>✓ Networking opportunities</li>
+            {% endif %}
+            {% if 'Certificate Provided' in event.features %}
+              <li>✓ Certificate of attendance</li>
+            {% endif %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if event.registration_url %}
+        <a href="{{ event.registration_url }}" class="btn-register">Register Now →</a>
+      {% endif %}
+    </article>
+  {% endfor %}
+</div>
+```
+
+---
+
+## Events by Month
+
+Group events by month for better organization.
+
+```canvas
+{# Load the events collection #}
+{% set events = cms.collection('events') %}
+
+<div class="events-by-month">
+  <h1>Upcoming Events</h1>
+
+  {# Get upcoming events - convert strings to dates for comparison #}
+  {% set upcoming = events|filter(e => date(e.start_datetime) >= date('now'))|sort((a, b) => a.start_datetime <=> b.start_datetime) %}
+
+  {# Group by month (format as "2026-01" for grouping) #}
+  {% for month, month_events in upcoming|group_by(e => e.start_datetime|date('Y-m')) %}
+    <section class="month-section">
+      {# Display month name from first event #}
+      <h2>{{ month_events|first.start_datetime|date('F Y') }}</h2>
+
+      <div class="events-list">
+        {% for event in month_events %}
+          <div class="event-item">
+            <div class="date-badge">
+              <span class="day">{{ event.start_datetime|date('d') }}</span>
+              <span class="month">{{ event.start_datetime|date('M') }}</span>
+            </div>
+            <div class="event-info">
+              <h3>{{ event.name }}</h3>
+              <p>{{ event.start_datetime|date('g:ia') }} - {{ event.location }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+</div>
+```
+
+---
+
+## Filter by Event Type
+
+Show only specific types of events (e.g., virtual events).
+
+```canvas
+{# Load the events collection #}
+{% set events = cms.collection('events') %}
+
+<div class="virtual-events">
+  <h1>Virtual Events</h1>
+
+  {# Filter for virtual events only - use date() for comparison #}
+  {% set virtual = events|filter(e => e.event_type == 'Virtual' and date(e.start_datetime) >= date('now'))|sort((a, b) => a.start_datetime <=> b.start_datetime) %}
+
+  {% for event in virtual %}
+    <article class="event-card">
+      <span class="badge">Virtual Event</span>
+      <h2>{{ event.name }}</h2>
+      <p>{{ event.start_datetime|date('l, F j \\a\\t g:ia') }}</p>
+      <p>{{ event.description }}</p>
+      {% if event.registration_url %}
+        <a href="{{ event.registration_url }}" class="btn">Join Online</a>
+      {% endif %}
+    </article>
+  {% endfor %}
+
+  {% if virtual is empty %}
+    <p>No upcoming virtual events at this time.</p>
+  {% endif %}
+</div>
+```
+
+---
+
+## Key Points
+
+### File Field Types
+
+**Single file** (`allow_multiple_file_uploads: false`) returns a **string URL**:
+
+```canvas
+{# Direct access - it's a string #}
+{% if event.banner %}
+  <img src="{{ event.banner }}">
+{% endif %}
+```
+
+**Multiple files** (`allow_multiple_file_uploads: true`) returns an **array**:
+
+```canvas
+{# Must loop or access by index #}
+{% for img in event.images %}
+  <img src="{{ img }}">
+{% endfor %}
+
+{# Or access first item #}
+<img src="{{ event.images[0] }}">
+```
+
+### Date-Time Formatting
+
+Canvas uses canvas date format characters (not Liquid):
+
+```canvas
+{{ event.start_datetime|date('F j, Y') }}        {# January 21, 2026 #}
+{{ event.start_datetime|date('g:ia') }}          {# 2:30pm #}
+{{ event.start_datetime|date('l, F j, Y') }}     {# Wednesday, January 21, 2026 #}
+{{ event.start_datetime|date('F jS \\a\\t g:ia') }} {# January 21st at 2:30pm #}
+```
+
+Escape literal characters with backslashes: `\\a\\t` for "at"
+
+### Radio Fields
+
+Radio buttons store a single value. Use exact string matching:
+
+```canvas
+{% if event.event_type == 'Virtual' %}  {# Not 'virtual' - use exact string! #}
+```
+
+### Checkbox Fields
+
+Checkboxes return an array of selected values. Check with `in`:
+
+```canvas
+{% if 'Recording Available' in event.features %}
+  {# This feature is selected #}
+{% endif %}
+```
+
+### Filtering by Date
+
+**IMPORTANT:** Date and datetime fields are stored as strings. You must convert them to date objects using `date()` before comparison:
+
+```canvas
+{# ✅ CORRECT - Convert strings to date objects #}
+events|filter(e => date(e.start_datetime) >= date('now'))
+
+{# ❌ INCORRECT - String comparison won't work correctly #}
+events|filter(e => e.start_datetime >= 'now')
+
+{# Get future events #}
+events|filter(e => date(e.start_datetime) >= date('now'))
+
+{# Get past events #}
+events|filter(e => date(e.start_datetime) < date('now'))
+
+{# Get events in a specific date range #}
+events|filter(e => date(e.start_datetime) >= date('2026-01-01') and date(e.start_datetime) < date('2026-02-01'))
+
+{# Get events happening today #}
+{% set today = date('now')|date('Y-m-d') %}
+events|filter(e => date(e.start_datetime)|date('Y-m-d') == today)
+
+{# Get events this week #}
+events|filter(e => date(e.start_datetime) >= date('now') and date(e.start_datetime) <= date('+7 days'))
+
+{# Get events this month #}
+{% set this_month = date('now')|date('Y-m') %}
+events|filter(e => date(e.start_datetime)|date('Y-m') == this_month)
+```
+
+### Arrow Functions in group_by
+
+You can use arrow functions to transform values for grouping:
+
+```canvas
+{# Group by year-month #}
+events|group_by(e => e.start_datetime|date('Y-m'))
+
+{# Group by year only #}
+events|group_by(e => e.start_datetime|date('Y'))
+```
+
+### Handling Empty Results
+
+Always provide feedback when filters return no results:
+
+```canvas
+{% if virtual is empty %}
+  <p>No virtual events available.</p>
+{% endif %}
+```

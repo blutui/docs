@@ -25,27 +25,27 @@ description: 'A complete example showing how to create and display a product sho
   "fields": [
     {
       "type": "text",
-      "display_name": "Product Name",
-      "attribute_name": "name",
+      "label": "Product Name",
+      "name": "name",
       "required": true
     },
     {
       "type": "text",
-      "display_name": "SKU",
-      "attribute_name": "sku",
+      "label": "SKU",
+      "name": "sku",
       "required": true,
       "help_text": "Stock Keeping Unit"
     },
     {
       "type": "richtext",
-      "display_name": "Product Description",
-      "attribute_name": "description",
+      "label": "Product Description",
+      "name": "description",
       "required": true
     },
     {
       "type": "number",
-      "display_name": "Price",
-      "attribute_name": "price",
+      "label": "Price",
+      "name": "price",
       "required": true,
       "minimum": 0,
       "step": 0.01,
@@ -53,44 +53,44 @@ description: 'A complete example showing how to create and display a product sho
     },
     {
       "type": "file",
-      "display_name": "Product Images",
-      "attribute_name": "images",
+      "label": "Product Images",
+      "name": "images",
       "required": true,
-      "allow_multiple_file_uploads": true, // Multiple files!
+      "multiple": true, // Multiple files!
       "help_text": "Upload multiple product photos"
     },
     {
       "type": "select",
-      "display_name": "Category",
-      "attribute_name": "category",
+      "label": "Category",
+      "name": "category",
       "required": true,
       "options": ["Services", "Equipment", "Consultation", "Custom Projects"]
     },
     {
       "type": "checkbox",
-      "display_name": "Features",
-      "attribute_name": "features",
+      "label": "Features",
+      "name": "features",
       "required": false,
       "options": ["Custom Options Available", "Installation Included", "Warranty Included", "Consultation Required"]
     },
     {
       "type": "color",
-      "display_name": "Primary Color",
-      "attribute_name": "primary_color",
+      "label": "Primary Color",
+      "name": "primary_color",
       "required": false,
       "default_color": "#000000"
     },
     {
       "type": "radio",
-      "display_name": "Status",
-      "attribute_name": "status",
+      "label": "Status",
+      "name": "status",
       "required": true,
       "options": ["Active", "Draft", "Archived"]
     },
     {
       "type": "textarea",
-      "display_name": "Additional Info",
-      "attribute_name": "additional_info",
+      "label": "Additional Info",
+      "name": "additional_info",
       "required": false
     }
   ]

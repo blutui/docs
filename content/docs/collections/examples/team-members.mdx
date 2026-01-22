@@ -24,61 +24,61 @@ description: 'A complete example showing how to create and display a team direct
   "fields": [
     {
       "type": "text",
-      "display_name": "Full Name",
-      "attribute_name": "name",
+      "label": "Full Name",
+      "name": "name",
       "required": true
     },
     {
       "type": "text",
-      "display_name": "Job Title",
-      "attribute_name": "title",
+      "label": "Job Title",
+      "name": "title",
       "required": true,
       "help_text": "e.g., Senior Developer, Marketing Manager"
     },
     {
       "type": "email",
-      "display_name": "Email Address",
-      "attribute_name": "email",
+      "label": "Email Address",
+      "name": "email",
       "required": true
     },
     {
       "type": "phone",
-      "display_name": "Phone Number",
-      "attribute_name": "phone",
+      "label": "Phone Number",
+      "name": "phone",
       "required": false
     },
     {
       "type": "url",
-      "display_name": "LinkedIn Profile",
-      "attribute_name": "linkedin_url",
+      "label": "LinkedIn Profile",
+      "name": "linkedin_url",
       "required": false,
       "help_text": "Full URL to LinkedIn profile"
     },
     {
       "type": "file",
-      "display_name": "Profile Photo",
-      "attribute_name": "photo",
+      "label": "Profile Photo",
+      "name": "photo",
       "required": true,
-      "allow_multiple_file_uploads": false // Single file
+      "multiple": false // Single file
     },
     {
       "type": "textarea",
-      "display_name": "Bio",
-      "attribute_name": "bio",
+      "label": "Bio",
+      "name": "bio",
       "required": true,
       "help_text": "A brief biography (2-3 sentences)"
     },
     {
       "type": "select",
-      "display_name": "Department",
-      "attribute_name": "department",
+      "label": "Department",
+      "name": "department",
       "required": true,
       "options": ["Engineering", "Marketing", "Sales", "Support", "Executive"]
     },
     {
       "type": "number",
-      "display_name": "Display Order",
-      "attribute_name": "order",
+      "label": "Display Order",
+      "name": "order",
       "required": false,
       "default_value": "0",
       "help_text": "Lower numbers appear first"
@@ -202,7 +202,7 @@ Show only members from a specific department.
 
 ### Single File Field
 
-The `photo` field uses `allow_multiple_file_uploads: false`, so it's accessed directly:
+The `photo` field uses `multiple: false`, so it's accessed directly:
 
 ```canvas
 <img src="{{ member.photo }}" alt="{{ member.name }}">

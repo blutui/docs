@@ -136,7 +136,7 @@ Use `group_by` to organize items by a field:
 
 ### Single File Fields
 
-When `allow_multiple_file_uploads: false`, the field returns a **string URL**:
+When `multiple: false`, the field returns a **string URL**:
 
 ```canvas
 {# Direct access - it's a string #}
@@ -153,7 +153,7 @@ When `allow_multiple_file_uploads: false`, the field returns a **string URL**:
 
 ### Multiple File Fields
 
-When `allow_multiple_file_uploads: true`, the field returns an **array of URL strings**:
+When `multiple: true`, the field returns an **array of URL strings**:
 
 ```canvas
 {# Loop through all files #}
@@ -201,10 +201,10 @@ When `allow_multiple_file_uploads: true`, the field returns an **array of URL st
 
 ### Key Differences
 
-| Setting                              | Return Type   | Access Method | Example                                                    |
-| ------------------------------------ | ------------- | ------------- | ---------------------------------------------------------- |
-| `allow_multiple_file_uploads: false` | String URL    | Direct        | `{{ item.photo }}`                                         |
-| `allow_multiple_file_uploads: true`  | Array of URLs | Loop or index | `{{ item.gallery[0] }}` or `{% for img in item.gallery %}` |
+| Setting           | Return Type   | Access Method | Example                                                    |
+| ----------------- | ------------- | ------------- | ---------------------------------------------------------- |
+| `multiple: false` | String URL    | Direct        | `{{ item.photo }}`                                         |
+| `multiple: true`  | Array of URLs | Loop or index | `{{ item.gallery[0] }}` or `{% for img in item.gallery %}` |
 
 ---
 

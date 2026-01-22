@@ -24,69 +24,69 @@ description: 'A complete example showing how to create and display an event cale
   "fields": [
     {
       "type": "text",
-      "display_name": "Event Name",
-      "attribute_name": "name",
+      "label": "Event Name",
+      "name": "name",
       "required": true
     },
     {
       "type": "textarea",
-      "display_name": "Description",
-      "attribute_name": "description",
+      "label": "Description",
+      "name": "description",
       "required": true
     },
     {
       "type": "date-time",
-      "display_name": "Start Date & Time",
-      "attribute_name": "start_datetime",
+      "label": "Start Date & Time",
+      "name": "start_datetime",
       "required": true
     },
     {
       "type": "date-time",
-      "display_name": "End Date & Time",
-      "attribute_name": "end_datetime",
+      "label": "End Date & Time",
+      "name": "end_datetime",
       "required": true
     },
     {
       "type": "text",
-      "display_name": "Location",
-      "attribute_name": "location",
+      "label": "Location",
+      "name": "location",
       "required": true
     },
     {
       "type": "url",
-      "display_name": "Registration URL",
-      "attribute_name": "registration_url",
+      "label": "Registration URL",
+      "name": "registration_url",
       "required": false,
       "help_text": "Link to external registration page"
     },
     {
       "type": "radio",
-      "display_name": "Event Type",
-      "attribute_name": "event_type",
+      "label": "Event Type",
+      "name": "event_type",
       "required": true,
       "options": ["In-Person", "Virtual", "Hybrid"]
     },
     {
       "type": "checkbox",
-      "display_name": "Event Features",
-      "attribute_name": "features",
+      "label": "Event Features",
+      "name": "features",
       "required": false,
       "options": ["Recording Available", "Q&A Session", "Networking Time", "Certificate Provided"]
     },
     {
       "type": "number",
-      "display_name": "Max Attendees",
-      "attribute_name": "max_attendees",
+      "label": "Max Attendees",
+      "name": "max_attendees",
       "required": false,
       "minimum": 1,
       "help_text": "Leave blank for unlimited"
     },
     {
       "type": "file",
-      "display_name": "Event Banner",
-      "attribute_name": "banner",
+      "label": "Event Banner",
+      "name": "banner",
       "required": false,
-      "allow_multiple_file_uploads": false // Returns string URL
+      "multiple": false // Returns string URL
     }
   ]
 }
@@ -251,7 +251,7 @@ Show only specific types of events (e.g., virtual events).
 
 ### File Field Types
 
-**Single file** (`allow_multiple_file_uploads: false`) returns a **string URL**:
+**Single file** (`multiple: false`) returns a **string URL**:
 
 ```canvas
 {# Direct access - it's a string #}
@@ -260,7 +260,7 @@ Show only specific types of events (e.g., virtual events).
 {% endif %}
 ```
 
-**Multiple files** (`allow_multiple_file_uploads: true`) returns an **array**:
+**Multiple files** (`multiple: true`) returns an **array**:
 
 ```canvas
 {# Must loop or access by index #}

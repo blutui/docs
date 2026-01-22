@@ -21,33 +21,33 @@ description: 'A simple example showing how to create and display customer testim
   fields: [
     {
       type: "text",
-      display_name: "Customer Name",
-      attribute_name: "name",
+      label: "Customer Name",
+      name: "name",
       required: true
     },
     {
       type: "text",
-      display_name: "Company",
-      attribute_name: "company",
+      label: "Company",
+      name: "company",
       required: false
     },
     {
       type: "text",
-      display_name: "Job Title",
-      attribute_name: "title",
+      label: "Job Title",
+      name: "title",
       required: false
     },
     {
       type: "textarea",
-      display_name: "Testimonial",
-      attribute_name: "testimonial",
+      label: "Testimonial",
+      name: "testimonial",
       required: true,
       help_text: "The customer's feedback or review"
     },
     {
       type: "number",
-      display_name: "Rating",
-      attribute_name: "rating",
+      label: "Rating",
+      name: "rating",
       required: true,
       minimum: 1,
       maximum: 5,
@@ -56,15 +56,15 @@ description: 'A simple example showing how to create and display customer testim
     },
     {
       type: "file",
-      display_name: "Customer Photo",
-      attribute_name: "photo",
+      label: "Customer Photo",
+      name: "photo",
       required: false,
-      allow_multiple_file_uploads: false  // Returns string URL
+      multiple: false  // Returns string URL
     },
     {
       type: "date",
-      display_name: "Review Date",
-      attribute_name: "review_date",
+      label: "Review Date",
+      name: "review_date",
       required: true
     }
   ]

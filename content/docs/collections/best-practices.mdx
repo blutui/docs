@@ -73,14 +73,14 @@ items | filter(i => i.status == 'Active')
 items | where('status', 'Active')
 ```
 
-### Use group_by for Efficiency
+### Use the group_by filter for efficiency
 
 ```canvas
 {# ✅ BETTER - One filter operation #}
 {% for category, items in products | group_by('category') %}
 
 {# ❌ LESS EFFICIENT - Filters entire collection multiple times #}
-{% set categories = products|column('category')|unique %}
+{% set categories = products | column('category')  %}
 {% for category in categories %}
   {% for item in products | filter(p => p.category == category) %}
 ```

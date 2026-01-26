@@ -373,8 +373,8 @@ Always sort dates to show most recent first:
 
 ```canvas
 {# Newest first #}
-testimonials|sort((a, b) => b.review_date <=> a.review_date)
+testimonials | sort((a, b) => b.review_date <=> a.review_date)
 
 {# Oldest first #}
-testimonials|sort((a, b) => a.review_date <=> b.review_date)
+testimonials | sort((a, b) => a.review_date <=> b.review_date)
 ```

@@ -67,7 +67,7 @@ Use exact strings in templates:
 
 ```canvas
 {# ✅ CORRECT - Arrow function syntax #}
-items|filter(i => i.status == 'Active')
+items | filter(i => i.status == 'Active')
 
 {# ❌ INCORRECT - This won't work in Canvas #}
 items|where('status', 'Active')

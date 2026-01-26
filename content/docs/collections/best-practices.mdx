@@ -45,7 +45,7 @@ Use exact strings in templates:
 
 ```canvas
 {# ✅ CORRECT #}
-{{ item.content|raw }}
+{{ item.content | raw }}
 
 {# ❌ INCORRECT - HTML will be escaped #}
 {{ item.content }}

@@ -3,7 +3,7 @@ title: 'Events'
 description: 'A complete example showing how to create and display an event calendar with dates, times, locations, and event features.'
 ---
 
-## Field Types Demonstrated
+## Field types demonstrated
 
 - `text` - Event names and locations
 - `textarea` - Descriptions
@@ -16,7 +16,7 @@ description: 'A complete example showing how to create and display an event cale
 
 ---
 
-## Collection Definition
+## Collection definition
 
 ```json
 {
@@ -94,7 +94,7 @@ description: 'A complete example showing how to create and display an event cale
 
 ---
 
-## Upcoming Events Calendar
+## Upcoming events calendar
 
 Display all upcoming events sorted by date.
 
@@ -119,9 +119,9 @@ Display all upcoming events sorted by date.
       <h2>{{ event.name }}</h2>
 
       <p class="date">
-        📅 {{ event.start_datetime|date('F j, Y') }}
-        ⏰ {{ event.start_datetime|date('g:ia') }} -
-           {{ event.end_datetime|date('g:ia') }}
+        📅 {{ event.start_datetime | date('F j, Y') }}
+        ⏰ {{ event.start_datetime | date('g:ia') }} -
+           {{ event.end_datetime | date('g:ia') }}
       </p>
 
       <p class="location">
@@ -172,7 +172,7 @@ Display all upcoming events sorted by date.
 
 ---
 
-## Events by Month
+## Events by month
 
 Group events by month for better organization.
 
@@ -184,24 +184,24 @@ Group events by month for better organization.
   <h1>Upcoming Events</h1>
 
   {# Get upcoming events - convert strings to dates for comparison #}
-  {% set upcoming = events|filter(e => date(e.start_datetime) >= date('now'))|sort((a, b) => a.start_datetime <=> b.start_datetime) %}
+  {% set upcoming = events | filter(e => date(e.start_datetime) >= date('now')) | sort((a, b) => a.start_datetime <=> b.start_datetime) %}
 
   {# Group by month (format as "2026-01" for grouping) #}
-  {% for month, month_events in upcoming|group_by(e => e.start_datetime|date('Y-m')) %}
+  {% for month, month_events in upcoming | group_by(e => e.start_datetime | date('Y-m')) %}
     <section class="month-section">
       {# Display month name from first event #}
-      <h2>{{ month_events|first.start_datetime|date('F Y') }}</h2>
+      <h2>{{ month_events | first.start_datetime | date('F Y') }}</h2>
 
       <div class="events-list">
         {% for event in month_events %}
           <div class="event-item">
             <div class="date-badge">
-              <span class="day">{{ event.start_datetime|date('d') }}</span>
-              <span class="month">{{ event.start_datetime|date('M') }}</span>
+              <span class="day">{{ event.start_datetime | date('d') }}</span>
+              <span class="month">{{ event.start_datetime | date('M') }}</span>
             </div>
             <div class="event-info">
               <h3>{{ event.name }}</h3>
-              <p>{{ event.start_datetime|date('g:ia') }} - {{ event.location }}</p>
+              <p>{{ event.start_datetime | date('g:ia') }} - {{ event.location }}</p>
             </div>
           </div>
         {% endfor %}
@@ -213,7 +213,7 @@ Group events by month for better organization.
 
 ---
 
-## Filter by Event Type
+## Filter by event type
 
 Show only specific types of events (e.g., virtual events).
 
@@ -225,7 +225,7 @@ Show only specific types of events (e.g., virtual events).
   <h1>Virtual Events</h1>
 
   {# Filter for virtual events only - use date() for comparison #}
-  {% set virtual = events|filter(e => e.event_type == 'Virtual' and date(e.start_datetime) >= date('now'))|sort((a, b) => a.start_datetime <=> b.start_datetime) %}
+  {% set virtual = events | filter(e => e.event_type == 'Virtual' and date(e.start_datetime) >= date('now')) | sort((a, b) => a.start_datetime <=> b.start_datetime) %}
 
   {% for event in virtual %}
     <article class="event-card">

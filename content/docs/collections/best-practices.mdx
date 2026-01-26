@@ -63,49 +63,49 @@ Use exact strings in templates:
 {{ item.optional_field }}
 ```
 
-### Use Arrow Functions for Filtering
+### Use arrow functions for filtering
 
 ```canvas
 {# ✅ CORRECT - Arrow function syntax #}
 items | filter(i => i.status == 'Active')
 
 {# ❌ INCORRECT - This won't work in Canvas #}
-items|where('status', 'Active')
+items | where('status', 'Active')
 ```
 
 ### Use group_by for Efficiency
 
 ```canvas
 {# ✅ BETTER - One filter operation #}
-{% for category, items in products|group_by('category') %}
+{% for category, items in products | group_by('category') %}
 
 {# ❌ LESS EFFICIENT - Filters entire collection multiple times #}
 {% set categories = products|column('category')|unique %}
 {% for category in categories %}
-  {% for item in products|filter(p => p.category == category) %}
+  {% for item in products | filter(p => p.category == category) %}
 ```
 
-### Always Format Numbers
+### Always format numbers
 
 ```canvas
 {# ✅ CORRECT #}
-${{ price|number_format(2) }}
+${{ price | number_format(2) }}
 
 {# ❌ INCORRECT - may show too many decimals #}
 ${{ price }}
 ```
 
-### Escape Date Format Characters
+### Escape date format characters
 
 ```canvas
 {# ✅ CORRECT #}
-{{ date|date('F jS \\a\\t g:ia') }}      {# January 21st at 2:30pm #}
+{{ date | date('F jS \\a\\t g:ia') }} {# January 21st at 2:30pm #}
 
 {# ❌ INCORRECT - 'at' will be interpreted as format codes #}
-{{ date|date('F jS at g:ia') }}          {# Wrong output #}
+{{ date | date('F jS at g:ia') }} {# Wrong output #}
 ```
 
-### Provide Empty State Feedback
+### Provide empty state feedback
 
 ```canvas
 {# ✅ CORRECT #}

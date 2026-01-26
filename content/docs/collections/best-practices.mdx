@@ -36,7 +36,7 @@ Use exact strings in templates:
 {# Single file (multiple: false) - direct access as string #}
 {{ item.photo }}
 
-{# Multiple files (allow_multiple: true) - array, need loop or index #}
+{# Multiple files (multiple: true) - array, need loop or index #}
 {% for img in item.gallery %}{{ img }}{% endfor %}
 {{ item.gallery[0] }}
 ```

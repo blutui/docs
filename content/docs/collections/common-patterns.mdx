@@ -114,9 +114,6 @@ Use `group_by` to organize items by a field:
 ### Other Useful Filters
 
 ```canvas
-{# Get unique values from a field #}
-{% set categories = products|column('category')|unique %}
-
 {# Limit results #}
 {% set recent = posts|slice(0, 5) %}
 

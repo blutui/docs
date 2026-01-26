@@ -121,17 +121,3 @@ ${{ price }}
 {% endfor %}
 ```
 
----
-
-## Summary
-
-- **Load collections** with `cms.collection()`
-- **Filter** with arrow functions: `filter(item => condition)`
-- **Sort** with spaceship operator: `sort((a, b) => a.field <=> b.field)`
-- **Group** with `group_by('field')`
-- **Single files** access directly: `{{ item.photo }}`
-- **Multiple files** require loops: `{% for img in item.gallery %}`
-- **Rich text** needs `|raw` filter
-- **Dates** use canvas format: `date('F j, Y')`
-- **Options** are exact strings: `'Active'` not `'active'`
-- **Always check** optional fields before use

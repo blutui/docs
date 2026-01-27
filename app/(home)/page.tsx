@@ -7,9 +7,7 @@ export default function Home() {
       <div className="relative overflow-hidden pt-10 pb-8 md:pb-12">
         <div className="relative mx-auto flex max-w-(--fd-layout-width) items-center">
           <div className="w-full px-8 py-6 md:py-10">
-            <p className="mb-2 text-xs tracking-widest text-zinc-500 uppercase dark:text-white/50">
-              Developer Documentation
-            </p>
+            <p className="mb-2 text-xs tracking-widest text-zinc-500 uppercase dark:text-white/50">Documentation</p>
             <h1 className="text-3xl font-extrabold tracking-tight text-zinc-800 lg:text-5xl dark:text-white">
               Welcome to Blutui
             </h1>

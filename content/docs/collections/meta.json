@@ -1,4 +1,4 @@
 {
   "$schema": "../../../.source/json-schema/docs.meta.json",
-  "pages": ["getting-started", "input-types", "best-practices", "common-patterns", "examples"]
+  "pages": ["introduction", "input-types", "best-practices", "common-patterns", "examples"]
 }

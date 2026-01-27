@@ -231,7 +231,7 @@ Show only specific types of events (e.g., virtual events).
     <article class="event-card">
       <span class="badge">Virtual Event</span>
       <h2>{{ event.name }}</h2>
-      <p>{{ event.start_datetime|date('l, F j \\a\\t g:ia') }}</p>
+      <p>{{ event.start_datetime | date('l, F j \\a\\t g:ia') }}</p>
       <p>{{ event.description }}</p>
       {% if event.registration_url %}
         <a href="{{ event.registration_url }}" class="btn">Join Online</a>

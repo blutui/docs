@@ -1,0 +1,249 @@
+---
+title: 'Team Members'
+description: 'A complete example showing how to create and display a team directory with departments, contact information, and photos.'
+---
+
+## Field types demonstrated
+
+- `text` - Names and titles
+- `email` - Email addresses
+- `phone` - Phone numbers
+- `url` - LinkedIn profiles
+- `file` (single) - Profile photos
+- `textarea` - Biographies
+- `select` - Department dropdown
+- `number` - Display order
+
+---
+
+## Collection definition
+
+```json
+{
+  "name": "Team Members",
+  "fields": [
+    {
+      "type": "text",
+      "label": "Full Name",
+      "name": "name",
+      "required": true
+    },
+    {
+      "type": "text",
+      "label": "Job Title",
+      "name": "title",
+      "required": true,
+      "help_text": "e.g., Senior Developer, Marketing Manager"
+    },
+    {
+      "type": "email",
+      "label": "Email Address",
+      "name": "email",
+      "required": true
+    },
+    {
+      "type": "phone",
+      "label": "Phone Number",
+      "name": "phone",
+      "required": false
+    },
+    {
+      "type": "url",
+      "label": "LinkedIn Profile",
+      "name": "linkedin_url",
+      "required": false,
+      "help_text": "Full URL to LinkedIn profile"
+    },
+    {
+      "type": "file",
+      "label": "Profile Photo",
+      "name": "photo",
+      "required": true,
+      "multiple": false // Single file
+    },
+    {
+      "type": "textarea",
+      "label": "Bio",
+      "name": "bio",
+      "required": true,
+      "help_text": "A brief biography (2-3 sentences)"
+    },
+    {
+      "type": "select",
+      "label": "Department",
+      "name": "department",
+      "required": true,
+      "options": ["Engineering", "Marketing", "Sales", "Support", "Executive"]
+    },
+    {
+      "type": "number",
+      "label": "Display Order",
+      "name": "order",
+      "required": false,
+      "default_value": "0",
+      "help_text": "Lower numbers appear first"
+    }
+  ]
+}
+```
+
+---
+
+## Team page by department
+
+This example groups team members by department and sorts them by display order.
+
+```canvas
+{# Load the team members collection #}
+{% set team_members = cms.collection('team_members') %}
+
+<section class="team">
+  <h1>Our Team</h1>
+
+  {# Use group_by filter to efficiently group by department #}
+  {% for dept, members in team_members | group_by('department') %}
+    <div class="department">
+      <h2>{{ dept }}</h2>
+
+      <div class="team-grid">
+        {# Members are already grouped, just sort by order #}
+        {% for member in members | sort((a, b) => a.order <=> b.order) %}
+          <div class="team-card">
+            {# Single file: access directly as URL string #}
+            <img src="{{ member.photo }}" alt="{{ member.name }}">
+            <h3>{{ member.name }}</h3>
+            <p class="title">{{ member.title }}</p>
+            <p class="bio">{{ member.bio }}</p>
+
+            <div class="contact">
+              <a href="mailto:{{ member.email }}">{{ member.email }}</a>
+
+              {% if member.phone %}
+                <p>{{ member.phone }}</p>
+              {% endif %}
+
+              {% if member.linkedin_url %}
+                <a href="{{ member.linkedin_url }}" target="_blank">
+                  LinkedIn →
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+```
+
+---
+
+## Simple team list
+
+A simpler version showing all team members in one list.
+
+```canvas
+{# Load the team members collection #}
+{% set team_members = cms.collection('team_members') %}
+
+<section class="team">
+  <h1>Meet Our Team</h1>
+
+  {# Sort all members by order #}
+  <div class="team-list">
+    {% for member in team_members | sort((a, b) => a.order <=> b.order) %}
+      <div class="member">
+        <img src="{{ member.photo }}" alt="{{ member.name }}">
+        <div class="info">
+          <h3>{{ member.name }}</h3>
+          <p class="title">{{ member.title }}</p>
+          <p class="dept">{{ member.department }}</p>
+          <p class="bio">{{ member.bio }}</p>
+          <a href="mailto:{{ member.email }}">Contact</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+```
+
+---
+
+## Filter by department
+
+Show only members from a specific department.
+
+```canvas
+{# Load the team members collection #}
+{% set team_members = cms.collection('team_members') %}
+
+<section class="engineering-team">
+  <h1>Engineering Team</h1>
+
+  {# Filter for Engineering department only #}
+  {% set engineers = team_members | filter(m => m.department == 'Engineering') | sort((a, b) => a.order <=> b.order) %}
+
+  <div class="team-grid">
+    {% for member in engineers %}
+      <div class="team-card">
+        <img src="{{ member.photo }}" alt="{{ member.name }}">
+        <h3>{{ member.name }}</h3>
+        <p>{{ member.title }}</p>
+        <p>{{ member.bio }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+```
+
+---
+
+## Key points
+
+### Single file field
+
+The `photo` field uses `multiple: false`, so it's accessed directly:
+
+```canvas
+<img src="{{ member.photo }}" alt="{{ member.name }}">
+```
+
+### Select field values
+
+Department options are simple strings. Use exact matches in templates:
+
+```canvas
+{% if member.department == 'Engineering' %}  {# Not 'engineering' #}
+```
+
+### Grouping with the group_by filter
+
+The `group_by` filter is efficient for organizing items by a field:
+
+```canvas
+{% for dept, members in team_members | group_by('department') %}
+  {# dept is the department name, members is array of team members #}
+{% endfor %}
+```
+
+### Optional fields
+
+Always check if optional fields exist before using them:
+
+```canvas
+{% if member.phone %}
+  <p>{{ member.phone }}</p>
+{% endif %}
+```
+
+### Sorting
+
+Use the spaceship operator `<=>` for sorting:
+
+```canvas
+{# Sort ascending by order #}
+members | sort((a, b) => a.order <=> b.order)
+
+{# Sort descending by order #}
+members | sort((a, b) => b.order <=> a.order)
+```

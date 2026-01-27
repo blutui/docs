@@ -13,7 +13,7 @@ A single-line text input for short strings such as names or titles.
 
 | Argument                 | Attribute Name | Description                                                                      |
 | :----------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name             | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name             | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name           | (User defined) | Used in the code to reference this field                                         |
 | Default value (optional) | default_value  | The default text that appears in the input field if no other value is provided   |
 | Help text (optional)     | help_text      | Additional information or instructions displayed below the input field           |
@@ -27,7 +27,7 @@ A multi-line text input for longer strings such as descriptions or biographies.
 
 | Argument                 | Attribute Name | Description                                                                      |
 | :----------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name             | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name             | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name           | (User defined) | Used in the code to reference this field                                         |
 | Default value (optional) | default_value  | The default text that appears in the input field if no other value is provided   |
 | Help text (optional)     | help_text      | Additional information or instructions displayed below the input field           |
@@ -41,7 +41,7 @@ A rich text content editor that allows for formatted text, links, styling etc.
 
 | Argument             | Attribute Name | Description                                                                      |
 | :------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name         | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name         | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name       | (User defined) | Used in the code to reference this field                                         |
 | Help text (optional) | help_text      | Additional information or instructions displayed below the input field           |
 | Required (optional)  | required       | Indicates whether this field must be filled out before submitting the collection |
@@ -52,13 +52,13 @@ A rich text content editor that allows for formatted text, links, styling etc.
 
 A file upload input for documents, images, or other media.
 
-| Argument                               | Attribute Name              | Description                                                                      |
-| :------------------------------------- | :-------------------------- | :------------------------------------------------------------------------------- |
-| Display Name                           | display_name                | The label displayed on the dashboard when entering data                          |
-| Attribute Name                         | (User defined)              | Used in the code to reference this field                                         |
-| Help text (optional)                   | help_text                   | Additional information or instructions displayed below the input field           |
-| Allow multiple file uploads (optional) | allow_multiple_file_uploads | Allows the ability to upload more than one file at a time                        |
-| Required (optional)                    | required                    | Indicates whether this field must be filled out before submitting the collection |
+| Argument                               | Attribute Name | Description                                                                      |
+| :------------------------------------- | :------------- | :------------------------------------------------------------------------------- |
+| Display Name                           | label          | The label displayed on the dashboard when entering data                          |
+| Attribute Name                         | (User defined) | Used in the code to reference this field                                         |
+| Help text (optional)                   | help_text      | Additional information or instructions displayed below the input field           |
+| Allow multiple file uploads (optional) | multiple       | Allows the ability to upload more than one file at a time                        |
+| Required (optional)                    | required       | Indicates whether this field must be filled out before submitting the collection |
 
 ### URL
 
@@ -68,7 +68,7 @@ A single-line input specifically for web addresses.
 
 | Argument                 | Attribute Name | Description                                                                      |
 | :----------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name             | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name             | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name           | (User defined) | Used in the code to reference this field                                         |
 | Default value (optional) | default_value  | The default text that appears in the input field if no other value is provided   |
 | Help text (optional)     | help_text      | Additional information or instructions displayed below the input field           |
@@ -82,7 +82,7 @@ A single-line input specifically for email addresses.
 
 | Argument                 | Attribute Name | Description                                                                      |
 | :----------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name             | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name             | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name           | (User defined) | Used in the code to reference this field                                         |
 | Default value (optional) | default_value  | The default text that appears in the input field if no other value is provided   |
 | Help text (optional)     | help_text      | Additional information or instructions displayed below the input field           |
@@ -96,7 +96,7 @@ An input for selecting dates and times.
 
 | Argument                 | Attribute Name | Description                                                                      |
 | :----------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name             | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name             | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name           | (User defined) | Used in the code to reference this field                                         |
 | Default value (optional) | default_value  | The default text that appears in the input field if no other value is provided   |
 | Help text (optional)     | help_text      | Additional information or instructions displayed below the input field           |
@@ -110,7 +110,7 @@ An input for selecting dates.
 
 | Argument                 | Attribute Name | Description                                                                      |
 | :----------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name             | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name             | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name           | (User defined) | Used in the code to reference this field                                         |
 | Default value (optional) | default_value  | The default text that appears in the input field if no other value is provided   |
 | Help text (optional)     | help_text      | Additional information or instructions displayed below the input field           |
@@ -124,7 +124,7 @@ An input for selecting times.
 
 | Argument                 | Attribute Name | Description                                                                      |
 | :----------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name             | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name             | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name           | (User defined) | Used in the code to reference this field                                         |
 | Default value (optional) | default_value  | The default text that appears in the input field if no other value is provided   |
 | Help text (optional)     | help_text      | Additional information or instructions displayed below the input field           |
@@ -138,7 +138,7 @@ A input for numeric values.
 
 | Argument                 | Attribute Name | Description                                                                      |
 | :----------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name             | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name             | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name           | (User defined) | Used in the code to reference this field                                         |
 | Default value (optional) | default_value  | The default text that appears in the input field if no other value is provided   |
 | Help text (optional)     | help_text      | Additional information or instructions displayed below the input field           |
@@ -155,7 +155,7 @@ A single-line input specifically for phone numbers.
 
 | Argument                 | Attribute Name | Description                                                                      |
 | :----------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name             | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name             | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name           | (User defined) | Used in the code to reference this field                                         |
 | Default value (optional) | default_value  | The default text that appears in the input field if no other value is provided   |
 | Help text (optional)     | help_text      | Additional information or instructions displayed below the input field           |
@@ -169,7 +169,7 @@ An input for selecting colors.
 
 | Argument                 | Attribute Name | Description                                                                      |
 | :----------------------- | :------------- | :------------------------------------------------------------------------------- |
-| Display Name             | display_name   | The label displayed on the dashboard when entering data                          |
+| Display Name             | label          | The label displayed on the dashboard when entering data                          |
 | Attribute Name           | (User defined) | Used in the code to reference this field                                         |
 | Help text (optional)     | help_text      | Additional information or instructions displayed below the input field           |
 | Default Color (optional) | default_color  | The default color that appears in the input field if no other value is provided  |
@@ -183,7 +183,7 @@ A dropdown select input where you can set options with custom values.
 
 | Argument             | Attribute Name | Description                                                                              |
 | :------------------- | :------------- | :--------------------------------------------------------------------------------------- |
-| Display Name         | display_name   | The label displayed on the dashboard when entering data                                  |
+| Display Name         | label          | The label displayed on the dashboard when entering data                                  |
 | Attribute Name       | (User defined) | Used in the code to reference this field                                                 |
 | Help text (optional) | help_text      | Additional information or instructions displayed below the input field                   |
 | Options              | options        | A list of options that can be set with custom values (minimum of 2 options are required) |
@@ -197,7 +197,7 @@ A radio button input where you can set options with custom values.
 
 | Argument             | Attribute Name | Description                                                                              |
 | :------------------- | :------------- | :--------------------------------------------------------------------------------------- |
-| Display Name         | display_name   | The label displayed on the dashboard when entering data                                  |
+| Display Name         | label          | The label displayed on the dashboard when entering data                                  |
 | Attribute Name       | (User defined) | Used in the code to reference this field                                                 |
 | Help text (optional) | help_text      | Additional information or instructions displayed below the input field                   |
 | Options              | options        | A list of options that can be set with custom values (minimum of 2 options are required) |
@@ -211,7 +211,7 @@ A checkbox where you can set options with custom values.
 
 | Argument             | Attribute Name | Description                                                                              |
 | :------------------- | :------------- | :--------------------------------------------------------------------------------------- |
-| Display Name         | display_name   | The label displayed on the dashboard when entering data                                  |
+| Display Name         | label          | The label displayed on the dashboard when entering data                                  |
 | Attribute Name       | (User defined) | Used in the code to reference this field                                                 |
 | Help text (optional) | help_text      | Additional information or instructions displayed below the input field                   |
 | Options              | options        | A list of options that can be set with custom values (minimum of 2 options are required) |

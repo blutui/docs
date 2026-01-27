@@ -6,15 +6,15 @@ description: Learn how to set up a blog, create posts, and render the blog index
 ## Introduction
 
 Blutui makes it easy to create a fully functional blog with a dedicated **blog index page** and individual **blog post pages**.  
-In this guide, we’ll walk through:
+In this guide, we'll walk through:
 
-- Creating blog layouts  
-- Setting up a blog in the dashboard  
-- Rendering blog posts  
-- Displaying individual post content  
-- Using example Canvas code for both pages  
+- Creating blog layouts
+- Setting up a blog in the dashboard
+- Rendering blog posts
+- Displaying individual post content
+- Using example Canvas code for both pages
 
-By the end, you’ll have a working blog system with automatic routing and dynamic content.
+By the end, you'll have a working blog system with automatic routing and dynamic content.
 
 ---
 
@@ -41,9 +41,9 @@ Each blog can have its own index and post layouts.
 
 ### 2. Create a blog in the dashboard
 
-1. Open your project in the **Blutui dashboard**.  
-2. Navigate to the **Blogs** section.  
-3. Click **Create new blog**.  
+1. Open your project in the **Blutui dashboard**.
+2. Navigate to the **Blogs** section.
+3. Click **Create new blog**.
 4. Set the **URL**, **Name**, and select the two layouts you created:
 
 - **Index layout** → `layouts/blogs/index.html`
@@ -59,16 +59,17 @@ Inside the blog you just created, click **Add Post**.
 
 Add:
 
-- Title  
-- Publish date  
-- Description  
-- Author  
-- Cover image (optional)  
-- Content  
+- Title
+- Publish date
+- Description
+- Author
+- Cover image (optional)
+- Content
 
 This gives you a post to render while you build your templates.
 
 ---
+
 ### 4. Set up your layouts
 
 Both `index.html` and `post.html` must extend your default template.  
@@ -112,7 +113,7 @@ Now you can loop through all blog posts and display them:
   <div>
     {% for post in blog.posts
        | sort((a, b) => b.publish_date <=> a.publish_date)
-       | reverse 
+       | reverse
     %}
       <div>
         <img src="{{ post.cover_image }}" alt="{{ post.title }}">
@@ -130,10 +131,10 @@ Now you can loop through all blog posts and display them:
 
 This:
 
-* Displays the blog’s name
-* Loops through all posts
-* Sorts by publish date
-* Shows title, description, author, reading time, and cover image
+- Displays the blog's name
+- Loops through all posts
+- Sorts by publish date
+- Shows title, description, author, reading time, and cover image
 
 ---
 
@@ -141,7 +142,7 @@ This:
 
 Inside the post layout, the `post` object is available automatically.
 
-Here’s a simple example:
+Here's a simple example:
 
 ```canvas
 <div>
@@ -163,8 +164,8 @@ Here’s a simple example:
 
 Notes:
 
-* `post.content | raw` is the full post body
-* Make sure your styles apply to elements inside the post body (paragraphs, headings, images, lists, etc.)
+- `post.content | raw` is the full post body
+- Make sure your styles apply to elements inside the post body (paragraphs, headings, images, lists, etc.)
 
 ---
 
@@ -179,10 +180,10 @@ Blutui blogs automatically route to the correct page.
 
 If you're using the [meta and title tags guide](/guides/add-meta-and-title), you automatically get sensible defaults:
 
-* Post title
-* Post description
+- Post title
+- Post description
 
-It’s recommended to set the **OpenGraph image** to the blog post’s cover image:
+It's recommended to set the **OpenGraph image** to the blog post's cover image:
 
 ```canvas
 {% block meta %}
@@ -196,17 +197,17 @@ It’s recommended to set the **OpenGraph image** to the blog post’s cover ima
 
 You can now expand your blog by adding:
 
-* Author profiles using collections
-* Related posts
+- Author profiles using collections
+- Related posts
 
 <Cards>
   <Card title="Expand page content with collections" href="/guides/expand-page-content-with-collections">
     Add dynamic author or category data to your blog posts.
   </Card>
 
-  <Card title="Create a layout" href="/guides/create-layout">
-    Learn how to structure and style your blog layouts.
-  </Card>
+<Card title="Create a layout" href="/guides/create-layout">
+  Learn how to structure and style your blog layouts.
+</Card>
 
   <Card title="Add meta and title tags" href="/guides/add-meta-and-title">
     Improve SEO and social sharing for your blog posts.

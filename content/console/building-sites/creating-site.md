@@ -10,7 +10,7 @@ description: 'How to create a website with Blutui'
 
 ![Creating](https://cdn.blutui.com/uploads/assets/Help/agency/site-settings/publishing/screenshot-2026-01-15-at-102208-am.png?format=webp&width=800)
 
-When you first log in, you'll be presented with a message asking you to create a site. Give your site a name and click `Create Site`. That’s it — you’ve created your first site. The site will appear in your **Sites** tab, where you can edit settings and log into it.
+When you first log in, you'll be presented with a message asking you to create a site. Give your site a name and click `Create Site`. That's it — you've created your first site. The site will appear in your **Sites** tab, where you can edit settings and log into it.
 
 The default Blutui canvas starts as a blank project with a `Public` and `Views` folder. [See the folder structure guide](/docs/getting-started/folder-structure)
 

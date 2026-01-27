@@ -1,9 +1,9 @@
 ---
-title: 'Common Patterns for Collections'
+title: 'Common patterns'
 description: 'Essential techniques and patterns for working with Blutui collections using Canvas'
 ---
 
-## Accessing Collections
+## Accessing collections
 
 Always load collections at the start of your canvas:
 
@@ -14,62 +14,62 @@ Always load collections at the start of your canvas:
 {% set products = cms.collection('products') %}
 ```
 
-### Getting a Single Item
+### Getting a single item
 
 ```canvas
 {# Filter for one item by field value #}
-{% set product = products|filter(p => p.sku == 'ABC123')|first %}
+{% set product = products | filter(p => p.sku == 'ABC123') | first %}
 
 {# Get first item #}
-{% set first_product = products|first %}
+{% set first_product = products | first %}
 
 {# Get last item #}
-{% set last_product = products|last %}
+{% set last_product = products | last %}
 
 {# Get item by index #}
-{% set third_product = products[2] %}  {# Zero-indexed #}
+{% set third_product = products[2] %} {# Zero-indexed #}
 ```
 
 ---
 
-## Filtering and Sorting
+## Filtering and sorting
 
-### Basic Filtering
+### Basic filtering
 
 Canvas uses arrow function syntax for filtering:
 
 ```canvas
 {# Filter by specific value #}
-{% set active = products|filter(p => p.status == 'Active') %}
+{% set active = products | filter(p => p.status == 'Active') %}
 
 {# Filter with multiple conditions using 'and' #}
-{% set filtered = products|filter(p => p.status == 'Active' and p.price > 100) %}
+{% set filtered = products | filter(p => p.status == 'Active' and p.price > 100) %}
 
 {# Filter with 'or' conditions #}
-{% set filtered = products|filter(p => p.category == 'Services' or p.category == 'Equipment') %}
+{% set filtered = products | filter(p => p.category == 'Services' or p.category == 'Equipment') %}
 
 {# Filter with 'not' #}
-{% set not_archived = products|filter(p => p.status != 'Archived') %}
+{% set not_archived = products | filter(p => p.status != 'Archived') %}
 ```
 
-### Advanced Filtering
+### Advanced filtering
 
 ```canvas
 {# Filter with access to key (second argument) #}
-{% set filtered = products|filter((item, key) => item.price > 100 and key != 0) %}
+{% set filtered = products | filter((item, key) => item.price > 100 and key != 0) %}
 
 {# Filter dates - IMPORTANT: Use date() to convert strings to date objects #}
-{% set upcoming = events|filter(e => date(e.start_datetime) >= date('now')) %}
-{% set past = events|filter(e => date(e.start_datetime) < date('now')) %}
+{% set upcoming = events | filter(e => date(e.start_datetime) >= date('now')) %}
+{% set past = events | filter(e => date(e.start_datetime) < date('now')) %}
 
 {# Filter date ranges #}
-{% set this_month = events|filter(e => date(e.start_datetime) >= date('first day of this month') and date(e.start_datetime) <= date('last day of this month')) %}
+{% set this_month = events | filter(e => date(e.start_datetime) >= date('first day of this month') and date(e.start_datetime) <= date('last day of this month')) %}
 
 {# Filter checkbox arrays #}
-{% set with_warranty = products|filter(p => 'Warranty Included' in p.features) %}
+{% set with_warranty = products | filter(p => 'Warranty Included' in p.features) %}
 
 {# Filter by array length #}
-{% set with_images = products|filter(p => p.images|length > 0) %}
+{% set with_images = products | filter(p => p.images|length > 0) %}
 ```
 
 ### Sorting
@@ -78,29 +78,29 @@ Use the spaceship operator `<=>` for sorting:
 
 ```canvas
 {# Sort ascending #}
-{% set sorted = products|sort((a, b) => a.price <=> b.price) %}
+{% set sorted = products | sort((a, b) => a.price <=> b.price) %}
 
 {# Sort descending #}
-{% set sorted = products|sort((a, b) => b.price <=> a.price) %}
+{% set sorted = products | sort((a, b) => b.price <=> a.price) %}
 
 {# Sort by date #}
-{% set sorted = events|sort((a, b) => a.start_datetime <=> b.start_datetime) %}
+{% set sorted = events | sort((a, b) => a.start_datetime <=> b.start_datetime) %}
 
 {# Sort by text (alphabetically) #}
-{% set sorted = products|sort((a, b) => a.name <=> b.name) %}
+{% set sorted = products | sort((a, b) => a.name <=> b.name) %}
 ```
 
 ### Grouping
 
-Use `group_by` to organize items by a field:
+Use the `group_by` filter to organize items by a field:
 
 ```canvas
 {# Group by field value #}
-{% set grouped = products|group_by('category') %}
+{% set grouped = products | group_by('category') %}
 {# Returns: { 'Services': [...], 'Equipment': [...] } #}
 
 {# Loop through grouped items #}
-{% for category, items in products|group_by('category') %}
+{% for category, items in products | group_by('category') %}
   <h2>{{ category }}</h2>
   {% for item in items %}
     {{ item.name }}
@@ -108,30 +108,30 @@ Use `group_by` to organize items by a field:
 {% endfor %}
 
 {# Group with arrow function (transform value) #}
-{% set by_month = events|group_by(e => e.start_datetime|date('Y-m')) %}
+{% set by_month = events | group_by(e => e.start_datetime | date('Y-m')) %}
 ```
 
-### Other Useful Filters
+### Other useful filters
 
 ```canvas
 {# Limit results #}
-{% set recent = posts|slice(0, 5) %}
+{% set recent = posts | slice(0, 5) %}
 
 {# Reverse order #}
-{% set reversed = items|reverse %}
+{% set reversed = items | reverse %}
 
 {# Combine multiple filters #}
 {% set result = products
-  |filter(p => p.status == 'Active')
-  |sort((a, b) => b.price <=> a.price)
-  |slice(0, 10) %}
+  | filter(p => p.status == 'Active')
+  | sort((a, b) => b.price <=> a.price)
+  | slice(0, 10) %}
 ```
 
 ---
 
-## Working with Files
+## Working with files
 
-### Single File Fields
+### Single file fields
 
 When `multiple: false`, the field returns a **string URL**:
 
@@ -148,7 +148,7 @@ When `multiple: false`, the field returns a **string URL**:
 <div style="background-image: url('{{ item.banner }}')"></div>
 ```
 
-### Multiple File Fields
+### Multiple file fields
 
 When `multiple: true`, the field returns an **array of URL strings**:
 
@@ -164,15 +164,15 @@ When `multiple: true`, the field returns an **array of URL strings**:
 
 {# Check if files exist #}
 {% if item.gallery is not empty %}
-  <p>{{ item.gallery|length }} images available</p>
+  <p>{{ item.gallery | length }} images available</p>
 {% endif %}
 
 {# Get first and last #}
-<img src="{{ item.gallery|first }}" alt="First">
-<img src="{{ item.gallery|last }}" alt="Last">
+<img src="{{ item.gallery | first }}" alt="First">
+<img src="{{ item.gallery | last }}" alt="Last">
 ```
 
-### File Patterns
+### File patterns
 
 ```canvas
 {# Image gallery with thumbnails (multiple files) #}
@@ -196,7 +196,7 @@ When `multiple: true`, the field returns an **array of URL strings**:
 {% endfor %}
 ```
 
-### Key Differences
+### Key differences
 
 | Setting           | Return Type   | Access Method | Example                                                    |
 | ----------------- | ------------- | ------------- | ---------------------------------------------------------- |
@@ -205,46 +205,46 @@ When `multiple: true`, the field returns an **array of URL strings**:
 
 ---
 
-## Date Formatting
+## Date formatting
 
 Canvas uses canvas date format characters:
 
-### Common Date Formats
+### Common date formats
 
 ```canvas
-{{ date|date('F j, Y') }}           {# January 21, 2026 #}
-{{ date|date('m/d/Y') }}            {# 01/21/2026 #}
-{{ date|date('d/m/Y') }}            {# 21/01/2026 (European) #}
-{{ date|date('Y-m-d') }}            {# 2026-01-21 (ISO) #}
-{{ date|date('M j, Y') }}           {# Jan 21, 2026 #}
-{{ date|date('F jS, Y') }}          {# January 21st, 2026 #}
-{{ date|date('l, F j, Y') }}        {# Wednesday, January 21, 2026 #}
+{{ date | date('F j, Y') }}           {# January 21, 2026 #}
+{{ date | date('m/d/Y') }}            {# 01/21/2026 #}
+{{ date | date('d/m/Y') }}            {# 21/01/2026 (European) #}
+{{ date | date('Y-m-d') }}            {# 2026-01-21 (ISO) #}
+{{ date | date('M j, Y') }}           {# Jan 21, 2026 #}
+{{ date | date('F jS, Y') }}          {# January 21st, 2026 #}
+{{ date | date('l, F j, Y') }}        {# Wednesday, January 21, 2026 #}
 ```
 
-### Time Formats
+### Time formats
 
 ```canvas
-{{ time|date('g:ia') }}             {# 2:30pm #}
-{{ time|date('g:i A') }}            {# 2:30 PM #}
-{{ time|date('H:i') }}              {# 14:30 (24-hour) #}
-{{ time|date('h:i:s A') }}          {# 02:30:45 PM #}
+{{ time | date('g:ia') }}             {# 2:30pm #}
+{{ time | date('g:i A') }}            {# 2:30 PM #}
+{{ time | date('H:i') }}              {# 14:30 (24-hour) #}
+{{ time | date('h:i:s A') }}          {# 02:30:45 PM #}
 ```
 
-### Combined Date and Time
+### Combined date and time
 
 ```canvas
-{{ datetime|date('F j, Y \\a\\t g:ia') }}           {# January 21, 2026 at 2:30pm #}
-{{ datetime|date('l, F j, Y - g:i A') }}            {# Wednesday, January 21, 2026 - 2:30 PM #}
-{{ datetime|date('M j, Y @ g:ia') }}                {# Jan 21, 2026 @ 2:30pm #}
+{{ datetime | date('F j, Y \\a\\t g:ia') }}           {# January 21, 2026 at 2:30pm #}
+{{ datetime | date('l, F j, Y - g:i A') }}            {# Wednesday, January 21, 2026 - 2:30 PM #}
+{{ datetime | date('M j, Y @ g:ia') }}                {# Jan 21, 2026 @ 2:30pm #}
 ```
 
-### Escaping Characters
+### Escaping characters
 
 Use backslashes to escape literal text in date formats:
 
 ```canvas
-{{ date|date('F jS \\a\\t g:ia') }}                 {# January 21st at 2:30pm #}
-{{ date|date('\\T\\o\\d\\a\\y \\i\\s F j') }}       {# Today is January 21 #}
+{{ date | date('F jS \\a\\t g:ia') }}                 {# January 21st at 2:30pm #}
+{{ date | date('\\T\\o\\d\\a\\y \\i\\s F j') }}       {# Today is January 21 #}
 ```
 
 ### Date Format Reference
@@ -274,10 +274,10 @@ Use backslashes to escape literal text in date formats:
 
 ```canvas
 {# Current date #}
-{{ 'now'|date('Y-m-d') }}
+{{ 'now' | date('Y-m-d') }}
 
 {# Current time #}
-{{ 'now'|date('g:ia') }}
+{{ 'now' | date('g:ia') }}
 
 {# CRITICAL: Date comparisons require date() function #}
 {# Date/datetime fields are strings - convert them first! #}
@@ -326,9 +326,9 @@ Use backslashes to escape literal text in date formats:
 
 ---
 
-## Conditional Rendering
+## Conditional rendering
 
-### Basic Conditions
+### Basic conditions
 
 ```canvas
 {# Check if field has value #}
@@ -347,7 +347,7 @@ Use backslashes to escape literal text in date formats:
 {% endif %}
 ```
 
-### Comparison Operators
+### Comparison operators
 
 ```canvas
 {# Equality #}
@@ -365,7 +365,7 @@ Use backslashes to escape literal text in date formats:
 {% if product.price <= 50 %}
 ```
 
-### Logical Operators
+### Logical operators
 
 ```canvas
 {# AND #}
@@ -396,7 +396,7 @@ Use backslashes to escape literal text in date formats:
 {% endif %}
 ```
 
-### Ternary Operator
+### Ternary operator
 
 ```canvas
 {# condition ? true_value : false_value #}
@@ -406,7 +406,7 @@ Use backslashes to escape literal text in date formats:
 {% set status = product.stock > 0 ? 'in-stock' : 'out-of-stock' %}
 ```
 
-### Checking Arrays
+### Checking arrays
 
 ```canvas
 {# Check if value in array (checkbox fields) #}
@@ -420,32 +420,32 @@ Use backslashes to escape literal text in date formats:
 {% endif %}
 
 {# Check array length #}
-{% if product.images|length > 3 %}
-  {{ product.images|length }} images
+{% if product.images | length > 3 %}
+  {{ product.images | length }} images
 {% endif %}
 ```
 
 ---
 
-## Number Formatting
+## Number formatting
 
-### Basic Formatting
+### Basic formatting
 
 ```canvas
 {# Format with 2 decimal places #}
-${{ product.price|number_format(2) }}                    {# $19.99 #}
+${{ product.price | number_format(2) }} {# $19.99 #}
 
 {# Format with thousands separator #}
-${{ product.price|number_format(2, '.', ',') }}          {# $1,234.56 #}
+${{ product.price | number_format(2, '.', ',') }} {# $1,234.56 #}
 
 {# Round to integer #}
-{{ value|round }}                                         {# 20 #}
+{{ value | round }} {# 20 #}
 
 {# Round to decimal places #}
-{{ value|round(2) }}                                      {# 19.99 #}
+{{ value | round(2) }} {# 19.99 #}
 ```
 
-### Mathematical Operations
+### Mathematical operations
 
 ```canvas
 {# Addition #}
@@ -464,7 +464,7 @@ ${{ product.price|number_format(2, '.', ',') }}          {# $1,234.56 #}
 {{ number % 2 }}
 ```
 
-### Calculating Percentages
+### Calculating percentages
 
 ```canvas
 {# Calculate discount percentage #}
@@ -478,9 +478,9 @@ Save {{ discount }}%
 
 ---
 
-## Loops and Iteration
+## Loops and iteration
 
-### Basic Loop
+### Basic loop
 
 ```canvas
 {% for item in collection %}
@@ -488,7 +488,7 @@ Save {{ discount }}%
 {% endfor %}
 ```
 
-### Loop Variables
+### Loop variables
 
 ```canvas
 {% for item in collection %}
@@ -502,7 +502,7 @@ Save {{ discount }}%
 {% endfor %}
 ```
 
-### Loop with Conditions
+### Loop with conditions
 
 ```canvas
 {# Add classes based on position #}
@@ -520,7 +520,7 @@ Save {{ discount }}%
 {% endfor %}
 ```
 
-### Loop with Else
+### Loop with else
 
 ```canvas
 {% for item in collection %}
@@ -530,7 +530,7 @@ Save {{ discount }}%
 {% endfor %}
 ```
 
-### Nested Loops
+### Nested loops
 
 ```canvas
 {% for category, items in products|group_by('category') %}
@@ -543,50 +543,50 @@ Save {{ discount }}%
 
 ---
 
-## String Manipulation
+## String manipulation
 
-### Case Conversion
+### Case conversion
 
 ```canvas
 {# Capitalize first letter #}
-{{ text|capitalize }}                    {# "Hello world" #}
+{{ text | capitalize }} {# "Hello world" #}
 
 {# Uppercase #}
-{{ text|upper }}                         {# "HELLO WORLD" #}
+{{ text | upper }} {# "HELLO WORLD" #}
 
 {# Lowercase #}
-{{ text|lower }}                         {# "hello world" #}
+{{ text | lower }} {# "hello world" #}
 
 {# Title case (capitalize each word) #}
-{{ text|title }}                         {# "Hello World" #}
+{{ text | title }} {# "Hello World" #}
 ```
 
-### Text Operations
+### Text operations
 
 ```canvas
 {# Replace text #}
-{{ text|replace({'_': ' '}) }}           {# Replace underscores with spaces #}
-{{ text|replace({'old': 'new'}) }}       {# Replace 'old' with 'new' #}
+{{ text | replace({'_': ' '}) }} {# Replace underscores with spaces #}
+{{ text | replace({'old': 'new'}) }} {# Replace 'old' with 'new' #}
 
 {# Trim whitespace #}
-{{ text|trim }}
+{{ text | trim }}
 
 {# Truncate (slice) #}
-{{ text|slice(0, 100) }}                 {# First 100 characters #}
+{{ text | slice(0, 100) }} {# First 100 characters #}
 
 {# Get length #}
-{{ text|length }}
+{{ text | length }}
 ```
 
-### Joining and Splitting
+### Joining and splitting
 
 ```canvas
 {# Join array into string #}
-{{ categories|join(', ') }}              {# "Tech, Design, Business" #}
+{{ categories | join(', ') }} {# "Tech, Design, Business" #}
 
 {# Split string into array #}
-{% set words = text|split(' ') %}
+{% set words = text | split(' ') %}
 
 {# Combine split and join #}
-{{ text|split(' ')|slice(0, 10)|join(' ') }}    {# First 10 words #}
+{{ text | split(' ') | slice(0, 10) | join(' ') }} {# First 10 words #}
 ```

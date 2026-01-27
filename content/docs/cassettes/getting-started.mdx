@@ -10,7 +10,8 @@ Blutui Cassettes are like a version control system for the front-end logic of yo
 Every Blutui Cassette contains a **public** and **views** directory. These directories contain the front-end logic of your project. When you use the `courier push` command, these changes are uploaded to the Cassette configured within the `courier.json` file.
 
 <Callout>
-Blutui Courier only pushes & pulls the **public** and **views** directories. Any changes made outside these directories will not be included in the Cassette and won't be available when you run **courier pull**.
+  Blutui Courier only pushes & pulls the **public** and **views** directories. Any changes made outside these
+  directories will not be included in the Cassette and won't be available when you run **courier pull**.
 </Callout>
 
 The Cassette to which your changes are pushed and pulled from is determined by the `cassette` attribute in your `courier.json` file. By changing this attribute, you can direct your development efforts to a different Cassette, allowing you to work on multiple versions of your site simultaneously.
@@ -37,9 +38,7 @@ You can manage your Cassettes through the Blutui Agency Console. Here's a typica
 
 **4. Go Live:** Once you are satisfied with the new Cassette, you can make it the live version of your site. This is done in the Agency console by selecting the **Active Cassette** from the dropdown list and clicking the **Update** button.
 
-<Callout>
-The change is immediate, and your new site UI will be visible to all visitors.
-</Callout>
+<Callout>The change is immediate, and your new site UI will be visible to all visitors.</Callout>
 
 ### Restrictions on the Active Cassette
 
@@ -60,7 +59,8 @@ courier push --allow-active
 ```
 
 <Callout>
-This warning will not occur if your site has not yet been published. However, once your site is live, pushing directly to the active Cassette means any errors will immediately affect your production site.
+  This warning will not occur if your site has not yet been published. However, once your site is live, pushing directly
+  to the active Cassette means any errors will immediately affect your production site.
 </Callout>
 
 ### Example using Cassettes
@@ -83,7 +83,7 @@ Below is an example where each Cassette has a slightly different version of the 
 }
 ```
 
-```twig tab="banner.canvas"
+```canvas tab="banner.canvas"
 <section class="bg-slate-900 text-white py-8">
   <div class="mx-auto px-6 text-left space-y-3">
     {{ cms_heading('banner-main', {
@@ -105,8 +105,8 @@ Below is an example where each Cassette has a slightly different version of the 
 }
 ```
 
-```twig tab="banner.canvas"
-<section class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-red-900 text-white py-8">
+```canvas tab="banner.canvas"
+<section class="bg-linear-to-r from-emerald-900 via-emerald-800 to-red-900 text-white py-8">
   <div class="mx-auto px-6 text-left space-y-3">
     {{ cms_heading('banner-christmas', {
       element: 'h2',
@@ -118,7 +118,10 @@ Below is an example where each Cassette has a slightly different version of the 
 ```
 
 <Callout>
-Note that the ID for `cms_heading` has been changed in each Cassette: `banner-main` and `banner-christmas`. This is because Canopy elements with the same ID will share the same content. If you change the content of an element, it will change in all versions that use that same ID. Since we need different content for each banner, we use different IDs in each Cassette.
+  Note that the ID for `cms_heading` has been changed in each Cassette: `banner-main` and `banner-christmas`. This is
+  because Canopy elements with the same ID will share the same content. If you change the content of an element, it will
+  change in all versions that use that same ID. Since we need different content for each banner, we use different IDs in
+  each Cassette.
 </Callout>
 
 Once you have developed the Christmas version on a separate Cassette, using the Agency Console you can quickly switch the active Cassette to make the change live.

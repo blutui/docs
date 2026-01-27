@@ -5,7 +5,7 @@ description: Learn how to create and display a navigation menu in your Blutui pr
 
 ## Introduction
 
-Now that you know how to create pages, it’s time to connect them with a **navigation menu**.  
+Now that you know how to create pages, it's time to connect them with a **navigation menu**.  
 Menus help users explore your site and are managed directly from your project dashboard.
 
 <img
@@ -28,9 +28,9 @@ The **Handle** is used to reference your menu in your Canvas templates.
 
 ### 2. Create a header component
 
-To display your menu across multiple pages, it’s best to place it inside a reusable **header component**.
+To display your menu across multiple pages, it's best to place it inside a reusable **header component**.
 
-1. Inside your project’s `views` directory, create a folder called `components` (if it doesn’t exist).
+1. Inside your project's `views` directory, create a folder called `components` (if it doesn't exist).
 2. Inside that folder, create a file named `header.html`.
 
 Your structure should look like this:
@@ -89,20 +89,20 @@ Open your layout file and include the component inside the `<body>` tag, typical
 {% block body %}{% endblock %}
 ```
 
-This makes the navigation menu part of your site’s shared structure.
+This makes the navigation menu part of your site's shared structure.
 
 ---
 
 ### Extra tip
 
-If your menu includes **submenus**, each item’s children can be accessed using `item.items`.
+If your menu includes **submenus**, each item's children can be accessed using `item.items`.
 Simply loop through these nested items (as shown above) to display dropdowns or secondary navigation lists.
 
 ---
 
 ## Next steps
 
-You can now customise your navigation’s HTML and styling to match your site design.
+You can now customise your navigation's HTML and styling to match your site design.
 Menus can also be combined with active-state highlighting, dropdown styling, or responsive toggle menus.
 
 <Cards>

@@ -1,0 +1,123 @@
+---
+title: 'Best practices'
+description: 'Essential techniques and patterns for working with Blutui collections using Canvas'
+---
+
+### Always load Collections
+
+```canvas
+{# ✅ CORRECT #}
+{% set items = cms.collection('items') %}
+{% for item in items %}
+
+{# ❌ INCORRECT #}
+{% for item in cms.collection('items') %}  {# Don't load in loop #}
+```
+
+### Options are simple string arrays
+
+```js
+// ✅ CORRECT
+options: ['Option 1', 'Option 2', 'Option 3']
+
+// ❌ INCORRECT
+options: [{ label: 'Option 1', value: 'option_1' }]
+```
+
+Use exact strings in templates:
+
+```canvas
+{% if item.status == 'Active' %}  {# Not 'active' - case matters! #}
+```
+
+### File field access
+
+```canvas
+{# Single file (multiple: false) - direct access as string #}
+{{ item.photo }}
+
+{# Multiple files (multiple: true) - array, need loop or index #}
+{% for img in item.gallery %}{{ img }}{% endfor %}
+{{ item.gallery[0] }}
+```
+
+### Use the raw filter for rich text
+
+```canvas
+{# ✅ CORRECT #}
+{{ item.content | raw }}
+
+{# ❌ INCORRECT - HTML will be escaped #}
+{{ item.content }}
+```
+
+### Check before using optional field values
+
+```canvas
+{# ✅ CORRECT #}
+{% if item.optional_field is not empty %}
+  {{ item.optional_field }}
+{% endif %}
+
+{# ❌ INCORRECT - may cause errors #}
+{{ item.optional_field }}
+```
+
+### Use arrow functions for filtering
+
+```canvas
+{# ✅ CORRECT - Arrow function syntax #}
+items | filter(i => i.status == 'Active')
+
+{# ❌ INCORRECT - This won't work in Canvas #}
+items | where('status', 'Active')
+```
+
+### Use the group_by filter for efficiency
+
+```canvas
+{# ✅ BETTER - One filter operation #}
+{% for category, items in products | group_by('category') %}
+
+{# ❌ LESS EFFICIENT - Filters entire collection multiple times #}
+{% set categories = products | column('category')  %}
+{% for category in categories %}
+  {% for item in products | filter(p => p.category == category) %}
+```
+
+### Always format numbers
+
+```canvas
+{# ✅ CORRECT #}
+${{ price | number_format(2) }}
+
+{# ❌ INCORRECT - may show too many decimals #}
+${{ price }}
+```
+
+### Escape date format characters
+
+```canvas
+{# ✅ CORRECT #}
+{{ date | date('F jS \\a\\t g:ia') }} {# January 21st at 2:30pm #}
+
+{# ❌ INCORRECT - 'at' will be interpreted as format codes #}
+{{ date | date('F jS at g:ia') }} {# Wrong output #}
+```
+
+### Provide empty state feedback
+
+```canvas
+{# ✅ CORRECT #}
+{% for item in items %}
+  {{ item.name }}
+{% else %}
+  <p>No items found</p>
+{% endfor %}
+
+{# ❌ INCORRECT - leaves user confused if no items #}
+{% for item in items %}
+  {{ item.name }}
+{% endfor %}
+```
+

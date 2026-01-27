@@ -1,0 +1,379 @@
+---
+title: 'Testimonials'
+description: 'A simple example showing how to create and display customer testimonials with ratings, photos, and review dates.'
+---
+
+## Field types demonstrated
+
+- `text` - Customer names and companies
+- `textarea` - Testimonial text
+- `number` - Star ratings (1-5)
+- `file` (single) - Customer photos
+- `date` - Review dates
+
+---
+
+## Collection definition
+
+```javascript
+{
+  name: "Testimonials",
+  fields: [
+    {
+      type: "text",
+      label: "Customer Name",
+      name: "name",
+      required: true
+    },
+    {
+      type: "text",
+      label: "Company",
+      name: "company",
+      required: false
+    },
+    {
+      type: "text",
+      label: "Job Title",
+      name: "title",
+      required: false
+    },
+    {
+      type: "textarea",
+      label: "Testimonial",
+      name: "testimonial",
+      required: true,
+      help_text: "The customer's feedback or review"
+    },
+    {
+      type: "number",
+      label: "Rating",
+      name: "rating",
+      required: true,
+      minimum: 1,
+      maximum: 5,
+      step: 1,
+      help_text: "Rating out of 5 stars"
+    },
+    {
+      type: "file",
+      label: "Customer Photo",
+      name: "photo",
+      required: false
+    },
+    {
+      type: "date",
+      label: "Review Date",
+      name: "review_date",
+      required: true
+    }
+  ]
+}
+```
+
+---
+
+## Testimonials grid
+
+Display all testimonials sorted by date.
+
+```canvas
+{# Load the testimonials collection #}
+{% set testimonials = cms.collection('testimonials') %}
+
+<section class="testimonials">
+  <h2>What Our Customers Say</h2>
+
+  {# Sort by review date, newest first #}
+  <div class="testimonials-grid">
+    {% for testimonial in testimonials | sort((a, b) => b.review_date <=> a.review_date) %}
+      <div class="testimonial-card">
+        {# Star rating display #}
+        <div class="stars">
+          {% for i in 1..5 %}
+            {% if i <= testimonial.rating %}⭐{% else %}☆{% endif %}
+          {% endfor %}
+        </div>
+
+        <blockquote>
+          "{{ testimonial.testimonial }}"
+        </blockquote>
+
+        <div class="customer-info">
+          {% if testimonial.photo %}
+            {# Single file: access directly #}
+            <img src="{{ testimonial.photo }}" alt="{{ testimonial.name }}">
+          {% endif %}
+
+          <div>
+            <p class="name">{{ testimonial.name }}</p>
+            {% if testimonial.title and testimonial.company %}
+              <p>{{ testimonial.title }} at {{ testimonial.company }}</p>
+            {% elseif testimonial.company %}
+              <p>{{ testimonial.company }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        {# Date formatting #}
+        <p class="date">{{ testimonial.review_date | date('F Y') }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+```
+
+---
+
+## Featured testimonials
+
+Display only 5-star reviews.
+
+```canvas
+{# Load the testimonials collection #}
+{% set testimonials = cms.collection('testimonials') %}
+
+<section class="featured-testimonials">
+  <h2>5-Star Reviews</h2>
+
+  {# Filter for 5-star reviews only #}
+  {% set five_star = testimonials | filter(t => t.rating == 5) | sort((a, b) => b.review_date <=> a.review_date) %}
+
+  <div class="testimonials-slider">
+    {% for testimonial in five_star | slice(0, 3) %}
+      <div class="testimonial-slide">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <blockquote>"{{ testimonial.testimonial }}"</blockquote>
+        <p class="author">
+          — {{ testimonial.name }}
+          {% if testimonial.company %}, {{ testimonial.company }}{% endif %}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+```
+
+---
+
+## Testimonials with average rating
+
+Calculate and display average rating.
+
+```canvas
+{# Load the testimonials collection #}
+{% set testimonials = cms.collection('testimonials') %}
+
+<section class="testimonials-section">
+  {# Calculate average rating #}
+  {% set total_rating = 0 %}
+  {% for testimonial in testimonials %}
+    {% set total_rating = total_rating + testimonial.rating %}
+  {% endfor %}
+  {% set average = (total_rating / testimonials | length) | round(1) %}
+
+  <div class="rating-summary">
+    <h2>Customer Reviews</h2>
+    <div class="average-rating">
+      <span class="score">{{ average }}</span>
+      <div class="stars">
+        {% for i in 1..5 %}
+          {% if i <= average %}⭐{% else %}☆{% endif %}
+        {% endfor %}
+      </div>
+      <p>Based on {{ testimonials | length }} reviews</p>
+    </div>
+  </div>
+
+  <div class="testimonials-list">
+    {% for testimonial in testimonials | sort((a, b) => b.review_date <=> a.review_date) %}
+      <div class="testimonial">
+        <div class="header">
+          {% if testimonial.photo %}
+            <img src="{{ testimonial.photo }}" alt="{{ testimonial.name }}">
+          {% endif %}
+          <div>
+            <strong>{{ testimonial.name }}</strong>
+            {% if testimonial.company %}
+              <span>{{ testimonial.company }}</span>
+            {% endif %}
+            <div class="stars">
+              {% for i in 1..testimonial.rating %}⭐{% endfor %}
+            </div>
+          </div>
+        </div>
+        <p>{{ testimonial.testimonial }}</p>
+        <time>{{ testimonial.review_date | date('F j, Y') }}</time>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+```
+
+---
+
+## Filter by rating
+
+Let users filter testimonials by star rating.
+
+```canvas
+{# Load the testimonials collection #}
+{% set testimonials = cms.collection('testimonials') %}
+
+<section class="testimonials-filtered">
+  <h2>Customer Reviews</h2>
+
+  {# Rating filter buttons (would need JavaScript to make interactive) #}
+  <div class="rating-filters">
+    <button data-rating="all">All Reviews</button>
+    {% for rating in 5..1 %}
+      <button data-rating="{{ rating }}">{{ rating }}⭐</button>
+    {% endfor %}
+  </div>
+
+  {# Display all testimonials grouped by rating #}
+  {% for rating in 5..1 %}
+    {% set rated = testimonials | filter(t => t.rating == rating) %}
+    {% if rated is not empty %}
+      <div class="rating-group" data-rating="{{ rating }}">
+        <h3>{{ rating }}-Star Reviews ({{ rated | length }})</h3>
+
+        <div class="testimonials-list">
+          {% for testimonial in rated | sort((a, b) => b.review_date <=> a.review_date) %}
+            <div class="testimonial">
+              <div class="stars">
+                {% for i in 1..testimonial.rating %}⭐{% endfor %}
+              </div>
+              <p>"{{ testimonial.testimonial }}"</p>
+              <p class="author">
+                — {{ testimonial.name }}
+                {% if testimonial.company %}, {{ testimonial.company }}{% endif %}
+              </p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</section>
+```
+
+---
+
+## Recent reviews component
+
+A simple sidebar component showing latest reviews.
+
+```canvas
+{# Load the testimonials collection #}
+{% set testimonials = cms.collection('testimonials') %}
+
+<aside class="recent-reviews-widget">
+  <h3>Recent Reviews</h3>
+
+  {# Show 3 most recent reviews #}
+  {% set recent = testimonials | sort((a, b) => b.review_date <=> a.review_date) | slice(0, 3) %}
+
+  {% for testimonial in recent %}
+    <div class="review-snippet">
+      <div class="stars">
+        {% for i in 1..testimonial.rating %}⭐{% endfor %}
+      </div>
+      <p>"{{ testimonial.testimonial | slice(0, 100) }}..."</p>
+      <small>— {{ testimonial.name }}</small>
+    </div>
+  {% endfor %}
+
+  <a href="/reviews" class="view-all">View All Reviews →</a>
+</aside>
+```
+
+---
+
+## Key points
+
+### Number fields for ratings
+
+Use `minimum` and `maximum` to constrain ratings:
+
+```javascript
+{
+  type: "number",
+  minimum: 1,
+  maximum: 5,
+  step: 1  // Whole numbers only
+}
+```
+
+### Displaying star ratings
+
+Use loops to generate star displays:
+
+```canvas
+{# Show filled stars based on rating #}
+{% for i in 1..5 %}
+  {% if i <= testimonial.rating %}⭐{% else %}☆{% endif %}
+{% endfor %}
+
+{# Show only filled stars #}
+{% for i in 1..testimonial.rating %}⭐{% endfor %}
+```
+
+### Calculating averages
+
+Canvas doesn't have a built-in average filter, so calculate manually:
+
+```canvas
+{% set total = 0 %}
+{% for item in items %}
+  {% set total = total + item.rating %}
+{% endfor %}
+{% set average = (total / items | length) | round(1) %}
+```
+
+### Date formatting
+
+Format dates for display:
+
+```canvas
+{{ testimonial.review_date | date('F Y') }}        {# January 2026 #}
+{{ testimonial.review_date | date('F j, Y') }}     {# January 21, 2026 #}
+{{ testimonial.review_date | date('M d, Y') }}     {# Jan 21, 2026 #}
+```
+
+### Truncating text
+
+Use `slice` filter to shorten long testimonials:
+
+```canvas
+{# Show first 100 characters #}
+{{ testimonial.testimonial | slice(0, 100) }}...
+
+{# Show first 50 words #}
+{{ testimonial.testimonial | split(' ') | slice(0, 50) | join(' ') }}...
+```
+
+### Conditional display
+
+Show company info only when available:
+
+```canvas
+{% if testimonial.title and testimonial.company %}
+  <p>{{ testimonial.title }} at {{ testimonial.company }}</p>
+{% elseif testimonial.company %}
+  <p>{{ testimonial.company }}</p>
+{% elseif testimonial.title %}
+  <p>{{ testimonial.title }}</p>
+{% endif %}
+```
+
+### Sorting by date
+
+Always sort dates to show most recent first:
+
+```canvas
+{# Newest first #}
+testimonials | sort((a, b) => b.review_date <=> a.review_date)
+
+{# Oldest first #}
+testimonials | sort((a, b) => a.review_date <=> b.review_date)
+```

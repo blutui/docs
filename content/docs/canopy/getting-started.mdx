@@ -6,7 +6,9 @@ description: 'Learn how to use Canopy elements in Blutui'
 Canopy elements are the primary method for managing page-specific editable content within Blutui. They allow you to define editable regions inside your layouts or pages so content editors can manage text, images, buttons, and more directly from the dashboard without touching code.
 
 <Callout>
-Canopy elements are **page-specific** — meaning each element's content is tied to the page it appears on. If you need reusable, global content (like a footer or announcement banner), consider using a [Collection](/docs/collections/getting-started) instead.
+  Canopy elements are **page-specific** — meaning each element's content is tied to the page it appears on. If you need
+  reusable, global content (like a footer or announcement banner), consider using a
+  [Collection](/docs/collections/introduction) instead.
 </Callout>
 
 ### Understand handles and attributes
@@ -23,7 +25,8 @@ For this example, we will create a simple hero section with the following elemen
 | cms_image   | image-hero       | url, alt_text, class            |
 
 <Callout>
-The **handle** must be unique within each page and is used to identify the element in the Canopy editor. When you edit a page in the dashboard, these handles map to fields in the Canopy editor for that page.
+  The **handle** must be unique within each page and is used to identify the element in the Canopy editor. When you edit
+  a page in the dashboard, these handles map to fields in the Canopy editor for that page.
 </Callout>
 
 ### Create a Canvas template with Canopy elements
@@ -43,7 +46,7 @@ views/
 
 Add the following Canvas code:
 
-```twig tab="default.canvas"
+```canvas tab="default.canvas"
 {% block body %}
 <section class="bg-white text-slate-900">
   <div class="mx-auto max-w-7xl px-6 py-20">

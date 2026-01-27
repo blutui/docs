@@ -1,0 +1,388 @@
+---
+title: 'Products'
+description: 'A complete example showing how to create and display a product showcase with multiple images, pricing, and enquiry functionality.'
+---
+
+## Field types demonstrated
+
+- `text` - Product names and SKU
+- `richtext` - Product descriptions with formatting
+- `number` - Pricing with decimals
+- `file` (multiple) - Product image galleries
+- `select` - Category dropdown
+- `checkbox` - Product features (multiple)
+- `color` - Primary color picker
+- `radio` - Status selection
+- `textarea` - Additional information
+
+---
+
+## Collection Definition
+
+```json
+{
+  "name": "Products",
+  "fields": [
+    {
+      "type": "text",
+      "label": "Product Name",
+      "name": "name",
+      "required": true
+    },
+    {
+      "type": "text",
+      "label": "SKU",
+      "name": "sku",
+      "required": true,
+      "help_text": "Stock Keeping Unit"
+    },
+    {
+      "type": "richtext",
+      "label": "Product Description",
+      "name": "description",
+      "required": true
+    },
+    {
+      "type": "number",
+      "label": "Price",
+      "name": "price",
+      "required": true,
+      "minimum": 0,
+      "step": 0.01,
+      "help_text": "Price or starting price"
+    },
+    {
+      "type": "file",
+      "label": "Product Images",
+      "name": "images",
+      "required": true,
+      "multiple": true, // Multiple files!
+      "help_text": "Upload multiple product photos"
+    },
+    {
+      "type": "select",
+      "label": "Category",
+      "name": "category",
+      "required": true,
+      "options": ["Services", "Equipment", "Consultation", "Custom Projects"]
+    },
+    {
+      "type": "checkbox",
+      "label": "Features",
+      "name": "features",
+      "required": false,
+      "options": ["Custom Options Available", "Installation Included", "Warranty Included", "Consultation Required"]
+    },
+    {
+      "type": "color",
+      "label": "Primary Color",
+      "name": "primary_color",
+      "required": false,
+      "default_color": "#000000"
+    },
+    {
+      "type": "radio",
+      "label": "Status",
+      "name": "status",
+      "required": true,
+      "options": ["Active", "Draft", "Archived"]
+    },
+    {
+      "type": "textarea",
+      "label": "Additional Info",
+      "name": "additional_info",
+      "required": false
+    }
+  ]
+}
+```
+
+---
+
+## Product detail page
+
+Display a single product with image gallery and all details.
+
+```canvas
+{# Load products collection and filter for single item, Replace SDK with the one on the product #}
+{% set products = cms.collection('products') %}
+{% set product = products | filter(p => p.sku == "SDK") | first %}
+
+<div class="product-detail">
+  {# IMPORTANT: Multiple files - must loop through array of URL strings #}
+  <div class="product-gallery">
+    {% if product.images is not empty %}
+      <div class="main-image">
+        {# Access first image by index #}
+        <img src="{{ product.images[0] }}"
+             alt="{{ product.name }}"
+             id="mainImage">
+      </div>
+
+      <div class="thumbnail-gallery">
+        {# Loop through all images - each img is a URL string #}
+        {% for img in product.images %}
+          <img src="{{ img }}"
+               alt="{{ product.name }}"
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-info">
+    <h1>{{ product.name }}</h1>
+    <p class="sku">SKU: {{ product.sku }}</p>
+
+    {# Format price with number_format filter #}
+    <div class="pricing">
+      <span class="price">From ${{ product.price | number_format(2) }}</span>
+    </div>
+
+    {# Checkbox field - check array for specific values #}
+    {% if product.features is not empty %}
+      <div class="features">
+        <h3>Features:</h3>
+        <ul>
+          {% if 'Custom Options Available' in product.features %}
+            <li>✓ Custom options available</li>
+          {% endif %}
+          {% if 'Installation Included' in product.features %}
+            <li>✓ Installation included</li>
+          {% endif %}
+          {% if 'Warranty Included' in product.features %}
+            <li>✓ Warranty included</li>
+          {% endif %}
+          {% if 'Consultation Required' in product.features %}
+            <li>✓ Consultation required</li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {# Color field #}
+    {% if product.primary_color %}
+      <div class="color-info">
+        <label>Primary Color:</label>
+        <span class="color-swatch"
+              style="background-color: {{ product.primary_color }}">
+        </span>
+      </div>
+    {% endif %}
+
+    {# Richtext field - use the raw filter to render HTML #}
+    <div class="description">
+      {{ product.description | raw }}
+    </div>
+
+    {% if product.additional_info %}
+      <div class="additional-info">
+        <h3>Additional Information</h3>
+        <p>{{ product.additional_info }}</p>
+      </div>
+    {% endif %}
+
+    {# Enquiry button #}
+    <a href="/contact?product={{ product.sku }}" class="btn-enquire">
+      Enquire About This Product
+    </a>
+  </div>
+</div>
+```
+
+---
+
+## Product Catalog
+
+Display all active products in a grid.
+
+```canvas
+{# Load the products collection #}
+{% set products = cms.collection('products') %}
+
+<div class="product-catalog">
+  <h1>Our Products</h1>
+
+  <div class="product-grid">
+    {# Filter for active products only #}
+    {% set active_products = products | filter(p => p.status == 'Active') %}
+
+    {% for product in active_products %}
+      <div class="product-card" data-category="{{ product.category }}">
+        <a href="/products/{{ product.sku }}">
+          {# Show first image from multiple files array #}
+          {% if product.images is not empty %}
+            <img src="{{ product.images[0] }}" alt="{{ product.name }}">
+          {% endif %}
+
+          <h3>{{ product.name }}</h3>
+
+          <div class="product-price">
+            <span>From ${{ product.price | number_format(2) }}</span>
+          </div>
+
+          {# Show badge if consultation is required #}
+          {% if product.features is not empty and 'Consultation Required' in product.features %}
+            <span class="badge">Consultation Required</span>
+          {% endif %}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+```
+
+---
+
+## Products by category
+
+Group products by category for organized display.
+
+```canvas
+{# Load the products collection #}
+{% set products = cms.collection('products') %}
+
+<div class="products-by-category">
+  <h1>Browse Products</h1>
+
+  {# Filter active products and group by category #}
+  {% set active = products | filter(p => p.status == 'Active') %}
+
+  {% for category, items in active | group_by('category') %}
+    <section class="category-section">
+      <h2>{{ category }}</h2>
+
+      <div class="product-grid">
+        {% for product in items | sort((a, b) => a.price <=> b.price) %}
+          <div class="product-card">
+            <a href="/products/{{ product.sku }}">
+              {% if product.images is not empty %}
+                <img src="{{ product.images[0] }}" alt="{{ product.name }}">
+              {% endif %}
+              <h3>{{ product.name }}</h3>
+              <p>From ${{ product.price | number_format(2) }}</p>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+</div>
+```
+
+---
+
+## Featured products
+
+Display a curated selection of products (assuming you add a featured checkbox).
+
+```canvas
+{# Load the products collection #}
+{% set products = cms.collection('products') %}
+
+<section class="featured-products">
+  <h2>Featured Products</h2>
+
+  {# Filter for active and featured products #}
+  {% set featured = products | filter(p => p.status == 'Active' and 'Featured' in p.features) | slice(0, 4) %}
+
+  <div class="featured-grid">
+    {% for product in featured %}
+      <div class="featured-card">
+        {% if product.images is not empty %}
+          <img src="{{ product.images[0] }}" alt="{{ product.name }}">
+        {% endif %}
+        <h3>{{ product.name }}</h3>
+        <p class="price">${{ product.price | number_format(2) }}</p>
+        <a href="/products/{{ product.sku }}" class="btn">Learn More</a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+```
+
+---
+
+## Key points
+
+### Multiple file fields
+
+Multiple files return an array of URL strings:
+
+```canvas
+{# Access first image #}
+<img src="{{ product.images[0] }}">
+
+{# Loop through all images #}
+{% for img in product.images %}
+  <img src="{{ img }}">
+{% endfor %}
+
+{# Count images #}
+{{ product.images | length }} photos
+```
+
+### Number field with decimals
+
+Use the `number_format()` filter to format prices:
+
+```canvas
+{# Format with 2 decimal places #}
+${{ product.price | number_format(2) }}
+
+{# Format with thousands separator #}
+${{ product.price | number_format(2, '.', ',') }}  {# 1,234.56 #}
+```
+
+### Rich text fields
+
+Always use the `raw` filter to render HTML:
+
+```canvas
+{{ product.description | raw }}
+```
+
+Without the `raw` filter, HTML tags will be escaped and displayed as text.
+
+### Color fields
+
+Color values are hex codes that can be used directly in CSS:
+
+```canvas
+<div style="background-color: {{ product.primary_color }}">
+  Colored background
+</div>
+```
+
+### Checkbox arrays
+
+Check if specific values exist in the array:
+
+```canvas
+{% if 'Installation Included' in product.features %}
+  Shows installation option
+{% endif %}
+```
+
+### Filtering by multiple conditions
+
+Combine conditions with `and` / `or`:
+
+```canvas
+{# Active products in a specific category #}
+products | filter(p => p.status == 'Active' and p.category == 'Services')
+
+{# Products with warranty OR installation #}
+products | filter(p => 'Warranty Included' in p.features or 'Installation Included' in p.features)
+```
+
+### Price sorting
+
+Sort products by price:
+
+```canvas
+{# Lowest to highest #}
+products | sort((a, b) => a.price <=> b.price)
+
+{# Highest to lowest #}
+products | sort((a, b) => b.price <=> a.price)
+```

@@ -6,17 +6,17 @@ description: Learn how to use route patterns in Blutui to dynamically generate p
 ## Introduction
 
 Route patterns allow you to create **dynamic URLs** that render content based on your collections.  
-They’re perfect for building templates like individual **team member**, **product**, or **blog post** pages — without needing to manually create each page.
+They're perfect for building templates like individual **team member**, **product**, or **blog post** pages — without needing to manually create each page.
 
-In this guide, we’ll walk through how to use a route pattern to dynamically display a team member’s profile page based on their name.
+In this guide, we'll walk through how to use a route pattern to dynamically display a team member's profile page based on their name.
 
 ---
 
 ### 1. Create a layout for your route pattern
 
-Before you create a route pattern, you’ll need a **layout** that will render your dynamic content.
+Before you create a route pattern, you'll need a **layout** that will render your dynamic content.
 
-In this example, we’ll build a route pattern for **team members**.  
+In this example, we'll build a route pattern for **team members**.  
 Start by creating a layout named:
 
 ```
@@ -24,7 +24,7 @@ team-member.html
 
 ```
 
-This layout will be used to render each team member’s details when their unique URL is visited.
+This layout will be used to render each team member's details when their unique URL is visited.
 
 ---
 
@@ -34,7 +34,7 @@ This layout will be used to render each team member’s details when their uniqu
 2. Navigate to **Settings → Route Patterns**.
 3. Click **Create route pattern**.
 
-In this example, we’ll set the route pattern to:
+In this example, we'll set the route pattern to:
 
 ```
 /team/{name}
@@ -61,7 +61,7 @@ Next, open your `team-member.html` layout and add the following code:
 {% set member = members | filter(entry => (entry.name | slug) == route.data.name) | first %}
 ```
 
-Here’s what this code does:
+Here's what this code does:
 
 - Fetches the **team** collection.
 - Filters the collection by comparing the **slugified name** of each team member with the `{name}` value from the route pattern.
@@ -71,7 +71,7 @@ This means that when you visit a URL like `/team/darth-vader`, Blutui will:
 
 1. Take `darth-vader` from the URL.
 2. Match it against the slugged name field in your team collection.
-3. Render the `team-member` layout using that specific entry’s data.
+3. Render the `team-member` layout using that specific entry's data.
 
 ---
 
@@ -87,14 +87,14 @@ Now that the matching team member is set, you can render their details anywhere 
 </div>
 ```
 
-This will dynamically populate the page with each team member’s unique information.
+This will dynamically populate the page with each team member's unique information.
 
 ---
 
 ### Why use route patterns?
 
 Route patterns are incredibly powerful for creating **data-driven pages** without manually adding routes or pages.
-They’re ideal for:
+They're ideal for:
 
 - Products (`/products/{id}`)
 - Locations (`/locations/{city}`)
@@ -106,7 +106,7 @@ With route patterns, your content scales automatically as you add new entries to
 
 ## Next steps
 
-Now that you’ve set up a route pattern, try expanding it with related collections, or use nested route patterns for more advanced structures (e.g., `/{region}/{slug}`).
+Now that you've set up a route pattern, try expanding it with related collections, or use nested route patterns for more advanced structures (e.g., `/{region}/{slug}`).
 
 <Cards>
   <Card title="cms.collection function" href="/canvas/functions/cms#collection">

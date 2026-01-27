@@ -34,8 +34,8 @@ importers:
         specifier: ^0.65.0
         version: 0.65.0
       '@takumi-rs/helpers':
-        specifier: ^0.65.0
-        version: 0.65.0
+        specifier: ^0.66.4
+        version: 0.66.4
       '@takumi-rs/image-response':
         specifier: ^0.66.4
         version: 0.66.4
@@ -1349,9 +1349,6 @@ packages:
   '@takumi-rs/core@0.66.4':
     resolution: {integrity: sha512-naLGRSh3Adz48A8wpxC+r+rIglGXNqlbdufLcRCV3O+MelKKy4FHGyVoW3oK7g9qWenk/svXxal33LqZ9hcmeA==}
     engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
-
-  '@takumi-rs/helpers@0.65.0':
-    resolution: {integrity: sha512-3BsiW0iP3Y7xUPmT/tJBClb59qTxtHEYHQUznXdtDA0qyN6YAWABA6U0DTd3la6XHMEDyKaHV263OL679FyPaA==}
 
   '@takumi-rs/helpers@0.66.4':
     resolution: {integrity: sha512-0dKdoM0GwmKLeSs4rxxg7ZbJDwoWZALR1QBOW4/DJJRsfb0mQNAXb6pXXkzZFvyl3MYjJBqKkr6jfexkWvUwtQ==}
@@ -4677,8 +4674,6 @@ snapshots:
       '@takumi-rs/core-linux-x64-musl': 0.66.4
       '@takumi-rs/core-win32-arm64-msvc': 0.66.4
       '@takumi-rs/core-win32-x64-msvc': 0.66.4
-
-  '@takumi-rs/helpers@0.65.0': {}
 
   '@takumi-rs/helpers@0.66.4': {}
 

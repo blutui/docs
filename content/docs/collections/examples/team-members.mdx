@@ -3,7 +3,7 @@ title: 'Team Members'
 description: 'A complete example showing how to create and display a team directory with departments, contact information, and photos.'
 ---
 
-## Field Types Demonstrated
+## Field types demonstrated
 
 - `text` - Names and titles
 - `email` - Email addresses
@@ -16,7 +16,7 @@ description: 'A complete example showing how to create and display a team direct
 
 ---
 
-## Collection Definition
+## Collection definition
 
 ```json
 {
@@ -89,7 +89,7 @@ description: 'A complete example showing how to create and display a team direct
 
 ---
 
-## Team Page by Department
+## Team page by department
 
 This example groups team members by department and sorts them by display order.
 
@@ -101,13 +101,13 @@ This example groups team members by department and sorts them by display order.
   <h1>Our Team</h1>
 
   {# Use group_by filter to efficiently group by department #}
-  {% for dept, members in team_members|group_by('department') %}
+  {% for dept, members in team_members | group_by('department') %}
     <div class="department">
       <h2>{{ dept }}</h2>
 
       <div class="team-grid">
         {# Members are already grouped, just sort by order #}
-        {% for member in members|sort((a, b) => a.order <=> b.order) %}
+        {% for member in members | sort((a, b) => a.order <=> b.order) %}
           <div class="team-card">
             {# Single file: access directly as URL string #}
             <img src="{{ member.photo }}" alt="{{ member.name }}">
@@ -138,7 +138,7 @@ This example groups team members by department and sorts them by display order.
 
 ---
 
-## Simple Team List
+## Simple team list
 
 A simpler version showing all team members in one list.
 
@@ -151,7 +151,7 @@ A simpler version showing all team members in one list.
 
   {# Sort all members by order #}
   <div class="team-list">
-    {% for member in team_members|sort((a, b) => a.order <=> b.order) %}
+    {% for member in team_members | sort((a, b) => a.order <=> b.order) %}
       <div class="member">
         <img src="{{ member.photo }}" alt="{{ member.name }}">
         <div class="info">
@@ -169,7 +169,7 @@ A simpler version showing all team members in one list.
 
 ---
 
-## Filter by Department
+## Filter by department
 
 Show only members from a specific department.
 
@@ -181,7 +181,7 @@ Show only members from a specific department.
   <h1>Engineering Team</h1>
 
   {# Filter for Engineering department only #}
-  {% set engineers = team_members|filter(m => m.department == 'Engineering')|sort((a, b) => a.order <=> b.order) %}
+  {% set engineers = team_members | filter(m => m.department == 'Engineering') | sort((a, b) => a.order <=> b.order) %}
 
   <div class="team-grid">
     {% for member in engineers %}
@@ -198,9 +198,9 @@ Show only members from a specific department.
 
 ---
 
-## Key Points
+## Key points
 
-### Single File Field
+### Single file field
 
 The `photo` field uses `multiple: false`, so it's accessed directly:
 
@@ -208,7 +208,7 @@ The `photo` field uses `multiple: false`, so it's accessed directly:
 <img src="{{ member.photo }}" alt="{{ member.name }}">
 ```
 
-### Select Field Values
+### Select field values
 
 Department options are simple strings. Use exact matches in templates:
 
@@ -216,17 +216,17 @@ Department options are simple strings. Use exact matches in templates:
 {% if member.department == 'Engineering' %}  {# Not 'engineering' #}
 ```
 
-### Grouping with group_by
+### Grouping with the group_by filter
 
 The `group_by` filter is efficient for organizing items by a field:
 
 ```canvas
-{% for dept, members in team_members|group_by('department') %}
+{% for dept, members in team_members | group_by('department') %}
   {# dept is the department name, members is array of team members #}
 {% endfor %}
 ```
 
-### Optional Fields
+### Optional fields
 
 Always check if optional fields exist before using them:
 
@@ -242,8 +242,8 @@ Use the spaceship operator `<=>` for sorting:
 
 ```canvas
 {# Sort ascending by order #}
-members|sort((a, b) => a.order <=> b.order)
+members | sort((a, b) => a.order <=> b.order)
 
 {# Sort descending by order #}
-members|sort((a, b) => b.order <=> a.order)
+members | sort((a, b) => b.order <=> a.order)
 ```

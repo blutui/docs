@@ -5,8 +5,8 @@ description: Learn how to use collections to extend and enrich your page content
 
 ## Introduction
 
-In this guide, you’ll learn how to **extend your page or blog content** using **collection data**.  
-We’ll walk through an example of expanding a blog post to include detailed author information such as an avatar, name, and bio — all managed through a collection.
+In this guide, you'll learn how to **extend your page or blog content** using **collection data**.  
+We'll walk through an example of expanding a blog post to include detailed author information such as an avatar, name, and bio — all managed through a collection.
 
 This approach allows you to connect different types of content and make your pages more dynamic and data-driven.
 
@@ -26,7 +26,7 @@ Start by creating a new **collection** in your project dashboard.
 | ---------- | ----------- | ---------------------------------------------------------- |
 | Text       | handle      | A unique identifier for each author (e.g. `frodo-baggins`) |
 | Text       | Author Name | The display name of the author                             |
-| File       | avatar      | The author’s profile image                                 |
+| File       | avatar      | The author's profile image                                 |
 | Richtext   | bio         | A short author biography                                   |
 
 After saving the collection, create your first entry:
@@ -42,7 +42,7 @@ After saving the collection, create your first entry:
 
 ### 2. Reference the author in a blog post
 
-Next, open one of your blog posts (or create a new one) and fill in the **author** field with the author’s handle — in this case:
+Next, open one of your blog posts (or create a new one) and fill in the **author** field with the author's handle — in this case:
 
 ```
 
@@ -56,7 +56,7 @@ This will link the blog post to the matching entry in your `Authors` collection.
 
 ### 3. Connect the author data in your template
 
-Now, let’s connect your blog post to its author data inside your Canvas template.
+Now, let's connect your blog post to its author data inside your Canvas template.
 
 At the top of your blog post template, set and filter the collection to find the correct author:
 
@@ -65,13 +65,13 @@ At the top of your blog post template, set and filter the collection to find the
 {% set author = authors | filter(v => v.handle == post.author) | first %}
 ```
 
-This retrieves the `authors` collection and filters it by the `handle` value matching the blog post’s `author` field.
+This retrieves the `authors` collection and filters it by the `handle` value matching the blog post's `author` field.
 
 ---
 
 ### 4. Display the author information
 
-Once you’ve set the author variable, you can display the author’s details anywhere in your post template.
+Once you've set the author variable, you can display the author's details anywhere in your post template.
 Typically, this is shown at the bottom of the blog post.
 
 ```canvas
@@ -89,7 +89,7 @@ Typically, this is shown at the bottom of the blog post.
 </div>
 ```
 
-This will render the author’s avatar, name, and biography directly from the collection data.
+This will render the author's avatar, name, and biography directly from the collection data.
 
 ![](https://cdn.blutui.com/uploads/assets/Dev/guides/extend-blog-collection-1.png)
 
@@ -109,7 +109,7 @@ By using collections, you can connect data across your site and make your conten
 
 ## Next steps
 
-Now that you’ve connected a collection to your page content, explore ways to make it even more dynamic — such as using loops, filters, or relational structures to build complex data relationships.
+Now that you've connected a collection to your page content, explore ways to make it even more dynamic — such as using loops, filters, or relational structures to build complex data relationships.
 
 <Cards>
   <Card title="How do I add data-driven content?" href="/guides/add-data-driven-content">

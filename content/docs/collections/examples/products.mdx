@@ -3,7 +3,7 @@ title: 'Products'
 description: 'A complete example showing how to create and display a product showcase with multiple images, pricing, and enquiry functionality.'
 ---
 
-## Field Types Demonstrated
+## Field types demonstrated
 
 - `text` - Product names and SKU
 - `richtext` - Product descriptions with formatting
@@ -99,14 +99,14 @@ description: 'A complete example showing how to create and display a product sho
 
 ---
 
-## Product Detail Page
+## Product detail page
 
 Display a single product with image gallery and all details.
 
 ```canvas
 {# Load products collection and filter for single item, Replace SDK with the one on the product #}
 {% set products = cms.collection('products') %}
-{% set product = products|filter(p => p.sku == "SDK")|first %}
+{% set product = products | filter(p => p.sku == "SDK") | first %}
 
 <div class="product-detail">
   {# IMPORTANT: Multiple files - must loop through array of URL strings #}
@@ -135,7 +135,7 @@ Display a single product with image gallery and all details.
 
     {# Format price with number_format filter #}
     <div class="pricing">
-      <span class="price">From ${{ product.price|number_format(2) }}</span>
+      <span class="price">From ${{ product.price | number_format(2) }}</span>
     </div>
 
     {# Checkbox field - check array for specific values #}
@@ -169,9 +169,9 @@ Display a single product with image gallery and all details.
       </div>
     {% endif %}
 
-    {# Richtext field - use |raw filter to render HTML #}
+    {# Richtext field - use the raw filter to render HTML #}
     <div class="description">
-      {{ product.description|raw }}
+      {{ product.description | raw }}
     </div>
 
     {% if product.additional_info %}
@@ -204,7 +204,7 @@ Display all active products in a grid.
 
   <div class="product-grid">
     {# Filter for active products only #}
-    {% set active_products = products|filter(p => p.status == 'Active') %}
+    {% set active_products = products | filter(p => p.status == 'Active') %}
 
     {% for product in active_products %}
       <div class="product-card" data-category="{{ product.category }}">
@@ -217,7 +217,7 @@ Display all active products in a grid.
           <h3>{{ product.name }}</h3>
 
           <div class="product-price">
-            <span>From ${{ product.price|number_format(2) }}</span>
+            <span>From ${{ product.price | number_format(2) }}</span>
           </div>
 
           {# Show badge if consultation is required #}
@@ -233,7 +233,7 @@ Display all active products in a grid.
 
 ---
 
-## Products by Category
+## Products by category
 
 Group products by category for organized display.
 
@@ -245,21 +245,21 @@ Group products by category for organized display.
   <h1>Browse Products</h1>
 
   {# Filter active products and group by category #}
-  {% set active = products|filter(p => p.status == 'Active') %}
+  {% set active = products | filter(p => p.status == 'Active') %}
 
-  {% for category, items in active|group_by('category') %}
+  {% for category, items in active | group_by('category') %}
     <section class="category-section">
       <h2>{{ category }}</h2>
 
       <div class="product-grid">
-        {% for product in items|sort((a, b) => a.price <=> b.price) %}
+        {% for product in items | sort((a, b) => a.price <=> b.price) %}
           <div class="product-card">
             <a href="/products/{{ product.sku }}">
               {% if product.images is not empty %}
                 <img src="{{ product.images[0] }}" alt="{{ product.name }}">
               {% endif %}
               <h3>{{ product.name }}</h3>
-              <p>From ${{ product.price|number_format(2) }}</p>
+              <p>From ${{ product.price | number_format(2) }}</p>
             </a>
           </div>
         {% endfor %}
@@ -271,7 +271,7 @@ Group products by category for organized display.
 
 ---
 
-## Featured Products
+## Featured products
 
 Display a curated selection of products (assuming you add a featured checkbox).
 
@@ -283,7 +283,7 @@ Display a curated selection of products (assuming you add a featured checkbox).
   <h2>Featured Products</h2>
 
   {# Filter for active and featured products #}
-  {% set featured = products|filter(p => p.status == 'Active' and 'Featured' in p.features)|slice(0, 4) %}
+  {% set featured = products | filter(p => p.status == 'Active' and 'Featured' in p.features) | slice(0, 4) %}
 
   <div class="featured-grid">
     {% for product in featured %}
@@ -292,7 +292,7 @@ Display a curated selection of products (assuming you add a featured checkbox).
           <img src="{{ product.images[0] }}" alt="{{ product.name }}">
         {% endif %}
         <h3>{{ product.name }}</h3>
-        <p class="price">${{ product.price|number_format(2) }}</p>
+        <p class="price">${{ product.price | number_format(2) }}</p>
         <a href="/products/{{ product.sku }}" class="btn">Learn More</a>
       </div>
     {% endfor %}
@@ -302,9 +302,9 @@ Display a curated selection of products (assuming you add a featured checkbox).
 
 ---
 
-## Key Points
+## Key points
 
-### Multiple File Fields
+### Multiple file fields
 
 Multiple files return an array of URL strings:
 
@@ -318,32 +318,32 @@ Multiple files return an array of URL strings:
 {% endfor %}
 
 {# Count images #}
-{{ product.images|length }} photos
+{{ product.images | length }} photos
 ```
 
-### Number Field with Decimals
+### Number field with decimals
 
-Use `number_format()` to format prices:
+Use the `number_format()` filter to format prices:
 
 ```canvas
 {# Format with 2 decimal places #}
-${{ product.price|number_format(2) }}
+${{ product.price | number_format(2) }}
 
 {# Format with thousands separator #}
-${{ product.price|number_format(2, '.', ',') }}  {# 1,234.56 #}
+${{ product.price | number_format(2, '.', ',') }}  {# 1,234.56 #}
 ```
 
-### Rich Text Fields
+### Rich text fields
 
-Always use `|raw` filter to render HTML:
+Always use the `raw` filter to render HTML:
 
 ```canvas
-{{ product.description|raw }}
+{{ product.description | raw }}
 ```
 
-Without `|raw`, HTML tags will be escaped and displayed as text.
+Without the `raw` filter, HTML tags will be escaped and displayed as text.
 
-### Color Fields
+### Color fields
 
 Color values are hex codes that can be used directly in CSS:
 
@@ -353,7 +353,7 @@ Color values are hex codes that can be used directly in CSS:
 </div>
 ```
 
-### Checkbox Arrays
+### Checkbox arrays
 
 Check if specific values exist in the array:
 
@@ -363,26 +363,26 @@ Check if specific values exist in the array:
 {% endif %}
 ```
 
-### Filtering by Multiple Conditions
+### Filtering by multiple conditions
 
 Combine conditions with `and` / `or`:
 
 ```canvas
 {# Active products in a specific category #}
-products|filter(p => p.status == 'Active' and p.category == 'Services')
+products | filter(p => p.status == 'Active' and p.category == 'Services')
 
 {# Products with warranty OR installation #}
-products|filter(p => 'Warranty Included' in p.features or 'Installation Included' in p.features)
+products | filter(p => 'Warranty Included' in p.features or 'Installation Included' in p.features)
 ```
 
-### Price Sorting
+### Price sorting
 
 Sort products by price:
 
 ```canvas
 {# Lowest to highest #}
-products|sort((a, b) => a.price <=> b.price)
+products | sort((a, b) => a.price <=> b.price)
 
 {# Highest to lowest #}
-products|sort((a, b) => b.price <=> a.price)
+products | sort((a, b) => b.price <=> a.price)
 ```

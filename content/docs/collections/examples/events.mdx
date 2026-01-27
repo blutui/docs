@@ -107,7 +107,7 @@ Display all upcoming events sorted by date.
 
   {# IMPORTANT: Convert datetime strings to date objects for comparison #}
   {# Filter using date() to convert both the field and 'now' to comparable dates #}
-  {% set upcoming = events|filter(e => date(e.start_datetime) >= date('now'))|sort((a, b) => a.start_datetime <=> b.start_datetime) %}
+  {% set upcoming = events | filter(e => date(e.start_datetime) >= date('now')) | sort((a, b) => a.start_datetime <=> b.start_datetime) %}
 
   {% for event in upcoming %}
     <article class="event-card">
@@ -272,20 +272,20 @@ Show only specific types of events (e.g., virtual events).
 <img src="{{ event.images[0] }}">
 ```
 
-### Date-Time Formatting
+### Date-Time formatting
 
 Canvas uses canvas date format characters (not Liquid):
 
 ```canvas
-{{ event.start_datetime|date('F j, Y') }}        {# January 21, 2026 #}
-{{ event.start_datetime|date('g:ia') }}          {# 2:30pm #}
-{{ event.start_datetime|date('l, F j, Y') }}     {# Wednesday, January 21, 2026 #}
-{{ event.start_datetime|date('F jS \\a\\t g:ia') }} {# January 21st at 2:30pm #}
+{{ event.start_datetime | date('F j, Y') }}        {# January 21, 2026 #}
+{{ event.start_datetime | date('g:ia') }}          {# 2:30pm #}
+{{ event.start_datetime | date('l, F j, Y') }}     {# Wednesday, January 21, 2026 #}
+{{ event.start_datetime | date('F jS \\a\\t g:ia') }} {# January 21st at 2:30pm #}
 ```
 
 Escape literal characters with backslashes: `\\a\\t` for "at"
 
-### Radio Fields
+### Radio fields
 
 Radio buttons store a single value. Use exact string matching:
 
@@ -293,7 +293,7 @@ Radio buttons store a single value. Use exact string matching:
 {% if event.event_type == 'Virtual' %}  {# Not 'virtual' - use exact string! #}
 ```
 
-### Checkbox Fields
+### Checkbox fields
 
 Checkboxes return an array of selected values. Check with `in`:
 
@@ -303,51 +303,51 @@ Checkboxes return an array of selected values. Check with `in`:
 {% endif %}
 ```
 
-### Filtering by Date
+### Filtering by date
 
 **IMPORTANT:** Date and datetime fields are stored as strings. You must convert them to date objects using `date()` before comparison:
 
 ```canvas
 {# ✅ CORRECT - Convert strings to date objects #}
-events|filter(e => date(e.start_datetime) >= date('now'))
+events | filter(e => date(e.start_datetime) >= date('now'))
 
 {# ❌ INCORRECT - String comparison won't work correctly #}
-events|filter(e => e.start_datetime >= 'now')
+events | filter(e => e.start_datetime >= 'now')
 
 {# Get future events #}
-events|filter(e => date(e.start_datetime) >= date('now'))
+events | filter(e => date(e.start_datetime) >= date('now'))
 
 {# Get past events #}
-events|filter(e => date(e.start_datetime) < date('now'))
+events | filter(e => date(e.start_datetime) < date('now'))
 
 {# Get events in a specific date range #}
-events|filter(e => date(e.start_datetime) >= date('2026-01-01') and date(e.start_datetime) < date('2026-02-01'))
+events | filter(e => date(e.start_datetime) >= date('2026-01-01') and date(e.start_datetime) < date('2026-02-01'))
 
 {# Get events happening today #}
-{% set today = date('now')|date('Y-m-d') %}
-events|filter(e => date(e.start_datetime)|date('Y-m-d') == today)
+{% set today = date('now') | date('Y-m-d') %}
+events | filter(e => date(e.start_datetime) | date('Y-m-d') == today)
 
 {# Get events this week #}
-events|filter(e => date(e.start_datetime) >= date('now') and date(e.start_datetime) <= date('+7 days'))
+events | filter(e => date(e.start_datetime) >= date('now') and date(e.start_datetime) <= date('+7 days'))
 
 {# Get events this month #}
-{% set this_month = date('now')|date('Y-m') %}
-events|filter(e => date(e.start_datetime)|date('Y-m') == this_month)
+{% set this_month = date('now') | date('Y-m') %}
+events | filter(e => date(e.start_datetime) | date('Y-m') == this_month)
 ```
 
-### Arrow Functions in group_by
+### Arrow functions in group_by
 
 You can use arrow functions to transform values for grouping:
 
 ```canvas
 {# Group by year-month #}
-events|group_by(e => e.start_datetime|date('Y-m'))
+events | group_by(e => e.start_datetime | date('Y-m'))
 
 {# Group by year only #}
-events|group_by(e => e.start_datetime|date('Y'))
+events | group_by(e => e.start_datetime | date('Y'))
 ```
 
-### Handling Empty Results
+### Handling empty results
 
 Always provide feedback when filters return no results:
 

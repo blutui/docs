@@ -20,6 +20,7 @@ import { useIsScrollTop } from 'fumadocs-ui/utils/use-is-scroll-top'
 import { LinkItem, type LinkItemType, type MenuItemType } from '../link-item'
 import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover'
 import { isTabActive, type SidebarTabWithProps } from '../sidebar/tabs/dropdown'
+import { useAiSearch } from 'components/ai/ai-search-context'
 
 export const LayoutContext = createContext<
   | (LayoutInfo & {
@@ -75,13 +76,15 @@ export function LayoutHeader(props: ComponentProps<'header'>) {
 export function LayoutBody({ className, style, children, ...props }: ComponentProps<'div'>) {
   const { navMode } = use(LayoutContext)!
   const { collapsed } = useSidebar()
+  const { open } = useAiSearch()
   const pageCol = 'calc(var(--fd-layout-width,97rem) - var(--fd-sidebar-col) - var(--fd-toc-width))'
 
   return (
     <div
       id="nd-notebook-layout"
       className={cn(
-        'grid min-h-(--fd-docs-height) auto-cols-auto auto-rows-auto overflow-x-clip transition-[grid-template-columns] [--fd-docs-height:100dvh] [--fd-header-height:0px] [--fd-sidebar-width:0px] [--fd-toc-popover-height:0px] [--fd-toc-width:0px]',
+        `grid min-h-(--fd-docs-height) auto-cols-auto auto-rows-auto overflow-x-clip transition-all duration-200 [--fd-docs-height:100dvh] [--fd-header-height:0px] [--fd-sidebar-width:0px] [--fd-toc-popover-height:0px] [--fd-toc-width:0px]`,
+        open && 'h-(--fd-docs-height) overflow-y-auto pr-0 md:pr-80',
         className
       )}
       style={

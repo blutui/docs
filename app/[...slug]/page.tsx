@@ -1,5 +1,5 @@
 import { createRelativeLink } from 'fumadocs-ui/mdx'
-import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'components/layout/notebook/page'
+import { DocsBody, DocsDescription, DocsPage, DocsTitle, PageLastUpdate } from 'components/layout/notebook/page'
 import { getMDXComponents } from 'mdx-components'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -17,6 +17,8 @@ export default async function Page(props: PageProps<'/[...slug]'>) {
 
   const { body: Mdx, toc, lastModified } = await page.data.load()
 
+  const lastModifiedTime: Date | undefined = lastModified
+
   let method: string | null = null
   let endpoint: string | null = null
 
@@ -28,12 +30,7 @@ export default async function Page(props: PageProps<'/[...slug]'>) {
   }
 
   return (
-    <DocsPage
-      toc={toc}
-      full={page.data.full}
-      tableOfContent={{ style: 'clerk' }}
-      // lastUpdate={lastModified ? new Date(lastModified) : undefined}
-    >
+    <DocsPage toc={toc} full={page.data.full} tableOfContent={{ style: 'clerk' }}>
       <div className="flex items-center justify-between gap-4">
         <DocsTitle className="flex-1">{page.data.title}</DocsTitle>
         <div className="shrink-0">
@@ -51,6 +48,7 @@ export default async function Page(props: PageProps<'/[...slug]'>) {
           })}
         />
       </DocsBody>
+      {lastModifiedTime && <PageLastUpdate date={lastModifiedTime} />}
     </DocsPage>
   )
 }

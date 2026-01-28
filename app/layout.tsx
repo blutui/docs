@@ -1,5 +1,7 @@
 import { Instrument_Sans } from 'next/font/google'
 import { RootProvider } from 'fumadocs-ui/provider/next'
+import { AiSearchProvider } from 'components/ai/ai-search-context'
+import { AiSearchOverlay } from 'components/ai/ai-search'
 
 import { baseUrl, createMetadata } from 'lib/metadata'
 
@@ -29,7 +31,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={instrumentSans.className} suppressHydrationWarning>
       <body className="bg-neutral-50 dark:bg-neutral-900">
-        <RootProvider>{children}</RootProvider>
+        <AiSearchProvider>
+          <RootProvider>{children}</RootProvider>
+          <AiSearchOverlay />
+        </AiSearchProvider>
       </body>
     </html>
   )

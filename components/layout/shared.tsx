@@ -1,64 +1,64 @@
-import type { ComponentProps, ReactNode } from 'react';
-import type { I18nConfig } from 'fumadocs-core/i18n';
-import type { LinkItemType } from './link-item';
-import Link from 'fumadocs-core/link';
+import type { ComponentProps, ReactNode } from 'react'
+import type { I18nConfig } from 'fumadocs-core/i18n'
+import type { LinkItemType } from './link-item'
+import Link from 'fumadocs-core/link'
 
 export interface NavOptions {
-  enabled: boolean;
-  component: ReactNode;
+  enabled: boolean
+  component: ReactNode
 
-  title?: ReactNode | ((props: ComponentProps<'a'>) => ReactNode);
+  title?: ReactNode | ((props: ComponentProps<'a'>) => ReactNode)
 
   /**
    * Redirect url of title
    * @defaultValue '/'
    */
-  url?: string;
+  url?: string
 
   /**
    * Use transparent background
    *
    * @defaultValue none
    */
-  transparentMode?: 'always' | 'top' | 'none';
+  transparentMode?: 'always' | 'top' | 'none'
 
-  children?: ReactNode;
+  children?: ReactNode
 }
 
 export interface BaseLayoutProps {
   themeSwitch?: {
-    enabled?: boolean;
-    component?: ReactNode;
-    mode?: 'light-dark' | 'light-dark-system';
-  };
+    enabled?: boolean
+    component?: ReactNode
+    mode?: 'light-dark' | 'light-dark-system'
+  }
 
   searchToggle?: Partial<{
-    enabled: boolean;
+    enabled: boolean
     components: Partial<{
-      sm: ReactNode;
-      lg: ReactNode;
-    }>;
-  }>;
+      sm: ReactNode
+      lg: ReactNode
+    }>
+  }>
 
   /**
    * I18n options
    *
    * @defaultValue false
    */
-  i18n?: boolean | I18nConfig;
+  i18n?: boolean | I18nConfig
 
   /**
    * GitHub url
    */
-  githubUrl?: string;
+  githubUrl?: string
 
-  links?: LinkItemType[];
+  links?: LinkItemType[]
   /**
    * Replace or disable navbar
    */
-  nav?: Partial<NavOptions>;
+  nav?: Partial<NavOptions>
 
-  children?: ReactNode;
+  children?: ReactNode
 }
 
 /**
@@ -68,7 +68,7 @@ export function resolveLinkItems({
   links = [],
   githubUrl,
 }: Pick<BaseLayoutProps, 'links' | 'githubUrl'>): LinkItemType[] {
-  const result = [...links];
+  const result = [...links]
 
   if (githubUrl)
     result.push({
@@ -82,21 +82,18 @@ export function resolveLinkItems({
         </svg>
       ),
       external: true,
-    });
+    })
 
-  return result;
+  return result
 }
 
-export function renderTitleNav(
-  { title, url = '/' }: Partial<NavOptions>,
-  props: ComponentProps<'a'>,
-) {
-  if (typeof title === 'function') return title({ href: url, ...props });
+export function renderTitleNav({ title, url = '/' }: Partial<NavOptions>, props: ComponentProps<'a'>) {
+  if (typeof title === 'function') return title({ href: url, ...props })
   return (
     <Link href={url} {...props}>
       {title}
     </Link>
-  );
+  )
 }
 
-export type * from './link-item';
+export type * from './link-item'

@@ -23,6 +23,7 @@ import { LinkItem, type LinkItemType } from '../link-item'
 import type { SidebarPageTreeComponents } from '../sidebar/page-tree'
 import { getSidebarTabs, type GetSidebarTabsOptions } from '../sidebar/tabs'
 import { SidebarTabsDropdown, type SidebarTabWithProps } from '../sidebar/tabs/dropdown'
+import { AiSearch } from 'components/ai/ai-search'
 
 export interface DocsLayoutProps extends BaseLayoutProps {
   tree: PageTree.Root
@@ -313,6 +314,7 @@ function DocsNavbar({
           ))}
         <div className="flex flex-1 items-center justify-end md:gap-2">
           <div className="flex items-center gap-6 empty:hidden max-lg:hidden">
+            <AiSearch />
             {links
               .filter((item) => item.type !== 'icon')
               .map((item, i) => (
@@ -339,6 +341,7 @@ function DocsNavbar({
           <div className="flex items-center md:hidden">
             {searchToggle.enabled !== false &&
               (searchToggle.components?.sm ?? <SearchToggle hideIfDisabled className="p-2" />)}
+            <AiSearch />
             <SidebarTrigger
               className={cn(
                 buttonVariants({

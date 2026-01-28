@@ -4,13 +4,10 @@ import { getNavigationLinks } from 'lib/utils'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { ...base } = baseOptions()
-    const navigationLinks = getNavigationLinks('home')
+  const navigationLinks = getNavigationLinks('home')
 
   return (
-    <HomeLayout
-      {...base}
-      links={navigationLinks}
-    >
+    <HomeLayout {...base} links={navigationLinks}>
       {children}
     </HomeLayout>
   )

@@ -44,12 +44,9 @@ The Canvas file structure gives you the ability to structure your project in a w
 - `public`: This directory contains your projects public assets. CSS, JS, and image files can all be found in this folder and are accessible from your browser.
 - `views`: This directory is the location for your projects `.html` or `.canvas` template files. All files in this folder are used by the Blutui platform to render your client's project.
 
-The folder structure within the `public` and `views` directory is completely up to you. To get started with creating a page for your project, you have two options:
+The folder structure within the `public` and `views` directory is completely up to you. 
 
-1. **Create a page through Canvas**: This can be achieved by creating a `pages` folder in your `views` directory, then create a new `.html` or `.canvas` file, for example: `index.html` or `index.canvas` would be the homepage of your site.
-2. **Create a page through the Site Dashboard**: Create a new page through the **Pages** menu and specify a **Layout**. A layout path is always relative to the `views` directory of your project.
-
-The default project comes with a `pages` folder in the `views` directory. For for information how to create your first project in Blutui, read the [getting started](/docs/getting-started/create-a-project) guide
+**Create a page through the Project Dashboard**: First, create a `layouts` folder inside your `views` directory and add a layout file (e.g., `views/layouts/default.html`). Then, go to the Project Dashboard and create a new page through the **Pages** menu, specifying your layout. The layout path is always relative to the `views/layouts` directory of your project.
 
 <Callout>
   Ensure that you run `courier push` after each update, to view your changes in the staging environment.

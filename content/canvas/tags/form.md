@@ -3,7 +3,7 @@ title: 'form'
 description: 'Generates a HTML form tag.'
 ---
 
-The `form` tag generates an HTML form tag, including any required input tags to submit the form. The `form` tag requires a handle to render it's contents, usually found in your project dashboard:
+The `form` tag generates an HTML form tag, including any required input tags to submit the form. The `form` tag requires a handle to render it's contents, usually found in your dashboard:
 
 ```canvas
 {% form 'handle' %}

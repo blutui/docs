@@ -7,7 +7,7 @@ description: 'How to create a blog'
 
 ## What's the difference between a blog and a post?
 
-The blogs tab can be found second from the top of the navigation menu on the right hand side of the Site Dashboard landing page.
+The blogs tab can be found second from the top of the navigation menu on the right hand side of the Dashboard landing page.
 
 When landing on the first screen, you will see that there are two options - posts or blogs.
 

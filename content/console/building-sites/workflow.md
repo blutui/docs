@@ -17,7 +17,7 @@ To find out more about Blutui's pricing and subscriptions, head to our [Pricing 
 
 Front-End Developers are responsible for coding and creating the visual front-end elements of your Blutui website. If you are a developer, you will need to learn how to start building sites on Blutui. Find out more about this and all necessary installations below.
 
-If you are an Agency Owner, Content Manager or Client, you do not need to worry about installation as you will spend most of your time on the site dashboard where you will manage things such as assets, blogs and collections. Learn more about the site dashboard [here.](/project 'Site Dashboard')
+If you are an Agency Owner, Content Manager or Client, you do not need to worry about installation as you will spend most of your time on the site dashboard where you will manage things such as assets, blogs and collections. Learn more about the site dashboard [here.](/dashboard 'Dashboard')
 
 ## **Installation**
 

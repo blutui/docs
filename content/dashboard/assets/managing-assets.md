@@ -7,7 +7,7 @@ description: "Information on managing assets"
 
 ### What are assets and where can they be found?
 
-The Assets tab can be found at the top of the navigation menu on the right hand side of the Site Dashboard landing page. You will use this page as a central place to store any images, videos or documents you would like to upload to your site `(PDFS, JPG & PNG)`. For example, if referencing a document in Blogs or Pages, you will need to upload it to Assets first.
+The Assets tab can be found at the top of the navigation menu on the right hand side of the Dashboard landing page. You will use this page as a central place to store any images, videos or documents you would like to upload to your site `(PDFS, JPG & PNG)`. For example, if referencing a document in Blogs or Pages, you will need to upload it to Assets first.
 
 ![Assets Tab on dashboard](https://cdn.blutui.com/uploads/assets/Help/Site-Dashboard/assets/assets-2023-90705-am.png)
 

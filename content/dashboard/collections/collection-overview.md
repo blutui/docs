@@ -5,7 +5,7 @@ description: 'An overview of collections, how they work'
 
 ## Introduction
 
-The collections tab can be found in the navigation menu on the right hand side of the Site Dashboard landing page.
+The collections tab can be found in the navigation menu on the right hand side of the Dashboard landing page.
 
 ## Collection Settings
 

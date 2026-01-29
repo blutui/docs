@@ -1,6 +1,6 @@
 {
   "$schema": "../../../.source/json-schema/docs.meta.json",
-  "title": "Project",
+  "title": "Dashboard",
   "icon": "BookOpen",
   "root": true,
   "pages": [

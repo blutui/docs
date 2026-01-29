@@ -7,6 +7,6 @@ The Blutui Admin API is built on **REST** principles. We enforce **HTTPS** in ev
 
 All requests contain the following base URL, where `handle` is your project's handle:
 
-```text title="Admin API Base URL">
+```text title="Admin API Base URL"
 https://{handle}.blutui.com/admin/api
 ```

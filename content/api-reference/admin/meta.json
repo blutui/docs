@@ -2,6 +2,19 @@
   "$schema": "../../../.source/json-schema/docs.meta.json",
   "title": "Admin API",
   "pages": [
-    "..."
+    "authentication",
+    "blogs",
+    "posts",
+    "collections",
+    "entries",
+    "links",
+    "forms",
+    "submissions",
+    "menus",
+    "pages",
+    "redirects",
+    "route-patterns",
+    "users",
+    "webhooks"
   ]
 }

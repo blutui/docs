@@ -1,5 +1,6 @@
 {
   "$schema": "../../../../.source/json-schema/docs.meta.json",
+  "title": "Collection Links",
   "pages": [
     "create",
     "update",

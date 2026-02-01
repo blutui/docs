@@ -11,8 +11,8 @@ const navigationData = [
     url: '/docs',
   },
   {
-    title: 'Project',
-    url: '/project',
+    title: 'Dashboard',
+    url: '/dashboard',
   },
   {
     title: 'Console',

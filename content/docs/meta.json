@@ -7,8 +7,6 @@
     "index",
     "...getting-started",
     "intellisense",
-    "---[Sparkles]AI Components---",
-    "...components",
     "---[SquareTerminal]Courier---",
     "...courier",
     "---[Database]Collections---",
@@ -16,6 +14,8 @@
     "---[LayoutTemplate]Canopy---",
     "...canopy",
     "---[CassetteTape]Cassettes---",
-    "...cassettes"
+    "...cassettes",
+    "---[Sparkles]AI Components---",
+    "...components"
   ]
 }

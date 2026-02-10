@@ -34,8 +34,8 @@ importers:
         specifier: ^0.67.2
         version: 0.67.2
       '@takumi-rs/helpers':
-        specifier: ^0.66.11
-        version: 0.66.11
+        specifier: ^0.67.2
+        version: 0.67.2
       '@takumi-rs/image-response':
         specifier: ^0.67.0
         version: 0.67.0
@@ -1360,11 +1360,11 @@ packages:
     resolution: {integrity: sha512-mcKN0uqKeTSyqZ3mGPLYBkkyB37wRs5r1EwgYTzPGhKgUPmbgH0dIeDHWbXFmTQaXRTujNBzZa8AdjQPImou6w==}
     engines: {node: '>= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0'}
 
-  '@takumi-rs/helpers@0.66.11':
-    resolution: {integrity: sha512-wft2xmGiB0gxVIxYhHqx8VESL2CbVMAmvqCIjDO8cADaNBM9On+MwEOArwU1jmo0NGZpzRTzvfDvk8uQWQeuvg==}
-
   '@takumi-rs/helpers@0.67.0':
     resolution: {integrity: sha512-qLnR+K1oPBh8s6uQgKf0C5C4L1JWfz+Wj84wIKvAmxTSgkx1olVRpn/NEBRe/2r2cOlv4F39GiySdeoQzsh/AQ==}
+
+  '@takumi-rs/helpers@0.67.2':
+    resolution: {integrity: sha512-/ivcWp2b42YnZ5PFxLHTeNt2LAS9kuCnukP++N6jvWN/J0MzSmarQQzsdZ6ze1/oBiAW28kOAG2iT5uD5kkW4Q==}
 
   '@takumi-rs/image-response@0.67.0':
     resolution: {integrity: sha512-g9DQlv2LbI2urr9mqm6BXz+92uFyuAlRuFcU1MyUZ3mxbcqkf5Iozs5RctxfGur9cdXevAbPAWFSynVvpybNNA==}
@@ -4694,9 +4694,9 @@ snapshots:
       '@takumi-rs/core-win32-arm64-msvc': 0.67.2
       '@takumi-rs/core-win32-x64-msvc': 0.67.2
 
-  '@takumi-rs/helpers@0.66.11': {}
-
   '@takumi-rs/helpers@0.67.0': {}
+
+  '@takumi-rs/helpers@0.67.2': {}
 
   '@takumi-rs/image-response@0.67.0':
     dependencies:

@@ -1,28 +1,29 @@
 version: 2
 updates:
-  # Enable version updates for npm
   - package-ecosystem: 'npm'
-    # Look for `package.json` and `lock` files in the `root` directory
     directory: '/'
-    # Check for updates daily
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
     commit-message:
-      prefix: "chore"
-      include: "scope"
+      prefix: 'chore'
+      include: 'scope'
     groups:
       react:
         patterns:
-          - "react"
-          - "react-dom"
-          - "@types/react"
-          - "@types/react-dom"
+          - 'react'
+          - 'react-dom'
+          - '@types/react'
+          - '@types/react-dom'
+      takumi:
+        patterns:
+          - '@takumi-rs/core'
+          - '@takumi-rs/helpers'
+          - '@takumi-rs/image-response'
 
-  # Enable version updates for Github Actions
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
       interval: 'daily'
     commit-message:
-      prefix: "chore"
-      include: "scope"
+      prefix: 'chore'
+      include: 'scope'

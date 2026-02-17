@@ -45,8 +45,17 @@ export function AiSearchOverlay() {
   const { open, setOpen, query, setQuery, response, setResponse, isLoading, setIsLoading } = useAiSearch()
   const bottomRef = useRef<HTMLDivElement>(null)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
   const [shouldAutoScroll, setShouldAutoScroll] = useState(true)
   const abortControllerRef = useRef<AbortController | null>(null)
+
+  const adjustTextareaHeight = () => {
+    if (!textareaRef.current) return
+    textareaRef.current.style.height = 'auto'
+    const nextHeight = Math.min(textareaRef.current.scrollHeight, 120)
+    textareaRef.current.style.height = `${nextHeight}px`
+    textareaRef.current.style.overflowY = textareaRef.current.scrollHeight > 120 ? 'auto' : 'hidden'
+  }
 
   const handleOpenChange = (open: boolean) => {
     setOpen(open)
@@ -77,6 +86,10 @@ export function AiSearchOverlay() {
       bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
   }, [response, isLoading, shouldAutoScroll])
+
+  useEffect(() => {
+    adjustTextareaHeight()
+  }, [query, open])
 
   const runSearch = async (searchQuery: string) => {
     if (!searchQuery.trim()) return
@@ -261,10 +274,13 @@ export function AiSearchOverlay() {
           )}
           <form onSubmit={handleSubmit} className="relative">
             <div className="bg-fd-secondary/20 ring-offset-background focus-within:ring-ring flex items-center rounded-lg border px-3 focus-within:ring-1">
-              <Sparkles className="text-fd-primary/80 size-5 shrink-0" />
               <textarea
+                ref={textareaRef}
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value)
+                  adjustTextareaHeight()
+                }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault()
@@ -272,7 +288,7 @@ export function AiSearchOverlay() {
                   }
                 }}
                 placeholder="Ask a question..."
-                className="placeholder:text-muted-foreground flex h-12 w-full resize-none bg-transparent px-3 py-3 text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                className="placeholder:text-muted-foreground flex min-h-12 w-full resize-none overflow-y-hidden bg-transparent px-3 py-3 text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 autoFocus
               />
               <button

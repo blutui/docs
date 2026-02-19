@@ -5,7 +5,7 @@ description: Learn how to use Tailwind CSS in your Blutui project.
 
 ## Introduction
 
-TailwindCSS is a utility-first CSS framework that allows for rapid development of web interfaces. This guide will walk you through integrating TailwindCSS with your Blutui project.
+Tailwind CSS is a utility-first CSS framework that allows for rapid development of web interfaces. This guide will walk you through integrating TailwindCSS with your Blutui project.
 
 ### Starting a New Project
 
@@ -37,8 +37,8 @@ courier create
 ```
 
 <Callout>
-  Choose **tailwindcss** for a standard setup or **tailwindcss-js** if you require Parcel.js for custom JavaScript
-  logic.
+  Choose **tailwindcss** for a standard setup or **tailwindcss-js** if you require **Parcel.js** for custom JavaScript
+  functionality.
 </Callout>
 
 #### 3. Verification
@@ -57,13 +57,13 @@ If you already have a Blutui project and want to add Tailwind CSS manually, foll
 ### Prerequisites
 
 - A Blutui project set up and ready to go.
-- A package manager (`npm`, `pnpm`, `yarn`, or `bun`) installed. If not, refer to the using a package manager in a Blutui project guide.
+- A package manager (`npm`, `pnpm`, `yarn`, or `bun`) installed.
 
 ### Getting started
 
 #### 1. Installing Tailwind CSS
 
-Open your terminal or command prompt and navigate to your Blutui project directory. Begin by installing TailwindCSS using:
+Open your terminal or command prompt and navigate to your Blutui project directory. Begin by installing Tailwind CSS using:
 
 ```npm
 npm install -D tailwindcss @tailwindcss/cli
@@ -71,20 +71,22 @@ npm install -D tailwindcss @tailwindcss/cli
 
 #### 2. Import Tailwind in your CSS
 
-Add the import to your main CSS file.
+Add the import to your global CSS file.
 
-```css tab="global.css"
+```css tab="src/styles/global.css"
 @import 'tailwindcss';
 ```
 
-#### 3. Setting up the source directory
+#### 3. Default template
 
-Create a `src` folder at the root of your project, so you have `src`, `public`, and `views` folders. This structure allows TailwindCSS to only compile the classes you're using. Inside the `src` folder, create a `styles` sub-folder and then add a `main.css` file within it. Add the following directives in the `main.css` file:
+Add the following snippet to the `<head>` of the default template to link the compiled CSS file.
 
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+```canvas tab="views/templates/default.html"
+<head>
+<!--Existing code above-->
+{{ asset('styles/global.css') | stylesheet_tag }}
+{% block styles %}{% endblock %}
+</head>
 ```
 
 #### 4. Compiling Tailwind CSS
@@ -92,11 +94,11 @@ Create a `src` folder at the root of your project, so you have `src`, `public`, 
 Execute the following command:
 
 ```npm
-npx tailwindcss -i ./src/styles/main.css -o ./public/main.css --watch
+npx @tailwindcss/cli -i ./src/styles/global.css -o ./public/styles/global.css --watch
 ```
 
 This command compiles the CSS and outputs it to the `public` folder, making it ready to link in your template.
 
 ### Conclusion
 
-You've now successfully integrated TailwindCSS with your Blutui project! This setup ensures that your site benefits from the rapid and efficient styling capabilities of TailwindCSS. Enjoy your streamlined development process!
+You've now successfully integrated Tailwind CSS with your Blutui project! This setup ensures that your site benefits from the rapid and efficient styling capabilities of Tailwind CSS. Enjoy your streamlined development process!

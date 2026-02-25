@@ -5,85 +5,100 @@ description: Learn how to use Tailwind CSS in your Blutui project.
 
 ## Introduction
 
-TailwindCSS is a utility-first CSS framework that allows for rapid development of web interfaces. This guide will walk you through integrating TailwindCSS with your Blutui project.
+Tailwind CSS is a utility-first CSS framework that allows for rapid development of web interfaces. This guide will walk you through integrating TailwindCSS with your Blutui project.
 
-## Prerequisites
+### Starting a New Project
+
+To create a new Blutui project with Tailwind CSS pre-configured, use the Courier CLI. This setup streamlines your workflow by automating the initial boilerplate.
+
+#### 1. Run the Create Command
+
+```bash
+courier create
+```
+
+#### 2. Configure Your Canvas
+
+```bash
+-> ~ courier create
+ ✔ What is your project name? > [project-handle]
+ ? Which Canvas would you like to use?
+   | base
+   | Bare bones Canvas for Blutui.
+
+   | tailwindcss
+   | Bare bones Canvas with Tailwind CSS for Blutui.
+
+   | tailwindcss-js
+   | Bare bones Canvas with Tailwind CSS + Parcel.js for Blutui.
+
+   | headless-nextjs-blank
+   | Bare bones Next.js Canvas for Blutui Headless.
+```
+
+<Callout>
+  Choose **tailwindcss** for a standard setup or **tailwindcss-js** if you require **Parcel.js** for custom JavaScript
+  functionality.
+</Callout>
+
+#### 3. Verification
+
+Once the process completes, your project is fully initialized and Tailwind CSS is ready for use.
+
+<Callout>
+  To learn how to launch and view your new project, head over to the [Running Your
+  Project](/docs/getting-started/running-project).
+</Callout>
+
+### Existing Project
+
+If you already have a Blutui project and want to add Tailwind CSS manually, follow these steps to add it into your current project.
+
+### Prerequisites
 
 - A Blutui project set up and ready to go.
-- A package manager (`npm`, `pnpm`, `yarn`, or `bun`) installed. If not, refer to the using a package manager in a Blutui project guide.
+- A package manager (`npm`, `pnpm`, `yarn`, or `bun`) installed.
 
-## Getting started
+### Getting started
 
-<Steps>
-<Step>
-### Installing Tailwind CSS
-Open your terminal or command prompt and navigate to your Blutui project directory. Begin by installing TailwindCSS using:
+#### 1. Installing Tailwind CSS
 
-```npm
-npm install -D tailwindcss postcss
-```
-
-Initialise the configuration for TailwindCSS with:
+Open your terminal or command prompt and navigate to your Blutui project directory. Begin by installing Tailwind CSS using:
 
 ```npm
-npx tailwindcss init
+npm install -D tailwindcss @tailwindcss/cli
 ```
 
-This command will create a `tailwind.config.js` file in your project root.
-</Step>
+#### 2. Import Tailwind in your CSS
 
-<Step>
-### Configure Tailwind CSS
-Add the following configuration to `tailwind.config.js` under the `content` key to instruct TailwindCSS where to look for classes:
+Add the import to your global CSS file.
 
-```js
-content: [
-  "./views/**/*.{canvas,html}",
-],
-```
-</Step>
-
-<Step>
-### Setting up the source directory
-Create a `src` folder at the root of your project, so you have `src`, `public`, and `views` folders. This structure allows TailwindCSS to only compile the classes you're using. Inside the `src` folder, create a `styles` sub-folder and then add a `main.css` file within it. Add the following directives in the `main.css` file:
-
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+```css tab="src/styles/global.css"
+@import 'tailwindcss';
 ```
 
-</Step>
+#### 3. Default template
 
-<Step>
-### Compiling Tailwind CSS
+Add the following snippet to the `<head>` of the default template to link the compiled CSS file.
+
+```canvas tab="views/templates/default.html"
+<head>
+<!--Existing code above-->
+{{ asset('styles/global.css') | stylesheet_tag }}
+{% block styles %}{% endblock %}
+</head>
+```
+
+#### 4. Compiling Tailwind CSS
+
 Execute the following command:
 
 ```npm
-npx tailwindcss -i ./src/styles/main.css -o ./public/main.css --watch
+npx @tailwindcss/cli -i ./src/styles/global.css -o ./public/styles/global.css --watch
 ```
 
 This command compiles the CSS and outputs it to the `public` folder, making it ready to link in your template.
-</Step>
 
-<Step>
-### Integrating Tailwind CSS with Parcel.js
-If you're using Parcel in your Blutui project and need to set it up, refer to the guide on [setting up Parcel with Blutui](/guides/use-parcel-js-in-a-project).
+### Conclusion
 
-Next, create a `.postcssrc` file at the root of your project (next to the `tailwind.config.js` file) and add the following configuration:
-
-```js
-{
-  plugins: {
-    tailwindcss: {}
-  }
-}
-```
-
-Now, direct Parcel to compile the CSS file. With the above configuration, Parcel should successfully compile your TailwindCSS styles.
-</Step>
-</Steps>
-
-## Conclusion
-
-You've now successfully integrated TailwindCSS with your Blutui project! This setup ensures that your site benefits from the rapid and efficient styling capabilities of TailwindCSS. Enjoy your streamlined development process!
+You've now successfully integrated Tailwind CSS with your Blutui project! This setup ensures that your site benefits from the rapid and efficient styling capabilities of Tailwind CSS. Enjoy your streamlined development process!

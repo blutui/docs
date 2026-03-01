@@ -1,7 +1,7 @@
 ---
 title: 'Retrieve page'
 description: 'Retrieve a page for a project.'
-api: 'GET {handle}.blutui.com/admin/api/pages/{id}'
+api: 'GET {handle}.blutui.com/api/pages/{id}'
 ---
 
 ### Path parameters
@@ -15,14 +15,14 @@ api: 'GET {handle}.blutui.com/admin/api/pages/{id}'
 ```ts tab="Node.js"
 import Blutui from 'blutui'
 
-const blutui = new Blutui('ey....')
+const blutui = new Blutui('bt_publishable_....')
 
 blutui.project('one').pages.get('99d401fe-8a1a-486f-9f1a-9c0c3fbe8caf')
 ```
 
 ```bash tab="cURL"
 curl -X GET 'https://{handle}.blutui.com/api/pages/99d401fe-8a1a-486f-9f1a-9c0c3fbe8caf' \
-     -H 'Authorization: Bearer ey....' \
+     -H 'Authorization: Bearer bt_publishable_....' \
      -H 'Content-Type: application/json'
 ```
 

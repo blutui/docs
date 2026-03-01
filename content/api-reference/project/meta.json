@@ -1,5 +1,5 @@
 {
   "$schema": "../../../.source/json-schema/docs.meta.json",
   "title": "Project API",
-  "pages": ["authentication", "blogs", "posts", "pages"]
+  "pages": ["authentication", "blogs", "posts", "forms", "pages"]
 }

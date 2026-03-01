@@ -17,5 +17,5 @@ Here's how to authenticate with an access token using cURL:
 
 ```bash title="Example request with bearer token">
 curl https://{handle}.blutui.com/api/menus \
-  -H 'Authorization: Bearer ey....'
+  -H 'Authorization: Bearer bt_publishable_....'
 ```

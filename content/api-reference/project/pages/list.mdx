@@ -23,14 +23,14 @@ api: 'GET {handle}.blutui.com/api/pages'
 ```ts tab="Node.js"
 import Blutui from 'blutui'
 
-const blutui = new Blutui('ey....')
+const blutui = new Blutui('bt_publishable_....')
 
-blutui.project('one').admin.pages.list()
+blutui.project('one').pages.list()
 ```
 
 ```bash tab="cURL"
-curl -X GET 'https://{handle}.blutui.com/admin/api/pages' \
-     -H 'Authorization: Bearer ey....' \
+curl -X GET 'https://{handle}.blutui.com/api/pages' \
+     -H 'Authorization: Bearer bt_publishable_....' \
      -H 'Content-Type: application/json'
 ```
 

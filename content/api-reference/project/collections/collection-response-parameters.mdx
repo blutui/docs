@@ -1,0 +1,75 @@
+---
+title: Collection response parameters
+---
+
+<Parameter name="id" type="string">
+The unique identifier for this collection.
+</Parameter>
+
+<Parameter name="object" type="string">
+This will always contain `collection` for this endpoint.
+</Parameter>
+
+<Parameter name="name" type="string">
+The name of this collection.
+</Parameter>
+
+<Parameter name="handle" type="string">
+The unique handle for this collection.
+</Parameter>
+
+<Parameter name="fields" type="array">
+The list of fields for this collection.
+</Parameter>
+
+<Parameter name="fields.*.id" type="string">
+The unique identifier for the collection field.
+</Parameter>
+
+<Parameter name="fields.*.name" type="string">
+The name of the collection field.
+</Parameter>
+
+<Parameter name="fields.*.label" type="string">
+The user friendly label of the collection field.
+</Parameter>
+
+<Parameter name="fields.*.type" type="string">
+The type of the collection field.
+</Parameter>
+
+<Parameter name="fields.*.default_value" type="string | null">
+The default value of the collection field.
+</Parameter>
+
+<Parameter name="fields.*.help_text" type="string | null">
+The description of what the collection field is for.
+</Parameter>
+
+<Parameter name="fields.*.required" type="boolean">
+Whether the collection field is required or not.
+</Parameter>
+
+<Parameter name="fields.*.order" type="number">
+The order of the collection field.
+</Parameter>
+
+<Parameter name="links" type="array">
+The list of links for this collection.
+</Parameter>
+
+<Parameter name="parent_links" type="array">
+The list of parent links for this collection.
+</Parameter>
+
+<Parameter name="deleted_at" type="string | null">
+The date and time when the collection was deleted.
+</Parameter>
+
+<Parameter name="created_at" type="string">
+The date and time when the collection was created.
+</Parameter>
+
+<Parameter name="updated_at" type="string">
+The date and time when the collection was updated.
+</Parameter>

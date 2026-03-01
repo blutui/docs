@@ -1,0 +1,37 @@
+---
+title: 'Retrieve menu'
+description: 'Retrieve a menu and menu items for a project.'
+api: 'GET {handle}.blutui.com/api/menus/{id}'
+---
+
+### Path parameters
+
+<Parameter name="id" type="string" required="true">
+  The ID of the menu to retrieve.
+</Parameter>
+
+### Query parameters
+
+<Parameter name="expand" type="string[]">
+  Expand the response for the given items. Expand array accepts `items`.
+</Parameter>
+
+### Response
+
+```ts tab="Node.js"
+import Blutui from 'blutui'
+
+const blutui = new Blutui('bt_publishable_....')
+
+blutui.project('one').menus.get('9a5b0b29-a4f8-4df6-bf53-f282af312686')
+```
+
+```bash tab="cURL"
+curl -X GET 'https://{handle}.blutui.com/api/menus/9a5b0b29-a4f8-4df6-bf53-f282af312686' \
+     -H 'Authorization: Bearer bt_publishable_....' \
+     -H 'Content-Type: application/json'
+```
+
+<include>./menu-response.mdx</include>
+
+<include>./menu-response-parameters.mdx</include>

@@ -1,0 +1,49 @@
+---
+title: 'List all pages'
+description: 'List all pages for a project.'
+api: 'GET {handle}.blutui.com/api/pages'
+---
+
+### Query parameters
+
+<Parameter name="limit" type="integer | default: 10">
+  Limit the number of objects to return, ranging between 1 and 20.
+</Parameter>
+
+<Parameter name="page" type="integer | default: 1">
+  The current page used to display the pagination results.
+</Parameter>
+
+<Parameter name="expand" type="string[]">
+  Expand the response for the given items. Expand array accepts `list`.
+</Parameter>
+
+### Response
+
+```ts tab="Node.js"
+import Blutui from 'blutui'
+
+const blutui = new Blutui('bt_publishable_....')
+
+blutui.project('one').pages.list()
+```
+
+```bash tab="cURL"
+curl -X GET 'https://{handle}.blutui.com/api/pages' \
+     -H 'Authorization: Bearer bt_publishable_....' \
+     -H 'Content-Type: application/json'
+```
+
+<include>./page-response-list.mdx</include>
+
+<Parameter name="object" type="string">
+  This will always contain `list` for this endpoint.
+</Parameter>
+
+<Parameter name="data" type="array">
+  An array of up to `limit` page resources. If no pages are available, an empty array is returned.
+</Parameter>
+
+<Parameter name="meta" type="object">
+  Additional information about the list.
+</Parameter>

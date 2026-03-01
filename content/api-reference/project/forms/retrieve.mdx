@@ -1,0 +1,31 @@
+---
+title: 'Retrieve form'
+description: 'Retrieve a form for a project.'
+api: 'GET {handle}.blutui.com/api/forms/{id}'
+---
+
+### Path parameters
+
+<Parameter name="id" type="string" required="true">
+  The ID of the form to retrieve.
+</Parameter>
+
+### Response
+
+```ts tab="Node.js"
+import Blutui from 'blutui'
+
+const blutui = new Blutui('bt_publishable_....')
+
+blutui.project('one').forms.get('0195b657-82dd-718a-8092-9ea39771ec83')
+```
+
+```bash tab="cURL"
+curl -X GET 'https://{handle}.blutui.com/api/forms/0195b657-82dd-718a-8092-9ea39771ec83' \
+     -H 'Authorization: Bearer bt_publishable_....' \
+     -H 'Content-Type: application/json'
+```
+
+<include>./form-response.mdx</include>
+
+<include>./form-response-parameters.mdx</include>

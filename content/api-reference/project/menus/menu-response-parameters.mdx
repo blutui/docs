@@ -1,0 +1,71 @@
+---
+title: Menu response parameters
+---
+
+<Parameter name="id" type="string">
+The unique identifier for this menu.
+</Parameter>
+
+<Parameter name="object" type="string">
+This will always contain `menu` for this endpoint.
+</Parameter>
+
+<Parameter name="name" type="string">
+The name of this menu.
+</Parameter>
+
+<Parameter name="handle" type="string">
+The unique slug for this menu.
+</Parameter>
+
+<Parameter name="items" type="array">
+The items of this menu.
+</Parameter>
+
+<Parameter name="items.*.id" type="string">
+The unique identifier for the menu item.
+</Parameter>
+
+<Parameter name="items.*.object" type="string">
+This will always contain `menu_item`.
+</Parameter>
+
+<Parameter name="items.*.label" type="string">
+This label for the menu item.
+</Parameter>
+
+<Parameter name="items.*.url" type="string">
+The URL for the menu item.
+</Parameter>
+
+<Parameter name="items.*.active" type="string">
+Whether the menu item is active or not.
+</Parameter>
+
+<Parameter name="items.*.is_new_tab" type="string">
+Whether the menu item should open in a new tab or not.
+</Parameter>
+
+<Parameter name="items.*.order" type="string">
+The order of the menu item in the list.
+</Parameter>
+
+<Parameter name="items.*.items" type="string">
+The submenu items for this menu item.
+</Parameter>
+
+<Parameter name="items.*.created_at" type="string">
+The menu item's created at timestamp.
+</Parameter>
+
+<Parameter name="items.*.updated_at" type="string">
+The menu item's created at timestamp.
+</Parameter>
+
+<Parameter name="created_at" type="timestamp">
+The menu's created at timestamp.
+</Parameter>
+
+<Parameter name="updated_at" type="timestamp">
+The menu's updated at timestamp.
+</Parameter>

@@ -1,0 +1,31 @@
+---
+title: 'Retrieve blog'
+description: 'Retrieve a blog for a project.'
+api: 'GET {handle}.blutui.com/admin/api/blogs/{id}'
+---
+
+### Path parameters
+
+<Parameter name="id" type="string" required="true">
+  The ID of the blog to retrieve.
+</Parameter>
+
+### Response
+
+```ts tab="Node.js"
+import Blutui from 'blutui'
+
+const blutui = new Blutui('bt_publishable_....')
+
+blutui.project('one').blogs.get('99e2addd-e8d2-45c3-8184-fbcae8a6cf29')
+```
+
+```bash tab="cURL"
+curl -X GET 'https://{handle}.blutui.com/api/blogs/99e2addd-e8d2-45c3-8184-fbcae8a6cf29' \
+     -H 'Authorization: Bearer bt_publishable_....' \
+     -H 'Content-Type: application/json'
+```
+
+<include>./blog-response.mdx</include>
+
+<include>./blog-response-parameters.mdx</include>

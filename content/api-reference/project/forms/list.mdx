@@ -1,0 +1,49 @@
+---
+title: 'List all forms'
+description: 'List all forms for a project.'
+api: 'GET {handle}.blutui.com/api/forms'
+---
+
+### Query parameters
+
+<Parameter name="limit" type="integer | default: 10">
+  Limit the number of objects to return, ranging between 1 and 20.
+</Parameter>
+
+<Parameter name="page" type="integer | default: 1">
+  The current page used to display the pagination results.
+</Parameter>
+
+<Parameter name="expand" type="string[]">
+  Expand the response for the given items. Expand array accepts: `fields`.
+</Parameter>
+
+### Response
+
+```ts tab="Node.js"
+import Blutui from 'blutui'
+
+const blutui = new Blutui('bt_publishable_....')
+
+blutui.project('one').forms.list()
+```
+
+```bash tab="cURL"
+curl -X GET 'https://{handle}.blutui.com/api/forms' \
+     -H 'Authorization: Bearer bt_publishable_....' \
+     -H 'Content-Type: application/json'
+```
+
+<include>./form-response-list.mdx</include>
+
+<Parameter name="object" type="string">
+  This will always contain `list` for this endpoint.
+</Parameter>
+
+<Parameter name="data" type="array">
+  An array of up to `limit` form resources. If no forms are available, an empty array is returned.
+</Parameter>
+
+<Parameter name="meta" type="object">
+  Additional information about the list.
+</Parameter>

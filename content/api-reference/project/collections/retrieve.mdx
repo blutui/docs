@@ -1,0 +1,31 @@
+---
+title: 'Retrieve collection'
+description: 'Retrieve a collection for a project.'
+api: 'GET {handle}.blutui.com/api/collections/{id}'
+---
+
+### Path parameters
+
+<Parameter name="id" type="string" required>
+  The ID of the collection to retrieve.
+</Parameter>
+
+### Response
+
+```ts tab="Node.js"
+import Blutui from 'blutui'
+
+const blutui = new Blutui('bt_publishable_....')
+
+blutui.project('one').collections.get('0195b544-bc46-7223-851d-3ce553b11ae6')
+```
+
+```bash tab="cURL"
+curl -X GET 'https://{handle}.blutui.com/api/collections/0195b544-bc46-7223-851d-3ce553b11ae6' \
+     -H 'Authorization: Bearer bt_publishable_....' \
+     -H 'Content-Type: application/json'
+```
+
+<include>./collection-response.mdx</include>
+
+<include>./collection-response-parameters.mdx</include>

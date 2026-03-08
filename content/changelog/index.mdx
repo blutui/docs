@@ -174,500 +174,438 @@ description: A continuous stream of changes made to the Blutui platform.
   Fixed the dates and times to respect the timezone of the project.
 </Changelog>
 
-<Changelog date="2024-07-25">
-<Badge tone="success">Added</Badge>
-
-- Added `role` resource in the [Console API](/api-reference/console). You can now manage roles and permissions in your agency through the API.
+<Changelog date="2024-07-25" type="Added" app="Console API">
+  Added `role` resource in the [Console API](/api-reference/console). You can now manage roles and permissions in your agency through the API.
 </Changelog>
 
-<Changelog date="2024-07-23">
-<Badge tone="success">Added</Badge>
-
-- Added support for `controls` and `autoplay` HTML attributes in the [audio](/canvas/functions/canopy/cms-audio) and [video](/docs/canvas/functions/canopy/cms-video) **Canopy** components.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed styling issue with the archived projects view in the **Agency Console**.
-- Fixed issues related to touch devices when using **Canopy**.
+<Changelog date="2024-07-23" type="Added" app="Canopy">
+  Added support for `controls` and `autoplay` HTML attributes in the [audio](/canvas/functions/canopy/cms-audio) and [video](/docs/canvas/functions/canopy/cms-video) **Canopy** components.
 </Changelog>
 
-<Changelog date="2024-07-16">
-<Badge tone="success">Added</Badge>
-
-- Added `agency` resource in the [API](/api/agencies/list). You can now manage your agency through the API.
-
-<Badge tone="info">Changed</Badge>
-
-- Changed the `primary_domain_id` response property to `primary_domain` in the [`project` resource](/api-reference/console/projects/retrieve#response) to make it consistent with the value passed to the `expand` query parameter.
+<Changelog date="2024-07-23" type="Fixed" app="Console">
+  Fixed styling issue with the archived projects view in the **Agency Console**.
 </Changelog>
 
-<Changelog date="2024-07-11">
-<Badge tone="success">Added</Badge>
-
-- Added a `search` endpoint to the `project` resource in the [Console API](/api-reference/console). You can now search for projects in your agency through the API.
+<Changelog date="2024-07-23" type="Fixed" app="Canopy">
+  Fixed issues related to touch devices when using **Canopy**.
 </Changelog>
 
-<Changelog date="2024-07-09">
-<Badge tone="success">Added</Badge>
-
-- Added `project` resource in the [Console API](/api-reference/console). You can now manage projects, including publishing, unpublishing, and viewing a project's domains directly in your agency through the API.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue where projects wouldn't show correctly when managing a team members access in the **Agency Console**.
+<Changelog date="2024-07-16" type="Added" app="Console API">
+  Added `agency` resource in the [API](/api/agencies/list). You can now manage your agency through the API.
 </Changelog>
 
-<Changelog date="2024-07-04">
-<Badge tone="info">Changed</Badge>
-
-- Changed the Blutui authentication screens to make switching between [login](https://auth.blutui.com/login) and [register](https://auth.blutui.com/register) easier.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue where project domains wouldn't show correctly in the **Agency Console**.
+<Changelog date="2024-07-16" type="Changed" app="Console API">
+  Changed the `primary_domain_id` response property to `primary_domain` in the [`project` resource](/api-reference/console/projects/retrieve#response) to make it consistent with the value passed to the `expand` query parameter.
 </Changelog>
 
-<Changelog date="2024-05-27">
-<Badge tone="info">Changed</Badge>
-
-- Changed the "Project Domains" screen in the **Agency Console** to simplify the process of adding new domains to a project.
-
-- Changed [Update domain](/api-reference/console/domains/update) API to ensure a `project` parameter is required in the body of the request.
+<Changelog date="2024-07-11" type="Added" app="Console API">
+  Added a `search` endpoint to the `project` resource in the [Console API](/api-reference/console). You can now search for projects in your agency through the API.
 </Changelog>
 
-<Changelog date="2024-05-20">
-<Badge tone="success">Added</Badge>
-
-- Added `domain` resource to the [Console API](/api-reference/console). This allows you to manage domains in your agency directly through the API.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed syntax error on the output of the **Blutui Canopy** `list` component.
+<Changelog date="2024-07-09" type="Added" app="Console API">
+  Added `project` resource in the [Console API](/api-reference/console). You can now manage projects, including publishing, unpublishing, and viewing a project's domains directly in your agency through the API.
 </Changelog>
 
-<Changelog date="2024-05-07">
-<Badge tone="success">Added</Badge>
-
-- Added `brand` resource to the [Console API](/api-reference/console). This allows you to manage your agency's brand directly through the API.
-
-- Added [`blutui`](https://www.npmjs.com/package/blutui) Node.js SDK to simplify interaction with Blutui APIs.
+<Changelog date="2024-07-09" type="Fixed" app="Console">
+  Fixed an issue where projects wouldn't show correctly when managing a team members access in the **Agency Console**.
 </Changelog>
 
-<Changelog date="2024-05-06">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed the order of form submissions in the form submission CSV export file.
+<Changelog date="2024-07-04" type="Changed">
+  Changed the Blutui authentication screens to make switching between [login](https://auth.blutui.com/login) and [register](https://auth.blutui.com/register) easier.
 </Changelog>
 
-<Changelog date="2024-05-03">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed issues when creating a new role in the **Agency Console**.
+<Changelog date="2024-07-04" type="Fixed" app="Console">
+  Fixed an issue where project domains wouldn't show correctly in the **Agency Console**.
 </Changelog>
 
-<Changelog date="2024-04-29">
-<Badge tone="info">Changed</Badge>
-
-- Changed the look and feel of the Blutui authentication screens.
+<Changelog date="2024-05-27" type="Changed" app="Console">
+  Changed the "Project Domains" screen in the **Agency Console** to simplify the process of adding new domains to a project.
 </Changelog>
 
-<Changelog date="2024-04-17">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed rendering issues with the [`{% form>` tag](/docs/canvas/tags/form).
+<Changelog date="2024-05-27" type="Changed" app="Console API">
+  Changed [Update domain](/api-reference/console/domains/update) API to ensure a `project` parameter is required in the body of the request.
 </Changelog>
 
-<Changelog date="2024-04-08">
-<Badge tone="info">Changed</Badge>
-
-- Changed the site deletion feature in the **Agency Console** to permanently remove the site after a 30-day period. Previously, the site would be instantly deleted.
+<Changelog date="2024-05-20" type="Added" app="Console API">
+  Added `domain` resource to the [Console API](/api-reference/console). This allows you to manage domains in your agency directly through the API.
 </Changelog>
 
-<Changelog date="2024-03-25">
-<Badge tone="info">Changed</Badge>
-
-- Changed the **Agency Console** URL from:
-  - `blutui.com/app` -> `console.blutui.com`
-- Changed the **Blutui API** URL from:
-  - `blutui.com/api` -> `api.blutui.com/v1`
-- Changed the **OAuth** URL from:
-  - `blutui.com/oauth` -> `auth.blutui.com/oauth`
+<Changelog date="2024-05-20" type="Fixed" app="Canopy">
+  Fixed syntax error on the output of the **Blutui Canopy** `list` component.
 </Changelog>
 
-<Changelog date="2024-03-15">
-<Badge tone="success">Added</Badge>
-
-- Added 2 new API's to the platform:
-  - `GET` `/v1/user` - Retrieve the current user.
-  - `GET` `/v1/user/email` - Retrieve the current user's email address
+<Changelog date="2024-05-07" type="Added" app="Console API">
+  Added `brand` resource to the [Console API](/api-reference/console). This allows you to manage your agency's brand directly through the API.
 </Changelog>
 
-<Changelog date="2024-03-12">
-<Badge tone="success">Added</Badge>
-
-- Added the ability to create Blutui OAuth apps through the **Agency Console**.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed the date format in the form submission CSV export.
+<Changelog date="2024-05-07" type="Added">
+  Added [`blutui`](https://www.npmjs.com/package/blutui) Node.js SDK to simplify interaction with Blutui APIs.
 </Changelog>
 
-<Changelog date="2024-01-22">
-<Badge tone="success">Added</Badge>
-
-- Added favicons for project images in the **Agency Console**.
-- Added [`image_url`](/docs/canvas/filters/image_url) filter to the **Canvas** templating language, to allow you to retrieve an optimised image.
-
-<Badge tone="warning">Removed</Badge>
-
-- Removed the refresh domain button on the domain list view in the **Agency Console**.
+<Changelog date="2024-05-06" type="Fixed" app="Dashboard">
+  Fixed the order of form submissions in the form submission CSV export file.
 </Changelog>
 
-<Changelog date="2024-01-15">
-<Badge tone="success">Added</Badge>
-
-- Added the ability to add a SEO title and SEO description to blog posts in the **Dashboard**.
-- Added the ability to view `webp` image thumbnails in the **Dashboard**.
+<Changelog date="2024-05-03" type="Fixed" app="Console">
+  Fixed issues when creating a new role in the **Agency Console**.
 </Changelog>
 
-<Changelog date="2023-12-21">
-<Badge tone="success">Added</Badge>
-
-- Added the ability to preview `.webp` and `.webm` files in the **Dashboard**.
-- Added improved navigation to the user profile view in the **Agency Console**.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue with buttons on the blog view in the **Dashboard**.
-- Fixed an issue where buttons would sometimes appear white in email communications.
+<Changelog date="2024-04-29" type="Changed">
+  Changed the look and feel of the Blutui authentication screens.
 </Changelog>
 
-<Changelog date="2023-10-20">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed the **Collection Link** UI in the **Dashboard**.
-- Fixed an issue with updating payment methods in the **Agency Console**.
+<Changelog date="2024-04-17" type="Fixed" app="Canvas">
+  Fixed rendering issues with the [`{% form>` tag](/docs/canvas/tags/form).
 </Changelog>
 
-<Changelog date="2023-10-17">
-<Badge tone="success">Added</Badge>
-
-- Added new **[`{% form>`](/docs/canvas/tags/form)** **Canvas** tag. Designed to improve the experience of creating forms in your **Canvas** files.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue in the **Project** routing system that sometimes caused a 404 page for dynamic pages.
+<Changelog date="2024-04-08" type="Changed" app="Console">
+  Changed the site deletion feature in the **Agency Console** to permanently remove the site after a 30-day period. Previously, the site would be instantly deleted.
 </Changelog>
 
-<Changelog date="2023-10-05">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed file uploads in the **Dashboard**.
+<Changelog date="2024-03-25" type="Changed" app="Console">
+  Changed the **Agency Console** URL from `blutui.com/app` to `console.blutui.com`.
 </Changelog>
 
-<Changelog date="2023-10-04">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed **Project** routing system to improve stability.
+<Changelog date="2024-03-25" type="Changed" app="Console API">
+  Changed the **Blutui API** URL from `blutui.com/api` to `api.blutui.com/v1`.
 </Changelog>
 
-<Changelog date="2023-09-22">
-<Badge tone="success">Added</Badge>
-
-- Added support for adding content for multiple languages in the **Dashboard**.
-
-<Badge tone="info">Changed</Badge>
-
-- Changed form submission email to include no branding.
+<Changelog date="2024-03-25" type="Changed">
+  Changed the **OAuth** URL from `blutui.com/oauth` to `auth.blutui.com/oauth`.
 </Changelog>
 
-<Changelog date="2023-09-12">
-<Badge tone="success">Added</Badge>
-
-- Added the ability to click an entry row to edit the collection entry in the **Dashboard**.
-- Added the ability to view "Pending invitations" in the **Dashboard** user settings view.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed search links in the **Dashboard**.
+<Changelog date="2024-03-15" type="Added" app="User API">
+  Added 2 new API's to the platform: `GET /v1/user` to retrieve the current user, and `GET /v1/user/email` to retrieve the current user's email address.
 </Changelog>
 
-<Changelog date="2023-09-06">
-<Badge tone="success">Added</Badge>
-
-- Added webhook support to projects. The first release of webhooks includes the following events:
-  - `form.created`
-  - `form.deleted`
-  - `form.updated`
-  - `form.submission.created`
-  - `form.submission.deleted`
-  - `post.created`
-
-- Added updated settings UI in the **Dashboard**. It's now easier to see all available settings for a project.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed help text for code injection settings view in the **Dashboard**.
+<Changelog date="2024-03-12" type="Added" app="Console">
+  Added the ability to create Blutui OAuth apps through the **Agency Console**.
 </Changelog>
 
-<Changelog date="2023-07-28">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue with links redirecting users to the development project, in the project admin bar.
+<Changelog date="2024-03-12" type="Fixed" app="Dashboard">
+  Fixed the date format in the form submission CSV export.
 </Changelog>
 
-<Changelog date="2023-07-17">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue with emails where the buttons where sometimes invisible.
+<Changelog date="2024-01-22" type="Added" app="Console">
+  Added favicons for project images in the **Agency Console**.
 </Changelog>
 
-<Changelog date="2023-06-20">
-<Badge tone="warning">Removed</Badge>
-
-- Removed **Blutui** logo from the project admin bar.
+<Changelog date="2024-01-22" type="Added" app="Canvas">
+  Added [`image_url`](/docs/canvas/filters/image_url) filter to the **Canvas** templating language, to allow you to retrieve an optimised image.
 </Changelog>
 
-<Changelog date="2023-06-08">
-<Badge tone="success">Added</Badge>
-
-- Added a new and improved project creation system to the **Agency Console**.
-- Added you agency's whitelabel logo to **Canopy** in your client's project.
+<Changelog date="2024-01-22" type="Removed" app="Console">
+  Removed the refresh domain button on the domain list view in the **Agency Console**.
 </Changelog>
 
-<Changelog date="2023-05-26">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed several minor UI inconsistencies in the **Dashboard**, including small changes to the form builder.
+<Changelog date="2024-01-15" type="Added" app="Dashboard">
+  Added the ability to add a SEO title and SEO description to blog posts in the **Dashboard**.
 </Changelog>
 
-<Changelog date="2023-05-18">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed several minor UI inconsistencies in the **Agency Console**.
+<Changelog date="2024-01-15" type="Added" app="Dashboard">
+  Added the ability to view `webp` image thumbnails in the **Dashboard**.
 </Changelog>
 
-<Changelog date="2023-05-11">
-<Badge tone="success">Added</Badge>
-
-- Added the ability to enable two-step authentication on the **Agency Console** to increase your account's security.
+<Changelog date="2023-12-21" type="Added" app="Dashboard">
+  Added the ability to preview `.webp` and `.webm` files in the **Dashboard**.
 </Changelog>
 
-<Changelog date="2023-05-01">
-<Badge tone="info">Changed</Badge>
-
-- Changed emails sent (form submissions, invite user, etc.) by your projects to include your agency's logo.
+<Changelog date="2023-12-21" type="Added" app="Console">
+  Added improved navigation to the user profile view in the **Agency Console**.
 </Changelog>
 
-<Changelog date="2023-04-27">
-<Badge tone="success">Added</Badge>
-
-- Added a brand new starter **Canvas** to show you how to get started with your newly created project.
-
-<Badge tone="info">Changed</Badge>
-
-- Changed "Start building" component on the Project page in the **Agency Console**, to show more information on how to get started.
+<Changelog date="2023-12-21" type="Fixed" app="Dashboard">
+  Fixed an issue with buttons on the blog view in the **Dashboard**.
 </Changelog>
 
-<Changelog date="2023-04-17">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue in the **Dashboard** that showed two "Cancel" buttons.
-- Fixed an issue in the **Agency Console** where the "Add domain" modal wouldn't suggest `www` for root domains.
-- Fixed an issue in the **Agency Console** where the site tranfer list wouldn't show on the Projects page.
-- Fixed an issue in the **Agency Console** where the "Archive project" modal wouldn't open.
+<Changelog date="2023-12-21" type="Fixed">
+  Fixed an issue where buttons would sometimes appear white in email communications.
 </Changelog>
 
-<Changelog date="2023-04-11">
-<Badge tone="info">Changed</Badge>
-
-- Changed how production project's are cached to improve page load speed.
+<Changelog date="2023-10-20" type="Fixed" app="Dashboard">
+  Fixed the **Collection Link** UI in the **Dashboard**.
 </Changelog>
 
-<Changelog date="2023-03-09">
-<Badge tone="success">Added</Badge>
-
-- Added improvements to Page URL's in the **Dashboard**, you can now create nested pages, eg. `/page/nested-page`.
-- Added the ability to archive forms in the **Dashboard**.
-
-<Badge tone="info">Changed</Badge>
-
-- Changed project archive UI in the **Agency Console**. You can now see when the project was archived.
-- Changed form builder and collection builder delete confirmation message to be more descriptive.
+<Changelog date="2023-10-20" type="Fixed" app="Console">
+  Fixed an issue with updating payment methods in the **Agency Console**.
 </Changelog>
 
-<Changelog date="2023-02-28">
-<Badge tone="info">Changed</Badge>
-
-- Changed route pattern UI in the **Dashboard** by adding a visual difference for dynamic and static patterns.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue with the search bar in the **Agency Console** domain UI.
+<Changelog date="2023-10-17" type="Added" app="Canvas">
+  Added new **[`{% form>`](/docs/canvas/tags/form)** **Canvas** tag. Designed to improve the experience of creating forms in your **Canvas** files.
 </Changelog>
 
-<Changelog date="2023-02-13">
-<Badge tone="info">Changed</Badge>
-
-- Changed Agency selector to only show in the **Agency Console** if you're in more than 1 agency.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Number validation for Collection fields without a `min` or `max` value.
+<Changelog date="2023-10-17" type="Fixed" app="Projects">
+  Fixed an issue in the **Project** routing system that sometimes caused a 404 page for dynamic pages.
 </Changelog>
 
-<Changelog date="2023-02-03">
-<Badge tone="info">Changed</Badge>
-
-- Changed **Collection Entries** and **Form Submissions** view in the **Dashboard** to show `3` values instead of `5` values per record.
+<Changelog date="2023-10-05" type="Fixed" app="Dashboard">
+  Fixed file uploads in the **Dashboard**.
 </Changelog>
 
-<Changelog date="2023-01-19">
-<Badge tone="success">Added</Badge>
-
-- Added an improved domain management UI to the **Agency Console**.
+<Changelog date="2023-10-04" type="Fixed" app="Projects">
+  Fixed **Project** routing system to improve stability.
 </Changelog>
 
-<Changelog date="2023-01-13">
-<Badge tone="success">Added</Badge>
-
-- Added the ability to export form submissions as a CSV file.
-- Added support for special characters in page titles.
+<Changelog date="2023-09-22" type="Added" app="Dashboard">
+  Added support for adding content for multiple languages in the **Dashboard**.
 </Changelog>
 
-<Changelog date="2023-01-11">
-<Badge tone="success">Added</Badge>
-
-- Added a new look and feel to the agency console navigation menu.
-- Added the ability to limit access to projects for certain users. As an agency admin, you can now assign what projects are accessible for certain members of your team.
+<Changelog date="2023-09-22" type="Changed">
+  Changed form submission email to include no branding.
 </Changelog>
 
-<Changelog date="2022-11-23">
-<Badge tone="success">Added</Badge>
-
-- Added the ability to search users in the dashboard.
-- Added an improved page create and update UI in the dashboard.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue where newly added assets are added to the bottom of the assets view in the dashboard.
+<Changelog date="2023-09-12" type="Added" app="Dashboard">
+  Added the ability to click an entry row to edit the collection entry in the **Dashboard**.
 </Changelog>
 
-<Changelog date="2022-11-11">
-<Badge tone="success">Added</Badge>
-
-- Added support to create longer form labels. You can now create form labels that are upto `511` characters in length.
-- Added improved roles and permissions UI to the agency console.
+<Changelog date="2023-09-12" type="Added" app="Dashboard">
+  Added the ability to view "Pending invitations" in the **Dashboard** user settings view.
 </Changelog>
 
-<Changelog date="2022-11-01">
-<Badge tone="info">Changed</Badge>
-
-- Changed form submission UI to be more understandable by using the field label instead of the field name.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed forms UI to load forms and form submission faster.
-- Fixed nested collections cache issue on Blutui projects.
+<Changelog date="2023-09-12" type="Fixed" app="Dashboard">
+  Fixed search links in the **Dashboard**.
 </Changelog>
 
-<Changelog date="2022-10-20">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed button theme across all Blutui applications to inherit agency whitelabel features, if activated on Blutui's agency plan.
+<Changelog date="2023-09-06" type="Added" app="Projects">
+  Added webhook support to projects. The first release of webhooks includes the following events: `form.created`, `form.deleted`, `form.updated`, `form.submission.created`, `form.submission.deleted`, `post.created`.
 </Changelog>
 
-<Changelog date="2022-10-10">
-<Badge tone="success">Added</Badge>
-
-- Added staging link next to the staging password field in the Agency Console.
-
-<Badge tone="info">Changed</Badge>
-
-- Changed form creation flow. When creating a new form, you will no longer need to provide `handle` and `template` values, these values will automatically be filled based on the form name.
+<Changelog date="2023-09-06" type="Added" app="Dashboard">
+  Added updated settings UI in the **Dashboard**. It's now easier to see all available settings for a project.
 </Changelog>
 
-<Changelog date="2022-10-07">
-<Badge tone="success">Added</Badge>
-
-- Added a loading state on buttons when performing actions in the Agency Console and Dashboard.
+<Changelog date="2023-09-06" type="Fixed" app="Dashboard">
+  Fixed help text for code injection settings view in the **Dashboard**.
 </Changelog>
 
-<Changelog date="2022-09-05">
-<Badge tone="info">Changed</Badge>
-
-- Changed admin bar design. The new admin bar has a much smaller footprint and has been moved to the bottom left corner.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue with Canopy components not rendering correctly when it has no value.
+<Changelog date="2023-07-28" type="Fixed" app="Projects">
+  Fixed an issue with links redirecting users to the development project, in the project admin bar.
 </Changelog>
 
-<Changelog date="2022-09-02">
-<Badge tone="success">Added</Badge>
-
-- Added a new onboarding experience. You might notice that the next time you login to your agency console, you will be asked a few questions, these questions will help the platform display content that is most relevant to you.
+<Changelog date="2023-07-17" type="Fixed">
+  Fixed an issue with emails where the buttons where sometimes invisible.
 </Changelog>
 
-<Changelog date="2022-07-05">
-<Badge tone="success">Added</Badge>
-
-- Added Canvas filters to easily create HTML tags. [`image_tag`](/docs/canvas/filters/image_tag), `script_tag` and `stylesheet_tag` have been added.
-- Added much needed speed boost to Collections. Collections are now 2.5x - 3x more faster than before.
+<Changelog date="2023-06-20" type="Removed" app="Projects">
+  Removed **Blutui** logo from the project admin bar.
 </Changelog>
 
-<Changelog date="2022-05-27">
-<Badge tone="success">Added</Badge>
-
-- Added agency branding to the staging password page.
-
-<Badge tone="warning">Removed</Badge>
-
-- Removed mention of "Powered by Blutui".
+<Changelog date="2023-06-08" type="Added" app="Console">
+  Added a new and improved project creation system to the **Agency Console**.
 </Changelog>
 
-<Changelog date="2022-05-26">
-<Badge tone="info">Changed</Badge>
-
-- Changed collection creation flow. Now when you create a new Collection, all you need to do is give it a name and the `handle` is automatically created.
+<Changelog date="2023-06-08" type="Added" app="Canopy">
+  Added you agency's whitelabel logo to **Canopy** in your client's project.
 </Changelog>
 
-<Changelog date="2022-05-17">
-<Badge tone="success">Added</Badge>
-
-- Added improved site transfer system.
-- Added improved agency user invitation system.
+<Changelog date="2023-05-26" type="Fixed" app="Dashboard">
+  Fixed several minor UI inconsistencies in the **Dashboard**, including small changes to the form builder.
 </Changelog>
 
-<Changelog date="2022-04-14">
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed an issue with date and time format when viewed in Safari.
+<Changelog date="2023-05-18" type="Fixed" app="Console">
+  Fixed several minor UI inconsistencies in the **Agency Console**.
 </Changelog>
 
-<Changelog date="2022-03-28">
-<Badge tone="info">Changed</Badge>
-
-- Changed DNS automatic verification to only verify domains that are linked to a project.
+<Changelog date="2023-05-11" type="Added" app="Console">
+  Added the ability to enable two-step authentication on the **Agency Console** to increase your account's security.
 </Changelog>
 
-<Changelog date="2022-03-16">
-<Badge tone="success">Added</Badge>
-
-- Added support for `.webm` files in your project's assets area.
-
-<Badge tone="attention">Fixed</Badge>
-
-- Fixed DNS automatic verification to be more efficient when adding new domains.
+<Changelog date="2023-05-01" type="Changed">
+  Changed emails sent (form submissions, invite user, etc.) by your projects to include your agency's logo.
 </Changelog>
 
-<Changelog date="2022-02-16">
-<Badge tone="success">Added</Badge>
+<Changelog date="2023-04-27" type="Added" app="Canvas">
+  Added a brand new starter **Canvas** to show you how to get started with your newly created project.
+</Changelog>
 
-- Added autocomplete template paths. Now in your dashboard you can select a Canvas template from the dropdown or add your own path if you haven't created the template yet.
+<Changelog date="2023-04-27" type="Changed" app="Console">
+  Changed "Start building" component on the Project page in the **Agency Console**, to show more information on how to get started.
+</Changelog>
 
-<Badge tone="info">Changed</Badge>
+<Changelog date="2023-04-17" type="Fixed" app="Dashboard">
+  Fixed an issue in the **Dashboard** that showed two "Cancel" buttons.
+</Changelog>
 
-- Changed preferred developer community channel from Slack to [Discord](https://discord.gg/4H8dZW6Fva). Come join us on [Discord](https://discord.gg/4H8dZW6Fva), hang out with the Blutui developer team and ask us questions.
+<Changelog date="2023-04-17" type="Fixed" app="Console">
+  Fixed an issue in the **Agency Console** where the "Add domain" modal wouldn't suggest `www` for root domains.
+</Changelog>
 
+<Changelog date="2023-04-17" type="Fixed" app="Console">
+  Fixed an issue in the **Agency Console** where the site tranfer list wouldn't show on the Projects page.
+</Changelog>
+
+<Changelog date="2023-04-17" type="Fixed" app="Console">
+  Fixed an issue in the **Agency Console** where the "Archive project" modal wouldn't open.
+</Changelog>
+
+<Changelog date="2023-04-11" type="Changed" app="Projects">
+  Changed how production project's are cached to improve page load speed.
+</Changelog>
+
+<Changelog date="2023-03-09" type="Added" app="Dashboard">
+  Added improvements to Page URL's in the **Dashboard**, you can now create nested pages, eg. `/page/nested-page`.
+</Changelog>
+
+<Changelog date="2023-03-09" type="Added" app="Dashboard">
+  Added the ability to archive forms in the **Dashboard**.
+</Changelog>
+
+<Changelog date="2023-03-09" type="Changed" app="Console">
+  Changed project archive UI in the **Agency Console**. You can now see when the project was archived.
+</Changelog>
+
+<Changelog date="2023-03-09" type="Changed" app="Dashboard">
+  Changed form builder and collection builder delete confirmation message to be more descriptive.
+</Changelog>
+
+<Changelog date="2023-02-28" type="Changed" app="Dashboard">
+  Changed route pattern UI in the **Dashboard** by adding a visual difference for dynamic and static patterns.
+</Changelog>
+
+<Changelog date="2023-02-28" type="Fixed" app="Console">
+  Fixed an issue with the search bar in the **Agency Console** domain UI.
+</Changelog>
+
+<Changelog date="2023-02-13" type="Changed" app="Console">
+  Changed Agency selector to only show in the **Agency Console** if you're in more than 1 agency.
+</Changelog>
+
+<Changelog date="2023-02-13" type="Fixed" app="Dashboard">
+  Number validation for Collection fields without a `min` or `max` value.
+</Changelog>
+
+<Changelog date="2023-02-03" type="Changed" app="Dashboard">
+  Changed **Collection Entries** and **Form Submissions** view in the **Dashboard** to show `3` values instead of `5` values per record.
+</Changelog>
+
+<Changelog date="2023-01-19" type="Added" app="Console">
+  Added an improved domain management UI to the **Agency Console**.
+</Changelog>
+
+<Changelog date="2023-01-13" type="Added" app="Dashboard">
+  Added the ability to export form submissions as a CSV file.
+</Changelog>
+
+<Changelog date="2023-01-13" type="Added">
+  Added support for special characters in page titles.
+</Changelog>
+
+<Changelog date="2023-01-11" type="Added" app="Console">
+  Added a new look and feel to the agency console navigation menu.
+</Changelog>
+
+<Changelog date="2023-01-11" type="Added" app="Console">
+  Added the ability to limit access to projects for certain users. As an agency admin, you can now assign what projects are accessible for certain members of your team.
+</Changelog>
+
+<Changelog date="2022-11-23" type="Added" app="Dashboard">
+  Added the ability to search users in the dashboard.
+</Changelog>
+
+<Changelog date="2022-11-23" type="Added" app="Dashboard">
+  Added an improved page create and update UI in the dashboard.
+</Changelog>
+
+<Changelog date="2022-11-23" type="Fixed" app="Dashboard">
+  Fixed an issue where newly added assets are added to the bottom of the assets view in the dashboard.
+</Changelog>
+
+<Changelog date="2022-11-11" type="Added" app="Dashboard">
+  Added support to create longer form labels. You can now create form labels that are upto `511` characters in length.
+</Changelog>
+
+<Changelog date="2022-11-11" type="Added" app="Console">
+  Added improved roles and permissions UI to the agency console.
+</Changelog>
+
+<Changelog date="2022-11-01" type="Changed" app="Dashboard">
+  Changed form submission UI to be more understandable by using the field label instead of the field name.
+</Changelog>
+
+<Changelog date="2022-11-01" type="Fixed" app="Dashboard">
+  Fixed forms UI to load forms and form submission faster.
+</Changelog>
+
+<Changelog date="2022-11-01" type="Fixed" app="Projects">
+  Fixed nested collections cache issue on Blutui projects.
+</Changelog>
+
+<Changelog date="2022-10-20" type="Fixed">
+  Fixed button theme across all Blutui applications to inherit agency whitelabel features, if activated on Blutui's agency plan.
+</Changelog>
+
+<Changelog date="2022-10-10" type="Added" app="Console">
+  Added staging link next to the staging password field in the Agency Console.
+</Changelog>
+
+<Changelog date="2022-10-10" type="Changed" app="Dashboard">
+  Changed form creation flow. When creating a new form, you will no longer need to provide `handle` and `template` values, these values will automatically be filled based on the form name.
+</Changelog>
+
+<Changelog date="2022-10-07" type="Added" app="Console">
+  Added a loading state on buttons when performing actions in the Agency Console and Dashboard.
+</Changelog>
+
+<Changelog date="2022-09-05" type="Changed" app="Projects">
+  Changed admin bar design. The new admin bar has a much smaller footprint and has been moved to the bottom left corner.
+</Changelog>
+
+<Changelog date="2022-09-05" type="Fixed" app="Canopy">
+  Fixed an issue with Canopy components not rendering correctly when it has no value.
+</Changelog>
+
+<Changelog date="2022-09-02" type="Added">
+  Added a new onboarding experience. You might notice that the next time you login to your agency console, you will be asked a few questions, these questions will help the platform display content that is most relevant to you.
+</Changelog>
+
+<Changelog date="2022-07-05" type="Added" app="Canvas">
+  Added Canvas filters to easily create HTML tags. [`image_tag`](/docs/canvas/filters/image_tag), `script_tag` and `stylesheet_tag` have been added.
+</Changelog>
+
+<Changelog date="2022-07-05" type="Added">
+  Added much needed speed boost to Collections. Collections are now 2.5x - 3x more faster than before.
+</Changelog>
+
+<Changelog date="2022-05-27" type="Added">
+  Added agency branding to the staging password page.
+</Changelog>
+
+<Changelog date="2022-05-27" type="Removed">
+  Removed mention of "Powered by Blutui".
+</Changelog>
+
+<Changelog date="2022-05-26" type="Changed" app="Dashboard">
+  Changed collection creation flow. Now when you create a new Collection, all you need to do is give it a name and the `handle` is automatically created.
+</Changelog>
+
+<Changelog date="2022-05-17" type="Added">
+  Added improved site transfer system.
+</Changelog>
+
+<Changelog date="2022-05-17" type="Added">
+  Added improved agency user invitation system.
+</Changelog>
+
+<Changelog date="2022-04-14" type="Fixed">
+  Fixed an issue with date and time format when viewed in Safari.
+</Changelog>
+
+<Changelog date="2022-03-28" type="Changed">
+  Changed DNS automatic verification to only verify domains that are linked to a project.
+</Changelog>
+
+<Changelog date="2022-03-16" type="Added" app="Dashboard">
+  Added support for `.webm` files in your project's assets area.
+</Changelog>
+
+<Changelog date="2022-03-16" type="Fixed">
+  Fixed DNS automatic verification to be more efficient when adding new domains.
+</Changelog>
+
+<Changelog date="2022-02-16" type="Added" app="Dashboard">
+  Added autocomplete template paths. Now in your dashboard you can select a Canvas template from the dropdown or add your own path if you haven't created the template yet.
+</Changelog>
+
+<Changelog date="2022-02-16" type="Changed">
+  Changed preferred developer community channel from Slack to [Discord](https://discord.gg/4H8dZW6Fva). Come join us on [Discord](https://discord.gg/4H8dZW6Fva), hang out with the Blutui developer team and ask us questions.
 </Changelog>

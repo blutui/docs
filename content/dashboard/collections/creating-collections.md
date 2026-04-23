@@ -27,7 +27,7 @@ Here is a list of all field types and what they can do:
 | File         | Upload files or select files from assets         |
 | Number       | Set a number value                               |
 | Phone        | Set a phone number                               |
-| Radio        | Select one from may options                      |
+| Radio        | Select one from many options                     |
 | Rich Textbox | Write and manipulate large amount of text        |
 | Select       | Set an option from the dropdown                  |
 | Text         | Write small amount of text                       |

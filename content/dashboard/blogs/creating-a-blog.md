@@ -17,4 +17,4 @@ You are also able to see the name of the post, the author, the date it was publi
 
 With Blutui, you can create as many blogs as you like. In order to create a new blog, all you need to do is click on any plus sign on the page. You can find this sign either next to the ‘news' tab or in the bottom left hand corner.
 
-![Blog Creating Blog ](https://cdn.blutui.com/uploads/assets/Help/Site-Dashboard/assets/assets-2023-90813-am.png)
+![Blog Creating Blog ](https://cdn.blutui.com/uploads/assets/UI-2/blog-ui.png)

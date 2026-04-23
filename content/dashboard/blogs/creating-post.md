@@ -7,7 +7,7 @@ description: 'How to create a post'
 
 You can create a post by clicking on the `Create post` button on the top right hand side of the page. You will be put into the blog `editor`.
 
-![Blog Creating Post ](https://cdn.blutui.com/uploads/assets/Help/Site-Dashboard/blogs/blog-2023-5.png)
+![Blog Creating Post ](https://cdn.blutui.com/uploads/assets/UI-2/post-ui.png)
 
 ### Adding Content
 

@@ -7,7 +7,7 @@ description: 'How to create forms '
 
 The forms tab can be found in the navigation menu on the right hand side of the Dashboard landing page. When clicking on this tab, you will be redirected to a new page where you will find any of your sites form submissions on the panel on the right hand side of the page (where the navigation menu was prior). Clicking into these forms will allow you to see the individual form submissions.
 
-![Form Introduction](https://cdn.blutui.com/uploads/assets/Help/Site-Dashboard/Forms/form-1.png)
+![Form Introduction](https://cdn.blutui.com/uploads/assets/UI-2/forms-ui.png)
 
 ## Create Form
 
@@ -17,7 +17,7 @@ The name of the form is what the user will see & the handle is the unique identi
 
 Once you have filled these fields out, click `create form` and you're ready to go.
 
-![Form Introduction](https://cdn.blutui.com/uploads/assets/Help/Site-Dashboard/Forms/form-2.png)
+![Form Introduction](https://cdn.blutui.com/uploads/assets/UI-2/form-create-ui.png)
 
 ## Form Settings
 

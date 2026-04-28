@@ -11,6 +11,6 @@ To edit an item in collection you will want to go select the collection you want
 
 ![Collection entries](https://cdn.blutui.com/uploads/assets/UI-2/collections-entry-list-ui.png)
 
-Hit the `Edit` button on the collection etries you want to edit. If you can find the one your looking for it might be on another page which just go to the pagination at the bottom to go through it.
+Hit the `Edit` button on the collection entries you want to edit. If you cannot find the one you’re looking for, it might be on another page, so use the pagination at the bottom to go through it.
 
 This will bring up the same screen as adding an entry but with content inside the fields. To get an understanding on how to change items or add new field types go to [creating a collection](/help/site-dashboard/collections/editing-collection)

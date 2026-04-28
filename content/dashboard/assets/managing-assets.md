@@ -1,6 +1,6 @@
 ---
-title: "Managing Assets"
-description: "Information on managing assets"
+title: 'Managing Assets'
+description: 'Information on managing assets'
 ---
 
 ## Introduction
@@ -9,8 +9,7 @@ description: "Information on managing assets"
 
 The Assets tab can be found at the top of the navigation menu on the right hand side of the Dashboard landing page. You will use this page as a central place to store any images, videos or documents you would like to upload to your site `(PDFS, JPG & PNG)`. For example, if referencing a document in Blogs or Pages, you will need to upload it to Assets first.
 
-![Assets Tab on dashboard](https://cdn.blutui.com/uploads/assets/Help/Site-Dashboard/assets/assets-2023-90705-am.png)
-
+![Assets Tab on dashboard](https://cdn.blutui.com/uploads/assets/UI-2/assets-ui.png)
 
 ## Assets Drop Down Menu
 

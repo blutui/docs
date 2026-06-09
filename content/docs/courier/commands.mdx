@@ -2,9 +2,7 @@
 title: 'Commands'
 ---
 
-<Callout>
-All commands have a `-h` flag for more information about a command.
-</Callout>
+<Callout>All commands have a `-h` flag for more information about a command.</Callout>
 
 ## create
 
@@ -18,13 +16,13 @@ If you don't pass a project handle, a Canvas, or the `--context` flag, Courier w
 
 ### Flags
 
-| Flag | Description |
-| --- | --- |
-| `-c, --canvas` | The Canvas to use for the project. Skips the Canvas selection prompt. |
-| `--cassette` | The handle for the Cassette. Defaults to `default`. |
-| `-s, --site` | The URL for the project. |
-| `--context` | Install the Blutui Context (MCP server and Skills) without prompting. |
-| `--client` | The name of the MCP client to configure when installing the Blutui Context (for example `claude-code`, `cursor`, `vscode`). |
+| Flag           | Description                                                                                                             |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `-c, --canvas` | The Canvas to use for the project. Skips the Canvas selection prompt.                                                   |
+| `--cassette`   | The handle for the Cassette. Defaults to `default`.                                                                     |
+| `-s, --site`   | The URL for the project.                                                                                                |
+| `--context`    | Install Blutui Context (MCP server and Skills) without prompting.                                                       |
+| `--client`     | The name of the MCP client to configure when installing Blutui Context (for example `claude-code`, `cursor`, `vscode`). |
 
 ### Examples
 
@@ -35,7 +33,7 @@ courier create
 # Scaffold a project with a specific Canvas
 courier create my-project --canvas tailwindcss-js
 
-# Scaffold a project with a Cassette and install the Blutui Context
+# Scaffold a project with a Cassette and install Blutui Context
 courier create my-project --cassette monalisa --context
 ```
 
@@ -56,7 +54,7 @@ courier dev
 ```
 
 <Callout>
-On the first run, `dev` does not automatically push code, it starts monitoring file changes in the views directory.
+  On the first run, `dev` does not automatically push code, it starts monitoring file changes in the views directory.
 </Callout>
 
 ## help

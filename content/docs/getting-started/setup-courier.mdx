@@ -26,31 +26,11 @@ Once Blutui Courier is successfully installed, you can use it to scaffold a new 
 <Step>
 ### Run the courier create command
 
-```bash
--> ~ courier create
-? What is your project name? > [project-handle]
-```
-
-</Step>
-
-<Step>
-### Enter your unique project name
+You can pass a project handle directly, or run `courier create` on its own and Courier will prompt you for one.
 
 ```bash
 -> ~ courier create
- ✔ What is your project name? > [project-handle]
- ? Which Canvas would you like to use?
-   | base
-   | Bare bones Canvas for Blutui.
-
-   | tailwindcss
-   | Bare bones Canvas with Tailwind CSS for Blutui.
-
-   | tailwindcss-js
-   | Bare bones Canvas with Tailwind CSS + Parcel.js for Blutui.
-
-   | headless-nextjs-blank
-   | Bare bones Next.js Canvas for Blutui Headless.
+? What is your project handle? › [project-handle]
 ```
 
 </Step>
@@ -58,18 +38,25 @@ Once Blutui Courier is successfully installed, you can use it to scaffold a new 
 <Step>
 ### Choose your Canvas
 
+Once you've entered a project handle, Courier presents a list of available Canvases. Canvases are pre-configured project templates that provide a starting point for your development.
+
 ```bash
-✔ What is your project named? … [project-handle]
-✔ Which Canvas would you like to use? … tailwindcss-js
+✔ What is your project handle? … [project-handle]
+? Which Canvas would you like to use?
+  | base
+  | Bare bones Canvas for Blutui.
 
-✔ Success! A new Canvas was created at ./[project-handle]
+  | tailwindcss
+  | Bare bones Canvas with Tailwind CSS for Blutui.
 
-  Start building your new project by typing:
+  | tailwindcss-js
+  | Bare bones Canvas with Tailwind CSS + Parcel.js for Blutui.
 
-  $ cd [project-handle]
+  | headless-nextjs-blank
+  | Bare bones Next.js Canvas for Blutui Headless.
 ```
 
-You will then be presented with a list of available Canvases. Canvases are pre-configured project templates that provide a starting point for your development, including
+The available Canvases include:
 
 [**base**](https://github.com/blutui/blueprint-blutui-base): A minimal project structure.
 
@@ -82,35 +69,64 @@ You will then be presented with a list of available Canvases. Canvases are pre-c
 For a complete and up-to-date list of all available Canvases, including community-contributed options, please visit the [Blutui Canvases GitHub repository](https://github.com/blutui/canvases).
 
 <Callout>
+  You can skip this prompt by passing the Canvas directly, for example `courier create [project-handle] --canvas
+  tailwindcss-js`.
+</Callout>
+
+<Callout>
   If you'd like to share a canvas that would help the wider Blutui community, submit a pull request to the [Blutui
   Canvases GitHub repository](https://github.com/blutui/canvases) to make it available to all users.
 </Callout>
 
-Upon selecting the appropriate **Canvas**, Courier will scaffold your new project within a new directory named **[project-handle]**.
+</Step>
+
+<Step>
+### Choose whether to install the Blutui Context
+
+Courier then asks if you'd like to install the [Blutui Context](/docs/getting-started/agentic-development), which configures the Blutui MCP server and installs the Blutui Skills for your AI coding assistant.
+
+```bash
+? Do you want to install Blutui Context to improve AI assisted coding?
+  (•) Yes
+  ( ) No
+
+  (y/n, press q to skip)
+```
+
+If you choose **Yes**, Courier will ask which MCP client you're using (Claude Code, Cursor, Visual Studio Code, Codex, or OpenCode) and configure it automatically. You can pre-answer both questions with the `--context` and `--client` flags.
 
 </Step>
 
 <Step>
-### Initializing Courier Configuration
+### Let Courier scaffold your project
 
-After your project has been scaffolded, cd into your new project directory.
-
-```bash
-cd [project-handle]
-```
-
-Next, run
+Courier now does the work for you: it downloads the Canvas, initializes Courier by generating a `courier.json` file in the new project directory, and configures the Blutui Context if you opted in. There's no separate `courier init` step to run.
 
 ```bash
-courier init [project-handle] --cassette [cassette-name]
-```
+✔ What is your project handle? … [project-handle]
+✔ Which Canvas would you like to use? … tailwindcss-js
+✔ Do you want to install Blutui Context to improve AI assisted coding? … Yes
 
-Running this command will create a `courier.json` file in your project directory, which is essential for Courier to manage your project.
+✔ Success! A new project was created at ./[project-handle]
+
+  Blutui Context installed:
+  • MCP server  ~/.claude.json
+  • Skills      blutui/context
+
+  Start building your new project by typing:
+
+  $ cd [project-handle]
+```
 
 ### Understanding Cassettes
 
-**Cassettes** are Blutui's method for managing different versions of a website.
-For example, if you have a main website but also need distinct versions for events like Christmas or Halloween, cassettes allow you to easily switch between these different site UIs. We'll delve deeper into **Cassettes** later in the documentation.
+By default the generated `courier.json` uses the `default` Cassette. **Cassettes** are Blutui's method for managing different versions of a website. For example, if you have a main website but also need distinct versions for events like Christmas or Halloween, cassettes allow you to easily switch between these different site UIs. To scaffold against a specific Cassette, pass the `--cassette` flag:
+
+```bash
+courier create [project-handle] --cassette [cassette-name]
+```
+
+We'll delve deeper into **Cassettes** later in the documentation.
 
 </Step>
 </Steps>

@@ -8,10 +8,35 @@ All commands have a `-h` flag for more information about a command.
 
 ## create
 
-Create a new Blutui project using a selected Canvas in the specified directory.
+Create a new Blutui project. In a single command, `create` scaffolds your chosen Canvas into a new directory, initializes Courier (generating the `courier.json` file), and can optionally install the [Blutui Context](/docs/getting-started/agentic-development) (MCP server and Skills) to improve AI assisted coding.
 
 ```bash
+courier create [project-handle]
+```
+
+If you don't pass a project handle, a Canvas, or the `--context` flag, Courier will prompt you for them interactively.
+
+### Flags
+
+| Flag | Description |
+| --- | --- |
+| `-c, --canvas` | The Canvas to use for the project. Skips the Canvas selection prompt. |
+| `--cassette` | The handle for the Cassette. Defaults to `default`. |
+| `-s, --site` | The URL for the project. |
+| `--context` | Install the Blutui Context (MCP server and Skills) without prompting. |
+| `--client` | The name of the MCP client to configure when installing the Blutui Context (for example `claude-code`, `cursor`, `vscode`). |
+
+### Examples
+
+```bash
+# Scaffold interactively, prompting for a handle, Canvas, and Blutui Context
 courier create
+
+# Scaffold a project with a specific Canvas
+courier create my-project --canvas tailwindcss-js
+
+# Scaffold a project with a Cassette and install the Blutui Context
+courier create my-project --cassette monalisa --context
 ```
 
 ## config

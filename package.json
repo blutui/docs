@@ -13,7 +13,7 @@
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-navigation-menu": "^1.2.14",
     "@radix-ui/react-popover": "^1.1.15",
-    "@radix-ui/react-presence": "^1.1.5",
+    "@radix-ui/react-presence": "^1.1.6",
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@takumi-rs/core": "^1.8.5",
     "@takumi-rs/helpers": "^1.8.5",

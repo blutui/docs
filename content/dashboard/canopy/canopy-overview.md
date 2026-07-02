@@ -5,13 +5,18 @@ description: 'An overview of Canopy'
 
 Canopy is Blutui's in-page editor designed to streamline the website creation process. It empowers developers to construct the website's structure and content managers to edit pages directly within the interface.
 
+<Callout type="warning">
+  The element-based Canopy editor described in this section is deprecated and will be replaced by
+  [Canopy Blocks](/docs/canopy/canopy-blocks), which lets you add, edit, and arrange whole sections of a page.
+</Callout>
+
 ![Canopy Overview](https://cdn.blutui.com/uploads/assets/Help/Site-Dashboard/canopy/canopy-15-gif.gif)
 
 ### Content management
 
 Canopy fosters a collaborative workflow between developers and content managers. Developers can leverage **tags** within their code to designate specific areas editable through Canopy. This establishes clear separation between the codebase and content, allowing content managers to modify website copy without needing to touch the code.
 
-**Learn more** on the [Blutui documentation page](/canvas/functions/canopy/cms-heading)
+**Learn more** on the [Blutui documentation page](/docs/canopy/canopy-blocks)
 
 ### Canopy Bar
 

@@ -1,0 +1,31 @@
+---
+title: 'canopy.head'
+description: 'The canopy.head function outputs the head sections of the Canopy Blocks rendered in a block area.'
+---
+
+```canvas
+{{ canopy.head(handle) }}
+```
+
+| Argument | Description               | Data Type |
+| :------- | :------------------------- | --------: |
+| `handle` | The block area identifier |    String |
+
+The function collects the `{% canopy head %}` sections of every block template used in the area, so you can place block-specific stylesheets and meta tags in your page head. Each template's head section is included once, no matter how many blocks in the area use it.
+
+<Callout>
+  Use the same `handle` you pass to [canopy.blocks](/canvas/functions/canopy/canopy-blocks). If the area is rendered
+  with an explicit template list, the head sections for those templates are returned.
+</Callout>
+
+### Example
+
+```canvas tab="default.canvas"
+<head>
+  <title>My Site</title>
+  {{ canopy.head('main') }}
+</head>
+<body>
+  {{ canopy.blocks('main') }}
+</body>
+```

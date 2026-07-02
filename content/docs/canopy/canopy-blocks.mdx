@@ -1,0 +1,145 @@
+---
+title: 'Canopy Blocks'
+description: 'Learn how to build block templates that content editors can add, arrange, and edit in the Canopy editor'
+---
+
+Canopy Blocks let you build entire sections of a page as reusable templates. You define a block template once in your project, and content editors can then add it to a page, fill in its settings, and arrange it alongside other blocks in the Canopy editor. This keeps a clear separation between code and content: developers decide what a section can look like, and editors compose pages from those sections.
+
+<Callout>
+  Blocks are rendered in **block areas**. An area is scoped to the page it appears on by default, or shared across the
+  whole site, so you can use the same approach for page content and for global sections like footers.
+</Callout>
+
+### Create a block template
+
+Block templates live in the **canopy** folder inside your project's **views** directory. Each template is a single `.canvas` file, and the filename becomes the template's name unless you set one in its config.
+
+```
+views/
+└── canopy/
+    └── hero.canvas
+```
+
+A block template is made up of named sections wrapped in `{% canopy %}` and `{% endcanopy %}` tags. Create **hero.canvas** with the following code:
+
+```canvas tab="hero.canvas"
+{% canopy config %}
+{
+    "title": "Hero",
+    "name": "hero",
+    "settings": [
+        { "name": "heading", "type": "heading", "default": { "value": "Welcome to our site", "element": "h1" } },
+        { "name": "description", "type": "textarea", "placeholder": "Add a short introduction..." },
+        { "name": "cta", "type": "url", "label": "Call to action" }
+    ]
+}
+{% endcanopy %}
+
+{% canopy template %}
+<section class="mx-auto max-w-7xl px-6 py-20">
+  <{{ settings.heading.element }}>{{ settings.heading.value }}</{{ settings.heading.element }}>
+  <p>{{ settings.description }}</p>
+  {% if settings.cta.url %}
+    <a href="{{ settings.cta.url }}" target="{{ settings.cta.target }}">{{ settings.cta.text }}</a>
+  {% endif %}
+</section>
+{% endcanopy %}
+```
+
+A block template supports four sections, which can appear in any order:
+
+| Section    | Description                                                                    |
+| :--------- | :----------------------------------------------------------------------------- |
+| `config`   | A JSON object describing the block and the settings editors can change        |
+| `template` | The Canvas code rendered for each block. This section is required             |
+| `head`     | Optional markup added to the page head when the block is used                  |
+| `scripts`  | Optional markup added to the end of the page when the block is used           |
+
+### The config section
+
+The config section is a JSON object with the following properties:
+
+| Property              | Description                                                                     | Data Type |
+| :-------------------- | :------------------------------------------------------------------------------ | --------: |
+| `title`               | The name of the block shown to editors in the Canopy editor                    |    String |
+| `name` (optional)     | The unique identifier for the block template. Generated from the title if omitted |    String |
+| `settings` (optional) | An array of settings editors can change for each block                         |     Array |
+
+Every setting requires a `name` and a `type`. Most types also accept a `label`, a `default`, and a few type-specific attributes. See [Canopy Block Settings](/docs/canopy/canopy-block-settings) for the full list of setting types.
+
+<Callout>
+  The config section must be valid JSON: keys and string values use double quotes, and trailing commas are not
+  allowed. Settings with a missing `name`, a missing `type`, or an unknown `type` are ignored.
+</Callout>
+
+### The template section
+
+The template section is regular Canvas code. It receives a `settings` variable containing the values for the block, with the editor's content merged over the defaults from your config. Each setting is available under its `name`:
+
+```canvas
+<p>{{ settings.description }}</p>
+```
+
+The shape of each value depends on the setting type. Text settings give you a string, while settings like `url`, `file`, and `heading` give you an object with multiple properties. The [Canopy Block Settings](/docs/canopy/canopy-block-settings) reference documents the value for every type.
+
+### Add styles and scripts
+
+If a block needs its own CSS or JavaScript, put it in the `head` and `scripts` sections of the template:
+
+```canvas tab="hero.canvas"
+{% canopy head %}
+<link rel="stylesheet" href="/css/hero.css" />
+{% endcanopy %}
+
+{% canopy scripts %}
+<script src="/js/hero.js"></script>
+{% endcanopy %}
+```
+
+These sections are output wherever your layout calls [canopy.head](/canvas/functions/canopy/canopy-head) and [canopy.scripts](/canvas/functions/canopy/canopy-scripts). Each template's head and scripts are included once per area, no matter how many blocks use the same template.
+
+### Render blocks in your layout
+
+Use the [canopy.blocks](/canvas/functions/canopy/canopy-blocks) function to output a block area in a layout or page:
+
+```canvas tab="default.canvas"
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Site</title>
+    {{ canopy.head('main') }}
+  </head>
+  <body>
+    {{ canopy.blocks('main') }}
+    {{ canopy.blocks('footer', { shared: true }) }}
+    {{ canopy.scripts('main') }}
+  </body>
+</html>
+```
+
+This code:
+
+- Renders the blocks editors have added to the `main` area of the current page, in the order they arranged them.
+- Renders a site-wide `footer` area. The `shared` option means the same footer blocks appear on every page that renders the area.
+- Outputs the head and scripts sections for the blocks used in the `main` area.
+
+By default a block area is scoped to the current page, so the `main` area on your homepage and the `main` area on your about page hold different blocks.
+
+You can also render block templates directly, without editor content, using [canopy.render](/canvas/functions/canopy/canopy-render):
+
+```canvas
+{{ canopy.render('hero', { description: 'A custom description' }) }}
+```
+
+### Edit blocks in the dashboard
+
+Once your layout renders a block area, open the page in the Canopy editor from the dashboard. Every block template in your **views/canopy** folder is available to add, and editors can fill in each block's settings and drag blocks into order without touching code.
+
+## Available functions
+
+Blutui provides the following functions for working with Canopy Blocks:
+
+- [`canopy.blocks`](/canvas/functions/canopy/canopy-blocks) renders a block area
+- [`canopy.render`](/canvas/functions/canopy/canopy-render) renders a block template directly
+- [`canopy.head`](/canvas/functions/canopy/canopy-head) outputs the head sections for a block area
+- [`canopy.scripts`](/canvas/functions/canopy/canopy-scripts) outputs the scripts sections for a block area

@@ -1,6 +1,8 @@
 {
   "$schema": "../../../.source/json-schema/docs.meta.json",
   "pages": [
+    "canopy-blocks",
+    "canopy-block-settings",
     "getting-started",
     "canopy-input-types"
   ]

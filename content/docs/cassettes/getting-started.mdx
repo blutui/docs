@@ -86,11 +86,7 @@ Below is an example where each Cassette has a slightly different version of the 
 ```canvas tab="banner.canvas"
 <section class="bg-slate-900 text-white py-8">
   <div class="mx-auto px-6 text-left space-y-3">
-    {{ cms_heading('banner-main', {
-      element: 'h2',
-      value: 'Main banner',
-      class: 'text-2xl font-semibold tracking-tight sm:text-3xl'
-    }) }}
+    <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Main banner</h2>
   </div>
 </section>
 ```
@@ -108,20 +104,9 @@ Below is an example where each Cassette has a slightly different version of the 
 ```canvas tab="banner.canvas"
 <section class="bg-linear-to-r from-emerald-900 via-emerald-800 to-red-900 text-white py-8">
   <div class="mx-auto px-6 text-left space-y-3">
-    {{ cms_heading('banner-christmas', {
-      element: 'h2',
-      value: 'Merry Christmas & Happy Holidays',
-      class: 'text-2xl font-semibold tracking-tight sm:text-3xl text-emerald-50'
-    }) }}
+    <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl text-emerald-50">Merry Christmas & Happy Holidays</h2>
   </div>
 </section>
 ```
-
-<Callout>
-  Note that the ID for `cms_heading` has been changed in each Cassette: `banner-main` and `banner-christmas`. This is
-  because Canopy elements with the same ID will share the same content. If you change the content of an element, it will
-  change in all versions that use that same ID. Since we need different content for each banner, we use different IDs in
-  each Cassette.
-</Callout>
 
 Once you have developed the Christmas version on a separate Cassette, using the Agency Console you can quickly switch the active Cassette to make the change live.

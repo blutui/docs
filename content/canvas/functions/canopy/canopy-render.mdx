@@ -1,0 +1,22 @@
+---
+title: 'canopy.render'
+description: 'The canopy.render function renders a Canopy Block template directly, without any content from the Canopy editor.'
+---
+
+```canvas
+{{ canopy.render(template, { ... }) }}
+```
+
+| Argument              | Description                                                     | Data Type |
+| :-------------------- | :------------------------------------------------------------- | --------: |
+| `template`            | The name of the [block template](/docs/canopy/canopy-blocks)   |    String |
+| `settings` (optional) | Setting values to merge over the template's defaults           |    Object |
+
+Use this function when a section should always appear with fixed content, or to preview a block template while building it. The template renders with its default setting values, and anything you pass in the `settings` argument overrides those defaults.
+
+### Example
+
+```canvas tab="Input" title="index.canvas"
+{{ canopy.render('hero') }}
+{{ canopy.render('hero', { description: 'A custom description' }) }}
+```

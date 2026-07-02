@@ -1,0 +1,224 @@
+---
+title: 'Canopy Block Settings'
+description: 'Learn about the setting types available for Canopy Block templates'
+---
+
+Settings define the fields content editors fill in for each [Canopy Block](/docs/canopy/canopy-blocks). You declare them in the `settings` array of a block template's config section, and their values are available in the template section through the `settings` variable.
+
+All setting types share these attributes:
+
+| Attribute            | Description                                                              | Data Type |
+| :------------------- | :------------------------------------------------------------------------ | --------: |
+| `name`               | The setting identifier, used to access the value in the template section |    String |
+| `type`               | One of the setting types documented below                                |    String |
+| `label` (optional)   | The field label shown in the Canopy editor. Generated from the name if omitted |    String |
+| `default` (optional) | The value used until an editor provides one                              |     Mixed |
+
+### Text
+
+**type: `text`**
+
+A single line of plain text. The value is a String, with `"New text"` as the built-in default.
+
+| Attribute                | Description                          | Data Type |
+| :----------------------- | :------------------------------------ | --------: |
+| `placeholder` (optional) | Placeholder text shown in the input  |    String |
+
+```canvas
+<p>{{ settings.subtitle }}</p>
+```
+
+### Textarea
+
+**type: `textarea`**
+
+Multiple lines of plain text. The value is a String, empty by default.
+
+| Attribute                | Description                         | Data Type |
+| :----------------------- | :----------------------------------- | --------: |
+| `placeholder` (optional) | Placeholder text shown in the input |    String |
+
+### Richtext
+
+**type: `richtext`**
+
+Formatted text edited with a rich text editor. The value is an HTML String, so output it with the [raw](/canvas/filters/raw) filter:
+
+| Attribute                | Description                         | Data Type |
+| :----------------------- | :----------------------------------- | --------: |
+| `placeholder` (optional) | Placeholder text shown in the input |    String |
+
+```canvas
+<div class="prose">{{ settings.body|raw }}</div>
+```
+
+### Select
+
+**type: `select`**
+
+A dropdown of predefined options. The value is the selected option's `value` as a String.
+
+| Attribute | Description                                                             | Data Type |
+| :-------- | :----------------------------------------------------------------------- | --------: |
+| `options` | An array of options, each with a `value` and an optional `label`        |     Array |
+
+```canvas tab="Config"
+{
+    "name": "alignment",
+    "type": "select",
+    "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+    ],
+    "default": "center"
+}
+```
+
+```canvas tab="Template"
+<div class="text-{{ settings.alignment }}">...</div>
+```
+
+### Radio
+
+**type: `radio`**
+
+A set of radio buttons. Works exactly like [Select](#select), with the same `options` attribute, but shows every option at once in the editor.
+
+### Checkbox
+
+**type: `checkbox`**
+
+A single on or off toggle. The value is a Boolean, `false` by default.
+
+```canvas
+{% if settings.show_title %}
+  <h2>{{ settings.title }}</h2>
+{% endif %}
+```
+
+### File
+
+**type: `file`**
+
+A file picked from the site's assets. The value is an object describing the file.
+
+| Attribute           | Description                                                  | Data Type |
+| :------------------ | :------------------------------------------------------------ | --------: |
+| `accept` (optional) | A MIME type filter for the picker, such as `application/pdf` |    String |
+
+| Value property | Description            | Data Type |
+| :------------- | :---------------------- | --------: |
+| `path`         | The file URL           |    String |
+| `name`         | The filename           |    String |
+| `type`         | The file's MIME type   |    String |
+| `size`         | The file size in bytes |    Number |
+
+```canvas
+{% if settings.brochure.path %}
+  <a href="{{ settings.brochure.path }}" download>{{ settings.brochure.name }}</a>
+{% endif %}
+```
+
+### URL
+
+**type: `url`**
+
+A link with editable text and target. The value is an object.
+
+| Attribute                | Description                         | Data Type |
+| :----------------------- | :----------------------------------- | --------: |
+| `placeholder` (optional) | Placeholder text shown in the input |    String |
+
+| Value property | Description                                   | Data Type |
+| :------------- | :--------------------------------------------- | --------: |
+| `url`          | The link URL                                  |    String |
+| `text`         | The link text                                 |    String |
+| `target`       | The link target, `_self` or `_blank`          |    String |
+
+```canvas
+<a href="{{ settings.cta.url }}" target="{{ settings.cta.target }}">{{ settings.cta.text }}</a>
+```
+
+### Date
+
+**type: `date`**
+
+A date picker. The value is a formatted date String.
+
+| Attribute           | Description                                           | Data Type |
+| :------------------ | :----------------------------------------------------- | --------: |
+| `format` (optional) | The date format to store and output. Defaults to `Y-m-d` |    String |
+
+### Color
+
+**type: `color`**
+
+A color picker. The value is a hex color String, `#000000` by default.
+
+```canvas
+<section style="background-color: {{ settings.background }}">...</section>
+```
+
+### Heading
+
+**type: `heading`**
+
+A heading with editable text and an editable HTML element. The value is an object.
+
+| Attribute             | Description                                                                             | Data Type |
+| :-------------------- | :--------------------------------------------------------------------------------------- | --------: |
+| `elements` (optional) | The elements editors can choose from, each with a `value` and an optional `label`. Defaults to `h1` through `h6` |     Array |
+
+| Value property | Description                        | Data Type |
+| :------------- | :---------------------------------- | --------: |
+| `value`        | The heading text                   |    String |
+| `element`      | The HTML element, such as `h2`     |    String |
+
+```canvas
+<{{ settings.heading.element }}>{{ settings.heading.value }}</{{ settings.heading.element }}>
+```
+
+### Number
+
+**type: `number`**
+
+A numeric input. The value is a Number.
+
+| Attribute                | Description                         | Data Type |
+| :----------------------- | :----------------------------------- | --------: |
+| `min` (optional)         | The minimum allowed value           |    Number |
+| `max` (optional)         | The maximum allowed value           |    Number |
+| `placeholder` (optional) | Placeholder text shown in the input |    String |
+
+### List
+
+**type: `list`**
+
+A repeatable list of text items. The value is an Array of Strings, empty by default.
+
+```canvas
+<ul>
+  {% for item in settings.features %}
+    <li>{{ item }}</li>
+  {% endfor %}
+</ul>
+```
+
+### Media Sources
+
+**type: `media-sources`**
+
+A list of media files for HTML5 audio and video elements. The value is an Array of objects, each with a `url` and a `type` (the MIME type).
+
+| Attribute                | Description                         | Data Type |
+| :----------------------- | :----------------------------------- | --------: |
+| `placeholder` (optional) | Placeholder text shown in the input |    String |
+
+```canvas
+<video controls>
+  {% for source in settings.video_sources %}
+    <source src="{{ source.url }}" type="{{ source.type }}" />
+  {% endfor %}
+</video>
+```

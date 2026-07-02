@@ -1,0 +1,28 @@
+---
+title: 'canopy.scripts'
+description: 'The canopy.scripts function outputs the scripts sections of the Canopy Blocks rendered in a block area.'
+---
+
+```canvas
+{{ canopy.scripts(handle) }}
+```
+
+| Argument | Description               | Data Type |
+| :------- | :------------------------- | --------: |
+| `handle` | The block area identifier |    String |
+
+The function collects the `{% canopy scripts %}` sections of every block template used in the area, so you can load block-specific JavaScript at the end of your page. Each template's scripts section is included once, no matter how many blocks in the area use it.
+
+<Callout>
+  Use the same `handle` you pass to [canopy.blocks](/canvas/functions/canopy/canopy-blocks). If the area is rendered
+  with an explicit template list, the scripts sections for those templates are returned.
+</Callout>
+
+### Example
+
+```canvas tab="default.canvas"
+<body>
+  {{ canopy.blocks('main') }}
+  {{ canopy.scripts('main') }}
+</body>
+```

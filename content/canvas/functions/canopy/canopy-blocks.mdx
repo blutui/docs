@@ -1,0 +1,38 @@
+---
+title: 'canopy.blocks'
+description: 'The canopy.blocks function renders a block area containing the Canopy Blocks managed in the Canopy editor.'
+---
+
+```canvas
+{{ canopy.blocks(handle, { shared: ... }) }}
+```
+
+| Argument            | Description                                                    | Data Type |
+| :------------------ | :-------------------------------------------------------------- | --------: |
+| `handle`            | The block area identifier                                      |    String |
+| `shared` (optional) | Set to true to share the area's blocks across the whole site   |   Boolean |
+
+The function outputs every block editors have added to the area, in the order they arranged them. Each block is rendered with its own [block template](/docs/canopy/canopy-blocks).
+
+<Callout>
+  By default a block area is scoped to the current page, so the same `handle` holds different blocks on different
+  pages. With `shared: true` the area holds one set of blocks for the whole site, which is useful for footers and
+  other global sections.
+</Callout>
+
+## Render specific templates
+
+Instead of options, you can pass an array of block template names. The templates are rendered in the given order, using editor content where it exists and template defaults where it does not:
+
+```canvas
+{{ canopy.blocks('showcase', ['hero', 'features', 'cta']) }}
+```
+
+### Example
+
+```canvas tab="default.canvas"
+<body>
+  {{ canopy.blocks('main') }}
+  {{ canopy.blocks('footer', { shared: true }) }}
+</body>
+```

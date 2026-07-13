@@ -33,16 +33,16 @@ Let's edit the **index.canvas** page and add the following code.
 
 {% block body %}
     <h1>Hello blutui</h1>
-    {{ cms_text('text-tag', { value: 'Editable text content.' }) }}
+    {{ canopy.blocks('main') }}
 {% endblock %}
 ```
 
-Reload your browser and you should see the text on your page.
+Reload your browser and you should see the heading on your page.
 
 <Callout>
-The **cms_text** function is a **Canopy** element, which are editable pieces of content on your site. These are defined by developers in code and can be edited by content editors on the dashboard.
+The **canopy.blocks** function renders a **block area**, a region of the page where content editors can add, edit, and arrange sections from the dashboard. You define the available sections as block templates in your project.
 
-Learn more about [cms-text](/canvas/functions/canopy/cms-text).
+Learn more about [Canopy Blocks](/docs/canopy/canopy-blocks).
 
 </Callout>
 

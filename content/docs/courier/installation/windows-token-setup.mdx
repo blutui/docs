@@ -18,7 +18,7 @@ Before using **Courier**, you need to generate a Blutui access token. Follow the
 2. Log in to Courier using your token file:
 
 ```powershell
-courier login --token (Get-Content token.txt)
+Get-Content token.txt -Raw | courier login --token
 ```
 
 3. Remember to delete the `token.txt` file once you have successfully logged into Courier.

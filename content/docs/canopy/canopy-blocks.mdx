@@ -65,7 +65,7 @@ The config section is a JSON object with the following properties:
 | `name` (optional)     | The unique identifier for the block template. Generated from the title if omitted |    String |
 | `settings` (optional) | An array of settings editors can change for each block                         |     Array |
 
-Every setting requires a `name` and a `type`. Most types also accept a `label`, a `default`, and a few type-specific attributes. See [Canopy Block Settings](/docs/canopy/canopy-block-settings) for the full list of setting types.
+Every setting requires a `name` and a `type`. Most types also accept a `label`, a `default`, and a few type-specific attributes. Settings can also declare a `tab` and a `group` to organize the editing form into tabs and collapsible groups. See [Canopy Block Settings](/docs/canopy/canopy-block-settings) for the full list of setting types and [Tabs and groups](/docs/canopy/canopy-block-settings#tabs-and-groups) for organizing them.
 
 <Callout>
   The config section must be valid JSON: keys and string values use double quotes, and trailing commas are not

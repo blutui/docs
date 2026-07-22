@@ -10,6 +10,12 @@ You can use the `image_url` filter on any image URL:
 {# outputs: https://cdn.blutui.com/uploads/project_name/image.png #}
 ```
 
+You can also optimise an image in your project's `public` directory by passing its `asset` URL to the filter:
+
+```canvas
+{{ asset('images/header-background.png') | image_url({ format: 'webp' }) }}
+```
+
 <Callout>
 Custom `width` and `height` dimensions can never be resized to be larger than the original dimensions of the image.
 </Callout>

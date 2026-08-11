@@ -13,6 +13,8 @@ All setting types share these attributes:
 | `type`               | One of the setting types documented below                                |    String |
 | `label` (optional)   | The field label shown in the Canopy editor. Generated from the name if omitted |    String |
 | `default` (optional) | The value used until an editor provides one                              |     Mixed |
+| `help` (optional)    | A short hint shown as an info icon tooltip beside the field label. See [Help and descriptions](#help-and-descriptions) |    String |
+| `description` (optional) | Helper text rendered underneath the input. See [Help and descriptions](#help-and-descriptions) |    String |
 | `tab` (optional)     | The editor tab the setting appears under. See [Tabs and groups](#tabs-and-groups) |    String |
 | `group` (optional)   | The collapsible group the setting appears in. See [Tabs and groups](#tabs-and-groups) |    String |
 
@@ -39,6 +41,24 @@ Give consecutive settings a `group` to place them under a labelled divider. Grou
 ```
 
 This config gives the block a **Content** tab with two fields, and a **Style** tab where the color settings sit under a **Colors** group and the class setting under an **Advanced** group.
+
+### Help and descriptions
+
+Every setting type accepts two optional strings for guiding editors. Like tabs and groups, they only affect the editing form and change nothing about the value in the template section.
+
+- `help` is a short hint shown as an info icon tooltip beside the field label.
+- `description` is muted helper text rendered underneath the input.
+
+Use `help` for a quick clarification editors may not need every time, and `description` for guidance that should always be visible:
+
+```canvas tab="Config"
+{
+    "name": "subtitle",
+    "type": "text",
+    "help": "Shown under the page title.",
+    "description": "Keep it under 80 characters so it fits on one line."
+}
+```
 
 ### Text
 
@@ -248,3 +268,143 @@ A list of media files for HTML5 audio and video elements. The value is an Array 
   {% endfor %}
 </video>
 ```
+
+### Collection
+
+**type: `collection`**
+
+A collection picked from the site's collections. Use it when a block renders whatever a collection holds, and the editor decides which collection feeds it, such as a block that shows the latest items from any collection they choose. The editor sees a dropdown of the site's collections.
+
+Collection settings use only the base attributes. `default` may be a collection handle String, and `placeholder` sets the dropdown's placeholder text.
+
+| Attribute                | Description                            | Data Type |
+| :----------------------- | :-------------------------------------- | --------: |
+| `placeholder` (optional) | Placeholder text shown in the dropdown |    String |
+
+The value is `null` while no collection is selected, or when the selected collection has been deleted. Otherwise it is an object:
+
+| Value property | Description                                        | Data Type |
+| :------------- | :-------------------------------------------------- | --------: |
+| `id`           | The collection's unique id                         |    String |
+| `object`       | Always `collection`                                |    String |
+| `name`         | The collection name                                |    String |
+| `handle`       | The collection handle                              |    String |
+| `entries`      | The collection's entries                           |     Array |
+
+Each entry in `entries` exposes its field values under their field names, such as `entry.title` or `entry.image`, along with `id`, `created_at`, and `updated_at`.
+
+```canvas tab="Config"
+{
+    "name": "source",
+    "type": "collection",
+    "label": "Collection",
+    "help": "All entries of the chosen collection are rendered."
+}
+```
+
+```canvas tab="Template"
+{% if settings.source %}
+  <h2>{{ settings.source.name }}</h2>
+  {% for entry in settings.source.entries %}
+    {{ entry.title }}
+  {% endfor %}
+{% endif %}
+```
+
+<Callout>
+  Always check the value before using it. A collection that was never selected, or was deleted after being selected,
+  resolves to `null` rather than erroring, so an unguarded template renders blank fields.
+</Callout>
+
+### Entry
+
+**type: `entry`**
+
+One or more entries hand-picked from a collection. Use it when the editor chooses specific content rather than a whole collection: a featured item, a set of related items, or a hand-picked gallery.
+
+| Attribute                       | Description                                                                                                                                    | Data Type |
+| :------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------- | --------: |
+| `collection` (optional)         | Hard-declares the source collection by handle. The editor's collection dropdown is hidden and only this collection's entries can be picked. At render time this always wins over stored data |    String |
+| `default_collection` (optional) | Pre-selects a collection in the editor, but the editor can switch to another. Switching clears the picked entries. Ignored when `collection` is set |    String |
+| `multiple` (optional)           | Whether editors pick a single entry or several. `false` shows a single entry dropdown, `true` a multi-select with add and remove. Defaults to `false` |   Boolean |
+| `min` / `max` (optional)        | Bounds for the number of entries when `multiple` is `true`. The editor enforces `max`                                                          |    Number |
+| `display_field` (optional)      | The entry field shown as the label while picking. Defaults to the entry's first non-empty text field                                           |    String |
+| `placeholder` (optional)        | Placeholder text shown in the entry dropdown                                                                                                   |    String |
+
+<Callout>
+  Use `collection` whenever the block is designed around one specific collection. It gives editors a simpler picker
+  with no collection dropdown, and it guarantees the template's assumptions about which entry fields are available.
+</Callout>
+
+`display_field` only changes the labels in the editor's picker. It never affects what the template receives or renders.
+
+#### Rendering entries
+
+Each entry exposes its field values under their field names, along with `id`, `created_at`, and `updated_at`, just like the entries of a [Collection](#collection) setting.
+
+With `multiple` off, the value is the picked entry, or `null` when nothing is picked or the entry or its collection was deleted:
+
+```canvas
+{% if settings.featured %}
+  <h3>{{ settings.featured.title }}</h3>
+  <img src="{{ settings.featured.image }}" alt="{{ settings.featured.title }}">
+{% endif %}
+```
+
+With `multiple` on, the value is an array of entries in the exact order the editor picked them, so you can rely on that order for layout. Deleted entries are skipped, and the array is empty when nothing is picked:
+
+```canvas
+{% if settings.related|length > 0 %}
+  {% for item in settings.related %}
+    {{ item.title }}
+  {% endfor %}
+{% endif %}
+```
+
+<Callout>
+  As with collections, guard your output: check single entries with `if`, and check arrays with the `length` filter.
+  Deleted content resolves to `null` or an empty array rather than erroring.
+</Callout>
+
+#### Common configurations
+
+Lock the setting to one collection, and label entries by a specific field while picking:
+
+```canvas tab="Config"
+{
+    "name": "featured",
+    "type": "entry",
+    "label": "Featured product",
+    "collection": "products",
+    "display_field": "sku"
+}
+```
+
+Pre-select a collection but let the editor switch to another:
+
+```canvas tab="Config"
+{
+    "name": "highlight",
+    "type": "entry",
+    "label": "Highlight",
+    "default_collection": "products"
+}
+```
+
+Let the editor pick up to four entries:
+
+```canvas tab="Config"
+{
+    "name": "related",
+    "type": "entry",
+    "label": "Related items",
+    "collection": "products",
+    "multiple": true,
+    "max": 4
+}
+```
+
+<Callout>
+  Entries and collections are stored by collection handle and entry id. Renaming a collection's handle breaks
+  existing block data that points at it, so settle on handles before editors start filling in blocks.
+</Callout>

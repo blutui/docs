@@ -1,9 +1,3 @@
 {
-  "pages": [
-    "macos",
-    "windows",
-    "linux",
-    "!create-courier-token",
-    "!windows-token-setup"
-  ]
+  "pages": ["ai-agent", "macos", "windows", "!linux", "!create-courier-token", "!windows-token-setup"]
 }

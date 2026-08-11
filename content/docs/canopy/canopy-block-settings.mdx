@@ -26,7 +26,7 @@ Give settings a `tab` to split the form into tabs. Tabs appear in the order they
 
 Give consecutive settings a `group` to place them under a labelled divider. Groups are open by default, and editors can collapse them.
 
-```json tab="Config"
+```json
 {
     "title": "Hero",
     "name": "hero",
@@ -51,7 +51,7 @@ Every setting type accepts two optional strings for guiding editors. Like tabs a
 
 Use `help` for a quick clarification editors may not need every time, and `description` for guidance that should always be visible:
 
-```json tab="Config"
+```json
 {
     "name": "subtitle",
     "type": "text",
@@ -370,7 +370,7 @@ With `multiple` on, the value is an array of entries in the exact order the edit
 
 Lock the setting to one collection, and label entries by a specific field while picking:
 
-```json tab="Config"
+```json
 {
     "name": "featured",
     "type": "entry",
@@ -382,7 +382,7 @@ Lock the setting to one collection, and label entries by a specific field while 
 
 Pre-select a collection but let the editor switch to another:
 
-```json tab="Config"
+```json
 {
     "name": "highlight",
     "type": "entry",
@@ -393,7 +393,7 @@ Pre-select a collection but let the editor switch to another:
 
 Let the editor pick up to four entries:
 
-```json tab="Config"
+```json
 {
     "name": "related",
     "type": "entry",

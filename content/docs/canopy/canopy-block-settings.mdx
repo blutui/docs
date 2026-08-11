@@ -26,7 +26,7 @@ Give settings a `tab` to split the form into tabs. Tabs appear in the order they
 
 Give consecutive settings a `group` to place them under a labelled divider. Groups are open by default, and editors can collapse them.
 
-```canvas tab="Config"
+```json tab="Config"
 {
     "title": "Hero",
     "name": "hero",
@@ -51,6 +51,7 @@ Every setting type accepts two optional strings for guiding editors. Like tabs a
 
 Use `help` for a quick clarification editors may not need every time, and `description` for guidance that should always be visible:
 
+```json tab="Config"
 {
     "name": "subtitle",
     "type": "text",
@@ -107,7 +108,7 @@ A dropdown of predefined options. The value is the selected option's `value` as 
 | :-------- | :----------------------------------------------------------------------- | --------: |
 | `options` | An array of options, each with a `value` and an optional `label`        |     Array |
 
-```canvas tab="Config"
+```json tab="Config"
 {
     "name": "alignment",
     "type": "select",
@@ -292,6 +293,7 @@ The value is `null` while no collection is selected, or when the selected collec
 
 Each entry in `entries` exposes its field values under their field names, such as `entry.title` or `entry.image`, along with `id`, `created_at`, and `updated_at`.
 
+```json tab="Config"
 {
     "name": "source",
     "type": "collection",
@@ -368,6 +370,7 @@ With `multiple` on, the value is an array of entries in the exact order the edit
 
 Lock the setting to one collection, and label entries by a specific field while picking:
 
+```json tab="Config"
 {
     "name": "featured",
     "type": "entry",
@@ -379,6 +382,7 @@ Lock the setting to one collection, and label entries by a specific field while 
 
 Pre-select a collection but let the editor switch to another:
 
+```json tab="Config"
 {
     "name": "highlight",
     "type": "entry",
@@ -389,6 +393,7 @@ Pre-select a collection but let the editor switch to another:
 
 Let the editor pick up to four entries:
 
+```json tab="Config"
 {
     "name": "related",
     "type": "entry",

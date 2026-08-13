@@ -1,0 +1,31 @@
+---
+title: 'canopy.child'
+description: 'The canopy.child function renders a single child block of a Canopy Nested Block by position.'
+---
+
+```canvas
+{{ canopy.child(index) }}
+```
+
+| Argument | Description                                 | Data Type |
+| :------- | :------------------------------------------- | --------: |
+| `index`  | The position of the child to render (0-based) |    Number |
+
+The function is available inside a parent block's template section and renders one of the block's children with its own [block template](/docs/canopy/canopy-nested-blocks). Use it when a layout treats one child specially — a featured first slide, for example.
+
+<Callout type="warning">
+  `canopy.child` renders are display-only: they do not create the editable zone in the Canopy editor. Include one
+  plain [canopy.children()](/canvas/functions/canopy/canopy-children) call wherever editors should manage children
+  visually.
+</Callout>
+
+### Example
+
+```canvas tab="gallery.canvas"
+{% canopy template %}
+<div class="featured">{{ canopy.child(0) }}</div>
+<div class="grid grid-cols-3 gap-4">
+  {{ canopy.children() }}
+</div>
+{% endcanopy %}
+```

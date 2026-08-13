@@ -1,0 +1,36 @@
+---
+title: 'canopy.children'
+description: 'The canopy.children function renders the child blocks of a Canopy Nested Block inside its parent template.'
+---
+
+```canvas
+{{ canopy.children({ only: ..., except: ... }) }}
+```
+
+| Argument            | Description                                              | Data Type |
+| :------------------ | :-------------------------------------------------------- | --------: |
+| `only` (optional)   | Render only children using these templates               |     String or Array |
+| `except` (optional) | Render all children except those using these templates   |     String or Array |
+
+The function is available inside a parent block's template section and outputs the block's children, in the order editors arranged them. Each child is rendered with its own [block template](/docs/canopy/canopy-nested-blocks). Short template names match namespaced children, so `only: 'wide'` matches `gallery/wide`.
+
+```canvas
+{{ canopy.children() }}                    {# all children, in order #}
+{{ canopy.children({only: 'wide'}) }}      {# subset by template #}
+{{ canopy.children({except: ['wide']}) }}  {# everything but these #}
+```
+
+<Callout type="warning">
+  Only the plain `canopy.children()` call creates the editable zone in the Canopy editor. Filtered renders with
+  `only` or `except` are display-only — include one plain call wherever editors should manage children visually.
+</Callout>
+
+### Example
+
+```canvas tab="gallery.canvas"
+{% canopy template %}
+<div class="grid grid-cols-3 gap-4">
+  {{ canopy.children() }}
+</div>
+{% endcanopy %}
+```

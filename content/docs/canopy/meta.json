@@ -3,6 +3,7 @@
   "pages": [
     "canopy-blocks",
     "canopy-block-settings",
+    "canopy-nested-blocks",
     "getting-started",
     "canopy-input-types"
   ]

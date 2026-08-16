@@ -16,8 +16,8 @@ The function is available inside a parent block's template section and outputs t
 
 ```canvas
 {{ canopy.children() }}                    {# all children, in order #}
-{{ canopy.children({only: 'wide'}) }}      {# subset by template #}
-{{ canopy.children({except: ['wide']}) }}  {# everything but these #}
+{{ canopy.children({ only: 'wide' }) }}      {# subset by template #}
+{{ canopy.children({ except: ['wide'] }) }}  {# everything but these #}
 ```
 
 <Callout type="warning">

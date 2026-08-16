@@ -28,8 +28,8 @@ The function outputs every block editors have added to the area, in the order th
 Pass `allow` to restrict which block templates an area accepts. The Add Block picker for that area shows only the listed templates, and drag-and-drop respects the same list:
 
 ```canvas
-{{ canopy.blocks('sidebar', {allow: ['newsletter', 'cta_banner']}) }}
-{{ canopy.blocks('notes', {allow: ['text_block'], limit: 2}) }}
+{{ canopy.blocks('sidebar', { allow: ['newsletter', 'cta_banner'] }) }}
+{{ canopy.blocks('notes', { allow: ['text_block'], limit: 2 }) }}
 ```
 
 The first area only accepts newsletter and CTA banner blocks. The second only accepts text blocks, and `limit` caps it at two of them.
@@ -50,7 +50,7 @@ Instead of options, you can pass an array of block template names. The templates
 A template list can be combined with options as a third argument — for example, seeding an area with a block and locking its structure:
 
 ```canvas
-{{ canopy.blocks('footer', ['cta_banner'], {locked: true}) }}
+{{ canopy.blocks('footer', ['cta_banner'], { locked: true }) }}
 ```
 
 ### Example

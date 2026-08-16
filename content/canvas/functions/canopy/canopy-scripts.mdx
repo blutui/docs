@@ -11,7 +11,7 @@ description: 'The canopy.scripts function outputs the scripts sections of the Ca
 | :------- | :------------------------- | --------: |
 | `handle` | The block area identifier |    String |
 
-The function collects the `{% canopy scripts %}` sections of every block template used in the area, so you can load block-specific JavaScript at the end of your page. Each template's scripts section is included once, no matter how many blocks in the area use it.
+The function collects the `{% canopy scripts %}` sections of every block template used in the area, so you can load block-specific JavaScript at the end of your page. The scripts sections of any [child blocks](/docs/canopy/canopy-nested-blocks) in the area are included as well. Each template's scripts section is included once, no matter how many blocks in the area use it.
 
 <Callout>
   Use the same `handle` you pass to [canopy.blocks](/canvas/functions/canopy/canopy-blocks). If the area is rendered

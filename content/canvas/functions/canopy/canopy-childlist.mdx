@@ -1,0 +1,40 @@
+---
+title: 'canopy.childList'
+description: 'The canopy.childList function returns the child blocks of a Canopy Nested Block for use in a custom loop.'
+---
+
+```canvas
+{% for child in canopy.childList() %}
+```
+
+The function is available inside a parent block's template section and returns the block's children, in the order editors arranged them, for full control over the surrounding markup. Each child has the following properties:
+
+| Property   | Description                                     | Data Type |
+| :--------- | :----------------------------------------------- | --------: |
+| `id`       | The child block's identifier                    |    String |
+| `template` | The name of the child's block template          |    String |
+| `settings` | The child's setting values                      |    Object |
+| `html`     | The child rendered with its own block template  |    String |
+
+<Callout type="warning">
+  `canopy.childList` renders are display-only: they do not create the editable zone in the Canopy editor. Include
+  one plain [canopy.children()](/canvas/functions/canopy/canopy-children) call wherever editors should manage
+  children visually.
+</Callout>
+
+### Example
+
+A summary strip built from the children's settings, followed by the editable content:
+
+```canvas tab="gallery.canvas"
+{% canopy template %}
+<nav class="flex gap-4 text-sm">
+  {% for child in canopy.childList() %}
+    <a href="#item-{{ loop.index }}">{{ child.settings.caption }}</a>
+  {% endfor %}
+</nav>
+<div class="grid grid-cols-3 gap-4">
+  {{ canopy.children() }}
+</div>
+{% endcanopy %}
+```

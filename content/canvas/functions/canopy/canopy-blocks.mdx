@@ -4,13 +4,16 @@ description: 'The canopy.blocks function renders a block area containing the Can
 ---
 
 ```canvas
-{{ canopy.blocks(handle, { shared: ... }) }}
+{{ canopy.blocks(handle, { shared: ..., allow: ..., limit: ..., locked: ... }) }}
 ```
 
-| Argument            | Description                                                    | Data Type |
-| :------------------ | :-------------------------------------------------------------- | --------: |
-| `handle`            | The block area identifier                                      |    String |
-| `shared` (optional) | Set to true to share the area's blocks across the whole site   |   Boolean |
+| Argument            | Description                                                       | Data Type |
+| :------------------ | :----------------------------------------------------------------- | --------: |
+| `handle`            | The block area identifier                                         |    String |
+| `shared` (optional) | Set to true to share the area's blocks across the whole site      |   Boolean |
+| `allow` (optional)  | The block templates the area accepts                              |     Array |
+| `limit` (optional)  | The maximum number of blocks editors can add to the area          |    Number |
+| `locked` (optional) | Set to true to fix the area's structure. Editors can still edit each block's fields, but cannot add, remove, or reorder blocks |   Boolean |
 
 The function outputs every block editors have added to the area, in the order they arranged them. Each block is rendered with its own [block template](/docs/canopy/canopy-blocks).
 
@@ -20,12 +23,34 @@ The function outputs every block editors have added to the area, in the order th
   other global sections.
 </Callout>
 
+## Restrict an area to specific templates
+
+Pass `allow` to restrict which block templates an area accepts. The Add Block picker for that area shows only the listed templates, and drag-and-drop respects the same list:
+
+```canvas
+{{ canopy.blocks('sidebar', { allow: ['newsletter', 'cta_banner'] }) }}
+{{ canopy.blocks('notes', { allow: ['text_block'], limit: 2 }) }}
+```
+
+The first area only accepts newsletter and CTA banner blocks. The second only accepts text blocks, and `limit` caps it at two of them.
+
+<Callout>
+  Naming a [hidden block](/docs/canopy/canopy-blocks#hidden-blocks) in an area's `allow` list is the only way it
+  appears in a picker.
+</Callout>
+
 ## Render specific templates
 
 Instead of options, you can pass an array of block template names. The templates are rendered in the given order, using editor content where it exists and template defaults where it does not:
 
 ```canvas
 {{ canopy.blocks('showcase', ['hero', 'features', 'cta']) }}
+```
+
+A template list can be combined with options as a third argument — for example, seeding an area with a block and locking its structure:
+
+```canvas
+{{ canopy.blocks('footer', ['cta_banner'], { locked: true }) }}
 ```
 
 ### Example

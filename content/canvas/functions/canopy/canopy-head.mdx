@@ -11,7 +11,7 @@ description: 'The canopy.head function outputs the head sections of the Canopy B
 | :------- | :------------------------- | --------: |
 | `handle` | The block area identifier |    String |
 
-The function collects the `{% canopy head %}` sections of every block template used in the area, so you can place block-specific stylesheets and meta tags in your page head. Each template's head section is included once, no matter how many blocks in the area use it.
+The function collects the `{% canopy head %}` sections of every block template used in the area, so you can place block-specific stylesheets and meta tags in your page head. The head sections of any [child blocks](/docs/canopy/canopy-nested-blocks) in the area are included as well. Each template's head section is included once, no matter how many blocks in the area use it.
 
 <Callout>
   Use the same `handle` you pass to [canopy.blocks](/canvas/functions/canopy/canopy-blocks). If the area is rendered

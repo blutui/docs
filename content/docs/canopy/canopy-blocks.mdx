@@ -64,6 +64,17 @@ The config section is a JSON object with the following properties:
 | `title`               | The name of the block shown to editors in the Canopy editor                    |    String |
 | `name` (optional)     | The unique identifier for the block template. Generated from the title if omitted |    String |
 | `settings` (optional) | An array of settings editors can change for each block                         |     Array |
+| `hidden` (optional)   | Set to true to keep the block out of pickers. See [Hidden blocks](#hidden-blocks) |   Boolean |
+| `children` (optional) | Rules for the block's child blocks. See [Canopy Nested Blocks](/docs/canopy/canopy-nested-blocks) |    Object |
+
+The `children` object accepts four optional sub-keys, documented in detail on the [Canopy Nested Blocks](/docs/canopy/canopy-nested-blocks#the-children-config) page:
+
+| Property             | Description                                                        | Data Type |
+| :------------------- | :------------------------------------------------------------------ | --------: |
+| `children.allow`     | The templates editors can add as children. Replaces the folder set |     Array |
+| `children.min`       | Reserved for a minimum child count. Not yet enforced               |    Number |
+| `children.max`       | The maximum number of children                                     |    Number |
+| `children.default`   | Children a freshly added parent starts with                        |     Array |
 
 Every setting requires a `name` and a `type`. Most types also accept a `label`, a `default`, and a few type-specific attributes. Settings can also declare a `tab` and a `group` to organize the editing form into tabs and collapsible groups. See [Canopy Block Settings](/docs/canopy/canopy-block-settings) for the full list of setting types and [Tabs and groups](/docs/canopy/canopy-block-settings#tabs-and-groups) for organizing them.
 
@@ -71,6 +82,16 @@ Every setting requires a `name` and a `type`. Most types also accept a `label`, 
   The config section must be valid JSON: keys and string values use double quotes, and trailing commas are not
   allowed. Settings with a missing `name`, a missing `type`, or an unknown `type` are ignored.
 </Callout>
+
+### Hidden blocks
+
+Set `hidden` to true to keep a block template out of the Add Block picker:
+
+```json
+{ "title": "Badge", "name": "badge", "hidden": true, "settings": [...] }
+```
+
+A hidden block never appears in pickers unless a block area's [allow](/canvas/functions/canopy/canopy-blocks#restrict-an-area-to-specific-templates) list names it explicitly. Use it for special-purpose blocks — a badge that only belongs in the sidebar, a banner reserved for one area — that shouldn't clutter the general picker.
 
 ### The template section
 
@@ -125,6 +146,8 @@ This code:
 
 By default a block area is scoped to the current page, so the `main` area on your homepage and the `main` area on your about page hold different blocks.
 
+Block areas also accept options to restrict the templates they accept (`allow`), cap the number of blocks (`limit`), and fix their structure (`locked`). See the [canopy.blocks](/canvas/functions/canopy/canopy-blocks) reference for all of them.
+
 You can also render block templates directly, without editor content, using [canopy.render](/canvas/functions/canopy/canopy-render):
 
 ```canvas
@@ -143,3 +166,9 @@ Blutui provides the following functions for working with Canopy Blocks:
 - [`canopy.render`](/canvas/functions/canopy/canopy-render) renders a block template directly
 - [`canopy.head`](/canvas/functions/canopy/canopy-head) outputs the head sections for a block area
 - [`canopy.scripts`](/canvas/functions/canopy/canopy-scripts) outputs the scripts sections for a block area
+
+Inside a parent block's template section, three more functions render its child blocks — see [Canopy Nested Blocks](/docs/canopy/canopy-nested-blocks):
+
+- [`canopy.children`](/canvas/functions/canopy/canopy-children) renders the block's children
+- [`canopy.child`](/canvas/functions/canopy/canopy-child) renders a single child by position
+- [`canopy.childList`](/canvas/functions/canopy/canopy-childlist) returns the children for a custom loop

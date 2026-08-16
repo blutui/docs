@@ -1,0 +1,160 @@
+---
+title: 'Canopy Nested Blocks'
+description: 'Learn how to build parent blocks that contain their own child blocks, like galleries, sliders, and accordions'
+---
+
+Nested blocks let a block template contain its own child blocks. A parent block — a gallery, a slider, an accordion — defines the wrapper and the rules, and content editors add, arrange, and edit child blocks inside it. Children belong to their parent: they are stored on the parent block itself, edited in a nested list under it, and deleted along with it.
+
+<Callout>
+  Nesting is one level deep. A child template cannot have children of its own.
+</Callout>
+
+### Create child templates
+
+A block becomes a parent by having a folder of child templates named after its file:
+
+```
+views/
+└── canopy/
+    ├── gallery.canvas        ← parent
+    └── gallery/
+        ├── wide.canvas       ← child, registered as "gallery/wide"
+        └── tall.canvas       ← child, registered as "gallery/tall"
+```
+
+Child templates are ordinary block files with the same sections as any other template — a config section, a template section, and optional head and scripts sections. They are namespaced under their parent (`gallery/wide`), hidden from all normal Add Block pickers, and can only be used inside their parent.
+
+Only the folder name comes from the filesystem — it must match the parent's filename. The child's half of the key comes from its config, like any other block: its `name`, or a name generated from its `title` if omitted. The template below registers as `gallery/wide` because its config sets `"name": "wide"`, regardless of what the file is called.
+
+Here is a child template for a wide gallery item:
+
+```canvas tab="gallery/wide.canvas"
+{% canopy config %}
+{
+    "title": "Wide image",
+    "name": "wide",
+    "settings": [
+        { "name": "image", "type": "file", "label": "Image" },
+        { "name": "caption", "type": "text" }
+    ]
+}
+{% endcanopy %}
+
+{% canopy template %}
+<figure class="col-span-2">
+  <img src="{{ settings.image.url }}" alt="{{ settings.caption }}" />
+  <figcaption>{{ settings.caption }}</figcaption>
+</figure>
+{% endcanopy %}
+```
+
+### Render children in the parent
+
+The parent renders its children with `canopy.children` in its template section:
+
+```canvas tab="gallery.canvas"
+{% canopy config %}
+{
+    "title": "Gallery",
+    "settings": [
+        { "name": "heading", "type": "text", "default": "Gallery" }
+    ]
+}
+{% endcanopy %}
+
+{% canopy template %}
+<section class="mx-auto max-w-7xl px-6 py-20">
+  <h2>{{ settings.heading }}</h2>
+  <div class="grid grid-cols-3 gap-4">
+    {{ canopy.children() }}
+  </div>
+</section>
+{% endcanopy %}
+```
+
+Children render in the order editors arranged them, each with its own template. Besides the plain call, there are helpers for rendering a subset or taking full control of the markup:
+
+```canvas
+{{ canopy.children() }}                    {# all children, in order — the editable zone #}
+{{ canopy.children({ only: 'wide' }) }}         {# subset by template; 'wide' matches 'gallery/wide' #}
+{{ canopy.children({ except: ['wide'] }) }}  {# everything but these #}
+{{ canopy.child(0) }}                      {# single child by position (0-based) #}
+
+{% for child in canopy.childList() %}      {# custom loop; child has id, template, settings, html #}
+    <div class="slide">{{ child.html }}</div>
+{% endfor %}
+```
+
+`only` and `except` accept a template name or an array of names, and short names match namespaced children — `'wide'` matches `gallery/wide`.
+
+<Callout type="warning">
+  Only the plain `canopy.children()` call creates the editable zone in the Canopy editor. Filtered (`only`/`except`),
+  indexed (`canopy.child(n)`), and `canopy.childList()` renders are display-only. A template that uses only
+  display-only calls renders fine, but offers no in-canvas child management — include one plain `canopy.children()`
+  wherever editors should manage children visually.
+</Callout>
+
+A good pattern is to combine both: a `canopy.childList` loop for a summary strip, plus a plain `canopy.children` for the content itself. Here the loop builds a caption index above the editable gallery:
+
+```canvas tab="gallery.canvas"
+{% canopy template %}
+<section class="mx-auto max-w-7xl px-6 py-20">
+  <nav class="flex gap-4 text-sm">
+    {% for child in canopy.childList() %}
+      <a href="#item-{{ loop.index }}">{{ child.settings.caption }}</a>
+    {% endfor %}
+  </nav>
+  <div class="grid grid-cols-3 gap-4">
+    {{ canopy.children() }}
+  </div>
+</section>
+{% endcanopy %}
+```
+
+The functions are documented individually in the Canvas reference: [canopy.children](/canvas/functions/canopy/canopy-children), [canopy.child](/canvas/functions/canopy/canopy-child), and [canopy.childList](/canvas/functions/canopy/canopy-childlist).
+
+### The children config
+
+Having the folder is enough to make a block a parent. An optional `children` key in the parent's config section refines the rules — all sub-keys are optional, and `"children": {}` behaves the same as just having the folder:
+
+```json
+{
+    "title": "Gallery",
+    "children": {
+        "allow": ["gallery/wide", "cta_banner"],
+        "min": 0,
+        "max": 8,
+        "default": [
+            { "block": "gallery/wide", "data": { "caption": "First item" } },
+            { "block": "gallery/tall" }
+        ]
+    }
+}
+```
+
+| Property             | Description                                                                          | Data Type |
+| :------------------- | :------------------------------------------------------------------------------------ | --------: |
+| `allow` (optional)   | The templates editors can add as children. Replaces the folder set                   |     Array |
+| `min` (optional)     | Reserved for a minimum child count. Accepted but not yet enforced                    |    Number |
+| `max` (optional)     | The maximum number of children, enforced in the editor and on save                   |    Number |
+| `default` (optional) | Children a freshly added parent starts with. Each entry names a `block` template and can pass `data` for its settings |     Array |
+
+#### Allowed templates
+
+`allow` replaces the folder set entirely, and may include shared top-level templates — the example above lets editors add the site-wide `cta_banner` block inside a gallery, while `gallery/tall` is no longer offered. This is also how a parent with no child folder declares children: list existing templates in `allow` and the block becomes a parent without any files of its own.
+
+<Callout>
+  A `children` key with no folder and no `allow` accepts nothing — there is no set of templates to offer.
+</Callout>
+
+#### Default children
+
+`default` predefines children: a freshly added parent arrives with these entries already in place, ready to edit. Blocks whose children were never touched also render the defaults. Explicitly deleting all children keeps the list empty — defaults never resurrect. Changing `default` later only affects fresh and untouched parents; blocks whose children have been edited keep what the editor gave them.
+
+### Working with children in the editor
+
+In the Canopy editor, children appear as nested rows in the block tree under their parent, with a count badge on the parent row (like `3/8` when `max` is set). Editors can add, edit, reorder, and delete children before the parent is even saved. Children cannot be dragged into a different parent, and deleting the parent removes its children — they are stored on the parent block itself, not as separate records.
+
+### Head and scripts
+
+Child templates can have their own `{% canopy head %}` and `{% canopy scripts %}` sections. They automatically join the parent's block area in the output of [canopy.head](/canvas/functions/canopy/canopy-head) and [canopy.scripts](/canvas/functions/canopy/canopy-scripts) — still once per template, no matter how many children use it.

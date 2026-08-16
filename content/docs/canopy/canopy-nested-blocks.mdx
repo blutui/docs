@@ -76,8 +76,8 @@ Children render in the order editors arranged them, each with its own template. 
 
 ```canvas
 {{ canopy.children() }}                    {# all children, in order — the editable zone #}
-{{ canopy.children({only: 'wide'}) }}      {# subset by template; 'wide' matches 'gallery/wide' #}
-{{ canopy.children({except: ['wide']}) }}  {# everything but these #}
+{{ canopy.children({ only: 'wide' }) }}         {# subset by template; 'wide' matches 'gallery/wide' #}
+{{ canopy.children({ except: ['wide'] }) }}  {# everything but these #}
 {{ canopy.child(0) }}                      {# single child by position (0-based) #}
 
 {% for child in canopy.childList() %}      {# custom loop; child has id, template, settings, html #}

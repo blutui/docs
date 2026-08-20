@@ -328,7 +328,7 @@ One or more entries hand-picked from a collection. Use it when the editor choose
 | `default_collection` (optional) | Pre-selects a collection in the editor, but the editor can switch to another. Switching clears the picked entries. Ignored when `collection` is set |    String |
 | `multiple` (optional)           | Whether editors pick a single entry or several. `false` shows a single entry dropdown, `true` a multi-select with add and remove. Defaults to `false` |   Boolean |
 | `min` / `max` (optional)        | Bounds for the number of entries when `multiple` is `true`. The editor enforces `max`                                                          |    Number |
-| `display_field` (optional)      | The entry field shown as the label while picking. Defaults to the entry's first non-empty text field                                           |    String |
+| `display_field` (optional)      | The entry field(s) shown as the label while picking. Accepts a single field name or an array of field names. Defaults to the entry's first non-empty text field |    String or Array |
 | `placeholder` (optional)        | Placeholder text shown in the entry dropdown                                                                                                   |    String |
 
 <Callout>
@@ -337,6 +337,17 @@ One or more entries hand-picked from a collection. Use it when the editor choose
 </Callout>
 
 `display_field` only changes the labels in the editor's picker. It never affects what the template receives or renders.
+
+Pass an array to show multiple values while picking: the first listed field with a value becomes the label, the remaining values appear alongside it, and searching matches all of the listed fields. This is useful when one field alone doesn't identify an entry, like products that share a name but differ by SKU:
+
+```json
+{
+    "name": "featured",
+    "type": "entry",
+    "collection": "products",
+    "display_field": ["name", "sku"]
+}
+```
 
 #### Rendering entries
 
@@ -407,4 +418,53 @@ Let the editor pick up to four entries:
 <Callout>
   Entries and collections are stored by collection handle and entry id. Renaming a collection's handle breaks
   existing block data that points at it, so settle on handles before editors start filling in blocks.
+</Callout>
+
+### Form
+
+**type: `form`**
+
+A form picked from the project's forms. It works like the [Collection](#collection) selector: the editor sees a dropdown of the project's forms and chooses one, so a single block template can render whichever form the page needs, a contact form here, a newsletter signup there, without hard-coding a handle.
+
+| Attribute                | Description                            | Data Type |
+| :----------------------- | :-------------------------------------- | --------: |
+| `placeholder` (optional) | Placeholder text shown in the dropdown |    String |
+
+`default` may be a form handle String.
+
+The value is `null` while no form is selected, or when the selected form has been deleted. Otherwise it is an object:
+
+| Value property | Description                                                                                        | Data Type |
+| :------------- | :--------------------------------------------------------------------------------------------------- | --------: |
+| `object`       | Always `form`                                                                                      |    String |
+| `name`         | The form name                                                                                      |    String |
+| `handle`       | The form handle                                                                                    |    String |
+| `fields`       | The form's fields keyed by field name, in the same shape as the [form tag](/canvas/tags/form)'s `form.fields` |    Object |
+
+Combine the setting with the [form tag](/canvas/tags/form), passing the picked handle to the tag and looping the fields, and the block generates a fully working form for whichever form the editor selects:
+
+```json tab="Config"
+{
+    "name": "contact_form",
+    "type": "form",
+    "label": "Form",
+    "placeholder": "Select a form"
+}
+```
+
+```canvas tab="Template"
+{% if settings.contact_form %}
+  {% form settings.contact_form.handle %}
+    {% for field in settings.contact_form.fields %}
+      <label for="{{ field.name }}">{{ field.label }}</label>
+      <input id="{{ field.name }}" type="{{ field.type }}" name="{{ field.name }}" value="{{ field.value }}" />
+    {% endfor %}
+    <button type="submit">Send</button>
+  {% endform %}
+{% endif %}
+```
+
+<Callout>
+  As with collections and entries, guard your output: a form that was never selected, or was deleted after being
+  selected, resolves to `null` rather than erroring.
 </Callout>

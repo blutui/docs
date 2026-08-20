@@ -115,13 +115,12 @@ The functions are documented individually in the Canvas reference: [canopy.child
 
 ### The children config
 
-Having the folder is enough to make a block a parent. An optional `children` key in the parent's config section refines the rules — all sub-keys are optional, and `"children": {}` behaves the same as just having the folder:
+The child folder is what makes a block a parent, and its templates are the set editors can add — there is no way to restrict or extend that set from config. An optional `children` key in the parent's config section refines the rules — all sub-keys are optional, and `"children": {}` behaves the same as just having the folder:
 
 ```json
 {
     "title": "Gallery",
     "children": {
-        "allow": ["gallery/wide", "cta_banner"],
         "min": 0,
         "max": 8,
         "default": [
@@ -134,17 +133,14 @@ Having the folder is enough to make a block a parent. An optional `children` key
 
 | Property             | Description                                                                          | Data Type |
 | :------------------- | :------------------------------------------------------------------------------------ | --------: |
-| `allow` (optional)   | The templates editors can add as children. Replaces the folder set                   |     Array |
 | `min` (optional)     | Reserved for a minimum child count. Accepted but not yet enforced                    |    Number |
 | `max` (optional)     | The maximum number of children, enforced in the editor and on save                   |    Number |
 | `default` (optional) | Children a freshly added parent starts with. Each entry names a `block` template and can pass `data` for its settings |     Array |
 
-#### Allowed templates
-
-`allow` replaces the folder set entirely, and may include shared top-level templates — the example above lets editors add the site-wide `cta_banner` block inside a gallery, while `gallery/tall` is no longer offered. This is also how a parent with no child folder declares children: list existing templates in `allow` and the block becomes a parent without any files of its own.
-
 <Callout>
-  A `children` key with no folder and no `allow` accepts nothing — there is no set of templates to offer.
+  A `children` key on a block without a child folder does nothing — the folder is what defines the templates editors
+  can add. Note that `allow` is an [area option](/canvas/functions/canopy/canopy-blocks), not a children option, and
+  is not supported on nested blocks.
 </Callout>
 
 #### Default children

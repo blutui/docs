@@ -17,6 +17,11 @@ description: 'The canopy.blocks function renders a block area containing the Can
 
 The function outputs every block editors have added to the area, in the order they arranged them. Each block is rendered with its own [block template](/docs/canopy/canopy-blocks).
 
+<Callout type="warning">
+  The `canopy.blocks()` declaration is the only place `allow`, `limit`, and `locked` can be set. They are options of
+  the area, not of a block — adding them to a block template's config section has no effect.
+</Callout>
+
 <Callout>
   By default a block area is scoped to the current page, so the same `handle` holds different blocks on different
   pages. With `shared: true` the area holds one set of blocks for the whole site, which is useful for footers and

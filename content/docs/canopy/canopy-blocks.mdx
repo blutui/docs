@@ -67,11 +67,10 @@ The config section is a JSON object with the following properties:
 | `hidden` (optional)   | Set to true to keep the block out of pickers. See [Hidden blocks](#hidden-blocks) |   Boolean |
 | `children` (optional) | Rules for the block's child blocks. See [Canopy Nested Blocks](/docs/canopy/canopy-nested-blocks) |    Object |
 
-The `children` object accepts four optional sub-keys, documented in detail on the [Canopy Nested Blocks](/docs/canopy/canopy-nested-blocks#the-children-config) page:
+The `children` object accepts three optional sub-keys, documented in detail on the [Canopy Nested Blocks](/docs/canopy/canopy-nested-blocks#the-children-config) page:
 
 | Property             | Description                                                        | Data Type |
 | :------------------- | :------------------------------------------------------------------ | --------: |
-| `children.allow`     | The templates editors can add as children. Replaces the folder set |     Array |
 | `children.min`       | Reserved for a minimum child count. Not yet enforced               |    Number |
 | `children.max`       | The maximum number of children                                     |    Number |
 | `children.default`   | Children a freshly added parent starts with                        |     Array |
@@ -146,7 +145,12 @@ This code:
 
 By default a block area is scoped to the current page, so the `main` area on your homepage and the `main` area on your about page hold different blocks.
 
-Block areas also accept options to restrict the templates they accept (`allow`), cap the number of blocks (`limit`), and fix their structure (`locked`). See the [canopy.blocks](/canvas/functions/canopy/canopy-blocks) reference for all of them.
+Block areas also accept options to restrict the templates they accept (`allow`), cap the number of blocks (`limit`), and fix their structure so blocks cannot be removed or repositioned (`locked`). See the [canopy.blocks](/canvas/functions/canopy/canopy-blocks) reference for all of them.
+
+<Callout type="warning">
+  `allow`, `limit`, and `locked` are area options — they can only be set on the `canopy.blocks()` declaration. Adding
+  them to a block template's config section has no effect.
+</Callout>
 
 You can also render block templates directly, without editor content, using [canopy.render](/canvas/functions/canopy/canopy-render):
 

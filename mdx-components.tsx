@@ -8,6 +8,7 @@ import { Callout } from 'fumadocs-ui/components/callout'
 import * as BadgeComponents from 'components/badge'
 import * as ChangelogComponents from 'components/changelog'
 import * as ParameterComponents from 'components/parameter'
+import * as PromptBlockComponents from 'components/prompt-block'
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -23,6 +24,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...ChangelogComponents,
     ...ParameterComponents,
     ...StepsComponents,
+    ...PromptBlockComponents,
     ...components,
   }
 }

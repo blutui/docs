@@ -1,0 +1,218 @@
+---
+title: Install with AI
+description: Use an AI coding agent to install and configure Blutui Courier on your machine.
+---
+
+If you already work with an AI coding agent such as Claude Code, Cursor, Codex, or OpenCode, you can hand it the prompt below and it will install **Courier**, verify the installation, and walk you through the parts only you can do.
+
+<Callout type="warning">
+  An agent cannot create your Blutui access token, you create it in the [Agency Console](https://console.blutui.com) and
+  hand it over. Anything you paste into an assistant is stored in its conversation transcript, so treat the token as
+  exposed: if that is a problem, revoke it in the console and issue a new one.
+</Callout>
+
+## What you will be asked to do
+
+The agent will stop and wait for you at each of these points:
+
+| Step                | Why it needs you                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------ |
+| Package manager     | Installing Homebrew or Scoop is your call, the agent will only check whether it is already available.  |
+| Administrator access | Courier needs administrative access to run projects locally, so expect a password prompt.              |
+| Access token        | Tokens are created in the [Agency Console](https://console.blutui.com) and shown only once.            |
+| Login               | The agent runs `courier login` for you once you give it the token.                                     |
+| Project setup       | Optional. The project must exist in the Console first, and only you know its handle and Canvas.        |
+
+## The prompt
+
+Copy the block below and paste it into your agent. The prompt is long, so it stays collapsed until you expand it, you can copy it without reading it first.
+
+<PromptBlock>
+
+````md title="Install Blutui Courier"
+You are setting up **Blutui Courier**, the Blutui command-line tool, on my computer. Work through the
+steps in order. Steps marked **[ask me]** are mine to complete: stop, tell me exactly what to do, and
+wait for my confirmation before continuing.
+
+Reference documentation: https://blutui.dev/docs/courier/getting-started
+
+## Rules
+
+- My Blutui access token is a credential. Never print it back to me, never write it into a summary or
+  a commit, and delete the file you wrote it to as soon as the login succeeds.
+- Tell me before you run anything with `sudo` or that needs administrator rights, and explain why.
+- If a command fails, show me its real output. Do not silently retry with a different package manager
+  or a different install method.
+- Do not invent commands or flags. If something is not in the documentation, ask me.
+
+## 1. Work out the environment
+
+- Detect my operating system and CPU architecture.
+- Run `courier version` to see whether Courier is already installed. If it is, report the version and
+  **[ask me]** whether to upgrade or stop here.
+
+## 2. Install Courier
+
+### macOS
+
+- Check that `brew` is available. If it is not, **[ask me]** to install Homebrew from https://brew.sh
+  and wait. Do not install Homebrew for me.
+- Install the cask:
+  `brew install --cask blutui/courier/courier`
+- **[ask me]** before running it: the installer needs administrative access and may prompt for my
+  macOS password.
+- To upgrade an existing install instead: `brew upgrade --cask courier`
+
+### Windows (PowerShell)
+
+- Check that both `scoop` and `git` are available. Scoop comes from https://scoop.sh and Git is
+  required to add Scoop buckets. If either is missing, **[ask me]** to install it and wait.
+- Add the bucket and install:
+  `scoop bucket add blutui https://github.com/blutui/bucket-courier.git`
+  `scoop install blutui/courier`
+- To upgrade an existing install instead: `scoop update courier`
+
+### Anything else
+
+Courier supports macOS and Windows only. If I am on another operating system, stop and tell me,
+do not try to build or install it another way.
+
+## 3. Verify the installation
+
+- Run `courier version` and show me the output.
+- Run `courier help` to confirm the command list loads.
+- If the shell cannot find `courier`, **[ask me]** to open a new terminal window so my PATH is
+  reloaded, then try again.
+
+## 4. Firefox support (optional)
+
+**[ask me]** whether I use Firefox to preview my work with `courier dev`. Only if I say yes, and only
+on macOS, install Network Security Services:
+
+`brew install nss`
+
+Nothing extra is needed on Windows.
+
+## 5. Log in
+
+You cannot create the token, so **[ask me]** to make one. Give me these steps and wait:
+
+1. Open https://console.blutui.com, click my avatar in the top-right corner, choose `Profile`.
+2. Go to the `Apps` section in the sidebar.
+3. Under "Access tokens", click `Create token`.
+4. Name the token after this machine, for example "Work MacBook".
+5. Set the token type to "Courier" so the required permissions are selected automatically.
+6. Click `Create token` and copy the token. It is shown only once.
+
+Ask me to give you the token, then run the login for me:
+
+- Write the token to a `token.txt` file in the working directory. Use a file write rather than an
+  `echo` command, so the token does not land in my shell history.
+- macOS: `courier login --token < token.txt`
+- Windows PowerShell: `Get-Content token.txt -Raw | courier login --token`
+- Delete `token.txt` immediately afterwards, whether or not the login succeeded, and confirm to me
+  that it is gone. Do not repeat the token back to me at any point.
+
+If the login fails, show me the error. Do not print the token while debugging it.
+
+## 6. Set up a project — optional
+
+Courier is now installed and logged in, which is all I asked for. **[ask me]** whether I also want to
+set up a project now. If I say no, skip straight to the summary. If I say yes, gather the answers
+below yourself before running anything, rather than leaving me to Courier's own prompts.
+
+### 6a. Make sure the project exists in Blutui
+
+A project has to exist on the Blutui platform before Courier can scaffold or pull it. **[ask me]**
+whether I have already created it. If I have not, give me these steps and wait until I confirm:
+
+1. Log in to the [Agency Console](https://console.blutui.com).
+2. Click **Projects** in the navigation menu.
+3. Click **Create project**.
+4. Fill in the **Project name**, and optionally a **Description** and **Timezone**.
+5. Click **Create project**.
+
+### 6b. Ask me for the project handle
+
+**[ask me]** for the handle of the project to link, and wait for my answer. Never guess it, never
+derive it from the project name or the current directory name, and never invent one to keep going.
+
+### 6c. Ask me whether it is a new or existing project
+
+- New project: run `courier create` in the directory where the new project folder should be created.
+  It scaffolds the Canvas, generates `courier.json`, and can install Blutui Context.
+- Existing project I already have code for: create and enter a directory, run
+  `courier init my-project-handle` to generate `courier.json`, then `courier pull` to fetch the
+  `public` and `views` folders.
+
+### 6d. Ask me which Canvas to use
+
+Only for a new project. **[ask me]** and show me these options:
+
+- `base` — bare bones Canvas for Blutui.
+- `tailwindcss` — bare bones Canvas with Tailwind CSS.
+- `tailwindcss-js` — bare bones Canvas with Tailwind CSS and the Parcel.js compiler.
+- `headless-nextjs-blank` — bare bones Next.js Canvas for Blutui Headless.
+
+Community Canvases are listed at https://github.com/blutui/canvases. If I want one that is not in the
+list above, check that repository rather than guessing a handle.
+
+### 6e. Ask me about Blutui Context
+
+**[ask me]** whether to install Blutui Context, the MCP server and Skills described in step 7, while
+scaffolding. If I say yes, pass it to `courier create` along with the `--client` value for the client
+you are running inside, taken from the table in step 7, so Context is set up in one pass.
+
+Once you have all the answers, run the command with them filled in rather than answering the
+interactive prompts one by one, for example:
+
+`courier create my-project --canvas tailwindcss-js --context --client claude`
+
+If the project uses Git, check that `.courier` is listed in `.gitignore` and add it if it is missing.
+That directory is only used to serve the site locally.
+
+## 7. Blutui Context — optional
+
+Blutui Context is the MCP server and Skills that teach an assistant the Blutui syntax and give it
+project tools. If `courier create` already installed it in step 6, skip ahead to the restart note at
+the end of this step. Otherwise **[ask me]** whether I want it, and if I do:
+
+- Work out which client you are running inside right now, that is the one to configure. Do not ask me
+  to pick from a list and do not configure a client I am not using. Tell me which one you chose, and
+  only ask me if you genuinely cannot tell. These are the clients Courier supports:
+
+  - Claude Code — `claude`
+  - Cursor — `cursor`
+  - GitHub Copilot — `copilot`
+  - Codex — `codex`
+  - OpenCode — `opencode`
+
+- Register the MCP server with `courier mcp init` and answer its client prompt with that client.
+- Install the Skills with `npx skills add https://github.com/blutui/context`. This needs Node.js on my
+  PATH. The `--agent` flag targets a specific assistant if the install does not pick mine up.
+- Run both from inside the project directory, that is where the client configuration is written.
+- Tell me to restart my editor or assistant so the MCP server is picked up.
+
+Do not install Context twice. If step 6 already handled it, the only thing left here is the restart.
+
+## 8. Summarise
+
+Finish with a short report covering:
+
+- The Courier version installed and how it was installed.
+- Whether the login succeeded, and confirmation that `token.txt` was deleted.
+- The project directory, handle, and Canvas if one was set up.
+- Whether Blutui Context was configured.
+- What to run next: `courier dev` to work locally, `courier push` to send changes to Blutui.
+````
+
+</PromptBlock>
+
+## After the agent finishes
+
+Your machine is ready to build. Head to the [commands reference](/docs/courier/commands) for everything Courier can do.
+
+<Callout>
+  If the agent got stuck on a step, the manual instructions for your platform are on the
+  [macOS](/docs/courier/installation/macos) and [Windows](/docs/courier/installation/windows) pages.
+</Callout>

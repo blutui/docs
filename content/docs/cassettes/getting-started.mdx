@@ -24,6 +24,55 @@ The Cassette to which your changes are pushed and pulled from is determined by t
 }
 ```
 
+### Pages Belong to a Cassette
+
+Pages are linked to the Cassette they were created on. A page you create on one Cassette only exists on that Cassette. It won't appear on any other Cassette, including the active one.
+
+For example, if you create an **About** page on a `dev` Cassette, it's only available when you view the `dev` Cassette. Visitors to your staging link (`[your-site].blutui.com`) see the active Cassette, so they won't see the **About** page until `dev` is made active.
+
+### Previewing a Cassette
+
+Your staging link (`[your-site].blutui.com`) always shows the **active** Cassette. Every other Cassette has its own preview link, which you can find by clicking the ⋯ (options) button next to the Cassette in the Agency Console.
+
+Each preview link is tied to a single Cassette. For example:
+
+| Cassette | Preview link                                     |
+| -------- | ------------------------------------------------ |
+| default  | `https://[your-site]-preview-default.blutui.com` |
+| development      | `https://[your-site]-preview-development.blutui.com`     |
+
+<Callout>
+  To view a Cassette, open that Cassette's own preview link. You can't switch to another Cassette from a different
+  Cassette's preview link. If you're sharing a Cassette with a teammate or client, make sure you send them the right
+  link.
+</Callout>
+
+### Sharing a Preview With Your Client
+
+Cassette preview links are password protected. Anyone without access to your project in the Agency Console will be asked for the password before they can view the site.
+
+- **Before your site is published:** your staging link and every Cassette preview link are password protected.
+- **After your site is published:** the active Cassette is your live site, so anyone can view it. Preview links for every other Cassette stay password protected, so you can share work in progress with your client without making it public.
+
+To find the password:
+
+1. Open your project in the Agency Console.
+2. Go to **Settings**.
+3. Find the password under **Password protection**. You can change it here too.
+
+Send your client both the preview link and the password.
+
+<Callout>
+  The same password applies to all password protected links, so you only need to share it once. If you change the
+  password, let anyone you've shared it with know.
+</Callout>
+
+### Which Cassette Should I Build On?
+
+**Before your site is published:** build on the active Cassette. Your pages will then show up at your staging link, and anyone you share the site with will see them however they open it. They won't need a Cassette-specific preview link.
+
+**After your site is published:** duplicate the active Cassette and build on that. This lets you work on changes without affecting your live site. When you're ready, make the new Cassette active (see [Typical Cassette Workflow](#typical-cassette-workflow)).
+
 ### Typical Cassette Workflow
 
 You can manage your Cassettes through the Blutui Agency Console. Here's a typical workflow:
@@ -40,9 +89,9 @@ You can manage your Cassettes through the Blutui Agency Console. Here's a typica
 
 <Callout>The change is immediate, and your new site UI will be visible to all visitors.</Callout>
 
-### Restrictions on the Active Cassette
+### Restrictions on the Active Cassette once the site is published
 
-Once you set a Cassette to **Active**, it is recommended that you develop any new features or changes on a **new Cassette** created by duplicating the active Cassette. This ensures the production version of the project is not affected by development changes.
+Once your site is published and you set a Cassette to **Active**, it is recommended that you develop any new features or changes on a **new Cassette** created by duplicating the active Cassette. This ensures the production version of the project is not affected by development changes.
 
 While you can override this and develop on the active Cassette directly, it is **not recommended**. When you attempt to push to an active cassette, Courier will show a warning similar to:
 

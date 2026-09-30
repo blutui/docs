@@ -7,8 +7,8 @@ The **embed** tag combines the behaviour of [include](/canvas/tags/include) and 
 Think of an embedded template as a "micro layout skeleton".
 
 ```canvas
-{% embed 'teasers_skeleton.html' %}
-  {# These blocks are defined in "teasers_skeleton.html" and we override them right here: #}
+{% embed 'teasers_skeleton.canvas' %}
+  {# These blocks are defined in "teasers_skeleton.canvas" and we override them right here: #}
   {% block left_teaser %}
     Some content for the left teaser box
   {% endblock %}
@@ -35,7 +35,7 @@ Since the use case may not be obvious, let's look at a simplified example. Imagi
 └─────────────────────────────────────┘
 ```
 
-Some pages ("foo.html" and "bar.html") share the same content structure - two vertically stacked boxes:
+Some pages ("foo.canvas" and "bar.canvas") share the same content structure - two vertically stacked boxes:
 
 ```canvas
 ┌─── page layout ─────────────────────┐
@@ -52,7 +52,7 @@ Some pages ("foo.html" and "bar.html") share the same content structure - two ve
 └─────────────────────────────────────┘
 ```
 
-While other pages ("boom.html" and "baz.html") share a different content structure - two boxes side by side:
+While other pages ("boom.canvas" and "baz.canvas") share a different content structure - two boxes side by side:
 
 ```canvas
 ┌─── page layout ─────────────────────┐
@@ -71,7 +71,7 @@ While other pages ("boom.html" and "baz.html") share a different content structu
 
 Without the **embed** tag, you have two ways to design your templates:
 
-- Create two "intermediate" base templates that extend the master layout template: one with vertically stacked boxes to be used by the "foo.html" and "bar.html" pages and another one with side-by-side boxes for the "boom.html" and "baz.html" pages.
+- Create two "intermediate" base templates that extend the master layout template: one with vertically stacked boxes to be used by the "foo.canvas" and "bar.canvas" pages and another one with side-by-side boxes for the "boom.canvas" and "baz.canvas" pages.
 - Embed the markup for the top/bottom and left/right boxes into each page template directly.
 
 These two solutions do not scale well because they each have a major drawback:
@@ -81,13 +81,13 @@ These two solutions do not scale well because they each have a major drawback:
 
 In such a situation, the **embed** tag comes in handy. The common layout code can live in a single base template, and the two different content structures, let's call them "micro layouts" go into separate templates which are embedded as necessary:
 
-Page template `foo.html`:
+Page template `foo.canvas`:
 
 ```canvas
-{% extends "layout.html" %}
+{% extends "layout.canvas" %}
 
 {% block content %}
-  {% embed "vertical_boxes_skeleton.html" %}
+  {% embed "vertical_boxes_skeleton.canvas" %}
     {% block top %}
       Some content for the top box
     {% endblock %}
@@ -99,7 +99,7 @@ Page template `foo.html`:
 {% endblock %}
 ```
 
-And here is the code for `vertical_boxes_skeleton.html`:
+And here is the code for `vertical_boxes_skeleton.canvas`:
 
 ```canvas
 <div class="top_box">
@@ -115,7 +115,7 @@ And here is the code for `vertical_boxes_skeleton.html`:
 </div>
 ```
 
-The goal of the `vertical_boxes_skeleton.html` template being to factor out the HTML markup for the boxes.
+The goal of the `vertical_boxes_skeleton.canvas` template being to factor out the HTML markup for the boxes.
 
 The **embed** tag takes the exact same arguments as the [include](/canvas/tags/include) tag:
 

@@ -15,7 +15,7 @@ This guide walks you through setting up a reusable **meta component** in your Bl
 Open your main layout file — by default this is located at:
 
 ```
-template/default.html
+template/default.canvas
 ```
 
 This is your outermost template. Inside the `<head>` section, add a new block named `meta`:
@@ -26,7 +26,7 @@ This is your outermost template. Inside the `<head>` section, add a new block na
 
 This block will later be used to include your meta component.
 
-### 2. Create a `meta.html` component
+### 2. Create a `meta.canvas` component
 
 Next, create a new component file that will handle all your meta logic.
 
@@ -34,10 +34,10 @@ If your project already has a `components` folder inside `views`, place it there
 Otherwise, create the folder first:
 
 ```
-views/components/meta.html
+views/components/meta.canvas
 ```
 
-Paste the following snippet into `meta.html`:
+Paste the following snippet into `meta.canvas`:
 
 ```canvas
 {% if not title %}
@@ -83,7 +83,7 @@ If these aren't defined, it gracefully falls back to defaults.
 
 ### 3. Include the meta component in your master template
 
-Go back to your `default.html` (or whichever layout defines the outer structure).
+Go back to your `default.canvas` (or whichever layout defines the outer structure).
 Inside the `{% block meta %}` you created earlier, include the component:
 
 ```canvas

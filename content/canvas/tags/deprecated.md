@@ -5,9 +5,9 @@ title: 'deprecated'
 This page is generally useful to Canvas template developers. Canvas generates a deprecation notice where the **deprecated** tag is used in a template:
 
 ```canvas
-{# base.html #}
-{% deprecated 'The "base.html" template is deprecated, use "layout.html" instead.' %}
-{% extends 'layout.html' %}
+{# base.canvas #}
+{% deprecated 'The "base.canvas" template is deprecated, use "layout.canvas" instead.' %}
+{% extends 'layout.canvas' %}
 ```
 
 Also you can deprecate a block in the following way:

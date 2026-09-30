@@ -42,11 +42,11 @@ There are two kinds of delimiters: `{% ...>` and `{{ ... }}`. The first one is u
 The Canvas file structure gives you the ability to structure your project in a way that suits your workflow. However you are **required** to include the `public/` and `views/` folders. The following is a breakdown of there are required folders:
 
 - `public`: This directory contains your projects public assets. CSS, JS, and image files can all be found in this folder and are accessible from your browser.
-- `views`: This directory is the location for your projects `.html` or `.canvas` template files. All files in this folder are used by the Blutui platform to render your client's project.
+- `views`: This directory is the location for your projects `.canvas` template files. All files in this folder are used by the Blutui platform to render your client's project.
 
 The folder structure within the `public` and `views` directory is completely up to you. 
 
-**Create a page through the Dashboard**: First, create a `layouts` folder inside your `views` directory and add a layout file (e.g., `views/layouts/default.html`). Then, go to the Dashboard and create a new page through the **Pages** menu, specifying your layout. The layout path is always relative to the `views/layouts` directory of your project.
+**Create a page through the Dashboard**: First, create a `layouts` folder inside your `views` directory and add a layout file (e.g., `views/layouts/default.canvas`). Then, go to the Dashboard and create a new page through the **Pages** menu, specifying your layout. The layout path is always relative to the `views/layouts` directory of your project.
 
 <Callout>
   Ensure that you run `courier push` after each update, to view your changes in the staging environment.

@@ -50,12 +50,12 @@ Click the **Update form** button to save your changes.
 <Steps>
 <Step>
 ### Directory setup
-Create a new folder named `forms` inside the `views` directory. Inside the `forms` folder, create a file named `contact.html`.
+Create a new folder named `forms` inside the `views` directory. Inside the `forms` folder, create a file named `contact.canvas`.
 </Step>
 
 <Step>
 ### Create a form component system
-Next, we'll use a system named [macro](/canvas/tags/macro) to help define input types and their output structure. If you don't already have a `components` folder, create one in the `views` directory. Inside the `components` folder, create a file named `form.html`. Paste the code below into `form.html` to define various form elements. These macros serve as templates for each type of form input, allowing flexibility in form design:
+Next, we'll use a system named [macro](/canvas/tags/macro) to help define input types and their output structure. If you don't already have a `components` folder, create one in the `views` directory. Inside the `components` folder, create a file named `form.canvas`. Paste the code below into `form.canvas` to define various form elements. These macros serve as templates for each type of form input, allowing flexibility in form design:
 
 ```canvas
 {# Input #}
@@ -131,7 +131,7 @@ Feel free to customise the appearance and layout by modifying the provided HTML 
 
 <Step>
 ### Form integration
-Inside your `views/forms/contact.html` file, insert:
+Inside your `views/forms/contact.canvas` file, insert:
 
 ```canvas
 {% import 'components/form' as ui %}
@@ -145,7 +145,7 @@ Inside your `views/forms/contact.html` file, insert:
 {% endform %}
 ```
 
-This will setup the form and import the `components/form.html` file we created in the previous step. It includes security measures to help protect your form from bots. The code loops through each field and renders them based on their type. This approach will allow content creators to add more fields in the future directly from the dashboard.
+This will setup the form and import the `components/form.canvas` file we created in the previous step. It includes security measures to help protect your form from bots. The code loops through each field and renders them based on their type. This approach will allow content creators to add more fields in the future directly from the dashboard.
 
 You can directly reference individual form fields using `{{ ui.field(form.fields.name) }}` or `{{ ui.field(form.fields['name']) }}`. Lastly add a form submission button at the end.
 

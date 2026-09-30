@@ -19,20 +19,20 @@ Blutui emphasises an organised and component-based approach to web development. 
 When you navigate to the `views` folder, you'll encounter two primary sub-folders:
 
 - **templates**: Contains:
-  - `default.html`: The foundational template for your Blutui project.
-  - `404.html`: A template for handling "Page Not Found" errors.
-- **pages**: Houses the `index.html` file, which is central to rendering your site's content.
+  - `default.canvas`: The foundational template for your Blutui project.
+  - `404.canvas`: A template for handling "Page Not Found" errors.
+- **pages**: Houses the `index.canvas` file, which is central to rendering your site's content.
 </Step>
 
 <Step>
-  ### The role of the default.html file This file forms the outermost structure of your Blutui project. It features
+  ### The role of the default.canvas file This file forms the outermost structure of your Blutui project. It features
   essential sections like the head, where style definitions reside, and the body, where content gets placed. The most
   efficient way to build upon this file is by using inheritance, capitalising on the [block](/canvas/tags/block) tag.
 </Step>
 
 <Step>
 ### Understanding inheritance in Blutui
-Navigate to the `views/pages/index.html` file. At the top, you'll notice the code `{% extends 'templates/default' %}`. This code signifies that the content from `index.html` will be placed inside the `default.html` template. The `index.html` file utilises blocks, such as styles and body, which correspond to the blocks in `default.html`. This structure enables you to insert content precisely where you intend to.
+Navigate to the `views/pages/index.canvas` file. At the top, you'll notice the code `{% extends 'templates/default' %}`. This code signifies that the content from `index.canvas` will be placed inside the `default.canvas` template. The `index.canvas` file utilises blocks, such as styles and body, which correspond to the blocks in `default.canvas`. This structure enables you to insert content precisely where you intend to.
 </Step>
 
 <Step>

@@ -31,17 +31,17 @@ The **Handle** is used to reference your menu in your Canvas templates.
 To display your menu across multiple pages, it's best to place it inside a reusable **header component**.
 
 1. Inside your project's `views` directory, create a folder called `components` (if it doesn't exist).
-2. Inside that folder, create a file named `header.html`.
+2. Inside that folder, create a file named `header.canvas`.
 
 Your structure should look like this:
 
 ```
 views/
 └── components/
-    └── header.html
+    └── header.canvas
 ```
 
-Now open `header.html` and add the following Canvas code:
+Now open `header.canvas` and add the following Canvas code:
 
 ```canvas
 {% set menu = cms.menu('main') %}
@@ -79,7 +79,7 @@ This code:
 
 ### 3. Include your header in a layout
 
-Once your header component is ready, you can include it in your main layout file (for example, `templates/default.html`) so it appears on every page.
+Once your header component is ready, you can include it in your main layout file (for example, `templates/default.canvas`) so it appears on every page.
 
 Open your layout file and include the component inside the `<body>` tag, typically above your `{% block body %}`:
 

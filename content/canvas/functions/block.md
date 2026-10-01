@@ -14,7 +14,7 @@ description: 'When a template uses inheritance and if you want to print a block 
 The **block** function can also be used to display one block from another template:
 
 ```canvas
-{{ block('title', 'common_blocks.html') }}
+{{ block('title', 'common_blocks.canvas') }}
 ```
 
 Use the **defined** test to check if a block exists in the context of the current template:
@@ -24,7 +24,7 @@ Use the **defined** test to check if a block exists in the context of the curren
   ...
 {% endif %}
 
-{% if block('footer', 'common_blocks.html') is defined>
+{% if block('footer', 'common_blocks.canvas') is defined>
   ...
 {% endif %}
 ```

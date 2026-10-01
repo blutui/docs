@@ -81,7 +81,7 @@ Children render in the order editors arranged them, each with its own template. 
 {{ canopy.child(0) }}                      {# single child by position (0-based) #}
 
 {% for child in canopy.childList() %}      {# custom loop; child has id, template, settings, html #}
-    <div class="slide">{{ child.html }}</div>
+    <div class="slide">{{ child.canvas }}</div>
 {% endfor %}
 ```
 

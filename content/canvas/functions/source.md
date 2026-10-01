@@ -4,14 +4,14 @@ description: 'The source function returns the content of a template without rend
 ---
 
 ```canvas
-{{ source('template.html') }}
+{{ source('template.canvas') }}
 {{ source(some_var) }}
 ```
 
 When you set the `ignore_missing` flag, Canvas will return an empty string if the template does not exist:
 
 ```canvas
-{{ source('template.html', ignore_missing = true) }}
+{{ source('template.canvas', ignore_missing = true) }}
 ```
 
 ## Arguments

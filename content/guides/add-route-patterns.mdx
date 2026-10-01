@@ -20,7 +20,7 @@ In this example, we'll build a route pattern for **team members**.
 Start by creating a layout named:
 
 ```
-team-member.html
+team-member.canvas
 
 ```
 
@@ -48,13 +48,13 @@ Now configure the pattern parts:
 - Select your **team-member layout** as the layout to render.
 - Click **Create route pattern**.
 
-This pattern tells Blutui to render the `team-member.html` layout whenever a URL matches `/team/{name}` — for example, `/team/darth-vader`.
+This pattern tells Blutui to render the `team-member.canvas` layout whenever a URL matches `/team/{name}` — for example, `/team/darth-vader`.
 
 ---
 
 ### 3. Add logic to your layout
 
-Next, open your `team-member.html` layout and add the following code:
+Next, open your `team-member.canvas` layout and add the following code:
 
 ```canvas
 {% set members = cms.collection('team') %}

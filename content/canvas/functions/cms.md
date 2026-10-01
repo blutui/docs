@@ -27,7 +27,7 @@ Example:
   "slug": "news",
   "description": null,
   "uri": "/news",
-  "layout": "templates/blogs/index.html",
+  "layout": "templates/blogs/index.canvas",
   "posts": [
     {
       "id": "f55baa72-5be5-43f5-9063-d2b35559c900",
@@ -45,7 +45,7 @@ Example:
     ...
   ],
   "post_count": 1,
-  "posts_layout": "templates/blogs/post.html"
+  "posts_layout": "templates/blogs/post.canvas"
 }
 ```
 
@@ -104,7 +104,7 @@ Example:
 {
   "name": "Contact",
   "handle": "contact",
-  "template": "forms/contact.html",
+  "template": "forms/contact.canvas",
   "fields": {
     "name": {
       "name": "name",

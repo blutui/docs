@@ -1,54 +1,87 @@
 ---
-title: IntelliSense
-description: Intelligent Blutui tooling for Visual Studio Code.
+title: Editor Tooling
+description: Blutui IntelliSense and the Canvas Prettier plugin for Visual Studio Code and VS Code-based editors.
 ---
 
-Blutui IntelliSense enhances the Blutui development experience. This is by providing Visual Studio Code users with advanced features like, autocomplete, syntax highlighting and snippets.
+Blutui has two tools that make writing Canvas templates easier:
 
-![Autocomplete](https://cdn.blutui.com/uploads/assets/Intellisense/varible-getting.png)
+- [**Blutui IntelliSense**](#blutui-intellisense): an editor extension that adds syntax highlighting and snippets for Canvas.
+- [**Prettier plugin for Canvas**](#prettier-plugin-for-canvas): a [Prettier](https://prettier.io/) plugin that formats your Canvas templates.
 
-Search for `blutui` on the [Visual Studio Code Extension Marketplace](https://marketplace.visualstudio.com/items?itemName=blutui.intellisense)
+<Callout>
+  Blutui tooling works best with the `.canvas` file extension. You can still use `.html` for your templates, but the
+  Prettier plugin only formats `.canvas` files.
+</Callout>
 
-## Key Features
+## Blutui IntelliSense
+
+Blutui IntelliSense adds syntax highlighting and snippets for Canvas to Visual Studio Code and VS Code-based editors like Cursor and Windsurf.
+
+### Installation
+
+Search for `blutui` in your editor's extensions panel, or install it from:
+
+- The [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=blutui.intellisense), for Visual Studio Code.
+- [Open VSX](https://open-vsx.org/extension/blutui/intellisense), for VS Code-based editors that use it, such as Cursor and Windsurf.
+
+### Syntax highlighting
+
+IntelliSense highlights Canvas tags, filters, functions, tests and strings in `.canvas` and `.html` files. It also highlights CSS, JavaScript and SCSS embedded in your templates, and JSON inside `{% canopy config %}` blocks.
 
 ### Snippets
 
-These snippets are useful for anyone needing to write blutui fuctions and example of this is `!if` would change to:
+Snippets let you quickly write Canvas tags, functions, filters and tests. Start typing a prefix and choose the snippet from the autocomplete list. For example, `if` expands to:
 
 ```canvas
-{% if item == true %}
- 
+{% if condition %}
+
 {% endif %}
 ```
 
-#### List of snippets
+Most tags can be triggered by their name (`if`), the tag itself (`{% if %}`), or a `!` shorthand (`!if`). Filters can be triggered by their name or with a pipe (`slug` or `|slug`).
 
-- !page
-- !template
-- !include
-- !form-macro
-- collection
-- form
-- !if
-- !for-collections
-- !for
-- !apply
-- !do
-- !autoescape
-- !set
-- asset
-- dump
-- cms.blog
-- cms.collection
-- cms.form
-- cms.menu
+IntelliSense includes snippets for:
 
-### Syntax Highlighting
+- **Tags** such as `if`, `for`, `set`, `include`, `macro` and `form`.
+- **Functions** such as `asset`, `cms.collection`, `cms.form`, `cms.menu` and `canopy.blocks`.
+- **Filters** such as `date`, `image_url`, `slug`, `sort` and `reading_time`.
+- **Tests** such as `is defined`, `is empty` and `is even`.
+- **Templates** such as `!page` (a new page that extends a layout), `!layout` (a layout set up for [Canopy Blocks](/docs/canopy/getting-started)) and `!form-macro` (a set of form input macros).
 
-It's better than not having syntax highlighting.
+For the full list of snippets, see the [Blutui IntelliSense README](https://github.com/blutui/intellisense#readme).
 
-### Autocomplete
+### Auto-closing brackets
 
-This uses your courier.json file to get collection handles. These handles will come up in a html file when using `entry.` or `item.`. Just make sure that you set the collection to be `entry` or `item` so it would work.
+When you type `{{` or `{%`, IntelliSense adds the closing `}}` or `%}` for you.
 
-Also with auto complete open and closing brackets `{% %}`, `{{ }}` and `{# #}`
+## Prettier plugin for Canvas
+
+The [prettier-plugin-canvas](https://www.npmjs.com/package/prettier-plugin-canvas) plugin formats your `.canvas` templates with Prettier, including the Canvas tags and the HTML around them.
+
+### Installation
+
+Install the plugin as a dev dependency in your project:
+
+```bash
+npm install -D prettier-plugin-canvas
+```
+
+Then add the plugin to your [Prettier configuration](https://prettier.io/docs/en/configuration.html):
+
+```json tab=".prettierrc"
+{
+  "plugins": ["prettier-plugin-canvas"]
+}
+```
+
+### Usage
+
+Run Prettier on your `views` folder to format your templates:
+
+```bash
+npx prettier --write "views/**/*.canvas"
+```
+
+To format on save in your editor, install the [Prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode). It uses the plugin from your project's Prettier configuration.
+
+For more details, see the [prettier-plugin-canvas repository](https://github.com/blutui/prettier-plugin-canvas).

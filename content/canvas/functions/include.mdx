@@ -9,31 +9,31 @@ description: 'The include function returns the rendered content of a template.'
 ```
 
 <Callout>
-By default the include function assumes you want to include `.html` or `.canvas` files, this means you dont need to specify a file format.
+By default the include function assumes you want to include `.canvas` or `.html` files, this means you dont need to specify a file format.
 </Callout>
 
 Included templates have access to the variables of the active context. The context is passed by default to the template but you can also pass additional variables:
 
 ```canvas
-{# template.html will have access to the variables from the current context and the additional ones provided #}
-{{ include('template.html', {foo: 'bar'}, with_context = false) }}
+{# template.canvas will have access to the variables from the current context and the additional ones provided #}
+{{ include('template.canvas', {foo: 'bar'}, with_context = false) }}
 ```
 
 ```canvas
 {# no variables will be accessible #}
-{{ include('template.html', with_context = false) }}
+{{ include('template.canvas', with_context = false) }}
 ```
 
 When you set the **ignore_missing** flag, Canvas will return an empty string if the template does not exist:
 
 ```canvas
-{{ include('sidebar.html', ignore_missing = true) }}
+{{ include('sidebar.canvas', ignore_missing = true) }}
 ```
 
 You can also provide a list of templates that are checked for existence before inclusion. The first template that exists will be rendered:
 
 ```canvas
-{{ include(['page_detailed.html', 'page.html']) }}
+{{ include(['page_detailed.canvas', 'page.canvas']) }}
 ```
 
 If **ignore_missing** is set, it will fall back to rendering nothing if none of the templates exist, otherwise it will throw an exception.
@@ -41,7 +41,7 @@ If **ignore_missing** is set, it will fall back to rendering nothing if none of 
 When including a template created by an end user, you should consider sandboxing it:
 
 ```canvas
-{{ include('page.html', sandboxed = true) }}
+{{ include('page.canvas', sandboxed = true) }}
 ```
 
 ## Arguments

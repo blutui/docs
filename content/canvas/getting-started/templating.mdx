@@ -46,23 +46,23 @@ To comment-out part of a line in a template, use the comment syntax `{# ... #}`.
 The [include](/canvas/functions/include) function is useful to include a template and return the rendered content of that template into the current one:
 
 ```canvas
-{{ include('sidebar.html') }}
+{{ include('sidebar.canvas') }}
 ```
 
 By default, included templates have access to the same context as the template which includes them. This means that any variable defined in the main template will be available in the included template too:
 
 ```canvas
 {% for box in boxes %}
-  {{ include('render_box.html') }}
+  {{ include('render_box.canvas') }}
 {% endfor %}
 ```
 
-The included template **render_box.html** is able to access the **box** variable.
+The included template **render_box.canvas** is able to access the **box** variable.
 
 You can access templates in subdirectories with a slash:
 
 ```canvas
-{{ include('sections/articles/sidebar.html') }}
+{{ include('sections/articles/sidebar.canvas') }}
 ```
 
 You can access templates relative to the **views** folder in your project directory.
@@ -73,9 +73,9 @@ The most powerful part of Canvas is template inheritance. Template inheritance a
 
 It's easier to understand the concept by starting with an example.
 
-Let's define a base template, **base.html**, which defines an HTML skeleton document that might be used for a two-column page:
+Let's define a base template, **base.canvas**, which defines an HTML skeleton document that might be used for a two-column page:
 
-```canvas title="base.html">
+```canvas title="base.canvas">
 <!DOCTYPE html>
 <html>
   <head>
@@ -100,8 +100,8 @@ In this example, the [block](/canvas/tags/block) tags define four blocks that ch
 
 A child template might look like this:
 
-```canvas title="index.html">
-{% extends 'base.html' %}
+```canvas title="index.canvas">
+{% extends 'base.canvas' %}
 
 {% block title %}Index{% endblock %}
 

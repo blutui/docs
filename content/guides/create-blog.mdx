@@ -24,8 +24,8 @@ Start by creating two layouts inside your project:
 
 ```bash
 views/layouts/blogs/
-├─ index.html   # Blog list page
-└─ post.html    # Individual blog post page
+├─ index.canvas   # Blog list page
+└─ post.canvas    # Individual blog post page
 ```
 
 If you plan to have multiple blogs with different designs, you can create folders such as:
@@ -46,8 +46,8 @@ Each blog can have its own index and post layouts.
 3. Click **Create new blog**.
 4. Set the **URL**, **Name**, and select the two layouts you created:
 
-- **Index layout** → `layouts/blogs/index.html`
-- **Post layout** → `layouts/blogs/post.html`
+- **Index layout** → `layouts/blogs/index.canvas`
+- **Post layout** → `layouts/blogs/post.canvas`
 
 Save the blog.
 
@@ -72,12 +72,12 @@ This gives you a post to render while you build your templates.
 
 ### 4. Set up your layouts
 
-Both `index.html` and `post.html` must extend your default template.  
+Both `index.canvas` and `post.canvas` must extend your default template.  
 For more information about layouts, read the [How do I create a layout](/guides/create-layout) guide.
 
 ---
 
-### 5. Rendering the blog index (index.html)
+### 5. Rendering the blog index (index.canvas)
 
 On the blog index page, you can access the `blog` object.  
 This gives you everything you need to list posts:
@@ -138,7 +138,7 @@ This:
 
 ---
 
-### 6. Rendering individual posts (post.html)
+### 6. Rendering individual posts (post.canvas)
 
 Inside the post layout, the `post` object is available automatically.
 

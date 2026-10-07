@@ -22,6 +22,13 @@ At the top level, your Blutui project primarily contains two folders:
 - **views:**
   This is where the core of your Blutui front-end logic resides. All your development work, your components, pages, templates, and layouts will primarily take place within this folder.
 
+<Callout>
+  Template files in `views` can use either the `.canvas` or `.html` extension. We recommend `.canvas` for better Blutui
+  tooling with the [Blutui IntelliSense](/docs/intellisense#blutui-intellisense) extension for VS Code-based editors and
+  the [Canvas Prettier plugin](/docs/intellisense#prettier-plugin-for-canvas). See [File
+  extensions](/canvas/getting-started/overview#file-extensions).
+</Callout>
+
 ## Diving Deeper into the views Folder
 
 The views folder is further organized into three key sub-folders, each serving a distinct purpose in building your website:
@@ -32,7 +39,7 @@ The layouts folder is the primary way to create pages in Blutui. When you create
 
 ### templates
 
-The templates folder holds reusable design elements, ensuring a consistent look across your site. It typically includes default.html, providing a base structure for most pages, and 404.html, which displays a "Page Not Found" message. You can customize these and create your own templates to suit your specific design needs.
+The templates folder holds reusable design elements, ensuring a consistent look across your site. It typically includes default.canvas, providing a base structure for most pages, and 404.canvas, which displays a "Page Not Found" message. You can customize these and create your own templates to suit your specific design needs.
 
 ## See It in Action: The Burgertorium Example Project
 

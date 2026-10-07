@@ -45,7 +45,7 @@ Example:
     ...
   ],
   "post_count": 1,
-  "posts_layout": "templates/blogs/post.canvas"
+  "posts_layout": "layouts/blogs/post.canvas"
 }
 ```
 

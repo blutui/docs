@@ -27,7 +27,7 @@ Example:
   "slug": "news",
   "description": null,
   "uri": "/news",
-  "layout": "templates/blogs/index.canvas",
+  "layout": "layouts/blogs/index.canvas",
   "posts": [
     {
       "id": "f55baa72-5be5-43f5-9063-d2b35559c900",

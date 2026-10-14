@@ -1,0 +1,53 @@
+---
+title: 'visitor'
+description: 'Find out whether the current visitor is a person, a bot or an AI agent.'
+---
+
+The `visitor` variable classifies the current visitor based on the `User-Agent` header of the request. You can read the raw value with [`request.user_agent`](/canvas/variables/request#user_agent).
+
+<Callout type="warning">
+Visitors can send any `User-Agent` they like, so these checks are a best-effort guess. Use them to tailor content, not for security or access control.
+</Callout>
+
+## isAi
+
+Returns `true` if the visitor is an AI assistant, crawler or tool. This includes:
+
+- Assistants browsing on behalf of a person, such as `ChatGPT-User`, `Claude-User`, `Perplexity-User` and `Operator`.
+- AI training and search crawlers, such as `GPTBot`, `OAI-SearchBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended` and `CCBot`.
+- AI research and extraction tools, such as `Diffbot`, `FirecrawlAgent` and `Crawl4AI`.
+
+Matching is case-insensitive.
+
+```canvas
+{% if not visitor.isAi() %}
+  {# Skip the newsletter popup for AI agents #}
+  <div class="newsletter-popup">...</div>
+{% endif %}
+```
+
+## isBot
+
+Returns `true` if the visitor is any bot or crawler, including AI agents. Search engine crawlers like `Googlebot` and link preview fetchers like `facebookexternalhit` are also detected.
+
+```canvas
+{{ visitor.isBot() ? 'bot' : 'not a bot' }}
+```
+
+## isHuman
+
+Returns `true` if the request has a `User-Agent` and the visitor is not a bot.
+
+```canvas
+{% if visitor.isHuman() %}
+  <script src="https://analytics.example.com/script.js" defer></script>
+{% endif %}
+```
+
+<Callout>
+If the request has no `User-Agent` header, `isAi()`, `isBot()` and `isHuman()` all return `false`.
+</Callout>
+
+## Device and browser details
+
+For more details about the visitor's device, browser or operating system, use the [`agent()`](/canvas/functions/agent) function.

@@ -1,9 +1,9 @@
 ---
 title: 'visitor'
-description: 'Find out whether the current visitor is a person, a bot or an AI agent.'
+description: 'Find out whether the current visitor is a person, a bot, an AI agent or an admin.'
 ---
 
-The `visitor` variable classifies the current visitor based on the `User-Agent` header of the request. You can read the raw value with [`request.user_agent`](/canvas/variables/request#user_agent).
+The `visitor` variable gives you details about the current visitor. The `isAi()`, `isBot()` and `isHuman()` checks classify the visitor based on the `User-Agent` header of the request. You can read the raw value with [`request.user_agent`](/canvas/variables/request#user_agent).
 
 <Callout type="warning">
 Visitors can send any `User-Agent` they like, so these checks are a best-effort guess. Use them to tailor content, not for security or access control.
@@ -47,6 +47,17 @@ Returns `true` if the request has a `User-Agent` and the visitor is not a bot.
 <Callout>
 If the request has no `User-Agent` header, `isAi()`, `isBot()` and `isHuman()` all return `false`.
 </Callout>
+
+## isAdmin
+
+Returns `true` if the visitor is signed in to the Agency Console or the site's Dashboard.
+
+```canvas
+{% if visitor.isAdmin() %}
+  {# Only show the draft notice to admins #}
+  <div class="draft-notice">This page is a draft.</div>
+{% endif %}
+```
 
 ## Device and browser details
 

@@ -2,61 +2,63 @@
 title: Linux
 ---
 
-**Courier** is available on many popular Linux distributions.
+## Install Courier
 
-<Callout>
-After installing **courier** on Linux, complete the [getting started guide](/docs/courier/getting-started#linking-your-project) and learn how to start building your first project.
-</Callout>
-
-### Debian/Ubuntu
-
-Install and upgrade:
-
-- Download the `.deb` file from the [downloads page](https://blutui.com/developers/courier)
-- Install the downloaded file:
+Open a terminal and run the install script:
 
 ```bash
-sudo apt install ./courier_*_linux_amd64.deb
+curl -fsSL https://blutui.com/courier/install.sh | sh
 ```
 
-### Fedora
+## Verify the installation
 
-Install and upgrade:
-
-- Download the `.rpm` file from the [downloads page](https://blutui.com/developers/courier)
-- Install the downloaded file:
+Open a new terminal and run:
 
 ```bash
-sudo dnf install ./courier_*_linux_amd64.rpm
+courier version
 ```
 
-### Centos
-
-Install and upgrade:
-
-- Download the `.rpm` file from the [downloads page](https://blutui.com/developers/courier)
-- Install the downloaded file:
-
-```bash
-sudo yum localinstall ./courier_*_linux_amd64.rpm
-```
-
-### openSUSE/SUSE
-
-Install and upgrade:
-
-- Download the `.rpm` file from the [downloads page](https://blutui.com/developers/courier)
-- Install the downloaded file:
-
-```bash
-sudo zypper in ./courier_*_linux_amd64.rpm
-```
+A working installation prints the installed version number.
 
 ## Create a Courier token
 
 <include>./create-courier-token.mdx</include>
 
 *If you use Firefox please see the guide below*
+
+## Upgrade Courier
+
+To upgrade to the latest version of `courier`, run the install script again:
+
+```bash
+curl -fsSL https://blutui.com/courier/install.sh | sh
+```
+
+## Install a specific version
+
+Pass `--version` to the install script:
+
+```bash
+curl -fsSL https://blutui.com/courier/install.sh | sh -s -- --version v1.7.3
+```
+
+To install to a different directory, pass `--install-dir`:
+
+```bash
+curl -fsSL https://blutui.com/courier/install.sh | sh -s -- --install-dir ~/bin
+```
+
+## Uninstall Courier
+
+Remove the `courier` binary:
+
+```bash
+rm "$(command -v courier)"
+```
+
+<Callout type="warning">
+If `courier` was installed to `/usr/local/bin`, you may need to run this command with `sudo`.
+</Callout>
 
 ## Firefox on Linux
 

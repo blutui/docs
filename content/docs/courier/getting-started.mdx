@@ -7,54 +7,84 @@ description: Courier is a Blutui command-line interface tool to interact with yo
 
 - Experience the power of Blutui from your local environment using `courier dev`, to easily keep your code in sync.
 - Easily push code to your project using the simple `courier push` command.
-- Get started with a new project using `courier pull` to easily pull the latest code for your project.
+- Get started with a new project using `courier create` to scaffold it from a Canvas.
 
 ## Start using Courier
 
 ### Installation
 
-`courier` is easy to install, works on macOS, Windows, and many popular Linux distributions.
+`courier` works on macOS, Windows, and Linux. To install it, open a terminal and run the install script for your system:
+
+```bash tab="macOS & Linux"
+curl -fsSL https://blutui.com/courier/install.sh | sh
+```
+
+```powershell tab="Windows PowerShell"
+irm https://blutui.com/courier/install.ps1 | iex
+```
+
+```batch tab="Windows CMD"
+curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd && del install.cmd
+```
+
+The install script downloads the latest release and verifies its checksum before installing it.
+
+
+You can also install with a package manager:
+
+```bash tab="Homebrew"
+brew install --cask blutui/courier/courier
+```
+
+```bash tab="Scoop"
+scoop bucket add blutui https://github.com/blutui/bucket-courier.git
+scoop install blutui/courier
+```
+
+<Callout type="warning">
+On Windows, **Scoop** must be run in PowerShell, not CMD. **Git** is required to install Scoop buckets.
+</Callout>
+
+Open a new terminal and check that `courier` is installed:
+
+```bash
+courier version
+```
+
+To upgrade, install a specific version, or uninstall, see the guide for your operating system:
 
 <Cards>
   <Card title="macOS" href="/docs/courier/installation/macos">
-    Available via Homebrew.
+    Install script or Homebrew.
   </Card>
 
   <Card title="Windows" href="/docs/courier/installation/windows">
-    Available via scoop.
+    PowerShell, CMD, or Scoop.
   </Card>
 
   <Card title="Linux" href="/docs/courier/installation/linux">
-    Available on many popular Linux distributions.
+    Install script.
   </Card>
 </Cards>
 
+### Log in
 
+Courier uses a Courier token to access your Blutui projects. Create one in your [Agency Console](https://console.blutui.com) under **Profile → Apps → Access tokens**, save it to a `token.txt` file, and log in:
 
-### Linking your project
-
-After obtaining a Courier token, its time to pull your first project. Open your preferred terminal and create a new directory, for this example we will create a `new-project` directory:
-
-```bash
-mkdir new-project && cd new-project
+```bash tab="macOS & Linux"
+courier login --token < token.txt
 ```
 
-Once inside the `new-project` directory, it's time to setup a new `courier.json` configuration file. The configuration file is used by Blutui to determine what project you are currently in. To create a new `courier.json` file, run:
-
-```bash
-courier init [your-project-handle]
+```powershell tab="Windows PowerShell"
+Get-Content token.txt -Raw | courier login --token
 ```
 
-For example:
+Delete `token.txt` once you're logged in. For step-by-step instructions, see [Create a Courier token](/docs/courier/installation/macos#create-a-courier-token).
 
-```bash
-courier init sonic
-```
+### Next steps
 
-You should now have a brand new `courier.json` configuration file in your `new-project` directory. Now let's `pull` your project code from Blutui, this will allow you to build your project locally. To `pull` your project code from Blutui, run:
+Now that Courier is installed and you're logged in, follow [Setup Blutui Courier](/docs/getting-started/setup-courier) to scaffold your first project with `courier create`.
 
-```bash
-courier pull
-```
-
-You can run `courier dev` to watch for file changes and automatically sync changes to your project.
+<Callout>
+Already have code in a Blutui project? Pull it onto your machine instead. See [How do I pull a project onto my machine?](/guides/pull-project-with-courier)
+</Callout>

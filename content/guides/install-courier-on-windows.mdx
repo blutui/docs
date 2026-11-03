@@ -7,60 +7,52 @@ description: Learn how to get started with Blutui Courier on Windows.
 
 Courier is a development tool that allows you to write code locally and view the results instantly. Once you're satisfied with your work, you can push it to your Blutui project for review. Courier is designed to offer the best of both worlds by integrating local workflow with the cloud, thereby making development faster, more enjoyable, and more creative. This guide walks you through the process of installing and setting up Courier on a Windows machine.
 
-## Prerequisites
-
-- [Scoop](https://scoop.sh/) package manager installed
-- Administrative access for local server setup and cloud connectivity
-
 ## Installation
 
 <Steps>
 <Step>
-### Add the Courier Scoop Bucket
-Firstly, open your Command Prompt (CMD) or PowerShell and run the following command:
+### Install Courier
+Open PowerShell or Command Prompt and run the install script for your shell. If you prefer [Scoop](https://scoop.sh/), use the Scoop tab instead:
 
-```bash
-scoop bucket add blutui <https://github.com/blutui/bucket-courier.git>
+```powershell tab="PowerShell"
+irm https://blutui.com/courier/install.ps1 | iex
 ```
-</Step>
 
-<Step>
-### Install Courier via Scoop
-Secondly, continue in the same window with:
+```batch tab="CMD"
+curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd && del install.cmd
+```
 
-```bash
+```powershell tab="Scoop"
+scoop bucket add blutui https://github.com/blutui/bucket-courier.git
 scoop install blutui/courier
 ```
-</Step>
 
-<Step>
-### Set up required services
-After your first installation of Courier, it's time to set up the required services. Run:
+<Callout>
+Your prompt starts with `PS C:\` in PowerShell and `C:\` in CMD. You don't need to run the install script as Administrator.
+</Callout>
 
-```bash
-courier install
-```
-
-You may be prompted to enter your administrative password.
+<Callout type="warning">
+**Scoop** must be run in PowerShell, not CMD. Git is also required to install Scoop buckets.
+</Callout>
 </Step>
 
 <Step>
 ### Verify the installation
-Lastly, to ensure that Courier has been installed correctly, run:
+Open a new terminal window and run:
 
-```bash
-courier
+```powershell
+courier version
 ```
 
-This will display a list of available commands, confirming Courier is now successfully installed.
+A working installation prints the installed version number.
 </Step>
 </Steps>
 
 ## Authentication
 
-<include cwd>./content/docs/courier/installation/create-courier-token.mdx</include>
+<include cwd>./content/docs/courier/installation/windows-token-setup.mdx</include>
 
-You've successfully installed and set up Courier on a Windows machine! Feel free to start coding and enjoy a more streamlined development process.
+You've successfully installed and set up Courier on a Windows machine! Feel free to start coding and enjoy a more streamlined development process. To upgrade, install a specific version, or uninstall Courier, see the [Windows installation docs](/docs/courier/installation/windows).
 
 ## More resources
 

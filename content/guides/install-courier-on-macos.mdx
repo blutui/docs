@@ -7,55 +7,49 @@ description: Learn how to get started with Blutui Courier on macOS.
 
 Courier is a development tool that allows you to write code locally and view the results instantly. Once you're satisfied with your work, you can push it to your Blutui project for review. Courier is designed to offer the best of both worlds by integrating local workflow with the cloud, thereby making development faster, more enjoyable, and more creative. This guide outlines the steps to install and set up Courier on a macOS machine.
 
-## Prerequisites
-
-- [Homebrew](https://brew.sh/) installed.
-- Administrative access for local setup and cloud connectivity.
-
 ## Installation
 
 <Steps>
 <Step>
-### Add the Courier Homebrew Tap
-Firstly, open your terminal and run the following command to install Courier:
+### Install Courier
+Open your terminal and run the install script. If you prefer [Homebrew](https://brew.sh/), use the Homebrew tab instead:
 
-```bash
+```bash tab="cURL"
+curl -fsSL https://blutui.com/courier/install.sh | sh
+```
+
+```bash tab="Homebrew"
 brew install --cask blutui/courier/courier
 ```
 
-Courier will require administrative access for running projects locally and connecting to Blutui.
+The install script downloads the latest release and verifies its checksum before installing it.
 </Step>
 
 <Step>
 ### Verify the installation
-Lastly, to confirm that Courier is successfully installed, run:
+Open a new terminal window and run:
 
 ```bash
-courier
+courier version
 ```
 
-This will display a list of available commands, confirming Courier is now successfully installed.
-</Step>
-
-## Additional steps for Firefox users
-
-If you're using Firefox, you'll need to install Network Security Services (NSS):
-
-<Step>
-### Install NSS
-```bash
-brew install nss
-```
+A working installation prints the installed version number.
 </Step>
 </Steps>
 
-Now you should be able to use `courier dev` on Firefox.
+## Additional steps for Firefox users
+
+If you're using Firefox, you'll need to install Network Security Services (NSS) to use `courier dev`:
+
+```bash
+brew install nss
+```
 
 ## Authentication
 
 <include cwd>./content/docs/courier/installation/create-courier-token.mdx</include>
 
-And there you have it—a complete guide to installing, and setting up Courier on macOS!
+And there you have it—a complete guide to installing, and setting up Courier on macOS! To upgrade, install a specific version, or uninstall Courier, see the [macOS installation docs](/docs/courier/installation/macos).
 
 ## More resources
 

@@ -2,25 +2,81 @@
 title: 'Windows'
 ---
 
-**Courier** is available via [scoop](https://scoop.sh/). To install `courier` run:
+## Install Courier
 
-```bash
+Open PowerShell or Command Prompt and run the install script, or install with [Scoop](https://scoop.sh/):
+
+```powershell tab="PowerShell"
+irm https://blutui.com/courier/install.ps1 | iex
+```
+
+```batch tab="CMD"
+curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd && del install.cmd
+```
+
+```powershell tab="Scoop"
 scoop bucket add blutui https://github.com/blutui/bucket-courier.git
 scoop install blutui/courier
 ```
 
 <Callout type="warning">
-Git is required to install **scoop** buckets
+**Scoop** must be run in PowerShell, not CMD. **Git** is required to install Scoop buckets.
 </Callout>
+
+## Verify the installation
+
+Open a new terminal and run:
+
+```powershell
+courier version
+```
+
+A working installation prints the installed version number.
 
 ## Create a Courier token
 
 <include>./windows-token-setup.mdx</include>
 
-## Upgrade on Windows
+## Upgrade Courier
 
-To upgrade to the latest version of `courier`, run:
+To upgrade to the latest version of `courier`, use the same method you installed with:
 
-```bash
+```powershell tab="PowerShell"
+irm https://blutui.com/courier/install.ps1 | iex
+```
+
+```batch tab="CMD"
+curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd && del install.cmd
+```
+
+```powershell tab="Scoop"
 scoop update courier
 ```
+
+## Install a specific version
+
+Pass a version to the install script:
+
+```powershell tab="PowerShell"
+& ([scriptblock]::Create((irm https://blutui.com/courier/install.ps1))) -Version v1.7.3
+```
+
+```batch tab="CMD"
+curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd --version v1.7.3 && del install.cmd
+```
+
+To install to a different directory, pass `-InstallDir` in PowerShell or `--install-dir` in CMD.
+
+## Uninstall Courier
+
+```powershell tab="Install script"
+Remove-Item -Path "$env:LOCALAPPDATA\Programs\courier" -Recurse -Force
+```
+
+```powershell tab="Scoop"
+scoop uninstall courier
+```
+
+<Callout>
+If you used the install script, also remove `%LOCALAPPDATA%\Programs\courier` from your user `PATH` in **Settings → System → About → Advanced system settings → Environment Variables**.
+</Callout>

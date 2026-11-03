@@ -2,11 +2,27 @@
 title: macOS
 ---
 
-**Courier** is available via Homebrew. To install **courier** run:
+## Install Courier
 
-```bash
+Open a terminal and run the install script, or install with Homebrew:
+
+```bash tab="Install script"
+curl -fsSL https://blutui.com/courier/install.sh | sh
+```
+
+```bash tab="Homebrew"
 brew install --cask blutui/courier/courier
 ```
+
+## Verify the installation
+
+Open a new terminal and run:
+
+```bash
+courier version
+```
+
+A working installation prints the installed version number.
 
 ## Create a Courier token
 
@@ -14,13 +30,45 @@ brew install --cask blutui/courier/courier
 
 *If you use Firefox please see the guide below*
 
-## Upgrade on macOS
+## Upgrade Courier
 
-To upgrade to the latest version of `courier`, run:
+To upgrade to the latest version of `courier`, use the same method you installed with:
 
-```bash
+```bash tab="Install script"
+curl -fsSL https://blutui.com/courier/install.sh | sh
+```
+
+```bash tab="Homebrew"
 brew upgrade --cask courier
 ```
+
+## Install a specific version
+
+Pass `--version` to the install script:
+
+```bash
+curl -fsSL https://blutui.com/courier/install.sh | sh -s -- --version v1.7.3
+```
+
+To install to a different directory, pass `--install-dir`:
+
+```bash
+curl -fsSL https://blutui.com/courier/install.sh | sh -s -- --install-dir ~/bin
+```
+
+## Uninstall Courier
+
+```bash tab="Install script"
+rm "$(command -v courier)"
+```
+
+```bash tab="Homebrew"
+brew uninstall --cask courier
+```
+
+<Callout type="warning">
+If `courier` was installed to `/usr/local/bin`, you may need to run the `rm` command with `sudo`.
+</Callout>
 
 ## Firefox on macOS
 

@@ -15,6 +15,7 @@
     "---[SquareTerminal]Courier---",
     "install-courier-on-macos",
     "install-courier-on-windows",
+    "install-courier-on-linux",
     "preview-project-with-courier",
     "pull-project-with-courier",
     "push-project-with-courier",

@@ -3,6 +3,58 @@ title: How do I install Courier on Linux?
 description: Learn how to get started with Blutui Courier on Linux.
 ---
 
+## Introduction
+
+Courier is a development tool that allows you to write code locally and view the results instantly. Once you're satisfied with your work, you can push it to your Blutui project for review. Courier is designed to offer the best of both worlds by integrating local workflow with the cloud, thereby making development faster, more enjoyable, and more creative. This guide outlines the steps to install and set up Courier on a Linux machine.
+
+## Installation
+
+<Steps>
+<Step>
+### Install Courier
+Open your terminal and run the install script:
+
+```bash
+curl -fsSL https://blutui.com/courier/install.sh | sh
+```
+
+The install script works on x86_64 and arm64. It downloads the latest release and verifies its checksum before installing it.
+</Step>
+
+<Step>
+### Verify the installation
+Open a new terminal window and run:
+
+```bash
+courier version
+```
+
+A working installation prints the installed version number.
+</Step>
+</Steps>
+
+## Additional steps for Firefox users
+
+If you're using Firefox, you'll need to install Network Security Services (NSS) to use `courier dev`. Use the package manager for your distribution:
+
+```bash tab="apt"
+sudo apt install libnss3-tools
+```
+
+```bash tab="dnf"
+sudo dnf install nss-tools
+```
+
+```bash tab="zypper"
+sudo zypper install mozilla-nss-tools
+```
+
+## Authentication
+
+<include cwd>./content/docs/courier/installation/create-courier-token.mdx</include>
+
+And there you have it—a complete guide to installing, and setting up Courier on Linux! To upgrade, install a specific version, or uninstall Courier, see the [Linux installation docs](/docs/courier/installation/linux).
+
 ## More resources
 
 <Cards>

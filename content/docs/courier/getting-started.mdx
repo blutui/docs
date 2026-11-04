@@ -11,17 +11,17 @@ Install Courier on macOS, Windows or Linux:
 curl -fsSL https://blutui.com/courier/install.sh | sh
 ```
 
-```bash tab="PowerShell"
+```bash tab="Homebrew"
+brew install --cask blutui/courier/courier
+
+```bash tab="PowerShell (Windows)"
 irm https://blutui.com/courier/install.ps1 | iex
 ```
 
-```bash tab="CMD"
+```bash tab="CMD (Windows)"
 curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd && del install.cmd
 ```
 
-```bash tab="Homebrew"
-brew install --cask blutui/courier/courier
-```
 
 ```bash tab="Scoop"
 scoop bucket add blutui https://github.com/blutui/bucket-courier.git

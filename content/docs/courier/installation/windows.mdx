@@ -6,50 +6,50 @@ title: 'Windows'
 
 Open PowerShell or Command Prompt and run the install script, or install with [Scoop](https://scoop.sh/):
 
-```powershell tab="PowerShell"
+```bash tab="PowerShell"
 irm https://blutui.com/courier/install.ps1 | iex
 ```
 
-```batch tab="CMD"
+```bash tab="CMD"
 curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd && del install.cmd
 ```
 
-```powershell tab="Scoop"
+```bash tab="Scoop"
 scoop bucket add blutui https://github.com/blutui/bucket-courier.git
 scoop install blutui/courier
 ```
 
 <Callout type="warning">
-**Scoop** must be run in PowerShell, not CMD. **Git** is required to install Scoop buckets.
+**Scoop** must be run in PowerShell, not CMD. [Git](https://git-scm.com/install/windows) is required to install Scoop buckets.
 </Callout>
 
 ## Verify the installation
 
 Open a new terminal and run:
 
-```powershell
+```bash
 courier version
 ```
 
 A working installation prints the installed version number.
 
-## Create a Courier token
+## Log in
 
-<include>./windows-token-setup.mdx</include>
+<include>./login.mdx</include>
 
 ## Upgrade Courier
 
 To upgrade to the latest version of `courier`, use the same method you installed with:
 
-```powershell tab="PowerShell"
+```bash tab="PowerShell"
 irm https://blutui.com/courier/install.ps1 | iex
 ```
 
-```batch tab="CMD"
+```bash tab="CMD"
 curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd && del install.cmd
 ```
 
-```powershell tab="Scoop"
+```bash tab="Scoop"
 scoop update courier
 ```
 
@@ -57,11 +57,11 @@ scoop update courier
 
 Pass a version to the install script:
 
-```powershell tab="PowerShell"
+```bash tab="PowerShell"
 & ([scriptblock]::Create((irm https://blutui.com/courier/install.ps1))) -Version v1.7.3
 ```
 
-```batch tab="CMD"
+```bash tab="CMD"
 curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd --version v1.7.3 && del install.cmd
 ```
 
@@ -69,11 +69,11 @@ To install to a different directory, pass `-InstallDir` in PowerShell or `--inst
 
 ## Uninstall Courier
 
-```powershell tab="PowerShell"
+```bash tab="PowerShell"
 Remove-Item -Path "$env:LOCALAPPDATA\Programs\courier" -Recurse -Force
 ```
 
-```powershell tab="Scoop"
+```bash tab="Scoop"
 scoop uninstall courier
 ```
 

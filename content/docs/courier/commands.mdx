@@ -75,13 +75,15 @@ courier init [project-handle]
 
 ## login
 
-Log in to Courier using your Blutui access token.
+<include>./installation/login.mdx</include>
 
-```bash
-courier login --token < token.txt
-```
+### Flags
 
-If your Courier token has expired, you can login again using the same command.
+| Flag            | Description                                                                         |
+| --------------- | ----------------------------------------------------------------------------------- |
+| `--token`       | Log in with an access token passed on standard input, instead of in the browser.   |
+| `-p, --profile` | The name of the profile to log in to. Defaults to `default`.                       |
+| `--insecure`    | Save your credentials in plain text in the config file instead of secure storage.  |
 
 ## open
 

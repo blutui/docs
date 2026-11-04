@@ -1,90 +1,88 @@
 ---
 title: Getting started
-description: Courier is a Blutui command-line interface tool to interact with your Blutui project(s). It allows you to easily push and pull code to and from your project.
+description: Courier is the Blutui command-line interface. Use it to create, develop, push and pull your Blutui projects from your terminal.
 ---
 
-## Features
+## Installation
 
-- Experience the power of Blutui from your local environment using `courier dev`, to easily keep your code in sync.
-- Easily push code to your project using the simple `courier push` command.
-- Get started with a new project using `courier create` to scaffold it from a Canvas.
-
-## Start using Courier
-
-### Installation
-
-`courier` works on macOS, Windows, and Linux. To install it, open a terminal and run the install script for your system:
+Install Courier on macOS, Windows or Linux:
 
 ```bash tab="macOS & Linux"
 curl -fsSL https://blutui.com/courier/install.sh | sh
 ```
 
-```powershell tab="Windows PowerShell"
-irm https://blutui.com/courier/install.ps1 | iex
-```
-
-```batch tab="Windows CMD"
-curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd && del install.cmd
-```
-
-The install script downloads the latest release and verifies its checksum before installing it.
-
-
-You can also install with a package manager:
-
 ```bash tab="Homebrew"
 brew install --cask blutui/courier/courier
 ```
+
+```bash tab="PowerShell (Windows)"
+irm https://blutui.com/courier/install.ps1 | iex
+```
+
+```bash tab="CMD (Windows)"
+curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd && del install.cmd
+```
+
 
 ```bash tab="Scoop"
 scoop bucket add blutui https://github.com/blutui/bucket-courier.git
 scoop install blutui/courier
 ```
 
-<Callout type="warning">
-On Windows, **Scoop** must be run in PowerShell, not CMD. **Git** is required to install Scoop buckets.
-</Callout>
-
-Open a new terminal and check that `courier` is installed:
+Open a new terminal and check that Courier is installed:
 
 ```bash
 courier version
 ```
 
-To upgrade, install a specific version, or uninstall, see the guide for your operating system:
+## Log in
+
+Log in with your Blutui account:
+
+```bash
+courier login
+```
+
+Courier shows a login code and opens Blutui in your browser. Paste the code and approve the login, and you're ready to go.
+
+<Callout>
+In CI or anywhere without a browser, [log in with an access token](/docs/courier/commands#log-in-with-an-access-token) instead.
+</Callout>
+
+## Next steps
 
 <Cards>
-  <Card title="macOS" href="/docs/courier/installation/macos">
-    Install script or Homebrew.
+  <Card title="Create your first project" href="/docs/getting-started/setup-courier">
+    Scaffold a project with `courier create`.
   </Card>
 
-  <Card title="Windows" href="/docs/courier/installation/windows">
-    PowerShell, CMD, or Scoop.
+  <Card title="Pull an existing project" href="/guides/pull-project-with-courier">
+    Bring a Blutui project's code onto your machine.
   </Card>
 
-  <Card title="Linux" href="/docs/courier/installation/linux">
-    Install script.
+  <Card title="Commands" href="/docs/courier/commands">
+    Every Courier command and its flags.
+  </Card>
+
+  <Card title="Configuration" href="/docs/courier/configuration">
+    Connect a folder to a project with `courier.json`.
   </Card>
 </Cards>
 
-### Log in
+## Upgrade or uninstall
 
-Courier uses a Courier token to access your Blutui projects. Create one in your [Agency Console](https://console.blutui.com) under **Profile → Apps → Access tokens**, save it to a `token.txt` file, and log in:
+To upgrade, install a specific version, or uninstall Courier, see the guide for your system:
 
-```bash tab="macOS & Linux"
-courier login --token < token.txt
-```
+<Cards>
+  <Card title="macOS" href="/docs/courier/installation/macos">
+    cURL or Homebrew.
+  </Card>
 
-```powershell tab="Windows PowerShell"
-Get-Content token.txt -Raw | courier login --token
-```
+  <Card title="Windows" href="/docs/courier/installation/windows">
+    PowerShell, CMD or Scoop.
+  </Card>
 
-Delete `token.txt` once you're logged in. For step-by-step instructions, see [Create a Courier token](/docs/courier/installation/macos#create-a-courier-token).
-
-### Next steps
-
-Now that Courier is installed and you're logged in, follow [Setup Blutui Courier](/docs/getting-started/setup-courier) to scaffold your first project with `courier create`.
-
-<Callout>
-Already have code in a Blutui project? Pull it onto your machine instead. See [How do I pull a project onto my machine?](/guides/pull-project-with-courier)
-</Callout>
+  <Card title="Linux" href="/docs/courier/installation/linux">
+    cURL.
+  </Card>
+</Cards>

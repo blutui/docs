@@ -27,29 +27,29 @@ To begin using Blutui Context, you must first ensure your local environment is r
 
 ### 1. Upgrade Courier
 
-Blutui Context requires the newest features bundled with the latest Courier release. Upgrade Courier using the same method you installed it with. Follow the upgrade steps for your operating system:
+Blutui Context needs the latest Courier release. Upgrade using the same method you installed Courier with:
 
-<Cards>
-  <Card title="macOS" href="/docs/courier/installation/macos#upgrade-courier">
-    cURL or Homebrew.
-  </Card>
-
-  <Card title="Windows" href="/docs/courier/installation/windows#upgrade-courier">
-    PowerShell, CMD, or Scoop.
-  </Card>
-
-  <Card title="Linux" href="/docs/courier/installation/linux#upgrade-courier">
-    cURL.
-  </Card>
-</Cards>
-
-Once upgraded, check the installed version:
-
-```bash
-courier version
+```bash tab="macOS & Linux"
+curl -fsSL https://blutui.com/courier/install.sh | sh
 ```
 
-If you haven't installed Courier yet, start with the Courier [Getting Started guide](/docs/courier/getting-started).
+```bash tab="Homebrew"
+brew upgrade --cask courier
+
+```bash tab="PowerShell (Windows)"
+irm https://blutui.com/courier/install.ps1 | iex
+```
+
+```bash tab="CMD (Windows)"
+curl -fsSL -o install.cmd https://blutui.com/courier/install.cmd && install.cmd && del install.cmd
+```
+
+
+```bash tab="Scoop"
+scoop update courier
+```
+
+Check you're on the latest version with `courier version`. For more on upgrading, see [Getting started with Courier](/docs/courier/getting-started#upgrade-or-uninstall).
 
 ### 2. Configure the MCP Server
 

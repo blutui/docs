@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 import { baseUrl } from 'lib/metadata'
 import { source } from 'lib/source'
 
-const exclude = ['-response-parameters', '-response', '-response-list', '/installation/create-courier-token']
+const exclude = ['-response-parameters', '-response', '-response-list', '/installation/login']
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const url = (path: string): string => new URL(path, baseUrl).toString()

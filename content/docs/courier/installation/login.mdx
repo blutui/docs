@@ -1,0 +1,48 @@
+---
+title: Log in to Courier
+---
+
+Log in to Courier with your Blutui account:
+
+```bash
+courier login
+```
+
+Courier shows a login code and copies it to your clipboard. Press **Enter** to open Blutui in your browser, sign in if you need to, paste the code and approve the login.
+
+```bash
+✔ Login code copied to your clipboard … ABCD-EFGH
+? Press Enter to open accounts.blutui.com in your browser...
+  Paste the code into the page to continue. If your browser doesn't open, visit:
+
+  https://accounts.blutui.com/oauth/device
+
+✔ Success! Courier is configured for your account.
+```
+
+Courier renews your login in the background, so you rarely need to log in again. If your browser doesn't open, or you're connected over SSH, visit the URL Courier prints and enter the code there.
+
+<Callout>
+Courier saves your credentials to your system's secure storage (Keychain on macOS, Credential Manager on Windows, Secret Service on Linux). If secure storage isn't available, Courier saves them in its config file and shows a warning.
+</Callout>
+
+### Log in with an access token
+
+In CI, scripts, or anywhere without a browser, log in with an access token instead:
+
+1. In your [Agency Console](https://console.blutui.com), click your avatar in the top-right corner and choose **Profile**.
+2. Go to **Apps** in the sidebar and click **Create token** under **Access tokens**.
+3. Name your token and set the token type to **Courier**. This selects the `project:read`, `cassette:read` and `cassette:write` scopes Courier needs.
+4. Click **Create token** and copy the token. It's only shown once.
+
+Save the token to a `token.txt` file and pass it to Courier on standard input:
+
+```bash tab="macOS & Linux"
+courier login --token < token.txt
+```
+
+```bash tab="Windows PowerShell"
+Get-Content token.txt -Raw | courier login --token
+```
+
+Delete `token.txt` once you're logged in. When the token expires, create a new one and log in again.

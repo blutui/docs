@@ -3,7 +3,6 @@
     "macos",
     "windows",
     "linux",
-    "!create-courier-token",
-    "!windows-token-setup"
+    "!login"
   ]
 }

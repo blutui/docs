@@ -10,4 +10,4 @@ description: 'How to publish a site'
 Click the `Publish` button in the top-right corner of the screen. It's that simple.
 
 Before publishing, your site should also have a domain connected.  
-If you haven't set this up yet, see our guide on [managing domains](/console/site-settings/managing-domains).
+If you haven't set this up yet, see our guide on [connecting a domain](/console/domains/connect-a-domain).

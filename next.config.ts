@@ -21,7 +21,10 @@ const config: NextConfig = {
     ]
   },
   async redirects() {
-    return [{ source: '/discord', destination: 'https://discord.gg/4H8dZW6Fva', permanent: false }]
+    return [
+      { source: '/discord', destination: 'https://discord.gg/4H8dZW6Fva', permanent: false },
+      { source: '/console/site-settings/managing-domains', destination: '/console/domains', permanent: true },
+    ]
   },
 }
 

@@ -1,0 +1,47 @@
+---
+title: 'DNS records'
+description: 'The DNS records Blutui needs to verify a domain, and how to add them at your DNS provider.'
+---
+
+To verify a domain, Blutui needs two records at your DNS provider: one that points the domain at Blutui, and a TXT record that proves you own it.
+
+<Callout type="warn">
+The **DNS records** table at the bottom of the domain's page in the Console shows the exact values for that domain. Copy them from there rather than from this page, because the TXT record is unique to each domain.
+</Callout>
+
+## Root domains
+
+For a root domain (`example.com`), add:
+
+| Type | Name / Host | Value | TTL |
+| --- | --- | --- | --- |
+| `A` | `@` | `75.2.24.109` | `3600` |
+| `TXT` | The domain's ID, a long code shown in the table | `blutui_verification=…`, shown in the table | `3600` |
+
+## Subdomains
+
+For a subdomain (`www.example.com`, `shop.example.com`), the table shows a CNAME record instead of an A record:
+
+| Type | Name / Host | Value |
+| --- | --- | --- |
+| `CNAME` | The subdomain, for example `www` | `projects.blutui.com` |
+| `TXT` | `<domain ID>.www` | `blutui_verification=…` |
+
+## Adding the records
+
+At your DNS provider (GoDaddy, Cloudflare, Namecheap, etc.):
+
+1. Open the DNS settings for the domain.
+2. Delete any existing `A` and `AAAA` records on `@` (or on the subdomain, if you're connecting one) that point somewhere else. The A record is checked against Blutui's IP addresses, and any other records left there will still send some visitors to the old site.
+3. Add the A record (or the CNAME record for a subdomain) and the TXT record exactly as the table shows them.
+4. Check the **Host** field (see below).
+
+### Entering the Host field
+
+Most providers add your domain to the end of the Host automatically, so enter only the ID (or `ID.www`), not `ID.example.com`.
+
+If your provider shows the full name after you save and it ends up as `ID.example.com.example.com`, remove the duplicated part.
+
+### Cloudflare
+
+Set the A or CNAME record to **DNS only** (grey cloud). If it's proxied (orange cloud), Cloudflare hides Blutui's IP address and the check will fail.

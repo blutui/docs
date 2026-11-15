@@ -1,0 +1,29 @@
+---
+title: 'Troubleshooting'
+description: 'What to do when a domain fails DNS verification in Blutui.'
+---
+
+Blutui checks pending domains automatically every 2 minutes. To check straight away, click **Check DNS records** on the domain's page. If the check fails, the message tells you which record is the problem.
+
+## "A or CNAME record not configured"
+
+The A or CNAME record is missing, hasn't spread across the internet yet, or points to the wrong place.
+
+- Check the record matches the **DNS records** table on the domain's page. See [DNS records](/console/domains/dns-records).
+- Remove any other `A` or `AAAA` records on the same host that point somewhere else.
+- If you use Cloudflare, make sure the record is set to **DNS only** (grey cloud), not proxied.
+
+## "TXT verification record not found"
+
+The TXT record is missing, or its host or value is wrong.
+
+- Copy the value from the **DNS records** table again. It is unique to each domain.
+- Check the Host field wasn't doubled up, for example `ID.example.com.example.com`. See [Entering the Host field](/console/domains/dns-records#entering-the-host-field).
+
+## The records are correct but the check still fails
+
+DNS changes usually take effect within minutes but can take up to 72 hours to spread across the internet. Wait a while, then click **Check DNS records** again.
+
+## The domain is verified but the site doesn't load
+
+The project must be [published](/console/site-settings/publishing) for the domain to serve the site. Also check the domain is attached to the right project on the domain's page.

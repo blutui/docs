@@ -1,0 +1,58 @@
+---
+title: 'Connect a domain'
+description: 'Add a domain in Blutui, attach it to a project, verify it with DNS records and make your site live.'
+---
+
+<Steps>
+<Step>
+### Add the domain in Blutui
+
+1. In the Console, open your agency and go to **Domains**.
+2. Click **Add domain**.
+3. Under **Domain name**, type the domain without `https://` or a trailing slash, for example `example.com`.
+4. Click **Add domain**.
+
+This takes you to the domain's page, which shows a **Verification pending** banner.
+</Step>
+
+<Step>
+### Attach it to a project
+
+1. On the domain's page, find the **Project** box.
+2. Open the dropdown, search for the project and select it.
+3. Click **Confirm change** in the dialog that appears.
+</Step>
+
+<Step>
+### Add the DNS records at your provider
+
+The **DNS records** table at the bottom of the domain's page shows the exact records to add. Add them at your DNS provider (GoDaddy, Cloudflare, Namecheap, etc.):
+
+- A root domain (`example.com`) needs an **A** record and a **TXT** record.
+- A subdomain (`www.example.com`) needs a **CNAME** record and a **TXT** record.
+
+<Callout type="warn">
+Copy the records from the DNS records table rather than from the docs. The TXT record is unique to each domain.
+</Callout>
+
+See [DNS records](/console/domains/dns-records) for the record values, what to remove first, and tips for entering the Host field and using Cloudflare.
+</Step>
+
+<Step>
+### Verify the domain
+
+Blutui checks pending domains automatically every 2 minutes. To check straight away, click **Check DNS records** on the domain's page.
+
+DNS changes usually take effect within minutes but can take up to 72 hours. Once the check passes, the domain shows as verified.
+
+If the check fails, see [Troubleshooting](/console/domains/troubleshooting).
+</Step>
+
+<Step>
+### Make the site live
+
+The project must be [published](/console/site-settings/publishing) for the domain to serve the site.
+
+If the project has more than one domain, choose which one is the [primary domain](/console/domains#primary-and-connected-domains) in the project's own domain settings.
+</Step>
+</Steps>

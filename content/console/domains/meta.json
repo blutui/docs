@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../.source/json-schema/docs.meta.json",
+  "title": "Domains",
+  "pages": [
+    "index",
+    "connect-a-domain",
+    "dns-records",
+    "troubleshooting"
+  ]
+}
